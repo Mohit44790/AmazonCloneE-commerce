@@ -171,5 +171,190 @@ const productSchema = new mongoose.Schema(
     },
 
      // Shipping
+    shipping:{
+        weight:Number,
+        dimensions:{
+            length:Number,
+            width:Number,
+            height:Number,
+        },
+
+        freeShipping:{type:Boolean, default:false},
+        shippingClass:{type:String, default:0},
+        estimatedDelivery:String,
+    },
+
+   //SEO
+   status:{
+    type:String,
+    enum:["draft", "active", "inactive", "out_of_stock" , "discontinued"],
+    default:"draft",
+    index:true,
+   },
+     isActive: { type: Boolean, default: true, index: true },
+    isFeatured: { type: Boolean, default: false },
+    isNewArrival: { type: Boolean, default: false },
+    isBestSeller: { type: Boolean, default: false },
+    isDeal: { type: Boolean, default: false },
+    dealExpiresAt: { type: Date, default: null },
+
+    // Tags
+    tags: [{ type: String, lowercase: true, trim: true }],
+
+     // Stats
+    viewCount: { type: Number, default: 0 },
+    salesCount: { type: Number, default: 0 },
+    wishlistCount: { type: Number, default: 0 },
+ 
+    // Admin
+    adminApproved: { type: Boolean, default: false },
+    adminNote: String,
+    rejectionReason: String,
+
+      // Return policy
+    returnPolicy: {
+      isReturnable: { type: Boolean, default: true },
+      returnDays: { type: Number, default: 10 },
+      returnConditions: String,
+    },
+
+     // Warranty
+    warranty: {
+      hasWarranty: { type: Boolean, default: false },
+      warrantyPeriod: String,
+      warrantyType: String,
+    },
+  },
+  {
+    timestamps: true,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  }
+
+
+    
+);
+// =============================================
+// VIRTUAL FIELDS
+// =============================================
+productSchema.virtual("finalPrice").get(function () {
+  if (!this.discount || this.discount === 0) return this.price;
+  if (this.discountType === "percentage") {
+    return Math.round(this.price * (1 - this.discount / 100));
+  }
+  return Math.max(0, this.price - this.discount);
+});
+ 
+productSchema.virtual("discountAmount").get(function () {
+  return this.price - this.finalPrice;
+});
+ 
+productSchema.virtual("isInStock").get(function () {
+  return this.stock > 0;
+});
+ 
+productSchema.virtual("isLowStock").get(function () {
+  return this.stock > 0 && this.stock <= this.lowStockThreshold;
+});
+ 
+productSchema.virtual("primaryImage").get(function () {
+  if (!this.images || this.images.length === 0) return null;
+  return this.images.find((img) => img.isPrimary) || this.images[0];
+});
+ 
+productSchema.virtual("reviews", {
+  ref: "Review",
+  localField: "_id",
+  foreignField: "product",
+});
+ 
+// =============================================
+// INDEXES
+// =============================================
+productSchema.index({ name: "text", description: "text", tags: "text", brand: "text" });
+productSchema.index({ category: 1, status: 1, isActive: 1 });
+productSchema.index({ seller: 1, status: 1 });
+productSchema.index({ price: 1 });
+productSchema.index({ "rating.average": -1 });
+productSchema.index({ salesCount: -1 });
+productSchema.index({ createdAt: -1 });
+productSchema.index({ isFeatured: 1, isActive: 1 });
+productSchema.index({ gender: 1, category: 1 });
+ 
+// =============================================
+// PRE-SAVE HOOKS
+// =============================================
+productSchema.pre("save", async function (next) {
+  if (this.isModified("name") || this.isNew) {
+    let slug = slugify(this.name, { lower: true, strict: true });
+    const existing = await this.constructor.findOne({ slug, _id: { $ne: this._id } });
+    if (existing) {
+      slug = `${slug}-${Date.now()}`;
     }
-)
+    this.slug = slug;
+  }
+ 
+  // Auto-calculate discount if comparePrice is set
+  if (this.comparePrice && this.comparePrice > this.price) {
+    this.discount = Math.round(((this.comparePrice - this.price) / this.comparePrice) * 100);
+    this.discountType = "percentage";
+  }
+ 
+  // Set primary image if none set
+  if (this.images && this.images.length > 0) {
+    const hasPrimary = this.images.some((img) => img.isPrimary);
+    if (!hasPrimary) this.images[0].isPrimary = true;
+  }
+ 
+  // Update status based on stock
+  if (this.stock === 0 && this.status === "active") {
+    this.status = "out_of_stock";
+  } else if (this.stock > 0 && this.status === "out_of_stock") {
+    this.status = "active";
+  }
+ 
+  next();
+});
+ 
+// =============================================
+// STATIC METHODS
+// =============================================
+productSchema.statics.updateRating = async function (productId) {
+  const Review = mongoose.model("Review");
+  const stats = await Review.aggregate([
+    { $match: { product: mongoose.Types.ObjectId(productId), isApproved: true } },
+    {
+      $group: {
+        _id: "$product",
+        avgRating: { $avg: "$rating" },
+        numReviews: { $sum: 1 },
+        dist1: { $sum: { $cond: [{ $eq: ["$rating", 1] }, 1, 0] } },
+        dist2: { $sum: { $cond: [{ $eq: ["$rating", 2] }, 1, 0] } },
+        dist3: { $sum: { $cond: [{ $eq: ["$rating", 3] }, 1, 0] } },
+        dist4: { $sum: { $cond: [{ $eq: ["$rating", 4] }, 1, 0] } },
+        dist5: { $sum: { $cond: [{ $eq: ["$rating", 5] }, 1, 0] } },
+      },
+    },
+  ]);
+ 
+  if (stats.length > 0) {
+    await this.findByIdAndUpdate(productId, {
+      "rating.average": Math.round(stats[0].avgRating * 10) / 10,
+      "rating.count": stats[0].numReviews,
+      "rating.distribution.1": stats[0].dist1,
+      "rating.distribution.2": stats[0].dist2,
+      "rating.distribution.3": stats[0].dist3,
+      "rating.distribution.4": stats[0].dist4,
+      "rating.distribution.5": stats[0].dist5,
+    });
+  } else {
+    await this.findByIdAndUpdate(productId, {
+      "rating.average": 0,
+      "rating.count": 0,
+    });
+  }
+};
+
+const Product = mongoose.model("Product", productSchema);
+
+export default Product;

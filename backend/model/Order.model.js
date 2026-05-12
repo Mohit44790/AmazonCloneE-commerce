@@ -118,5 +118,130 @@ const orderSchema = new mongoose.Schema({
 
 
     // Order Status
+    status:{
+      type:String,
+      enum:["pending","confirmed","processing","shipped","out_for_delivery","delivered","cancelled","returned","refunded"],
+      default:"pending",
+      index:true,
+    },
+    
+       // Status history / timeline
+    statusHistory: [
+      {
+        status: String,
+        message: String,
+        timestamp: { type: Date, default: Date.now },
+        updatedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+      },
+    ],
 
-})
+       // Dates
+    confirmedAt: Date,
+    shippedAt: Date,
+    deliveredAt: Date,
+    cancelledAt: Date,
+    cancelReason: String,
+    returnRequestedAt: Date,
+    returnReason: String,
+    returnApprovedAt: Date,
+    refundedAt: Date,
+
+    // Invoice
+    invoiceNumber: { type: String, unique: true, sparse: true },
+    invoiceUrl: String,
+    invoiceGeneratedAt: Date,
+
+        // Notes
+    customerNote: { type: String, maxlength: 500 },
+    adminNote: { type: String, maxlength: 500 },
+
+    isGift: { type: Boolean, default: false },
+    giftMessage: { type: String, maxlength: 200 },
+        // Flags
+    isReviewed: { type: Boolean, default: false },
+    isCOD: { type: Boolean, default: false },
+  },
+  {
+    timestamps: true,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  }
+);
+
+// =============================================
+// VIRTUAL FIELDS
+// =============================================
+
+orderSchema.virtual("itemCount").get(function () {
+  return this.items.reduce((sum, item) => sum + item.quantity, 0);
+});
+
+orderSchema.virtual("sellerIds").get(function () {
+  return [...new Set(this.items.map((item) => item.seller.toString()))];
+});
+
+// =============================================
+// INDEXES
+// =============================================
+
+orderSchema.index({user:1 , createdAt:-1});
+orderSchema.index({status:1 , createdAt:-1});
+orderSchema.index({"items.seller":1 , status:1});
+orderSchema.index({orderNumber:1});
+
+// =============================================
+// PRE-SAVE HOOKS
+// =============================================
+orderSchema.pre("save", async function (next) {
+  if(this.isNew){
+    // Generate order number: ORD-YYYYMMDD-XXXXXX
+    const dateStr = new Date().toISOString().slice(0,10).replace(/-/g,"");
+    const random = Math.floor(100000 + Math.random() * 900000);
+    this.orderNumber = `ORD-${dateStr}-${random}`;
+
+    // Generate invoice number
+    const invRandom = Math.floor(100000 + Math.random() * 900000);
+    this.invoiceNumber = `INV-${dateStr}-${invRandom}`;
+
+    //COD flag
+    this.isCOD = this.paymentMethod === "cod";
+
+    //Total in paise for Razorpay
+    this.totalnPaise = Math.round(this.total * 100);
+
+    // Add initial status to history
+    this.statusHistory.push({
+      status:"pending",
+      message:"Order placed successfully",
+    });
+  }
+  next();
+});
+
+// =============================================
+// INSTANCE METHODS
+// =============================================
+
+orderSchema.methods.updateStatus = async function (status, message, updatedBy) {
+  this.status = status;
+  this.statusHistory.push({ status, message, updatedBy, timestamp: new Date() });
+ 
+  const now = new Date();
+  if (status === "confirmed") this.confirmedAt = now;
+  if (status === "shipped") this.shippedAt = now;
+  if (status === "delivered") {
+    this.deliveredAt = now;
+    if (this.isCOD) {
+      this.paymentStatus = "paid";
+      this.payment.paidAt = now;
+    }
+  }
+  if (status === "cancelled") this.cancelledAt = now;
+  if (status === "refunded") this.refundedAt = now;
+ 
+  await this.save();
+  return this;
+};
+
+const Order = mongoose.model("Order", orderSchema);
+export default Order;

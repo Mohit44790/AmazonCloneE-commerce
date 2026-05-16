@@ -488,7 +488,7 @@ userSchema.methods.createPhoneOtp =
     const otp = Math.floor(
       100000 + Math.random() * 900000
     ).toString();
-
+  
     this.phoneOtp = crypto
       .createHash("sha256")
       .update(otp)

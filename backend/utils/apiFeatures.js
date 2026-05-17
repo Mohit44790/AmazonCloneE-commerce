@@ -13,7 +13,7 @@ class APIFeatures {
     const queryObj = { ...this.queryString};
     const excludedFiellds = ["page", "sort", "limit","fields","search","q" ];
     excludedFields.forEach((el) => delete queryObj[el]);
-
+ 
     // Advanced filtering: gte, gt, lte, lt
     let queryStr = JSON.stringify(queryObj);
     queryStr = queryStr.replace(/\b(gte|gt|lte|lt|ne|in|nin)\b/g, (match) => `$${match}`);

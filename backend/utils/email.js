@@ -89,7 +89,7 @@ const emailTemplates = {
             text-decoration: none;
             border-radius: 4px;
             font-weight: bold;
-          }
+          } 
 
           .otp {
             font-size: 36px;

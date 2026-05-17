@@ -491,4 +491,4 @@ export {
   Address,
   Coupon,
   Notification,
-};
+};   

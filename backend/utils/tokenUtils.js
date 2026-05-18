@@ -115,7 +115,7 @@ const getRefreshTokenCookieOptions = () => ({
   maxAge:
     30 * 24 * 60 * 60 * 1000,
 
-  path: "/api/v1/auth/refresh",
+  path: "/api/v1/auth/refresh-token",
 });
 
 // =============================================

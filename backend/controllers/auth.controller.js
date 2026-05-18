@@ -15,7 +15,7 @@ import {   sendTokenResponse,
   sendWelcomeEmail,
   sendPasswordResetEmail,
   sendOtpEmail,
-} from "../utils/email.js";
+} from "../utils/sendEmail.js";
 // =============================================
 // REGISTER
 // =============================================

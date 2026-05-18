@@ -1,7 +1,9 @@
 import crypto from 'crypto';
 import User from '../model/User.model.js';
 import { verifyAccessToken } from '../utils/tokenUtils.js';
-
+import { validationResult } from "express-validator";
+import logger from '../utils/logger.js';
+ 
 // =============================================
 // CUSTOM ERROR CLASS
 // =============================================
@@ -22,7 +24,7 @@ class AppError extends Error {
 // =============================================
 
 const handleCastErrorDB = (err) =>
-    new AppError('Invalid ${err.path} : ${err.value}', 400);
+  new AppError(`Invalid ${err.path}: ${err.value}`, 400);
 
 const handleDuplicateFieldsDB = (err) => {
     const field = Object.keys(err.keyValue)[0];
@@ -279,18 +281,49 @@ const catchAsync = (fn) => {
 // =============================================
 // VALIDATION MIDDLEWARE (express-validator)
 // =============================================
-const { validationResult } = require("express-validator");
- 
-const validate = (req, res, next) => {
-  const errors = validationResult(req);
+
+
+// =============================================
+// VALIDATION MIDDLEWARE (express-validator)
+// =============================================
+
+const validate = (
+  req,
+  res,
+  next
+) => {
+  const errors =
+    validationResult(req);
+
   if (!errors.isEmpty()) {
-    const formattedErrors = errors.array().map((e) => ({
-      field: e.path || e.param,
-      message: e.msg,
-      value: e.value,
-    }));
-    return next(new AppError("Validation failed", 400, formattedErrors));
+    const formattedErrors =
+      errors.array().map((e) => ({
+        field:
+          e.path ||
+          e.param ||
+          "unknown",
+
+        message: e.msg,
+
+        value: e.value,
+      }));
+
+    console.log(
+      "Validation Errors:",
+      formattedErrors
+    );
+
+    return res.status(400).json({
+      success: false,
+
+      message:
+        "Validation failed",
+
+      errors:
+        formattedErrors,
+    });
   }
+
   next();
 };
 

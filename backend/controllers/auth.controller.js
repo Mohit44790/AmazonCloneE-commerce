@@ -1,15 +1,15 @@
 import crypto from "crypto";
-import { AppError, catchAsync } from "../middlewares/errorHandler";
-import User from "../model/User.model";
-import { Cart } from "../model/extra.models";
-import logger from "../utils/logger";
+import { AppError, catchAsync } from "../middlewares/errorHandler.js";
+import User from "../model/User.model.js";
+import { Cart } from "../model/extra.models.js";
+import logger from "../utils/logger.js";
 import {   sendTokenResponse,
   clearTokenCookies,
   verifyRefreshToken,
   generateAccessToken,
   generateRefreshToken,
   getRefreshTokenCookieOptions,
-  getAccessTokenCookieOptions,} from "../utils/tokenUtils";
+  getAccessTokenCookieOptions,} from "../utils/tokenUtils.js";
 
   import {
   sendWelcomeEmail,

@@ -18,6 +18,9 @@ dotenv.config();
 
 await connectDB();
 
+// Route imports
+import authRoutes from "./routes/auth.routes.js";
+
 /* ================= APP ================= */
 
 const app = express();
@@ -42,13 +45,16 @@ app.use(hpp());
 
 /* ================= RATE LIMIT ================= */
 
-const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000,
-    max : 200,
-    message:"Too many requests from this IP, please try again after 15 minutes"
-});
+// ================= AUTH RATE LIMIT =================
 
-app.use(limiter);
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+
+  max: 20,
+
+  message:
+    "Too many auth requests. Please try again later.",
+});
 
 /* ================= LOGGER ================= */
 
@@ -65,6 +71,9 @@ app.get("/" , (req, res) => {
     });
 });
 
+// ================= ROUTES =================
+app.use("/api/v1/auth", authLimiter, authRoutes);
+
 /* ================= ERROR HANDLER ================= */
 
 app.use((err, req, res, next) => {
@@ -75,6 +84,7 @@ app.use((err, req, res, next) => {
     message: err.message || "Internal Server Error",
   });
 });
+
 
 /* ================= SERVER ================= */
 

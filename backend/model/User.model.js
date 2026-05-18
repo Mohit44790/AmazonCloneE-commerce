@@ -392,9 +392,9 @@ userSchema.index({
 // PRE SAVE HOOKS
 // =============================================
 
-userSchema.pre("save", async function (next) {
+userSchema.pre("save", async function () {
   if (!this.isModified("password")) {
-    return next();
+    return;
   }
 
   const saltRounds =
@@ -406,21 +406,19 @@ userSchema.pre("save", async function (next) {
   );
 
   if (!this.isNew) {
-    this.passwordChangedAt = Date.now() - 1000;
+    this.passwordChangedAt =
+      Date.now() - 1000;
   }
-
-  next();
 });
 
-userSchema.pre(/^find/, function (next) {
+userSchema.pre(/^find/, function () {
   this.find({
     deletedAt: null,
+
     isBanned: {
       $ne: true,
     },
   });
-
-  next();
 });
 
 // =============================================

@@ -61,6 +61,8 @@ const TRANSLATIONS = {
   },
 };
 
+
+
 export default function Navbar() {
   const [lang, setLang] = useState("en");
   const [langOpen, setLangOpen] = useState(false);
@@ -191,7 +193,7 @@ export default function Navbar() {
         {[
           { key: "all", prefix: "☰ " },
           
-          { key: "todayDeals" },
+          { key: "todayDeals" ,link :"/home"},
           { key: "customerService" },
           { key: "registry" },
           { key: "giftCards" },

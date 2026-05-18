@@ -9,20 +9,12 @@ import logger from "./logger.js";
 
 const createTransporter = () => {
   return nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-
-    port: parseInt(process.env.SMTP_PORT) || 587,
-
-    secure: process.env.SMTP_PORT === "465",
+    service: "gmail",
 
     auth: {
       user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
 
-    tls: {
-      rejectUnauthorized:
-        process.env.NODE_ENV === "production",
+      pass: process.env.SMTP_PASS,
     },
   });
 };

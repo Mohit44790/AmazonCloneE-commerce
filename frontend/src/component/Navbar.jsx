@@ -3,6 +3,7 @@ import { IoLocationOutline } from "react-icons/io5";
 import { FaSearch, FaShoppingCart } from "react-icons/fa";
 import { IoMdArrowDropdown } from "react-icons/io";
 import amazon from "../assets/amazonLogo.png"
+import AllSideBar from "../pages/mainlayout/AllSideBar";
 
 const LANGUAGES = [
   { code: "en", label: "EN", name: "English" },
@@ -189,23 +190,8 @@ export default function Navbar() {
       </div>
 
       {/* ── Bottom Strip ── */}
-      <div className="bg-[#232f3e] flex items-center gap-0.5 px-3 py-1 overflow-x-auto whitespace-nowrap scrollbar-hide">
-        {[
-          { key: "all", prefix: "☰ " },
-          
-          { key: "todayDeals" ,link :"/home"},
-          { key: "customerService" },
-          { key: "registry" },
-          { key: "giftCards" },
-          { key: "sell" },
-        ].map(({ key, prefix }) => (
-          <button
-            key={key}
-            className={`text-white text-[13px] px-3 py-1.5 rounded border-2 border-transparent hover:border-white transition-colors shrink-0 cursor-pointer ${key === "all" ? "font-bold" : "font-normal"}`}
-          >
-            {prefix}{t[key]}
-          </button>
-        ))}
+      <div>
+        <AllSideBar/>
       </div>
     </nav>
   );

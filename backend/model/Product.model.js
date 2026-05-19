@@ -357,4 +357,4 @@ productSchema.statics.updateRating = async function (productId) {
 
 const Product = mongoose.model("Product", productSchema);
 
-export default Product;
+export default Product; 

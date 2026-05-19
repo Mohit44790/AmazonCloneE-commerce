@@ -195,4 +195,4 @@ categorySchema.statics.getSeedData = function () {
 };
 
 const Category = mongoose.model("Category", categorySchema);
-export default Category;
+export default Category; 

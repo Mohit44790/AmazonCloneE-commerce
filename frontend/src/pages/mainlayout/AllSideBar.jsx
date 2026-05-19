@@ -191,14 +191,14 @@ const AllSideBar = () => {
       {/* ── Backdrop ── */}
       {allOpen && (
         <div
-          className="fixed inset-0 bg-black/60 z-[998] transition-opacity"
+          className="fixed inset-0 bg-black/60 z-10 transition-opacity"
           onClick={closeSidebar}
         />
       )}
 
       {/* ── Drawer ── */}
       <div
-        className={`fixed top-0 left-0 h-full w-[320px] max-w-[85vw] bg-white z-[999] shadow-2xl flex flex-col transition-transform duration-300 ease-in-out overflow-hidden
+        className={`fixed top-0 left-0 h-full w-96 max-w-[85vw] bg-white z-20 shadow-2xl flex flex-col transition-transform duration-300 ease-in-out overflow-hidden
           ${allOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
         {/* ── Drawer Header ── */}
@@ -207,7 +207,7 @@ const AllSideBar = () => {
             <div className="bg-white rounded-full p-1.5">
               <MdPerson size={20} className="text-[#232f3e]" />
             </div>
-            <span className="text-white font-bold text-[16px]">Hello, sign in</span>
+            <span className="text-white font-bold text-xl">Hello, sign in</span>
           </div>
           <button
             onClick={closeSidebar}
@@ -229,7 +229,7 @@ const AllSideBar = () => {
               <div key={gi} className={gi > 0 ? "border-t border-gray-200" : ""}>
                 {/* Section Title */}
                 <div className="px-4 pt-4 pb-1">
-                  <h3 className="text-[15px] font-extrabold text-gray-900">{group.section}</h3>
+                  <h3 className="text-xl font-extrabold text-gray-900">{group.section}</h3>
                 </div>
 
                 {/* Items */}

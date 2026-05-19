@@ -20,6 +20,8 @@ const NAV_LIST = [
   { name: "Electronics",      link: "/electronics" },
   { name: "Fashion",          link: "/fashion" },
   { name: "Home & Kitchen",   link: "/home-kitchen" },
+  {name:"Computers" , link:"/computers"},
+  {name:"Toys & Games" , link:"/toys"},
 ];
 
 /* ─────────────────────────────────────────────
@@ -71,7 +73,7 @@ const ALL_MENU = [
     section: "Shop By Category",
     items: [
       {
-        label: "Mobiles, Tablets & More", link: "/mobiles", arrow: true,
+        label: "Mobiles, Computers", link: "/mobiles", arrow: true,
         subItems: [
           { label: "All Mobile Phones",           link: "/mobiles/phones" },
           { label: "All Mobile Accessories",      link: "/mobiles/accessories" },
@@ -86,7 +88,7 @@ const ALL_MENU = [
         ],
       },
       {
-        label: "Electronics", link: "/electronics", arrow: true,
+        label: "TV,Appliances,Electronics", link: "/electronics", arrow: true,
         subItems: [
           { label: "Cameras",       link: "/electronics/cameras" },
           { label: "Headphones",    link: "/electronics/headphones" },
@@ -95,26 +97,47 @@ const ALL_MENU = [
         ],
       },
       {
-        label: "Fashion", link: "/fashion", arrow: true,
+        label: "Men's Fashion", link: "/men-fashion", arrow: true,
         subItems: [
           { label: "Men",    link: "/fashion/men" },
-          { label: "Women",  link: "/fashion/women" },
-          { label: "Kids",   link: "/fashion/kids" },
+         
         ],
       },
       {
-        label: "Home & Kitchen", link: "/home-kitchen", arrow: true,
+        label:"Women's Fashion" , link:"/women-fashion" , arrow:true,
+        subItems:[
+            {label:"Women", link:"women"}
+        ]
+      },
+      {
+        label: "Home, Kitchen, Pets", link: "/home-kitchen", arrow: true,
         subItems: [
           { label: "Furniture",     link: "/home/furniture" },
           { label: "Cookware",      link: "/home/cookware" },
           { label: "Bedding",       link: "/home/bedding" },
         ],
       },
+      {label:"Beauty, Health, Grocery", link:"/beauty",
+        arrow:true,
+        subItems:[
+            {label:"Beauty" , link:"beauty"}
+        ]
+      },
+      {label:"Sports, Fitness, Bags, Luggage" , link:"Sport",
+        arrow:true,subItems:[
+            {label:"Sport", link:"/sports"}
+        ]
+      },
       { label: "Books",       link: "/books",  arrow: true, subItems: [{ label: "Fiction", link: "/books/fiction" }, { label: "Non-Fiction", link: "/books/non-fiction" }] },
       { label: "Toys & Games",link: "/toys",   arrow: true, subItems: [{ label: "Action Figures", link: "/toys/action" }, { label: "Board Games", link: "/toys/board" }] },
       { label: "Grocery",     link: "/grocery",arrow: true, subItems: [{ label: "Snacks", link: "/grocery/snacks" }, { label: "Beverages", link: "/grocery/beverages" }] },
     ],
   },
+  {section:"Help & Settings",items:[
+    {label:"Your Account" , link:"/accout"},
+    {label:"Customer Service" , link:"customer-service"},
+    {label:"Sign in", link:"/signin"}
+  ]}
 ];
 
 /* ═══════════════════════════════════════════

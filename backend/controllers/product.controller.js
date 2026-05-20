@@ -4,7 +4,7 @@
 // GET ALL PRODUCTS
 // =============================================
 
-import { catchAsync } from "../middlewares/errorHandler";
+import { AppError, catchAsync } from "../middlewares/errorHandler";
 import Category from "../model/Category.model";
 import Product from "../model/Product.model";
 import { APIFeatures } from "../utils/apiFeatures";
@@ -246,3 +246,80 @@ export const getProduct = catchAsync(
 
     
 )
+
+// =============================================
+// CREATE PRODUCT (Seller/Admin)
+// =============================================
+
+
+export const createProduct = catchAsync(async(req,res,next) =>{
+     const {
+    name, description, shortDescription, price, comparePrice, category,
+    subCategory, subSubCategory, brand, stock, hasVariants, variants,
+    attributes, sizes, colors, gender, ageGroup, tags, shipping,
+    returnPolicy, warranty, seo, highlights, status,
+  } = req.body;
+ 
+  // Build category path
+  let categoryPath = [];
+  if (category) {
+    const cat = await Category.findById(category);
+    if (!cat) return next(new AppError("Category not found.", 404));
+    categoryPath = [...cat.ancestors.map((a) => a._id), cat._id];
+  }
+ 
+  // Process uploaded images
+  const images = [];
+  if (req.files?.images) {
+    req.files.images.forEach((file, index) => {
+      images.push({
+        public_id: file.filename || file.public_id,
+        url: file.path,
+        isPrimary: index === 0,
+        order: index,
+      });
+    });
+  }
+ 
+  // Process uploaded videos
+  const videos = [];
+  if (req.files?.video) {
+    req.files.video.forEach((file) => {
+      videos.push({ public_id: file.filename, url: file.path });
+    });
+  }
+ 
+  // Generate SKU
+  const sku = req.body.sku || generateSKU(name, brand);
+ 
+  const sellerId = req.user.role === "seller" ? req.user._id : (req.body.seller || req.user._id);
+ 
+  const product = await Product.create({
+    name, description, shortDescription, highlights,
+    price: parseFloat(price),
+    comparePrice: comparePrice ? parseFloat(comparePrice) : null,
+    category, subCategory, subSubCategory, categoryPath,
+    seller: sellerId,
+    brand, stock: parseInt(stock) || 0,
+    sku, images, videos,
+    hasVariants: hasVariants === "true" || hasVariants === true,
+    variants: variants ? (typeof variants === "string" ? JSON.parse(variants) : variants) : [],
+    attributes: attributes ? (typeof attributes === "string" ? JSON.parse(attributes) : attributes) : [],
+    sizes: sizes ? (Array.isArray(sizes) ? sizes : sizes.split(",")) : [],
+    colors: colors ? (typeof colors === "string" ? JSON.parse(colors) : colors) : [],
+    gender, ageGroup,
+    tags: tags ? (Array.isArray(tags) ? tags : tags.split(",").map((t) => t.trim())) : [],
+    shipping: shipping ? (typeof shipping === "string" ? JSON.parse(shipping) : shipping) : {},
+    returnPolicy: returnPolicy ? (typeof returnPolicy === "string" ? JSON.parse(returnPolicy) : returnPolicy) : {},
+    warranty: warranty ? (typeof warranty === "string" ? JSON.parse(warranty) : warranty) : {},
+    seo: seo ? (typeof seo === "string" ? JSON.parse(seo) : seo) : {},
+    status: req.user.role === "admin" || req.user.role === "superadmin" ? (status || "active") : "draft",
+    adminApproved: req.user.role === "admin" || req.user.role === "superadmin",
+  });
+ 
+  res.status(201).json({
+    success: true,
+    message: "Product created successfully." + (product.status === "draft" ? " Awaiting admin approval." : ""),
+    data: { product },
+  });
+});

@@ -413,7 +413,7 @@ export const deleteProduct = catchAsync(async(req,res,next)=>{
   //Delete images from cloudinary
   if(product.images.length > 0){
     const publicIds = product.images.map((img) => img.public_id);
-    await deleteMultipleFromCloudinary(publicIds).catch((e) => console.error("Cloudinary delete error:"e));
+    await deleteMultipleFromCloudinary(publicIds).catch((e) => console.error("Cloudinary delete error:" , e));
 
   }
   //delete videos

@@ -21,6 +21,7 @@ await connectDB();
 
 // Route imports
 import authRoutes from "./routes/auth.routes.js";
+import productRoutes from "./routes/product.routes.js"
 
 /* ================= APP ================= */
 
@@ -78,6 +79,7 @@ app.get("/" , (req, res) => {
 
 // ================= ROUTES =================
 app.use("/api/v1/auth", authLimiter, authRoutes);
+app.use("/api/v1/products",productRoutes);
 
 /* ================= ERROR HANDLER ================= */
 

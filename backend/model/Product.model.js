@@ -5,10 +5,10 @@ const productSchema = new mongoose.Schema(
     {
         name:{
             type:String,
-            reuired:[true, "Product name is required"],
+            required:[true, "Product name is required"],
             trim:true,
             minlength:[3, "Product name must be at least 3 characters"],
-            maxlenght:[100, "Product name must be less than 100 characters"],
+             maxlength: [100, "Product name must be less than 100 characters"],
             index:true,
         },
         slug:{
@@ -21,21 +21,21 @@ const productSchema = new mongoose.Schema(
         description:{
             type:String,
             required:[true, "Product description is required"],
-            maxlenght:[5000, "Description cannot be more than 5000 characters"]
+            maxlength :[5000, "Description cannot be more than 5000 characters"]
         },
         shortDescription:{
             type:String,
             maxlength:[500, "Short description cannot exceed 500  characters"]
         },
-        highlight:[{type:String , maxlength:200}],
+        highlights :[{type:String , maxlength:200}],
 
         //price 
         price:{
             type:Number,
-            rrequired:[true, "Product price is required"],
+            required:[true, "Product price is required"],
             min:[0, "Price cannot be negative"],
         },
-        comarePrice:{type:Number , min: 0 , default:null},
+        comparePrice:{type:Number , min: 0 , default:null},
         costPrice:{type:Number , min:0 , default:null ,select:false},
         discount:{type:Number ,  min:0 , max:100 , default:0},
         discountType:{type:String , enum:["percentage", "fixed"], default:"percentage"},
@@ -89,11 +89,14 @@ const productSchema = new mongoose.Schema(
             order:{type:Number, default:0},
         }
     ],
-    videos:[
-        {
-            public_id:{type:String, url:String , thumbnail:String, duration:Number},
-        }
-    ],
+    videos: [
+  {
+    public_id: { type: String },
+    url: { type: String },
+    thumbnail: { type: String },
+    duration: { type: Number },
+  },
+],
 
     // inventory
 
@@ -180,7 +183,7 @@ const productSchema = new mongoose.Schema(
         },
 
         freeShipping:{type:Boolean, default:false},
-        shippingClass:{type:String, default:0},
+        shippingClass: { type: String, default: "standard" },
         estimatedDelivery:String,
     },
 
@@ -322,7 +325,7 @@ productSchema.pre("save", async function (next) {
 productSchema.statics.updateRating = async function (productId) {
   const Review = mongoose.model("Review");
   const stats = await Review.aggregate([
-    { $match: { product: mongoose.Types.ObjectId(productId), isApproved: true } },
+    { $match: { product: new mongoose.Types.ObjectId(productId), isApproved: true } },
     {
       $group: {
         _id: "$product",

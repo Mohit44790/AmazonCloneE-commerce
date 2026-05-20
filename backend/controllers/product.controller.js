@@ -1,15 +1,15 @@
 
 
+
+import { deleteMultipleFromCloudinary } from "../cloudinaryConfig/cloudinary.js";
+import { AppError, catchAsync } from "../middlewares/errorHandler.js";
+import Category from "../model/Category.model.js";
+import Product from "../model/Product.model.js";
+import { APIFeatures, generateSKU } from "../utils/apiFeatures.js";
+
 // =============================================
 // GET ALL PRODUCTS
 // =============================================
-
-import { deleteMultipleFromCloudinary } from "../cloudinaryConfig/cloudinary";
-import { AppError, catchAsync } from "../middlewares/errorHandler";
-import Category from "../model/Category.model";
-import Product from "../model/Product.model";
-import { APIFeatures } from "../utils/apiFeatures";
-
 export const getAllProducts = catchAsync(
     async(req,res,next ) =>{
         const filter = {
@@ -61,13 +61,13 @@ export const getAllProducts = catchAsync(
       filter.isFeatured = true;
     }
 
-        if(req.query.isNewArrival ==="ture"){
-            filter.isNewArrival = true;
-        }
+       if (req.query.isNewArrival === "true") {
+  filter.isNewArrival = true;
+}
 
-        if(req.query.isBestSeller === "ture"){
-            filter.isBestSeller = true;
-        }
+        if (req.query.isBestSeller === "true") {
+  filter.isBestSeller = true;
+}
 
         if(req.query.isDeal === "true"){
             filter.isDeal = true;
@@ -164,7 +164,7 @@ export const getProduct = catchAsync(
 
         const product = await Product.findOne({
             ...query, isActive:true,
-        }).populate("category","name slug ancestirs")
+        }).populate("category", "name slug ancestors")
         .populate(
           "subCategory",
           "name slug"
@@ -183,16 +183,14 @@ export const getProduct = catchAsync(
             match:{
                 isApproved:true,
             },
-            options:{
-                sort:{
-                    createAt:-1,
-                },
-                limit:10,
-            },
+           options: {
+  sort: { createdAt: -1 },
+  limit: 10,
+},
             populate:{
                 path:"user",
 
-                select:"namr avatar",
+                select:"name avatar",
             }
         });
 
@@ -292,6 +290,8 @@ export const createProduct = catchAsync(async(req,res,next) =>{
  
   // Generate SKU
   const sku = req.body.sku || generateSKU(name, brand);
+
+  
  
   const sellerId = req.user.role === "seller" ? req.user._id : (req.body.seller || req.user._id);
  
@@ -344,7 +344,7 @@ export const updateProduct = catchAsync(async(req,res,next)=>{
             public_id: file.filename || file.public_id,
             url:file.path,
             isPrimary:false,
-            order:Product.images.length +index,
+           order: product.images.length + index,
         }));
         product.images.push(...newImages)
     }
@@ -418,7 +418,7 @@ export const deleteProduct = catchAsync(async(req,res,next)=>{
   }
   //delete videos
   if(product.videos.length > 0){
-    const videoIds = product.videos.map((v) => v.publilc_id);
+    const videoIds = product.videos.map((v) => v.public_id);
     await deleteMultipleFromCloudinary(videoIds ,"video").catch((e) => console.error("Video delete error:",e));
 
   }

@@ -1,5 +1,5 @@
-import express from "express";
 import dotenv from "dotenv";
+import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
@@ -10,18 +10,21 @@ import hpp from "hpp";
 import connectDB from "./databaseConfig/database.js";
 import logger from "./utils/logger.js";
 
-/* ================= CONFIG ================= */
 
+// Route imports
+import authRoutes from "./routes/auth.routes.js";
+import productRoutes from "./routes/product.routes.js"
+import { errorHandler, notFound } from "./middlewares/errorHandler.js";
+/* ================= CONFIG ================= */
 dotenv.config();
+
 
 
 /* ================= DATABASE ================= */
 
 await connectDB();
 
-// Route imports
-import authRoutes from "./routes/auth.routes.js";
-import productRoutes from "./routes/product.routes.js"
+
 
 /* ================= APP ================= */
 
@@ -82,6 +85,9 @@ app.use("/api/v1/auth", authLimiter, authRoutes);
 app.use("/api/v1/products",productRoutes);
 
 /* ================= ERROR HANDLER ================= */
+
+app.use(notFound);          // 404 handler
+app.use(errorHandler);
 
 app.use((err, req, res, next) => {
   logger.error(err.stack);

@@ -4,6 +4,7 @@
 // GET ALL PRODUCTS
 // =============================================
 
+import { deleteMultipleFromCloudinary } from "../cloudinaryConfig/cloudinary";
 import { AppError, catchAsync } from "../middlewares/errorHandler";
 import Category from "../model/Category.model";
 import Product from "../model/Product.model";
@@ -323,3 +324,159 @@ export const createProduct = catchAsync(async(req,res,next) =>{
     data: { product },
   });
 });
+
+// =============================================
+// UPDATE PRODUCT
+// =============================================
+
+export const updateProduct = catchAsync(async(req,res,next)=>{
+    const product = await Product.findById(req.params.id);
+    if(!product) return next(new AppError("Product not found.",404));
+
+    //only seller owner or admin can update
+    if(req.user.role === "seller" && product.seller.toString() !== req.user._id.toString()){
+        return next(new AppError("You can Only update your own products." ,403));
+    }
+
+    //handle new image uploads
+    if(req.files?.images){
+        const newImages = req.files.images.map((file,index) =>({
+            public_id: file.filename || file.public_id,
+            url:file.path,
+            isPrimary:false,
+            order:Product.images.length +index,
+        }));
+        product.images.push(...newImages)
+    }
+
+    //handle image deletions
+    if(req.body.deleteImages){
+        const toDelete = Array.isArray(req.body.deleteImages) ? req.body.deleteImages : [req.body.deleteImages];
+        const imagesToDelete = product.images.filter((img) => toDelete.includes(img.public_id));
+
+        if(imagesToDelete.length >0){
+            await deleteMultipleFromCloudinary(imagesToDelete.map((img) => img.public_id));
+
+            product.images = product.images.filter((img) => !toDelete.includes(img.public_id));
+        }
+    }
+
+    // Update allowed fields
+    const allowedUpdates = [
+    "name", "description", "shortDescription", "highlights", "price", "comparePrice",
+    "brand", "stock", "hasVariants", "variants", "attributes", "sizes", "colors",
+    "gender", "ageGroup", "tags", "shipping", "returnPolicy", "warranty", "seo",
+    "isFeatured", "isNewArrival", "isDeal", "dealExpiresAt",
+  ];
+
+  allowedUpdates.forEach((field) => {
+    if (req.body[field] !== undefined) {
+      let val = req.body[field];
+      if (["variants", "attributes", "shipping", "returnPolicy", "warranty", "seo"].includes(field)) {
+        val = typeof val === "string" ? JSON.parse(val) : val;
+      }
+      product[field] = val;
+    }
+  });
+
+  // Admin can update status and approval
+  if(["admin" ,"superadmin"].includes(req.user.role)){
+    if(req.body.status) product.status = req.body.status;
+        if (req.body.adminApproved !== undefined) product.adminApproved = req.body.adminApproved;
+    if (req.body.adminNote) product.adminNote = req.body.adminNote;
+    if (req.body.isFeatured !== undefined) product.isFeatured = req.body.isFeatured === "true";
+    if (req.body.isBestSeller !== undefined) product.isBestSeller = req.body.isBestSeller === "true";
+
+  }
+  await product.save();
+
+  res.status(200).json({
+    success:true,
+    message:"Product update successfully.",
+    data:{product},
+  });
+
+});
+
+// =============================================
+// DELETE PRODUCT
+// =============================================
+export const deleteProduct = catchAsync(async(req,res,next)=>{
+  const product = await Product.findById(req.params.id);
+  if(!product) return next(new AppError("Product not found.",404));
+
+  if(req.user.role === "seller" && product.seller.toString() !== req.user._id.toString()){
+    return next(new AppError("You can only delete your own products.",403));
+
+  }
+
+  //Delete images from cloudinary
+  if(product.images.length > 0){
+    const publicIds = product.images.map((img) => img.public_id);
+    await deleteMultipleFromCloudinary(publicIds).catch((e) => console.error("Cloudinary delete error:"e));
+
+  }
+  //delete videos
+  if(product.videos.length > 0){
+    const videoIds = product.videos.map((v) => v.publilc_id);
+    await deleteMultipleFromCloudinary(videoIds ,"video").catch((e) => console.error("Video delete error:",e));
+
+  }
+
+  await product.deleteOne();
+
+  res.status(200).json({success:true,message:"Product delete successfully."});
+});
+
+// =============================================
+// GET SELLER'S OWN PRODUCTS
+// =============================================
+export const getMyProduct = catchAsync(async(req,res,next)=>{
+  const features = new APIFeatures(
+    Product.find({seller:req.user._id}),
+    req.query
+  ).filter()
+  .search(["name","brand"])
+  .sort()
+  .paginate(20);
+
+  const [products,total] = await Promise.all([
+    features.query.populate("category","name slug"),
+    Product.countDocuments({seller:req.user._id}),
+    ]);
+ 
+  res.status(200).json({
+    success: true,
+    pagination: features.getPaginationMeta(total),
+    data: { products },
+  });
+});
+
+// =============================================
+// APPROVE PRODUCT (Admin)
+// =============================================
+export const approveProduct = catchAsync(async (req, res, next) => {
+  const { approved, rejectionReason, adminNote } = req.body;
+  const product = await Product.findById(req.params.id).populate("seller", "email name");
+ 
+  if (!product) return next(new AppError("Product not found.", 404));
+ 
+  product.adminApproved = approved;
+  product.status = approved ? "active" : "inactive";
+  if (!approved) product.rejectionReason = rejectionReason;
+  if (adminNote) product.adminNote = adminNote;
+ 
+  await product.save({ validateBeforeSave: false });
+ 
+  // TODO: Notify seller via email/notification
+ 
+  res.status(200).json({
+    success: true,
+    message: `Product ${approved ? "approved" : "rejected"} successfully.`,
+    data: { product },
+  });
+});
+
+// =============================================
+// GET PRODUCT STATS (Admin/Seller)
+// =============================================

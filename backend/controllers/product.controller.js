@@ -479,4 +479,76 @@ export const approveProduct = catchAsync(async (req, res, next) => {
 
 // =============================================
 // GET PRODUCT STATS (Admin/Seller)
+// ============================================= 
+
+export const getProducStats = catchAsync(async(req,res,next)=>{
+  const match = req.user.role === "seller" ? {seller:req.user._id}:{};
+
+    const stats = await Product.aggregate([
+    { $match: match },
+    {
+      $group: {
+        _id: "$status",
+        count: { $sum: 1 },
+        avgPrice: { $avg: "$price" },
+        totalStock: { $sum: "$stock" },
+        totalSales: { $sum: "$salesCount" },
+      },
+    },
+  ]);
+
+  const topProducts = await Product.find(match)
+  .sort("-salesCount")
+  .limit(5)
+  .select("name salesCount price rating images");
+
+  res.status(200).json({
+    success:true,
+    data:{stats, topProducts}
+  })
+});
+
 // =============================================
+// SEARCH SUGGESTIONS (autocomplete)
+// =============================================
+
+export const searchSuggestions = catchAsync(async (req, res, next) => {
+  const { q } = req.query;
+  if (!q || q.length < 2) {
+    return res.status(200).json({ success: true, data: { suggestions: [] } });
+  }
+ 
+  const sanitized = q.trim().replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+ 
+  const products = await Product.find({
+    name: { $regex: sanitized, $options: "i" },
+    isActive: true,
+    adminApproved: true,
+  })
+    .select("name slug images.url")
+    .limit(8)
+    .lean();
+ 
+  const brands = await Product.distinct("brand", {
+    brand: { $regex: sanitized, $options: "i" },
+    isActive: true,
+  });
+ 
+  const categories = await Category.find({
+    name: { $regex: sanitized, $options: "i" },
+    isActive: true,
+  })
+    .select("name slug")
+    .limit(4);
+ 
+  res.status(200).json({
+    success: true,
+    data: {
+      suggestions: {
+        products,
+        brands: brands.slice(0, 4),
+        categories,
+      },
+    },
+  });
+});

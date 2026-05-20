@@ -194,6 +194,11 @@ const productSchema = new mongoose.Schema(
     default:"draft",
     index:true,
    },
+   seo: {
+  metaTitle: String,
+  metaDescription: String,
+  keywords: [String],
+},
      isActive: { type: Boolean, default: true, index: true },
     isFeatured: { type: Boolean, default: false },
     isNewArrival: { type: Boolean, default: false },

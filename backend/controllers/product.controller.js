@@ -1,10 +1,7 @@
-
-
-
-import { deleteMultipleFromCloudinary } from "../cloudinaryConfig/cloudinary.js";
+import Category from "../models/Category.model.js";
+import Product from "../models/Product.model.js";
+import { deleteMultipleFromCloudinary } from "../config/cloudinary.js";
 import { AppError, catchAsync } from "../middlewares/errorHandler.js";
-import Category from "../model/Category.model.js";
-import Product from "../model/Product.model.js";
 import { APIFeatures, generateSKU } from "../utils/apiFeatures.js";
 
 // =============================================
@@ -100,7 +97,7 @@ export const getAllProducts = catchAsync(
     }
 
     // Build features
-    const features = new APIFeatures(Product.find(filter).populate("seller","name sellerProfile.shopNam sellerProfile.rating"),
+    const features = new APIFeatures(Product.find(filter).populate("seller","name sellerProfile.shopName sellerProfile.rating"),
 req.query
 ).search([
     "name",
@@ -431,7 +428,7 @@ export const deleteProduct = catchAsync(async(req,res,next)=>{
 // =============================================
 // GET SELLER'S OWN PRODUCTS
 // =============================================
-export const getMyProduct = catchAsync(async(req,res,next)=>{
+export const getMyProducts = catchAsync(async(req,res,next)=>{
   const features = new APIFeatures(
     Product.find({seller:req.user._id}),
     req.query
@@ -481,7 +478,7 @@ export const approveProduct = catchAsync(async (req, res, next) => {
 // GET PRODUCT STATS (Admin/Seller)
 // ============================================= 
 
-export const getProducStats = catchAsync(async(req,res,next)=>{
+export const getProductStats = catchAsync(async(req,res,next)=>{
   const match = req.user.role === "seller" ? {seller:req.user._id}:{};
 
     const stats = await Product.aggregate([

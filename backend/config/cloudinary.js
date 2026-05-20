@@ -1,6 +1,8 @@
 import { v2 as cloudinary } from "cloudinary";
-import { CloudinaryStorage } from "multer-storage-cloudinary";
+import pkg from "multer-storage-cloudinary";
 import multer from "multer";
+
+const { CloudinaryStorage } = pkg;
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -206,7 +208,7 @@ const mediaFilter = (req, file, cb) => {
 // MULTER UPLOAD INSTANCES
 // =============================================
 
-const uploadProductImages = multer({
+const upload = multer({
   storage: productStorage,
 
   fileFilter: imageFilter,
@@ -314,7 +316,8 @@ const getOptimizedUrl = (
 
 export {
   cloudinary,
-  uploadProductImages,
+  
+  upload,
   uploadProductVideo,
   uploadAvatar,
   uploadCategoryImage,

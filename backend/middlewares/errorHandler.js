@@ -1,5 +1,5 @@
 import crypto from 'crypto';
-import User from '../model/User.model.js';
+import User from '../models/User.model.js';
 import { verifyAccessToken } from '../utils/tokenUtils.js';
 import { validationResult } from "express-validator";
 import logger from '../utils/logger.js';

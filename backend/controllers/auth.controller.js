@@ -1,7 +1,7 @@
 import crypto from "crypto";
 import { AppError, catchAsync } from "../middlewares/errorHandler.js";
-import User from "../model/User.model.js";
-import { Cart } from "../model/extra.models.js";
+import User from "../models/User.model.js";
+import { Cart } from "../models/extra.models.js";
 import logger from "../utils/logger.js";
 import {   sendTokenResponse,
   clearTokenCookies,

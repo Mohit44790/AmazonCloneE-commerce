@@ -1,23 +1,150 @@
 import express from "express";
-import { optionalAuth, protect, restrictTo, restrictToSeller } from "../middlewares/errorHandler.js";
-import { uploadProductImages } from "../cloudinaryConfig/cloudinary.js";
-import { approveProduct, createProduct, deleteProduct, getAllProducts, getMyProduct, getProducStats, getProduct, searchSuggestions, updateProduct } from "../controllers/product.controller.js";
+
+import {
+  optionalAuth,
+  protect,
+  restrictTo,
+  restrictToSeller,
+} from "../middlewares/errorHandler.js";
+
+import {
+  upload,
+} from "../config/cloudinary.js";
+
+import {
+  approveProduct,
+  createProduct,
+  deleteProduct,
+  getAllProducts,
+  getMyProducts,
+  getProductStats,
+  getProduct,
+  searchSuggestions,
+  updateProduct,
+} from "../controllers/product.controller.js";
 
 const router = express.Router();
 
-const uploadFields = uploadProductImages.fields([
+// =============================================
+// MULTER FIELDS
+// =============================================
+
+const uploadFields = upload.fields([
   { name: "images", maxCount: 10 },
-  { name: "video", maxCount: 1 },   // fix: was missing entirely
+  { name: "video", maxCount: 1 },
 ]);
 
-router.get("/" , optionalAuth, getAllProducts);
-router.get("/search/suggestions" ,searchSuggestions);
-router.get("/my-products", protect, restrictTo("seller","admin","superadmin"),getMyProduct );
-router.get("/stats" , protect,restrictTo("seller","admin","superadmin"), getProducStats);
-router.get("/:id" , optionalAuth,getProduct);
-router.post("/" ,protect,restrictTo("seller","admin","superadmin"),restrictToSeller,uploadFields, createProduct);
-router.put("/:id" ,protect,restrictTo("seller","admin","superadmin"),uploadFields , updateProduct);
-router.delete("/:id", protect,restrictTo("seller","admin","superadmin"),deleteProduct);
-router.patch("/:id/approve",protect,restrictTo("admin","superadmin"),approveProduct);
+// =============================================
+// PUBLIC ROUTES
+// =============================================
+
+router.get(
+  "/",
+  optionalAuth,
+  getAllProducts
+);
+
+router.get(
+  "/search/suggestions",
+  searchSuggestions
+);
+
+// =============================================
+// SELLER ROUTES
+// =============================================
+
+router.get(
+  "/my-products",
+  protect,
+  restrictTo(
+    "seller",
+    "admin",
+    "superadmin"
+  ),
+  getMyProducts
+);
+
+router.get(
+  "/stats",
+  protect,
+  restrictTo(
+    "seller",
+    "admin",
+    "superadmin"
+  ),
+  getProductStats
+);
+
+// =============================================
+// SINGLE PRODUCT
+// =============================================
+
+router.get(
+  "/:id",
+  optionalAuth,
+  getProduct
+);
+
+// =============================================
+// CREATE PRODUCT
+// =============================================
+
+router.post(
+  "/",
+  protect,
+  restrictTo(
+    "seller",
+    "admin",
+    "superadmin"
+  ),
+  restrictToSeller,
+  uploadFields,
+  createProduct
+);
+
+// =============================================
+// UPDATE PRODUCT
+// =============================================
+
+router.put(
+  "/:id",
+  protect,
+  restrictTo(
+    "seller",
+    "admin",
+    "superadmin"
+  ),
+  uploadFields,
+  updateProduct
+);
+
+// =============================================
+// DELETE PRODUCT
+// =============================================
+
+router.delete(
+  "/:id",
+  protect,
+  restrictTo(
+    "seller",
+    "admin",
+    "superadmin"
+  ),
+  deleteProduct
+);
+
+// =============================================
+// APPROVE PRODUCT
+// =============================================
+
+router.patch(
+  "/:id/approve",
+  protect,
+  restrictTo(
+    "admin",
+    "superadmin"
+  ),
+  approveProduct
+);
 
 export default router;

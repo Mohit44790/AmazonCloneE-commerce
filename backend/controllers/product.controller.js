@@ -1,6 +1,6 @@
 import Category from "../models/Category.model.js";
 import Product from "../models/Product.model.js";
-import { deleteMultipleFromCloudinary } from "../config/cloudinary.js";
+import { uploadProductImage, uploadProductVideo, deleteMultipleFromCloudinary } from "../config/cloudinary.js";
 import { AppError, catchAsync } from "../middlewares/errorHandler.js";
 import { APIFeatures, generateSKU } from "../utils/apiFeatures.js";
 
@@ -265,25 +265,32 @@ export const createProduct = catchAsync(async(req,res,next) =>{
   }
  
   // Process uploaded images
-  const images = [];
-  if (req.files?.images) {
-    req.files.images.forEach((file, index) => {
-      images.push({
-        public_id: file.filename || file.public_id,
-        url: file.path,
-        isPrimary: index === 0,
-        order: index,
-      });
+// createProduct — REPLACE the broken image block with this
+const images = [];
+if (req.files?.images) {
+  const uploads = await Promise.all(
+    req.files.images.map((file, index) => uploadProductImage(file.buffer, index))
+  );
+  uploads.forEach((result, index) => {
+    images.push({
+      public_id: result.public_id,
+      url: result.secure_url,
+      isPrimary: index === 0,
+      order: index,
     });
-  }
+  });
+}
  
   // Process uploaded videos
-  const videos = [];
-  if (req.files?.video) {
-    req.files.video.forEach((file) => {
-      videos.push({ public_id: file.filename, url: file.path });
-    });
-  }
+const videos = [];
+if (req.files?.video) {
+  const uploads = await Promise.all(
+    req.files.video.map((file) => uploadProductVideo(file.buffer))
+  );
+  uploads.forEach((result) => {
+    videos.push({ public_id: result.public_id, url: result.secure_url });
+  });
+}
  
   // Generate SKU
   const sku = req.body.sku || generateSKU(name, brand);
@@ -347,16 +354,23 @@ export const updateProduct = catchAsync(async(req,res,next)=>{
     }
 
     //handle image deletions
-    if(req.body.deleteImages){
-        const toDelete = Array.isArray(req.body.deleteImages) ? req.body.deleteImages : [req.body.deleteImages];
-        const imagesToDelete = product.images.filter((img) => toDelete.includes(img.public_id));
-
-        if(imagesToDelete.length >0){
-            await deleteMultipleFromCloudinary(imagesToDelete.map((img) => img.public_id));
-
-            product.images = product.images.filter((img) => !toDelete.includes(img.public_id));
-        }
-    }
+    // updateProduct — uncomment image deletion block
+if (req.body.deleteImages) {
+  const toDelete = Array.isArray(req.body.deleteImages)
+    ? req.body.deleteImages
+    : [req.body.deleteImages];
+  const imagesToDelete = product.images.filter((img) =>
+    toDelete.includes(img.public_id)
+  );
+  if (imagesToDelete.length > 0) {
+    await deleteMultipleFromCloudinary(
+      imagesToDelete.map((img) => img.public_id)
+    );
+    product.images = product.images.filter(
+      (img) => !toDelete.includes(img.public_id)
+    );
+  }
+}
 
     // Update allowed fields
     const allowedUpdates = [
@@ -408,17 +422,19 @@ export const deleteProduct = catchAsync(async(req,res,next)=>{
   }
 
   //Delete images from cloudinary
-  if(product.images.length > 0){
-    const publicIds = product.images.map((img) => img.public_id);
-    await deleteMultipleFromCloudinary(publicIds).catch((e) => console.error("Cloudinary delete error:" , e));
-
-  }
-  //delete videos
-  if(product.videos.length > 0){
-    const videoIds = product.videos.map((v) => v.public_id);
-    await deleteMultipleFromCloudinary(videoIds ,"video").catch((e) => console.error("Video delete error:",e));
-
-  }
+ // deleteProduct — uncomment and fix
+if (product.images.length > 0) {
+  const publicIds = product.images.map((img) => img.public_id);
+  await deleteMultipleFromCloudinary(publicIds).catch((e) =>
+    console.error("Cloudinary delete error:", e)
+  );
+}
+if (product.videos.length > 0) {
+  const videoIds = product.videos.map((v) => v.public_id);
+  await deleteMultipleFromCloudinary(videoIds, "video").catch((e) =>
+    console.error("Video delete error:", e)
+  );
+}
 
   await product.deleteOne();
 

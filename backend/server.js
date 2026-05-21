@@ -1,4 +1,4 @@
-import dotenv from "dotenv";
+import "./config/env.js";
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
@@ -16,13 +16,14 @@ import authRoutes from "./routes/auth.routes.js";
 import productRoutes from "./routes/product.routes.js"
 import { errorHandler, notFound } from "./middlewares/errorHandler.js";
 /* ================= CONFIG ================= */
-dotenv.config();
+
 
 
 
 /* ================= DATABASE ================= */
 
 await connectDB();
+console.log("✅ DB connected, starting server...");
 
 
 
@@ -89,14 +90,14 @@ app.use("/api/v1/products",productRoutes);
 app.use(notFound);          // 404 handler
 app.use(errorHandler);
 
-app.use((err, req, res, next) => {
-  logger.error(err.stack);
+// app.use((err, req, res, next) => {
+//   logger.error(err.stack);
 
-  res.status(err.statusCode || 500).json({
-    success: false,
-    message: err.message || "Internal Server Error",
-  });
-});
+//   res.status(err.statusCode || 500).json({
+//     success: false,
+//     message: err.message || "Internal Server Error",
+//   });
+// });
 
 
 /* ================= SERVER ================= */

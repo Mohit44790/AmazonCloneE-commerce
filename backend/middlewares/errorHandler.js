@@ -1,4 +1,3 @@
-import crypto from 'crypto';
 import User from '../models/User.model.js';
 import { verifyAccessToken } from '../utils/tokenUtils.js';
 import { validationResult } from "express-validator";

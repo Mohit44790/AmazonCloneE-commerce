@@ -60,24 +60,50 @@ categorySchema.index({ parent: 1, isActive: 1 });
 categorySchema.index({ slug: 1 });
 categorySchema.index({ type: 1, gender: 1 });
 
-categorySchema.pre("save", async function (next) {
+categorySchema.pre("save", async function () {
+
     if (this.isModified("name") || this.isNew) {
-        let slug = slugify(this.name, { lower: true, strict: true });
-        const existing = await this.constructor.findOne({ slug, _id: { $ne: this._id } });
-        if (existing) slug = `${slug}-${Date.now()}`;  // fix: was '${slug} - ${Date.now()}' with spaces
+
+        let slug = slugify(this.name, {
+            lower: true,
+            strict: true,
+        });
+
+        const existing = await this.constructor.findOne({
+            slug,
+            _id: { $ne: this._id },
+        });
+
+        if (existing) {
+            slug = `${slug}-${Date.now()}`;
+        }
+
         this.slug = slug;
     }
+
     if (this.isModified("parent") && this.parent) {
+
         const parent = await this.constructor.findById(this.parent);
+
         if (parent) {
-            this.ancestors = [...parent.ancestors, { _id: parent._id, name: parent.name, slug: parent.slug }];
+
+            this.ancestors = [
+                ...parent.ancestors,
+                {
+                    _id: parent._id,
+                    name: parent.name,
+                    slug: parent.slug,
+                },
+            ];
+
             this.level = parent.level + 1;
         }
+
     } else if (!this.parent) {
+
         this.ancestors = [];
         this.level = 0;
     }
-    next();
 });
 
 // DELETED the broken first getSeedData (CategorySchema with capital C + undefined slug variable)

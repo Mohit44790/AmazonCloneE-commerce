@@ -292,7 +292,7 @@ productSchema.index({ gender: 1, category: 1 });
 // =============================================
 // PRE-SAVE HOOKS
 // =============================================
-productSchema.pre("save", async function (next) {
+productSchema.pre("save", async function () {
   if (this.isModified("name") || this.isNew) {
     let slug = slugify(this.name, { lower: true, strict: true });
     const existing = await this.constructor.findOne({ slug, _id: { $ne: this._id } });
@@ -321,7 +321,7 @@ productSchema.pre("save", async function (next) {
     this.status = "active";
   }
  
-  next();
+ 
 });
  
 // =============================================

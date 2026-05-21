@@ -14,6 +14,7 @@ import logger from "./utils/logger.js";
 // Route imports
 import authRoutes from "./routes/auth.routes.js";
 import productRoutes from "./routes/product.routes.js"
+import categoryRoutes from "./routes/category.routes.js";
 import { errorHandler, notFound } from "./middlewares/errorHandler.js";
 /* ================= CONFIG ================= */
 
@@ -84,7 +85,7 @@ app.get("/" , (req, res) => {
 // ================= ROUTES =================
 app.use("/api/v1/auth", authLimiter, authRoutes);
 app.use("/api/v1/products",productRoutes);
-
+app.use("/api/v1/categories", categoryRoutes);
 /* ================= ERROR HANDLER ================= */
 
 app.use(notFound);          // 404 handler

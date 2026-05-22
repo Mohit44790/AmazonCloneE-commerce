@@ -27,12 +27,13 @@ const NAV_LIST = [
 /* ─────────────────────────────────────────────
    ALL MENU SIDEBAR DATA (with subItems)
 ───────────────────────────────────────────── */
+// Update ALL_MENU items to support sections in subItems
 const ALL_MENU = [
   {
     section: "Trending",
     items: [
-      { label: "Bestsellers",        link: "/bestsellers" },
-      { label: "New Releases",       link: "/new-releases" },
+      { label: "Bestsellers", link: "/bestsellers" },
+      { label: "New Releases", link: "/new-releases" },
       { label: "Movers and Shakers", link: "/movers" },
     ],
   },
@@ -41,32 +42,83 @@ const ALL_MENU = [
     items: [
       {
         label: "Echo & Alexa", link: "/alexa", arrow: true,
-        subItems: [
-          { label: "Echo Dot",        link: "/alexa/echo-dot" },
-          { label: "Echo Show",       link: "/alexa/echo-show" },
-          { label: "Alexa Skills",    link: "/alexa/skills" },
-          { label: "Smart Home",      link: "/alexa/smart-home" },
+        seeAllLink: "/alexa",
+        subSections: [
+          {
+            title: "Devices",
+            items: [
+              { label: "Echo Dot", link: "/alexa/echo-dot" },
+              { label: "Echo Show", link: "/alexa/echo-show" },
+              { label: "Echo Plus", link: "/alexa/echo-plus" },
+            ],
+          },
+          {
+            title: "Content & Resources",
+            items: [
+              { label: "Meet Alexa", link: "/alexa/meet" },
+              { label: "Alexa Skills", link: "/alexa/skills" },
+              { label: "Alexa App", link: "/alexa/app" },
+              { label: "Alexa Smart Home", link: "/alexa/smart-home" },
+              { label: "Amazon Prime Music", link: "/primemusic" },
+            ],
+          },
         ],
       },
       {
         label: "Fire TV", link: "/firetv", arrow: true,
-        subItems: [
-          { label: "Fire TV Stick",   link: "/firetv/stick" },
-          { label: "Fire TV Cube",    link: "/firetv/cube" },
-          { label: "Fire TV 4K",      link: "/firetv/4k" },
+        seeAllLink: "/firetv",
+        subSections: [
+          {
+            title: "Devices",
+            items: [
+              { label: "Fire TV Stick", link: "/firetv/stick" },
+              { label: "Fire TV Cube", link: "/firetv/cube" },
+              { label: "Fire TV 4K", link: "/firetv/4k" },
+            ],
+          },
         ],
       },
       {
         label: "Kindle E-Readers & eBooks", link: "/kindle", arrow: true,
-        subItems: [
-          { label: "Kindle Paperwhite", link: "/kindle/paperwhite" },
-          { label: "Kindle Oasis",      link: "/kindle/oasis" },
-          { label: "eBooks",            link: "/kindle/ebooks" },
+        seeAllLink: "/kindle",
+        subSections: [
+          {
+            title: "Devices",
+            items: [
+              { label: "Kindle Paperwhite", link: "/kindle/paperwhite" },
+              { label: "Kindle Oasis", link: "/kindle/oasis" },
+            ],
+          },
+          {
+            title: "Content",
+            items: [
+              { label: "eBooks", link: "/kindle/ebooks" },
+              { label: "Kindle Unlimited", link: "/kindle/unlimited" },
+            ],
+          },
         ],
       },
-      { label: "Audible Audiobooks",  link: "/audible",     arrow: true, subItems: [{ label: "Browse Audiobooks", link: "/audible/browse" }, { label: "Free Trial", link: "/audible/trial" }] },
-      { label: "Amazon Prime Video",  link: "/primevideo",  arrow: true, subItems: [{ label: "Movies", link: "/primevideo/movies" }, { label: "TV Shows", link: "/primevideo/tv" }, { label: "Kids", link: "/primevideo/kids" }] },
-      { label: "Amazon Prime Music",  link: "/primemusic",  arrow: true, subItems: [{ label: "Top Charts", link: "/primemusic/charts" }, { label: "Playlists", link: "/primemusic/playlists" }] },
+      {
+        label: "Audible Audiobooks", link: "/audible", arrow: true,
+        seeAllLink: "/audible",
+        subSections: [
+          { title: "Explore", items: [{ label: "Browse Audiobooks", link: "/audible/browse" }, { label: "Free Trial", link: "/audible/trial" }] },
+        ],
+      },
+      {
+        label: "Amazon Prime Video", link: "/primevideo", arrow: true,
+        seeAllLink: "/primevideo",
+        subSections: [
+          { title: "Browse", items: [{ label: "Movies", link: "/primevideo/movies" }, { label: "TV Shows", link: "/primevideo/tv" }, { label: "Kids", link: "/primevideo/kids" }] },
+        ],
+      },
+      {
+        label: "Amazon Prime Music", link: "/primemusic", arrow: true,
+        seeAllLink: "/primemusic",
+        subSections: [
+          { title: "Browse", items: [{ label: "Top Charts", link: "/primemusic/charts" }, { label: "Playlists", link: "/primemusic/playlists" }] },
+        ],
+      },
     ],
   },
   {
@@ -74,100 +126,180 @@ const ALL_MENU = [
     items: [
       {
         label: "Mobiles, Computers", link: "/mobiles", arrow: true,
-        subItems: [
-          { label: "All Mobile Phones",           link: "/mobiles/phones" },
-          { label: "All Mobile Accessories",      link: "/mobiles/accessories" },
-          { label: "Cases & Covers",              link: "/mobiles/cases" },
-          { label: "Screen Protectors",           link: "/mobiles/screen-protectors" },
-          { label: "Power Banks",                 link: "/mobiles/power-banks" },
-          { label: "Tablets",                     link: "/mobiles/tablets" },
-          { label: "Wearable Devices",            link: "/mobiles/wearables" },
-          { label: "Smart Home",                  link: "/mobiles/smart-home" },
-          { label: "Office Supplies & Stationery",link: "/mobiles/office" },
-          { label: "Software",                    link: "/mobiles/software" },
+        seeAllLink: "/mobiles",
+        subSections: [
+          {
+            title: "Mobiles",
+            items: [
+              { label: "All Mobile Phones", link: "/mobiles/phones" },
+              { label: "Cases & Covers", link: "/mobiles/cases" },
+              { label: "Screen Protectors", link: "/mobiles/screen-protectors" },
+              { label: "Power Banks", link: "/mobiles/power-banks" },
+            ],
+          },
+          {
+            title: "Computers & Accessories",
+            items: [
+              { label: "Tablets", link: "/mobiles/tablets" },
+              { label: "Wearable Devices", link: "/mobiles/wearables" },
+              { label: "Smart Home", link: "/mobiles/smart-home" },
+              { label: "Office Supplies", link: "/mobiles/office" },
+              { label: "Software", link: "/mobiles/software" },
+            ],
+          },
         ],
       },
       {
-        label: "TV,Appliances,Electronics", link: "/electronics", arrow: true,
-        subItems: [
-          { label: "Cameras",       link: "/electronics/cameras" },
-          { label: "Headphones",    link: "/electronics/headphones" },
-          { label: "Laptops",       link: "/electronics/laptops" },
-          { label: "Televisions",   link: "/electronics/tvs" },
+        label: "TV, Appliances, Electronics", link: "/electronics", arrow: true,
+        seeAllLink: "/electronics",
+        subSections: [
+          {
+            title: "Electronics",
+            items: [
+              { label: "Cameras", link: "/electronics/cameras" },
+              { label: "Headphones", link: "/electronics/headphones" },
+              { label: "Laptops", link: "/electronics/laptops" },
+              { label: "Televisions", link: "/electronics/tvs" },
+            ],
+          },
         ],
       },
       {
         label: "Men's Fashion", link: "/men-fashion", arrow: true,
-        subItems: [
-          { label: "Men",    link: "/fashion/men" },
-         
+        seeAllLink: "/men-fashion",
+        subSections: [
+          {
+            title: "Men's Clothing",
+            items: [
+              { label: "T-Shirts", link: "/men/tshirts" },
+              { label: "Shirts", link: "/men/shirts" },
+              { label: "Jeans", link: "/men/jeans" },
+              { label: "Trousers", link: "/men/trousers" },
+            ],
+          },
+          {
+            title: "Footwear & Accessories",
+            items: [
+              { label: "Shoes", link: "/men/shoes" },
+              { label: "Watches", link: "/men/watches" },
+              { label: "Bags", link: "/men/bags" },
+            ],
+          },
         ],
       },
       {
-        label:"Women's Fashion" , link:"/women-fashion" , arrow:true,
-        subItems:[
-            {label:"Women", link:"women"}
-        ]
+        label: "Women's Fashion", link: "/women-fashion", arrow: true,
+        seeAllLink: "/women-fashion",
+        subSections: [
+          {
+            title: "Clothing",
+            items: [
+              { label: "Sarees", link: "/women/sarees" },
+              { label: "Kurtis", link: "/women/kurtis" },
+              { label: "Dresses", link: "/women/dresses" },
+              { label: "Tops", link: "/women/tops" },
+            ],
+          },
+          {
+            title: "Footwear & Accessories",
+            items: [
+              { label: "Shoes", link: "/women/shoes" },
+              { label: "Handbags", link: "/women/handbags" },
+              { label: "Jewellery", link: "/women/jewellery" },
+            ],
+          },
+        ],
       },
       {
         label: "Home, Kitchen, Pets", link: "/home-kitchen", arrow: true,
-        subItems: [
-          { label: "Furniture",     link: "/home/furniture" },
-          { label: "Cookware",      link: "/home/cookware" },
-          { label: "Bedding",       link: "/home/bedding" },
+        seeAllLink: "/home-kitchen",
+        subSections: [
+          {
+            title: "Home & Kitchen",
+            items: [
+              { label: "Furniture", link: "/home/furniture" },
+              { label: "Cookware", link: "/home/cookware" },
+              { label: "Bedding", link: "/home/bedding" },
+              { label: "Home Decor", link: "/home/decor" },
+            ],
+          },
         ],
       },
-      {label:"Beauty, Health, Grocery", link:"/beauty",
-        arrow:true,
-        subItems:[
-            {label:"Beauty" , link:"beauty"}
-        ]
+      {
+        label: "Beauty, Health, Grocery", link: "/beauty", arrow: true,
+        seeAllLink: "/beauty",
+        subSections: [
+          { title: "Beauty & Health", items: [{ label: "Skincare", link: "/beauty/skincare" }, { label: "Haircare", link: "/beauty/haircare" }, { label: "Makeup", link: "/beauty/makeup" }] },
+        ],
       },
-      {label:"Sports, Fitness, Bags, Luggage" , link:"Sport",
-        arrow:true,subItems:[
-            {label:"Sport", link:"/sports"}
-        ]
+      {
+        label: "Sports, Fitness, Bags", link: "/sports", arrow: true,
+        seeAllLink: "/sports",
+        subSections: [
+          { title: "Sports", items: [{ label: "Exercise & Fitness", link: "/sports/fitness" }, { label: "Cricket", link: "/sports/cricket" }, { label: "Badminton", link: "/sports/badminton" }] },
+        ],
       },
-      { label: "Books",       link: "/books",  arrow: true, subItems: [{ label: "Fiction", link: "/books/fiction" }, { label: "Non-Fiction", link: "/books/non-fiction" }] },
-      { label: "Toys & Games",link: "/toys",   arrow: true, subItems: [{ label: "Action Figures", link: "/toys/action" }, { label: "Board Games", link: "/toys/board" }] },
-      { label: "Grocery",     link: "/grocery",arrow: true, subItems: [{ label: "Snacks", link: "/grocery/snacks" }, { label: "Beverages", link: "/grocery/beverages" }] },
+      {
+        label: "Books", link: "/books", arrow: true,
+        seeAllLink: "/books",
+        subSections: [
+          { title: "Browse", items: [{ label: "Fiction", link: "/books/fiction" }, { label: "Non-Fiction", link: "/books/non-fiction" }, { label: "Children's Books", link: "/books/children" }] },
+        ],
+      },
+      {
+        label: "Toys & Games", link: "/toys", arrow: true,
+        seeAllLink: "/toys",
+        subSections: [
+          { title: "Browse", items: [{ label: "Action Figures", link: "/toys/action" }, { label: "Board Games", link: "/toys/board" }, { label: "Remote Control", link: "/toys/rc" }] },
+        ],
+      },
+      {
+        label: "Grocery", link: "/grocery", arrow: true,
+        seeAllLink: "/grocery",
+        subSections: [
+          { title: "Browse", items: [{ label: "Snacks", link: "/grocery/snacks" }, { label: "Beverages", link: "/grocery/beverages" }, { label: "Staples", link: "/grocery/staples" }] },
+        ],
+      },
     ],
   },
-  {section:"Help & Settings",items:[
-    {label:"Your Account" , link:"/accout"},
-    {label:"Customer Service" , link:"customer-service"},
-    {label:"Sign in", link:"/signin"}
-  ]}
+  {
+    section: "Help & Settings",
+    items: [
+      { label: "Your Account", link: "/account" },
+      { label: "Customer Service", link: "/customer-service" },
+      { label: "Sign in", link: "/signin" },
+    ],
+  },
 ];
 
 /* ═══════════════════════════════════════════
    COMPONENT
 ═══════════════════════════════════════════ */
 const AllSideBar = () => {
-  const [allOpen, setAllOpen]       = useState(false);
-  const [subMenu, setSubMenu]       = useState(null); // { title, items }
+  const [allOpen, setAllOpen] = useState(false);
+  const [subMenu, setSubMenu] = useState(null);
 
-  /* lock body scroll when sidebar open */
   useEffect(() => {
     document.body.style.overflow = allOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [allOpen]);
 
   const openSub = (item) => {
-    if (item.subItems?.length) setSubMenu({ title: item.label, items: item.subItems });
+    if (item.subSections?.length) {
+      setSubMenu({
+        title: item.label,
+        seeAllLink: item.seeAllLink,
+        subSections: item.subSections,
+      });
+    }
   };
 
-  const closeSidebar = () => {
-    setAllOpen(false);
-    setSubMenu(null);
-  };
+  const closeSidebar = () => { setAllOpen(false); setSubMenu(null); };
 
   return (
     <>
       {/* ── Bottom Nav Strip ── */}
-      <div className="bg-[#232f3e] flex items-center gap-0 px-2 py-0.5 overflow-x-auto whitespace-nowrap scrollbar-hide">
-
-        {/* ☰ All */}
+      <div className="bg-[#232f3e] w-full flex items-center gap-0 px-2 py-0.5 overflow-x-auto whitespace-nowrap scrollbar-hide">
         <button
           onClick={() => { setAllOpen(true); setSubMenu(null); }}
           className="flex items-center gap-1.5 text-white text-[13px] font-bold px-3 py-2 rounded border-2 border-transparent hover:border-white transition-colors shrink-0 cursor-pointer"
@@ -175,7 +307,6 @@ const AllSideBar = () => {
           <span className="text-[16px] leading-none">☰</span>
           <span>All</span>
         </button>
-
         {NAV_LIST.map((item) => (
           <Link
             key={item.name}
@@ -190,10 +321,7 @@ const AllSideBar = () => {
 
       {/* ── Backdrop ── */}
       {allOpen && (
-        <div
-          className="fixed inset-0 bg-black/60 z-10 transition-opacity"
-          onClick={closeSidebar}
-        />
+        <div className="fixed inset-0 bg-black/60 z-10" onClick={closeSidebar} />
       )}
 
       {/* ── Drawer ── */}
@@ -201,7 +329,7 @@ const AllSideBar = () => {
         className={`fixed top-0 left-0 h-full w-92 max-w-[80vw] bg-white z-20 shadow-2xl flex flex-col transition-transform duration-300 ease-in-out overflow-hidden
           ${allOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
-        {/* ── Drawer Header ── */}
+        {/* Header */}
         <div className="bg-[#232f3e] flex items-center justify-between px-4 py-3 shrink-0">
           <div className="flex items-center gap-3">
             <div className="bg-white rounded-full p-1.5">
@@ -209,17 +337,12 @@ const AllSideBar = () => {
             </div>
             <span className="text-white font-bold text-xl">Hello, sign in</span>
           </div>
-          <button
-            onClick={closeSidebar}
-            className="text-white hover:text-gray-300 transition-colors cursor-pointer p-1 rounded hover:bg-white/10"
-          >
+          <button onClick={closeSidebar} className="text-white cursor-pointer p-1 rounded hover:bg-white/10">
             <MdClose size={22} />
           </button>
         </div>
 
-        {/* ════════════════════════════
-            MAIN MENU (slides left when subMenu open)
-        ════════════════════════════ */}
+        {/* ── Main Menu ── */}
         <div
           className={`absolute inset-0 top-[56px] flex flex-col transition-transform duration-300 ease-in-out bg-white
             ${subMenu ? "-translate-x-full" : "translate-x-0"}`}
@@ -227,15 +350,11 @@ const AllSideBar = () => {
           <div className="flex-1 overflow-y-auto">
             {ALL_MENU.map((group, gi) => (
               <div key={gi} className={gi > 0 ? "border-t border-gray-200" : ""}>
-                {/* Section Title */}
                 <div className="px-4 pt-4 pb-1">
-                  <h3 className="text-xl font-extrabold text-gray-900">{group.section}</h3>
+                  <h3 className="text-[17px] font-extrabold text-gray-900">{group.section}</h3>
                 </div>
-
-                {/* Items */}
-                {group.items.map((item) => (
+                {group.items.map((item) =>
                   item.arrow ? (
-                    // Arrow items → open sub panel
                     <button
                       key={item.label}
                       onClick={() => openSub(item)}
@@ -245,7 +364,6 @@ const AllSideBar = () => {
                       <MdChevronRight size={20} className="text-gray-400 shrink-0" />
                     </button>
                   ) : (
-                    // No-arrow items → navigate directly
                     <Link
                       key={item.label}
                       to={item.link}
@@ -255,54 +373,73 @@ const AllSideBar = () => {
                       <span>{item.label}</span>
                     </Link>
                   )
-                ))}
+                )}
               </div>
             ))}
             <div className="h-8" />
           </div>
         </div>
 
-        {/* ════════════════════════════
-            SUB MENU PANEL (slides in from right)
-        ════════════════════════════ */}
+        {/* ── Sub Menu Panel ── */}
         <div
           className={`absolute inset-0 top-[56px] flex flex-col transition-transform duration-300 ease-in-out bg-white
             ${subMenu ? "translate-x-0" : "translate-x-full"}`}
         >
-          {/* Sub Header */}
+          {/* Back header */}
           <div className="flex items-center gap-3 px-4 py-3 border-b border-gray-200 bg-gray-50 shrink-0">
             <button
               onClick={() => setSubMenu(null)}
-              className="text-gray-600 hover:text-gray-900 transition-colors cursor-pointer p-1 rounded hover:bg-gray-200"
+              className="text-gray-600 hover:text-gray-900 cursor-pointer p-1 rounded hover:bg-gray-200"
             >
               <MdArrowBack size={20} />
             </button>
-            <span className="text-[13px] font-bold text-gray-500 uppercase tracking-wide">Main Menu</span>
+            <span className="text-[12px] font-bold text-gray-500 uppercase tracking-wide">Main Menu</span>
           </div>
 
-          {/* Sub Title */}
-          {subMenu && (
-            <div className="px-4 pt-4 pb-2 shrink-0">
-              <h3 className="text-[17px] font-extrabold text-gray-900">{subMenu.title}</h3>
-            </div>
-          )}
+          <div className="flex-1 p-4 overflow-y-auto">
+            {subMenu && (
+              <>
+                {/* Category title + See all */}
+                {/* <div className="px-4 pt-5 pb-3 border-b border-gray-200"> */}
+                  {/* <h2 className="text-[20px] font-extrabold text-gray-900 mb-2">
+                    {subMenu.title}
+                  </h2> */}
+                  {/* <Link
+                    to={subMenu.seeAllLink}
+                    onClick={closeSidebar}
+                    className="text-[13px] text-[#007185] hover:text-[#c45500] hover:underline"
+                  >
+                    See all {subMenu.title}
+                  </Link> */}
+                {/* </div> */}
 
-          {/* Sub Items */}
-          <div className="flex-1 overflow-y-auto">
-            {subMenu?.items.map((item) => (
-              <Link
-                key={item.label}
-                to={item.link}
-                onClick={closeSidebar}
-                className="flex items-center px-4 py-3 text-[14px] text-gray-800 hover:bg-gray-50 transition-colors border-b border-gray-100"
-              >
-                {item.label}
-              </Link>
-            ))}
+                {/* Sub sections */}
+                {subMenu.subSections.map((section, si) => (
+                  <div key={si} className={si > 0 ? "border-t  border-gray-200" : ""}>
+                    {/* Section title */}
+                    <div className="px-4 pt-4 pb-1">
+                      <h3 className="text-xl  font-extrabold text-gray-900">
+                        {section.title}
+                      </h3>
+                    </div>
+                    {/* Section items */}
+                    {section.items.map((item) => (
+                      <Link
+                        key={item.label}
+                        to={item.link}
+                        onClick={closeSidebar}
+                        className="flex items-center px-4 py-2.5 text-[14px] text-gray-700 hover:bg-gray-50 transition-colors border-b border-gray-100"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                ))}
+              </>
+            )}
             <div className="h-8" />
           </div>
         </div>
-
       </div>
     </>
   );

@@ -90,7 +90,7 @@ const Home = () => {
       >
         <IoIosArrowForward size={36} className="text-white" />
       </button>
-
+      
       {/* Dots */}
       {/* <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10">
         {slideBanner.map((_, i) => (
@@ -103,6 +103,11 @@ const Home = () => {
           />
         ))}
       </div> */}
+
+      <div>
+
+        <h1>j</h1>
+      </div>
 
     </div>
   );

@@ -190,9 +190,9 @@ export default function Navbar() {
       </div>
 
       {/* ── Bottom Strip ── */}
-      <div>
-        <AllSideBar/>
-      </div>
+    
+  <AllSideBar />
+
     </nav>
   );
 }

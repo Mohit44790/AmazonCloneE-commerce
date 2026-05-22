@@ -253,7 +253,7 @@ export const createProduct = catchAsync(async(req,res,next) =>{
     name, description, shortDescription, price, comparePrice, category,
     subCategory, subSubCategory, brand, stock, hasVariants, variants,
     attributes, sizes, colors, gender, ageGroup, tags, shipping,
-    returnPolicy, warranty, seo, highlights, status,
+    returnPolicy, warranty, seo, highlights, status
   } = req.body;
  
   // Build category path

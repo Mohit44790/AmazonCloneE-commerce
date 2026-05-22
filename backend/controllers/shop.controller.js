@@ -85,5 +85,17 @@ export const updateCartItem = catchAsync(async (req,res,next)=>{
 });
 
 export const removeFromCart = catchAsync(async(req,res,next) => {
+    const {productId} = req.params;
+    const variant = req.body.variant || {};
+
+    const cart = await Cart.findOne({user:req.user._id});
+    if(!cart) return next(new AppError("Cart not found.",404));
+
+    await cart.removeItem(productId,variant);
+
+    res.status(200).json({success:true,message:"Item removed from cart."});
+});
+
+export const clearCart = catchAsync(async(req,res,next)=>{
     
 })

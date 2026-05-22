@@ -13,7 +13,7 @@ const Layout = () => {
       </header>
 
       {/* Main content grows to fill space between Navbar & Footer */}
-      <main className="flex-1 w-full max-w-screen-2xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8 py-4">
+      <main className="">
         <Outlet />
       </main>
 

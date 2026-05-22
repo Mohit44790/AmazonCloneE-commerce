@@ -198,7 +198,7 @@ const AllSideBar = () => {
 
       {/* ── Drawer ── */}
       <div
-        className={`fixed top-0 left-0 h-full w-96 max-w-[85vw] bg-white z-20 shadow-2xl flex flex-col transition-transform duration-300 ease-in-out overflow-hidden
+        className={`fixed top-0 left-0 h-full w-92 max-w-[80vw] bg-white z-20 shadow-2xl flex flex-col transition-transform duration-300 ease-in-out overflow-hidden
           ${allOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
         {/* ── Drawer Header ── */}

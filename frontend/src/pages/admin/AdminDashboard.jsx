@@ -86,47 +86,184 @@ const AdminDashboard = () => {
     const [range ,setRange] = useState("12M")
 
   return (
-    <div className='space-y-6 text-white'>
-      {/* page Header  */}
-      <div className='flex items-center justify-between'>
+     <div className="space-y-6 text-white">
+ 
+      {/* ── Page Header ── */}
+      <div className="flex items-center justify-between">
         <div>
-            <h1 className='text-2xl font-bold text-white tracking-tight'>Dashboard</h1>
-            <p>Welcome back, Admin sat 23 May 2026</p>
+          <h1 className="text-2xl font-bold text-white tracking-tight">Dashboard</h1>
+          <p className="text-gray-400 text-sm mt-0.5">Welcome back, Admin · Sat 23 May 2026</p>
         </div>
-        <div className='flex gap-1 bg-white/5 rounded-lg p-1'>
-               {["7D","1M","3M","12M"].map(r =>(
-                <button key={r}
-                onClick={()=> setRange(r)} className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all ${range ===r ? "bg-[#FF9900] text-black" :"text-gray-400 hover:text-white"}`}>
-                    {r}
-
-                </button>
-               ))}
+        <div className="flex gap-1 bg-white/5 rounded-lg p-1">
+          {["7D","1M","3M","12M"].map(r => (
+            <button
+              key={r}
+              onClick={() => setRange(r)}
+              className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all ${range === r ? "bg-[#FF9900] text-black" : "text-gray-400 hover:text-white"}`}
+            >
+              {r}
+            </button>
+          ))}
         </div>
       </div>
-         {/* ── Stat Cards ── */}
-         <div className='grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 hap-3'>
-            {STAT_CARDS.map(({label,value,change,up,icon:Icon,color,accent}) =>(
-                <div key={label} className={`bg-gradient-to-br ${color} border border-white/5 rounded-2xl p-4 relative overflow-hidden`}>
-                    <div className='flex items-start justify-between mb-3'>
-                        <div style={{color:accent}} className='p-2 rounded-xl bg-white/5'>
-                        <Icon size={18}/>
-                        </div>
-                            <span className={`text-[11px] font-bold flex items-center gap-0.5 ${up ? "text-emerald-400" : "text-red-400"}`}>
+ 
+      {/* ── Stat Cards ── */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-3">
+        {STAT_CARDS.map(({ label, value, change, up, icon: Icon, color, accent }) => (
+          <div key={label} className={`bg-gradient-to-br ${color} border border-white/5 rounded-2xl p-4 relative overflow-hidden`}>
+            <div className="flex items-start justify-between mb-3">
+              <div style={{ color: accent }} className="p-2 rounded-xl bg-white/5">
+                <Icon size={18} />
+              </div>
+              <span className={`text-[11px] font-bold flex items-center gap-0.5 ${up ? "text-emerald-400" : "text-red-400"}`}>
                 {up ? <MdArrowUpward size={12} /> : <MdArrowDownward size={12} />}{change}
               </span>
-
-                    </div>
-                    <p className='text-[13px] font-bold text-white leading-tight'>{value}</p>
-                    <p className='text-sm text-gray-400 mt-0.5'>{label}</p>
-
+            </div>
+            <p className="text-[13px] font-bold text-white leading-tight">{value}</p>
+            <p className="text-[11px] text-gray-400 mt-0.5">{label}</p>
+          </div>
+        ))}
+      </div>
+ 
+      {/* ── Revenue + Pie Row ── */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+ 
+        {/* Area Chart — Revenue */}
+        <div className="lg:col-span-2 bg-[#131720] border border-white/5 rounded-2xl p-5">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h2 className="text-[15px] font-bold">Revenue Overview</h2>
+              <p className="text-gray-400 text-xs mt-0.5">Monthly revenue & orders</p>
+            </div>
+          </div>
+          <ResponsiveContainer width="100%" height={220}>
+            <AreaChart data={revenueData} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
+              <defs>
+                <linearGradient id="revGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%"  stopColor="#FF9900" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="#FF9900" stopOpacity={0} />
+                </linearGradient>
+                <linearGradient id="ordGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%"  stopColor="#3B82F6" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="#3B82F6" stopOpacity={0} />
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
+              <XAxis dataKey="month" tick={{ fill: "#6b7280", fontSize: 11 }} axisLine={false} tickLine={false} />
+              <YAxis tick={{ fill: "#6b7280", fontSize: 11 }} axisLine={false} tickLine={false} />
+              <Tooltip content={<CustomTooltip />} />
+              <Area type="monotone" dataKey="revenue" name="Revenue" stroke="#FF9900" strokeWidth={2} fill="url(#revGrad)" dot={false} />
+              <Area type="monotone" dataKey="orders"  name="Orders"  stroke="#3B82F6" strokeWidth={2} fill="url(#ordGrad)"  dot={false} />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+ 
+        {/* Pie Chart — Category */}
+        <div className="bg-[#131720] border border-white/5 rounded-2xl p-5">
+          <h2 className="text-[15px] font-bold mb-1">Sales by Category</h2>
+          <p className="text-gray-400 text-xs mb-3">Distribution this year</p>
+          <ResponsiveContainer width="100%" height={160}>
+            <PieChart>
+              <Pie data={categoryData} cx="50%" cy="50%" innerRadius={45} outerRadius={70} paddingAngle={3} dataKey="value">
+                {categoryData.map((entry, i) => (
+                  <Cell key={i} fill={entry.color} stroke="transparent" />
+                ))}
+              </Pie>
+              <Tooltip formatter={(v) => `${v}%`} contentStyle={{ background: "#1e2535", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 8, fontSize: 12 }} />
+            </PieChart>
+          </ResponsiveContainer>
+          <div className="space-y-1.5 mt-2">
+            {categoryData.map(({ name, value, color }) => (
+              <div key={name} className="flex items-center justify-between text-xs">
+                <div className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: color }} />
+                  <span className="text-gray-300">{name}</span>
                 </div>
+                <span className="font-bold text-white">{value}%</span>
+              </div>
             ))}
-
-         </div>
-
-         {/* ── Revenue + Pie Row ── */}
-
-
+          </div>
+        </div>
+      </div>
+ 
+      {/* ── Bar Chart + Line Chart Row ── */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+ 
+        {/* Bar Chart — Weekly Orders */}
+        <div className="bg-[#131720] border border-white/5 rounded-2xl p-5">
+          <h2 className="text-[15px] font-bold mb-1">Weekly Orders</h2>
+          <p className="text-gray-400 text-xs mb-4">Delivered / Pending / Cancelled</p>
+          <ResponsiveContainer width="100%" height={200}>
+            <BarChart data={weeklyOrders} barSize={10} margin={{ left: -20, right: 5 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" vertical={false} />
+              <XAxis dataKey="day" tick={{ fill: "#6b7280", fontSize: 11 }} axisLine={false} tickLine={false} />
+              <YAxis tick={{ fill: "#6b7280", fontSize: 11 }} axisLine={false} tickLine={false} />
+              <Tooltip content={<CustomTooltip />} />
+              <Legend wrapperStyle={{ fontSize: 11, color: "#9ca3af", paddingTop: 8 }} />
+              <Bar dataKey="delivered" name="Delivered" fill="#10B981" radius={[4,4,0,0]} />
+              <Bar dataKey="pending"   name="Pending"   fill="#FF9900" radius={[4,4,0,0]} />
+              <Bar dataKey="cancelled" name="Cancelled" fill="#F43F5E" radius={[4,4,0,0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+ 
+        {/* Line Chart — Returns vs Revenue */}
+        <div className="bg-[#131720] border border-white/5 rounded-2xl p-5">
+          <h2 className="text-[15px] font-bold mb-1">Returns Trend</h2>
+          <p className="text-gray-400 text-xs mb-4">Monthly returns vs revenue</p>
+          <ResponsiveContainer width="100%" height={200}>
+            <LineChart data={revenueData} margin={{ left: -20, right: 5 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
+              <XAxis dataKey="month" tick={{ fill: "#6b7280", fontSize: 11 }} axisLine={false} tickLine={false} />
+              <YAxis tick={{ fill: "#6b7280", fontSize: 11 }} axisLine={false} tickLine={false} />
+              <Tooltip content={<CustomTooltip />} />
+              <Legend wrapperStyle={{ fontSize: 11, color: "#9ca3af", paddingTop: 8 }} />
+              <Line type="monotone" dataKey="returns" name="Returns" stroke="#F43F5E" strokeWidth={2} dot={{ r: 3, fill: "#F43F5E" }} activeDot={{ r: 5 }} />
+              <Line type="monotone" dataKey="orders"  name="Orders"  stroke="#8B5CF6" strokeWidth={2} dot={{ r: 3, fill: "#8B5CF6" }} activeDot={{ r: 5 }} />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+ 
+      {/* ── Recent Orders Table ── */}
+      <div className="bg-[#131720] border border-white/5 rounded-2xl p-5">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h2 className="text-[15px] font-bold">Recent Orders</h2>
+            <p className="text-gray-400 text-xs mt-0.5">Latest 5 transactions</p>
+          </div>
+          <button className="text-[#FF9900] text-xs hover:underline font-medium">View All →</button>
+        </div>
+ 
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm min-w-[540px]">
+            <thead>
+              <tr className="border-b border-white/5">
+                {["Order ID","Customer","Product","Amount","Status","Date"].map(h => (
+                  <th key={h} className="text-left text-[11px] font-semibold text-gray-500 uppercase tracking-wide pb-3 pr-4">{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-white/[0.04]">
+              {recentOrders.map(o => (
+                <tr key={o.id} className="hover:bg-white/[0.02] transition-colors">
+                  <td className="py-3 pr-4 text-[#FF9900] font-mono text-xs font-semibold">{o.id}</td>
+                  <td className="py-3 pr-4 text-gray-200 text-xs">{o.customer}</td>
+                  <td className="py-3 pr-4 text-gray-400 text-xs">{o.product}</td>
+                  <td className="py-3 pr-4 text-white font-semibold text-xs">{o.amount}</td>
+                  <td className="py-3 pr-4">
+                    <span className={`px-2 py-0.5 rounded-full text-[11px] font-semibold ${STATUS_STYLE[o.status]}`}>
+                      {o.status}
+                    </span>
+                  </td>
+                  <td className="py-3 text-gray-500 text-xs">{o.date}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+ 
     </div>
   )
 }

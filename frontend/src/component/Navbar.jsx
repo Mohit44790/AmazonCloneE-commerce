@@ -4,6 +4,8 @@ import { FaSearch, FaShoppingCart } from "react-icons/fa";
 import { IoMdArrowDropdown } from "react-icons/io";
 import amazon from "../assets/amazonLogo.png"
 import AllSideBar from "../pages/mainlayout/AllSideBar";
+import { MdArrowDropUp } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const LANGUAGES = [
   { code: "en", label: "EN", name: "English" },
@@ -62,11 +64,34 @@ const TRANSLATIONS = {
   },
 };
 
+const YOUR_LISTS = [
+  { label: "Create a Wish List",    to: "/wishlist/create" },
+  { label: "Wish from Any Website", to: "/wishlist/any-website" },
+  { label: "Baby Wishlist",         to: "/wishlist/baby" },
+  { label: "Discover Your Style",   to: "/style" },
+  { label: "Explore Showroom",      to: "/showroom" },
+]
+ 
+const YOUR_ACCOUNT = [
+  { label: "Your Account",                          to: "/account" },
+  { label: "Your Orders",                           to: "/orders" },
+  { label: "Your Wish List",                        to: "/wishlist" },
+  { label: "Keep Shopping For",                     to: "/keep-shopping" },
+  { label: "Your Recommendations",                  to: "/recommendations" },
+  { label: "Your Prime Membership",                 to: "/prime" },
+  { label: "Your Prime Video",                      to: "/primevideo" },
+  { label: "Your Subscribe & Save Items",           to: "/subscribe-save" },
+  { label: "Memberships & Subscriptions",           to: "/memberships" },
+  { label: "Your Seller Account",                   to: "/seller" },
+  { label: "Manage Your Content and Devices",       to: "/manage-content" },
+  { label: "Register for a free Business Account",  to: "/business/register" },
+]
 
 
 export default function Navbar() {
   const [lang, setLang] = useState("en");
   const [langOpen, setLangOpen] = useState(false);
+  const [showMenu ,setShowMenu] = useState(false);
   const [searchFocused, setSearchFocused] = useState(false);
   const langRef = useRef(null);
   const t = TRANSLATIONS[lang];
@@ -164,12 +189,84 @@ export default function Navbar() {
         </div>
 
         {/* Account & Lists — sm+ */}
-        <button className="hidden sm:flex flex-col items-start text-white border-2 border-transparent hover:border-white rounded px-2 py-1 transition-colors shrink-0 cursor-pointer">
-          <span className="text-[11px] text-gray-300 whitespace-nowrap">{t.hello}</span>
+        <div>
+
+        <button className="hidden relative hidden sm:block text-sm text-left sm:flex flex-col items-start text-white border-2 border-transparent hover:border-white rounded px-2 py-1 transition-colors shrink-0 cursor-pointer" onMouseEnter={()=> setShowMenu(true)}
+        >
+          <span  className="text-[11px] text-gray-300 whitespace-nowrap">{t.hello}</span>
           <span className="text-[13px] font-bold flex items-center gap-0.5 whitespace-nowrap">
             {t.accountLists} <IoMdArrowDropdown size={13} />
           </span>
         </button>
+        </div>
+
+        {showMenu && (
+          <div onMouseEnter={()=> setShowMenu(true)}
+        onMouseLeave={()=> setShowMenu(false)}  className="absolute z-20 bg-white text-black w-[600px] top-18 right-30 shadow-lg p-4 border border-gray-200 rounded-md">
+ <MdArrowDropUp size={48} className="absolute -top-7 right-9  text-white" />
+
+ <div className="text-center">
+   <div className="text-center px-6 pt-5 pb-3 border-b border-gray-100">
+            <Link to="/login" onClick={() => setShowMenu(false)}>
+              <button className="bg-[#FFD814] hover:bg-[#F7CA00] transition-colors text-sm font-medium py-1.5 px-14 rounded-full shadow">
+                Sign in
+              </button>
+            </Link>
+            <p className="text-xs mt-2 text-gray-600">
+              New customer?{" "}
+              <Link
+                to="/register"
+                onClick={() => setShowMenu(false)}
+                className="text-[#0066c0] hover:text-[#c45500] hover:underline"
+              >
+                Start here.
+              </Link>
+            </p>
+          </div>
+    <div className="flex gap-0 px-6 py-4">
+
+   {/* Your Lists */}
+            <div className="flex-1 text-start pr-5">
+              <h2 className="font-bold text-lg text-gray-900 mb-2">Your Lists</h2>
+              <ul className="space-y-1">
+                {YOUR_LISTS.map((item) => (
+                  <li key={item.to}>
+                    <Link
+                      to={item.to}
+                      onClick={() => setShowMenu(false)}
+                      className="text-[13px] text-gray-700 hover:text-[#c45500] hover:underline transition-colors block py-0.5"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+      {/* Divider */}
+            <div className="w-px bg-gray-200 shrink-0" />
+ 
+            {/* Your Account */}
+            <div className="flex-1 pl-5 text-start">
+              <h2 className="font-bold text-lg text-gray-900 mb-2">Your Account</h2>
+              <ul className="space-y-1">
+                {YOUR_ACCOUNT.map((item) => (
+                  <li key={item.to}>
+                    <Link
+                      to={item.to}
+                      onClick={() => setShowMenu(false)}
+                      className="text-[13px] text-gray-700 hover:text-[#c45500] hover:underline transition-colors block py-0.5"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+    </div>
+ </div>
+          </div>
+        )}
+        
 
         {/* Returns & Orders — lg+ */}
         <button className="hidden lg:flex flex-col items-start text-white border-2 border-transparent hover:border-white rounded px-2 py-1 transition-colors shrink-0 cursor-pointer">

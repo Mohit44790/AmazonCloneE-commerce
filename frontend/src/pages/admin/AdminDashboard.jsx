@@ -84,8 +84,18 @@ const CustomTooltip = ({ active, payload, label }) => {
 
 const AdminDashboard = () => {
     const [range ,setRange] = useState("12M")
+
   return (
-    <div>AdminDashboard</div>
+    <div className='space-y-6 text-white'>
+      {/* page Header  */}
+      <div className='flex items-center justify-between'>
+        <div>
+            <h1 className='text-2xl font-bold text-white tracking-tight'>Dashboard</h1>
+        </div>
+
+      </div>
+
+    </div>
   )
 }
 

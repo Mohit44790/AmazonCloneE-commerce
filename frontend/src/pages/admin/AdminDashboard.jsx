@@ -91,9 +91,41 @@ const AdminDashboard = () => {
       <div className='flex items-center justify-between'>
         <div>
             <h1 className='text-2xl font-bold text-white tracking-tight'>Dashboard</h1>
+            <p>Welcome back, Admin sat 23 May 2026</p>
         </div>
+        <div className='flex gap-1 bg-white/5 rounded-lg p-1'>
+               {["7D","1M","3M","12M"].map(r =>(
+                <button key={r}
+                onClick={()=> setRange(r)} className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all ${range ===r ? "bg-[#FF9900] text-black" :"text-gray-400 hover:text-white"}`}>
+                    {r}
 
+                </button>
+               ))}
+        </div>
       </div>
+         {/* ── Stat Cards ── */}
+         <div className='grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 hap-3'>
+            {STAT_CARDS.map(({label,value,change,up,icon:Icon,color,accent}) =>(
+                <div key={label} className={`bg-gradient-to-br ${color} border border-white/5 rounded-2xl p-4 relative overflow-hidden`}>
+                    <div className='flex items-start justify-between mb-3'>
+                        <div style={{color:accent}} className='p-2 rounded-xl bg-white/5'>
+                        <Icon size={18}/>
+                        </div>
+                            <span className={`text-[11px] font-bold flex items-center gap-0.5 ${up ? "text-emerald-400" : "text-red-400"}`}>
+                {up ? <MdArrowUpward size={12} /> : <MdArrowDownward size={12} />}{change}
+              </span>
+
+                    </div>
+                    <p className='text-[13px] font-bold text-white leading-tight'>{value}</p>
+                    <p className='text-sm text-gray-400 mt-0.5'>{label}</p>
+
+                </div>
+            ))}
+
+         </div>
+
+         {/* ── Revenue + Pie Row ── */}
+
 
     </div>
   )

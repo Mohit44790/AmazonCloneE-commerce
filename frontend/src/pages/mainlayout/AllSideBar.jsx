@@ -45,11 +45,10 @@ const ALL_MENU = [
         seeAllLink: "/alexa",
         subSections: [
           {
-            title: "Devices",
+            title: "Echo & Alexa",
             items: [
-              { label: "Echo Dot", link: "/alexa/echo-dot" },
-              { label: "Echo Show", link: "/alexa/echo-show" },
-              { label: "Echo Plus", link: "/alexa/echo-plus" },
+              { label: "See all devices with Alexa", link: "/alexa/all-devices" },
+              
             ],
           },
           {
@@ -69,11 +68,11 @@ const ALL_MENU = [
         seeAllLink: "/firetv",
         subSections: [
           {
-            title: "Devices",
+            title: "Fire TV",
             items: [
-              { label: "Fire TV Stick", link: "/firetv/stick" },
-              { label: "Fire TV Cube", link: "/firetv/cube" },
-              { label: "Fire TV 4K", link: "/firetv/4k" },
+              { label: "Amazon Prime Video", link: "/firetv/amazonPrimevideo" },
+              { label: "Fire TV App & Game", link: "/firetv/app&games" },
+              { label: "See all Fire TV devices", link: "/firetv/all-devices" },
             ],
           },
         ],
@@ -83,17 +82,30 @@ const ALL_MENU = [
         seeAllLink: "/kindle",
         subSections: [
           {
-            title: "Devices",
+            title: "Kindle E-readers",
             items: [
-              { label: "Kindle Paperwhite", link: "/kindle/paperwhite" },
-              { label: "Kindle Oasis", link: "/kindle/oasis" },
+              { label: "All-new Kindle", link: "/kindle/paperwhite" },
+              { label: "All-new Kindle Paperwhite", link: "/kindle/paperwhite" },
+              { label: "Kindle Paperwhite Starter Pack", link: "/kindle/paperwhite" },
+              { label: "All-new Kindle Oasis", link: "/kindle/oasis" },
+              { label: "Refurbished & Open Box", link: "/kindle/oasis" },
+              { label: "Kindle-E-Reader Accessories", link: "/kindle/oasis" },
+              { label: "See all Kindle E-readers", link: "/kindle/oasis" },
             ],
           },
           {
-            title: "Content",
+            title: "Kindel eBooks",
             items: [
-              { label: "eBooks", link: "/kindle/ebooks" },
+              { label: "All kindle eBooks", link: "/kindle/ebooks" },
+              { label: "Prime Reading", link: "/kindle/unlimited" },
               { label: "Kindle Unlimited", link: "/kindle/unlimited" },
+              { label: "Deals On Kindle eBooks", link: "/kindle/unlimited" },
+              { label: "Kindle Exam Central", link: "/kindle/unlimited" },
+              { label: "Kindle eTextbooks" ,link: "/kindle/unlimited" },
+              { label: "eBook Bestsellers" ,link: "/kindle/unlimited" },
+              { label: "eBook in Indian Languages" ,link: "/kindle/unlimited" },
+              { label: "Hindi" ,link: "/kindle/unlimited" },
+              { label: "Tamil" ,link: "/kindle/unlimited" },
             ],
           },
         ],
@@ -102,21 +114,32 @@ const ALL_MENU = [
         label: "Audible Audiobooks", link: "/audible", arrow: true,
         seeAllLink: "/audible",
         subSections: [
-          { title: "Explore", items: [{ label: "Browse Audiobooks", link: "/audible/browse" }, { label: "Free Trial", link: "/audible/trial" }] },
+          { title: "Audible Audiobooks",
+             items: [{ label: "Browse Audiobooks", link: "/audible/browse" },
+               { label: "Free Trial", link: "/audible/trial" },
+                  { label: "All Audiobooks", link: "/audible/browse" },
+              { label: "Best Sellers", link: "/audible/trial" },
+               { label: "New Releases", link: "/audible/trial" },
+               { label: "Hindi Audiobooks", link: "/audible/trial" }
+              ] },
         ],
       },
       {
         label: "Amazon Prime Video", link: "/primevideo", arrow: true,
         seeAllLink: "/primevideo",
         subSections: [
-          { title: "Browse", items: [{ label: "Movies", link: "/primevideo/movies" }, { label: "TV Shows", link: "/primevideo/tv" }, { label: "Kids", link: "/primevideo/kids" }] },
+          { title: "Amazon Prime Video", items: [{ label: "All VIdeos", link: "/primevideo/movies" }, { label: "Categories", link: "/primevideo/tv" }, { label: "My Stuff", link: "/primevideo/kids" }] },
         ],
       },
       {
         label: "Amazon Prime Music", link: "/primemusic", arrow: true,
         seeAllLink: "/primemusic",
         subSections: [
-          { title: "Browse", items: [{ label: "Top Charts", link: "/primemusic/charts" }, { label: "Playlists", link: "/primemusic/playlists" }] },
+          { title: "Browse", items: [{ label: "Amazon Prime Music", link: "/primemusic/charts" }, { label: "Open web player", link: "/primemusic/playlists" },
+            { label: "Amazon Prime Music Apps", link: "/primemusic/playlists" },
+            { label: "CDs and Vinyls", link: "/primemusic/playlists" }
+
+          ] },
         ],
       },
     ],
@@ -129,22 +152,34 @@ const ALL_MENU = [
         seeAllLink: "/mobiles",
         subSections: [
           {
-            title: "Mobiles",
+            title: "Mobiles, Tablets & More",
             items: [
               { label: "All Mobile Phones", link: "/mobiles/phones" },
+              { label: "All Mobile Accessories", link: "/mobiles/phones" },
               { label: "Cases & Covers", link: "/mobiles/cases" },
               { label: "Screen Protectors", link: "/mobiles/screen-protectors" },
               { label: "Power Banks", link: "/mobiles/power-banks" },
+              { label: "Tablets" ,link: "/mobiles/power-banks" },
+              { label: "Wearable Devices" ,link: "/mobiles/power-banks" },
+              { label: "Smart Home" ,link: "/mobiles/power-banks" },
+              { label: "Office Supplies & Stationery" ,link: "/mobiles/power-banks" },
+              { label: "Software" ,link: "/mobiles/power-banks" },
             ],
           },
           {
             title: "Computers & Accessories",
             items: [
-              { label: "Tablets", link: "/mobiles/tablets" },
-              { label: "Wearable Devices", link: "/mobiles/wearables" },
-              { label: "Smart Home", link: "/mobiles/smart-home" },
-              { label: "Office Supplies", link: "/mobiles/office" },
-              { label: "Software", link: "/mobiles/software" },
+              { label: "All Computers & Accessories", link: "/mobiles/tablets" },
+              { label: "Laptops", link: "/mobiles/wearables" },
+              { label: "Drives & Storage", link: "/mobiles/smart-home" },
+              { label: "Printers & Ink", link: "/mobiles/office" },
+              { label: "Networking Devices", link: "/mobiles/software" },
+              { label: "Computer Accessories", link: "/mobiles/software" },
+              { label: "Game Zone", link: "/mobiles/software" },
+              { label: "Monitors", link: "/mobiles/software" },
+              { label: "Desktops", link: "/mobiles/software" },
+              { label: "Components", link: "/mobiles/software" },
+              { label: "All Electronics", link: "/mobiles/software" },
             ],
           },
         ],
@@ -154,14 +189,27 @@ const ALL_MENU = [
         seeAllLink: "/electronics",
         subSections: [
           {
-            title: "Electronics",
+            title: "TV, Audio & Cameras",
             items: [
+              { label: "Televisions", link: "/electronics/cameras" },
+              { label: "Home Entertainment System", link: "/electronics/cameras" },
+              { label: "Headphones", link: "/electronics/cameras" },
+              { label: "Speakers", link: "/electronics/cameras" },
+              { label: "Home Audio & Theater", link: "/electronics/cameras" },
               { label: "Cameras", link: "/electronics/cameras" },
-              { label: "Headphones", link: "/electronics/headphones" },
-              { label: "Laptops", link: "/electronics/laptops" },
-              { label: "Televisions", link: "/electronics/tvs" },
+              { label: "DSLR Cameras", link: "/electronics/cameras" },
+              { label: "Security Cameras", link: "/electronics/headphones" },
+              { label: "Musical Instruments & Professional Audio", link: "/electronics/laptops" },
+              { label: "Gaming Consoles", link: "/electronics/tvs" },
+              { label: "All Electronics", link: "/electronics/tvs" },
             ],
           },
+          {
+            title:"Appliances",
+            items:[
+               { label: "Air Conditioners", link: "/electronics/tvs" },
+            ]
+          }
         ],
       },
       {
@@ -396,7 +444,7 @@ const AllSideBar = () => {
             <span className="text-[12px] font-bold text-gray-500 uppercase tracking-wide">Main Menu</span>
           </div>
 
-          <div className="flex-1 p-4 overflow-y-auto">
+          <div className="flex-1 mx-4 overflow-y-auto">
             {subMenu && (
               <>
                 {/* Category title + See all */}

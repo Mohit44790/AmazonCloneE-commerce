@@ -208,6 +208,11 @@ const ALL_MENU = [
             title:"Appliances",
             items:[
                { label: "Air Conditioners", link: "/electronics/tvs" },
+               { label: "Refrigerators", link: "/electronics/tvs" },
+               { label: "Washing Machines", link: "/electronics/tvs" },
+               { label: "Kitchen & Home Appliances", link: "/electronics/tvs" },
+               { label: "Heating & Cooling Appliances", link: "/electronics/tvs" },
+               { label: "All Appliances", link: "/electronics/tvs" },
             ]
           }
         ],
@@ -219,20 +224,43 @@ const ALL_MENU = [
           {
             title: "Men's Clothing",
             items: [
-              { label: "T-Shirts", link: "/men/tshirts" },
+              { label: "Clothing", link: "/men/tshirts" },
+              { label: "T-Shirts & Polos", link: "/men/tshirts" },
               { label: "Shirts", link: "/men/shirts" },
               { label: "Jeans", link: "/men/jeans" },
-              { label: "Trousers", link: "/men/trousers" },
+              { label: "Innerwear", link: "/men/trousers" },
             ],
           },
           {
-            title: "Footwear & Accessories",
+            title: "Accessories",
             items: [
-              { label: "Shoes", link: "/men/shoes" },
               { label: "Watches", link: "/men/watches" },
-              { label: "Bags", link: "/men/bags" },
+              { label: "Bags & Luggage", link: "/men/bags" },
+              { label: "Sunglasses", link: "/men/shoes" },
+              { label: "Jewellery", link: "/men/shoes" },
+              { label: "Wallets", link: "/men/shoes" },
             ],
           },
+          {
+            title:"Men's Shoes",
+            items:[
+              {label:"Shoes", link:"/men/shoes"},
+              {label:"Sports Shoes", link:"/men/sports-shoes"},
+              {label:"Formal Shoes", link:"/men/formal-shoes"},
+              {label:"Casual Shoes", link:"/men/casual-shoes"},
+            ]
+          },
+          {
+            title:"Stores",
+            items:[
+              {label:"Sportswear",link:"/men/sportswear"},
+              {label:"The Designer Boutique",link:"/men/designer-boutique"},
+              {label:"Men's Fashion",link:"/men/mens-fashion"},
+              {label:"Amazon Fashion",link:"/men/amazon-fashion"},
+              {label:"Men's Handloom",link:"/men/handloom"},
+              {label:"Fashion Sales & Deal",link:"/men/fashion-sales&deal"},
+            ]
+          }
         ],
       },
       {
@@ -240,22 +268,44 @@ const ALL_MENU = [
         seeAllLink: "/women-fashion",
         subSections: [
           {
-            title: "Clothing",
+            title: "Women's Clothing",
             items: [
-              { label: "Sarees", link: "/women/sarees" },
-              { label: "Kurtis", link: "/women/kurtis" },
-              { label: "Dresses", link: "/women/dresses" },
-              { label: "Tops", link: "/women/tops" },
+              { label: "Clothing", link: "/women/clothing" },
+              { label: "Western Wear", link: "/women/westernwear" },
+              { label: "Ethinic Wear", link: "/women/ethnic-wear" },
+              { label: "Lingerie & Nightwear", link: "/women/lingere&nightwear" },
+              { label: "Top Brands", link: "/women/topbrands" },
             ],
           },
           {
-            title: "Footwear & Accessories",
+            title: "Accessories",
             items: [
-              { label: "Shoes", link: "/women/shoes" },
-              { label: "Handbags", link: "/women/handbags" },
-              { label: "Jewellery", link: "/women/jewellery" },
+              { label: "Watches", link: "/women/watches" },
+              { label: "Handbags & Clutches", link: "/women/hanbags&clutches" },
+              { label: "Gold & Diamond Jewellery", link: "/women/gold&diamondjewellery" },
+              { label: "Fashion & Silver Jewellery", link: "/women/fashion&sliverjewellery" },
+              { label: "Sunglasses", link: "/women/sunglasses" },
             ],
           },
+          {
+            title:"Women's Shoes",
+            items:[
+              {label:"Shoes",link:"/women/shoes"},
+              {label:"Fashion Sandals",link:"/women/fashion-sandals"},
+              {label:"Ballerinas",link:"/women/ballerinas"},
+            ]
+          },
+           {
+            title:"Stores",
+            items:[
+              {label:"The Designer Boutique",link:"/women/designer-boutique"},
+              {label:"Handloom & Handicraft Store",link:"/women/handloom&handicraft"},
+              {label:"Sportswear",link:"/women/sportswear"},
+              {label:"Women's Fashion",link:"/women/womens-fashion"},
+              {label:"Amazon Fashion",link:"/women/amazon-fashion"},
+              {label:"Fashion Sales & Deal",link:"/women/fashion-sales&deal"},
+            ]
+          }
         ],
       },
       {

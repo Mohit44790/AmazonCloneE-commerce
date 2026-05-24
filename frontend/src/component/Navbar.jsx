@@ -73,7 +73,7 @@ const YOUR_LISTS = [
 ]
  
 const YOUR_ACCOUNT = [
-  { label: "Admin Account",                          to: "/adminDashboard" },
+  { label: "Admin Account",                          to: "/admin" },
   { label: "Your Account",                          to: "/account" },
   { label: "Your Orders",                           to: "/orders" },
   { label: "Your Wish List",                        to: "/wishlist" },

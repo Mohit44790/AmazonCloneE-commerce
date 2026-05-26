@@ -27,7 +27,7 @@ export const authApi = {
     // store access token in memory only
     window.__ACCESS_TOKEN__ = data.accessToken;
 
-    return data.user;
+    return data.data.user;
   },
 
   // =========================
@@ -55,7 +55,7 @@ export const authApi = {
   getMe: async () => {
     const { data } = await api.get("/auth/me");
 
-    return data.user;
+     return data.data.user;
   },
 
   // =========================

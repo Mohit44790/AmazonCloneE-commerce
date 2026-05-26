@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import api from '../../apiData/api/axiosInstance' // your axios instance
+ // your axios instance
 import amazon from "../../assets/amazons.png"
+import { useAuthStore } from '../../apiData/store/authStore'
 
 /* ── Amazon SVG Logo ── */
 const AmazonLogo = () => (
@@ -69,6 +70,14 @@ const StrengthBar = ({ password }) => {
 ═══════════════════════════════════════ */
 export default function Register() {
   const navigate = useNavigate()
+  const login = useAuthStore((state) => state.login);
+  const register = useAuthStore(
+  (state) => state.register
+);
+  const error = useAuthStore(
+    (state) => state.error
+  );
+
 
   /* tabs */
   const [tab, setTab] = useState('signin') // 'signin' | 'signup'
@@ -120,27 +129,37 @@ export default function Register() {
 
   /* ── Submit Signup ── */
   const handleSignup = async (e) => {
-    e.preventDefault()
-    const errs = validateSignup()
-    if (Object.keys(errs).length) { setErrors(errs); return }
+  e.preventDefault();
 
-    setLoading(true)
-    setServerError('')
-    try {
-      await api.post('/auth/register', {
-        name:     form.name.trim(),
-        email:    form.email.trim().toLowerCase(),
-        password: form.password,
-        phone:    form.phone.trim(),
-        role:     'customer',
-      })
-      navigate('/')
-    } catch (err) {
-      setServerError(err.response?.data?.message || 'Registration failed. Try again.')
-    } finally {
-      setLoading(false)
-    }
+  const errs = validateSignup();
+
+  if (Object.keys(errs).length) {
+    setErrors(errs);
+    return;
   }
+
+  setLoading(true);
+  setServerError("");
+
+  try {
+    await register({
+      name: form.name.trim(),
+      email: form.email.trim().toLowerCase(),
+      password: form.password,
+      phone: form.phone.trim(),
+      role: "customer",
+    });
+
+    navigate("/");
+  } catch (err) {
+    setServerError(
+      err.response?.data?.message ||
+      "Registration failed"
+    );
+  } finally {
+    setLoading(false);
+  }
+};
 
   /* ── Sign In Step 1 ── */
   const handleSignStep1 = (e) => {
@@ -153,25 +172,32 @@ export default function Register() {
   }
 
   /* ── Submit Sign In ── */
-  const handleSignIn = async (e) => {
-    e.preventDefault()
-    if (!signPassword.trim()) {
-      setSignErrors({ password: 'Enter your password' }); return
-    }
-    setSignLoading(true)
-    setSignServerError('')
-    try {
-      await api.post('/auth/login', {
-        email:    signEmail.trim().toLowerCase(),
-        password: signPassword,
-      })
-      navigate('/')
-    } catch (err) {
-      setSignServerError(err.response?.data?.message || 'Incorrect email or password.')
-    } finally {
-      setSignLoading(false)
-    }
+ const handleSignIn = async (e) => {
+  e.preventDefault();
+
+  if (!signPassword.trim()) {
+    setSignErrors({
+      password: "Enter your password",
+    });
+    return;
   }
+
+  setSignLoading(true);
+  setSignServerError("");
+
+  try {
+    await login(signEmail, signPassword);
+
+    navigate("/");
+  } catch (err) {
+    setSignServerError(
+      err.response?.data?.message ||
+      "Incorrect email or password."
+    );
+  } finally {
+    setSignLoading(false);
+  }
+};
 
   return (
     <div className="min-h-screen bg-white flex flex-col items-center font-sans px-4">

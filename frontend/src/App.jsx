@@ -8,6 +8,8 @@ import CreateProducts from "./pages/admin/products/CreateProducts";
 import GetAllProducts from "./pages/admin/products/GetAllProducts";
 import Category from "./pages/admin/category/Category";
 import ProtectedRoute from "./ProtectedRoute";
+import { useAuthStore } from "./apiData/store/authStore";
+import { useEffect } from "react";
 
 const router = createBrowserRouter([
   { path: "/login", element: <Register /> },
@@ -38,6 +40,14 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+   const hydrate = useAuthStore(
+    (state) => state.hydrate
+  );
+
+  useEffect(() => {
+    hydrate();
+  }, []);
+
   return <RouterProvider router={router} />;
 }
 

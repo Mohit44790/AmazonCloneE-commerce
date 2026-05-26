@@ -6,6 +6,7 @@ import amazon from "../assets/amazonLogo.png"
 import AllSideBar from "../pages/mainlayout/AllSideBar";
 import { MdArrowDropUp } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { useAuthStore } from "../apiData/store/authStore";
 
 const LANGUAGES = [
   { code: "en", label: "EN", name: "English" },
@@ -97,7 +98,7 @@ export default function Navbar() {
   const langRef = useRef(null);
   const t = TRANSLATIONS[lang];
   const currentLang = LANGUAGES.find((l) => l.code === lang);
-
+  const { user } = useAuthStore();
   useEffect(() => {
     const handler = (e) => {
       if (langRef.current && !langRef.current.contains(e.target))
@@ -250,7 +251,11 @@ export default function Navbar() {
             <div className="flex-1 pl-5 text-start">
               <h2 className="font-bold text-lg text-gray-900 mb-2">Your Account</h2>
               <ul className="space-y-1">
-                {YOUR_ACCOUNT.map((item) => (
+                {YOUR_ACCOUNT.filter(
+    (item) =>
+      item.label !== "Admin Account" ||
+      user?.role === "admin"
+  ).map((item) => (
                   <li key={item.to}>
                     <Link
                       to={item.to}

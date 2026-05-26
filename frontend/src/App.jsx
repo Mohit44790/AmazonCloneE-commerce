@@ -5,8 +5,9 @@ import Register from "./pages/auth/Register";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminLayout from "./pages/admin/AdminLayout";
 import CreateProducts from "./pages/admin/products/CreateProducts";
-import GetProducts from "./pages/admin/products/GetProducts";
+import GetAllProducts from "./pages/admin/products/GetAllProducts";
 import Category from "./pages/admin/category/Category";
+import ProtectedRoute from "./ProtectedRoute";
 
 const router = createBrowserRouter([
   { path: "/login", element: <Register /> },
@@ -17,17 +18,21 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
     ],
   },
+  // Admin routes — protected, admin only
   {
     path: "/admin",
-    element: <AdminLayout />,
+    element: <ProtectedRoute adminOnly />,
     children: [
-      { index: true,element: <AdminDashboard /> },
-      { path:"/create-product" ,element:<CreateProducts/>},
-      {path:"/getAllProducts" ,element:<GetProducts/>},
-      {path:"/category",element:<Category/>}
-
-
-  
+      {
+        element: <AdminLayout />,
+        children: [
+          { index: true,             element: <AdminDashboard /> },
+          { path: "create-product",  element: <CreateProducts />  },
+          { path: "all-products",        element: <GetAllProducts />     },
+          { path: "category",        element: <Category />        },
+         
+        ],
+      },
     ],
   },
 ]);

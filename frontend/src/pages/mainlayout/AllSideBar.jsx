@@ -409,7 +409,7 @@ const AllSideBar = () => {
           <Link
             key={item.name}
             to={item.link}
-            className="flex items-center gap-0.5 text-white text-[13px] px-3 py-1.5 rounded border-2 border-transparent hover:border-white transition-colors shrink-0 whitespace-nowrap"
+            className="flex items-center text-white text-[13px] px-2 py-1.5 rounded border-2 border-transparent hover:border-white transition-colors shrink-0 whitespace-nowrap"
           >
             {item.name}
             {item.hasDropdown && <IoMdArrowDropdown size={14} />}

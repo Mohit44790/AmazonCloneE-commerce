@@ -1,49 +1,117 @@
-// store/authStore.js  (Zustand)
-// npm install zustand
+// store/authStore.js
+
 import { create } from "zustand";
 import { authApi } from "../api/authApi";
 
-
 export const useAuthStore = create((set) => ({
-  user:    null,
+  user: null,
   loading: false,
-  error:   null,
+  error: null,
+  isAuthenticated: false,
 
+  // =========================
+  // LOGIN
+  // =========================
   login: async (email, password) => {
     set({ loading: true, error: null });
+
     try {
-      const user = await authApi.login(email, password);
-      set({ user, loading: false });
+      const user = await authApi.login(
+        email,
+        password
+      );
+
+      set({
+        user,
+        isAuthenticated: true,
+        loading: false,
+      });
+
+      return user;
     } catch (err) {
-      set({ error: err.response?.data?.message || "Login failed", loading: false });
+      set({
+        error:
+          err.response?.data?.message ||
+          "Login failed",
+        loading: false,
+      });
+
+      throw err;
     }
   },
 
+  // =========================
+  // REGISTER
+  // =========================
   register: async (payload) => {
     set({ loading: true, error: null });
+
     try {
-      const user = await authApi.register(payload);
-      set({ user, loading: false });
+      const user = await authApi.register(
+        payload
+      );
+
+      set({
+        user,
+        isAuthenticated: true,
+        loading: false,
+      });
+
+      return user;
     } catch (err) {
-      set({ error: err.response?.data?.message || "Register failed", loading: false });
+      set({
+        error:
+          err.response?.data?.message ||
+          "Register failed",
+        loading: false,
+      });
+
+      throw err;
     }
   },
 
+  // =========================
+  // LOGOUT
+  // =========================
   logout: async () => {
-    await authApi.logout();
-    set({ user: null });
+    try {
+      await authApi.logout();
+    } finally {
+      set({
+        user: null,
+        isAuthenticated: false,
+      });
+    }
   },
 
-  // Call on app start to restore session from httpOnly cookie
+  // =========================
+  // RESTORE SESSION
+  // =========================
   hydrate: async () => {
     set({ loading: true });
+
     try {
       const user = await authApi.getMe();
-      set({ user, loading: false });
+
+      set({
+        user,
+        isAuthenticated: true,
+        loading: false,
+      });
     } catch {
-      set({ user: null, loading: false });
+      set({
+        user: null,
+        isAuthenticated: false,
+        loading: false,
+      });
     }
   },
 
-  clearError: () => set({ error: null }),
+  // =========================
+  // CLEAR ERROR
+  // =========================
+  clearError: () =>
+    set({
+      error: null,
+    }),
 }));

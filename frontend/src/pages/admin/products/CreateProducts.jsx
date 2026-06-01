@@ -1,4 +1,11 @@
-import React, { Children } from 'react'
+import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { productApi } from "../../../apiData/api/productApi";
+import { categoryApi } from "../../../apiData/api/categoryApi";
+import {
+  MdCloudUpload, MdClose, MdAdd, MdRemove, MdSave,
+  MdCheckCircle, MdError, MdArrowBack,
+} from "react-icons/md";
 
 
   const Field = ({label, error,required,Children,hint}) => (
@@ -23,6 +30,124 @@ import React, { Children } from 'react'
 const CreateProducts = () => {
   const navigate = useNavigate();
   const imgRef = useRef();
+
+  /* ── State ── */
+  const [form , setForm] = useState({
+    name:"",
+    description:"",
+    shortDescription:"",
+    price:"",
+    comparePrice:"",
+    brand:"",
+    stock:"",
+    sku:"",
+    status:"draft",
+    category:"",
+    subCategory:"",
+    subSubCategory:"",
+    gender:"",
+    ageGroup:"",
+    tags:"",
+    // shipping
+    weight:"",
+    length:"",
+    width:"",
+    height:"",
+    freeShipping:false,
+    shippingClass:"standard",
+    estimatedDelivery:"", 
+    // return
+    isReturnable:true,
+    returnDays:"10",
+    returnCondition:"",
+    //warrenty
+    hasWarrenty:false , 
+    warrentyPeriod:"",
+    warrantyType:"",
+    //seo
+    metaTitle:"",
+    metaDescription:"",
+    keywords:"",
+
+    //flags
+    isFeature:false,
+    isNewArrival:false,
+    isBestSeller:false,
+    isDeal:false,
+    dealExpiredsAt:"",
+    //highlights
+
+    highlights:[""],
+    //colors
+    colors:[{name:"",hex:""}],
+  });
+
+  const [errors, setErrors] = useState({});
+  const [loading,setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [serverError, setServerError] = useState("");
+
+  //sizes
+  const[selectedSizes, setSelectedSizes] = useState([]);
+
+  //images
+  const [imagesFiles , setImagesFiles] = useState([]);
+  const [imagesPreviews , setImagePreviews] = useState([]);
+  //categories
+  const [rootCats,setRootcats] = useState([]);
+  const [subCats , setSubCats] = useState([]);
+  const [subSubCats , setSubSubCats] = useState([]);
+
+  //active tabs
+  const [tab, setTab] = useState("basic");
+
+  /* ── Load root categories ── */
+   useEffect(() => {
+    categoryApi.getAll({ parent: "null", tree: "false" })
+      .then(setRootCats).catch(() => {});
+  }, []);
+
+   /* ── Load subcategories on parent change ── */
+    useEffect(() => {
+    if (!form.category) { setSubCats([]); setSubSubCats([]); return; }
+    categoryApi.getAll({ parent: form.category, tree: "false" })
+      .then(setSubCats).catch(() => {});
+  }, [form.category]);
+
+  useEffect(() =>{
+    if(!form.subCategory) {setSubSubCats([])
+      return;
+    }
+    categoryApi.getAll({parent:form.subCategory , tree:"false"}).then(setSubSubCats).catch(() => {});
+  },[form.subCategory]);
+
+  // Handlers 
+  const set = (field) =>(e) => {
+    const val = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+    setForm(f => ({...f,[field]:val}));
+    setErrors(er => ({...er,[field]:""}));
+  };
+
+  const handleImages = (e) =>{
+    const files = Array.from(e.target.files).slice(0,10 - imagesFiles.length);
+    setImagesFiles(prev =>[...prev,...files]);
+    files.forEach(f =>{
+      const reader = new FileReader();
+      reader.onload = (ev) => setImagePreviews(p => [...p, ev.target.result]);
+      reader.readAsDataURL(f);
+    });
+  };
+
+  const removeImage =(i) =>{
+    setImageFiles(p => p.filter((_,idx) => idx !== i));
+    setImagePreviews(p => p.filter((_,idx) => idx !== i));
+  };
+
+  const toggleSize =(s) => 
+    setSelectedSizes(p => p.includes(s) ? p.filter(x => x !==s) : [...p,s]);
+
+ 
+  const addHighlight = () => setForm(f => ({ ...f, highlights: [...f.highlights, ""] }));
 
 
   

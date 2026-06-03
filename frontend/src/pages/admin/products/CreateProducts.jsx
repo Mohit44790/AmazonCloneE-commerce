@@ -6,26 +6,29 @@ import {
   MdCloudUpload, MdClose, MdAdd, MdRemove, MdSave,
   MdCheckCircle, MdError, MdArrowBack,
 } from "react-icons/md";
-
-
-  const Field = ({label, error,required,Children,hint}) => (
-    <div className='mb-4'>
-      <label className='block text-sm font-semibold text-gray-300 mb-1'>
-        {label} {required && <span className='text-red-400'>*</span>}
-      </label>
-      {Children}
-      {hint && <p className='text-xs text-gray-500 mt-1'>{hint}</p>}
-      {error && <p className='text-red-400 text-xs mt-1 flex items-center gap-1'><MdError size/>{error}</p>}
-    </div>
-  )
-
-  const inputCls = (err) => `w-full bg-[#0f1117] border rounded-lg px-3 py-2 text-sm text-white outline-none transition-all focus:ring-2 focus:ring-[#FF9900]/60 focus:border-[#FF9900] ${err ? "border-red-500" :"border-white/10 hover:border-white/20"}`;
-
-  const SIZES = ["XS","S","M","L","XL","XXL","XXXL","28","30","32","34","36","38","40","42"];
-  const GENDERS = ["men","women","unisex","boys","girls","kids"];
-  const AGE_GROUPS = ["adults","teen","kids","infant"];
-  const STATUSES = ["draft","active","inactive"];
-  const SHIPPING_CLASSES = ["standard","express","overnight","free"];
+ 
+/* ── Reusable Input ── */
+const Field = ({ label, error, required, children, hint }) => (
+  <div className="mb-4">
+    <label className="block text-sm font-semibold text-gray-300 mb-1">
+      {label} {required && <span className="text-red-400">*</span>}
+    </label>
+    {children}
+    {hint && <p className="text-xs text-gray-500 mt-1">{hint}</p>}
+    {error && <p className="text-red-400 text-xs mt-1 flex items-center gap-1"><MdError size={13}/>{error}</p>}
+  </div>
+);
+ 
+const inputCls = (err) =>
+  `w-full bg-[#0f1117] border rounded-lg px-3 py-2 text-sm text-white outline-none transition-all
+   focus:ring-2 focus:ring-[#FF9900]/60 focus:border-[#FF9900]
+   ${err ? "border-red-500" : "border-white/10 hover:border-white/20"}`;
+ 
+const SIZES = ["XS","S","M","L","XL","XXL","XXXL","28","30","32","34","36","38","40","42"];
+const GENDERS = ["men","women","unisex","boys","girls","kids"];
+const AGE_GROUPS = ["adult","teen","kids","infant"];
+const STATUSES = ["draft","active","inactive"];
+const SHIPPING_CLASSES = ["standard","express","overnight","free"];
 
 const CreateProducts = () => {
   const navigate = useNavigate();
@@ -102,10 +105,10 @@ const CreateProducts = () => {
   const [tab, setTab] = useState("basic");
 
   /* ── Load root categories ── */
-   useEffect(() => {
-    categoryApi.getAll({ parent: "null", tree: "false" })
-      .then(setRootCats).catch(() => {});
-  }, []);
+  //  useEffect(() => {
+  //   categoryApi.getAll({ parent: "null", tree: "false" })
+  //     .then(setRootCats).catch(() => {});
+  // }, []);
 
    /* ── Load subcategories on parent change ── */
     useEffect(() => {
@@ -279,7 +282,102 @@ const removeColor = (i) => setForm(f => ({...f, colors: f.colors.filter((_, idx)
   )
 
   return (
-    <div className='text-white'>
+    <div className='text-white max-w-4xl mx-auto'>
+      {/* header */}
+      <div className="flex items-center gap-3 mb-6">
+        <button onClick={()=> navigate("/admin/products")}
+          className="text-gray-400 hover:text-white p-1.5 rounded-lg hover:bg-white/5 transition-colors">
+            <MdArrowBack size={20}/>
+        </button>
+        <div>
+          <h1 className="text-xl font-bold">Create Product</h1>
+          <p className="text-gray">Fill in the details below</p>
+        </div>
+      </div>
+   {serverError && (
+        <div className="bg-red-500/10 border border-red-500/30 rounded-xl px-4 py-3 text-red-400 text-sm flex items-center gap-2 mb-4">
+          <MdError size={18}/> {serverError}
+        </div>
+      )}
+
+      {/* Tab Nav */}
+         <div className="flex gap-1 bg-white/5 rounded-xl p-1 mb-6 flex-wrap">
+        {TABS.map(t => (
+          <button key={t.id} onClick={() => setTab(t.id)}
+            className={`flex-1 py-2 px-3 rounded-lg text-xs font-semibold transition-all relative min-w-[80px]
+              ${tab === t.id ? "bg-[#FF9900] text-black" : "text-gray-400 hover:text-white hover:bg-white/5"}`}>
+            {t.label}
+            {t.dot && <span className="absolute top-1 right-1 w-1.5 h-1.5 bg-red-400 rounded-full"/>}
+          </button>
+        ))}
+      </div>
+
+      <form onSubmit={handleSubmit}>
+        <div className="bg-[#131720] border border-white/5 rounded-2xl p-6">
+ 
+          {/* ══════ TAB: BASIC ══════ */}
+            {tab === "basic" && (
+               <div className="space-y-1">
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="md:col-span-2">
+ <Field label="Product Name" required error={errors.name}>
+                    <input value={form.name} onChange={set("name")} placeholder="e.g. Nike Air Max 270"
+                      className={inputCls(errors.name)}/>
+                  </Field>
+
+                  </div>
+                   <Field label="Price (₹)" required error={errors.price}>
+                  <input type="number" value={form.price} onChange={set("price")} placeholder="999"
+                    className={inputCls(errors.price)}/>
+                </Field>
+           
+            <Field label="Compare Price (₹)" hint="Original MRP — shows crossed-out">
+                  <input type="number" value={form.comparePrice} onChange={set("comparePrice")} placeholder="1499"
+                    className={inputCls()}/>
+                </Field>
+ 
+                <Field label="Stock Quantity" required error={errors.stock}>
+                  <input type="number" value={form.stock} onChange={set("stock")} placeholder="100"
+                    className={inputCls(errors.stock)}/>
+                </Field>
+
+                <Field label="Brand">
+                  <input value={form.brand} onChange={set("brand")} placeholder="Nike, Samsung..." className={inputCls()} />
+
+                </Field>
+
+               <Field label="SKU" hint="Leave blank to auto-generate">
+                  <input value={form.sku} onChange={set("sku")} placeholder="Auto-generated"
+                    className={inputCls()}/>
+                </Field>
+                  
+                  <Field label="Status">
+                    <select value={form.status} onChange={set("status")} className={inputCls()}>
+                      {STATUSES.map(s => <option key={s} value={s}>{s.charAt(0).toUpperCase()+s.slice(1)}</option>)}
+                       
+                    </select>
+
+                  </Field>
+
+                    {/* Categories */}
+                <Field label="Category" required error={errors.category}>
+                  <select value={form.category} onChange={set("category")} className={inputCls(errors.category)}>
+                    <option value="">Select category</option>
+                    {rootCats.map(c => <option key={c._id} value={c._id}>{c.icon} {c.name}</option>)}
+                  </select>
+                </Field>
+
+                
+
+
+                 </div>
+               </div>
+            )
+
+            }     
+
+        </div>
+      </form>
       
     </div>
   )

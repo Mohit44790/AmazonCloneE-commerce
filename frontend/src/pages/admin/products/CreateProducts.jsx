@@ -367,14 +367,88 @@ const removeColor = (i) => setForm(f => ({...f, colors: f.colors.filter((_, idx)
                   </select>
                 </Field>
 
-                
+               {subCats.length > 0 && (
+                  <Field label="Sub Category">
+                    <select value={form.subCategory} onChange={set("subCategory")} className={inputCls()}>
+                      <option value="">Select sub-category</option>
+                      {subCats.map(c => <option key={c._id} value={c._id}>{c.name}</option>)}
+                    </select>
+                  </Field>
+                )}
 
+             {subSubCats.length > 0 && (
+                  <Field label="Sub-Sub Category">
+                    <select value={form.subSubCategory} onChange={set("subSubCategory")} className={inputCls()}>
+                      <option value="">Select</option>
+                      {subSubCats.map(c => <option key={c._id} value={c._id}>{c.name}</option>)}
+                    </select>
+                  </Field>
+                )}
 
+                <Field label="Gender">
+                  <select value={form.gender} onChange={set("gender")} className={inputCls()}>
+                    <option value="">None</option>
+                    {GENDERS.map(g => <option key={g} value={g}>{g.charAt(0).toUpperCase()+g.slice(1)}</option>)}
+                  </select>
+                </Field>
+                 <Field label="Age Group">
+                  <select value={form.ageGroup} onChange={set("ageGroup")} className={inputCls()} >
+                    <option value="">None</option>
+                    {AGE_GROUPS.map(a => <option key={a} value={a}>{a.charAt(0).toUpperCase()+a.slice(1)}</option>)}
+
+                  </select>
+
+                 </Field>
                  </div>
-               </div>
-            )
+                 <Field label="Short Description" hint="Max 500 characters">
+                  <textarea rows={2} value={form.shortDescription} onChange={set("shortDescription")} placeholder="Brief product summary..." className={inputCls()} /> 
 
-            }     
+                 </Field>
+
+                 <Field label="Full Description" required error={errors.description}>
+                  <textarea rows={5} value={form.description} onChange={set("description")} placeholder="Detailed product description..." className={inputCls(errors.description)}/>
+
+               
+
+                 </Field>
+
+                 
+                  {/* Highlights */}
+              <Field label="Highlights">
+                {form.highlights.map((h, i) => (
+                  <div key={i} className="flex gap-2 mb-2">
+                    <input value={h} onChange={e => setHighlight(i, e.target.value)}
+                      placeholder={`Highlight ${i+1}`} className={inputCls()}/>
+                    {form.highlights.length > 1 && (
+                      <button type="button" onClick={() => removeHighlight(i)}
+                        className="text-red-400 hover:text-red-300 p-2"><MdRemove size={16}/></button>
+                    )}
+                  </div>
+                ))}
+                <button type="button" onClick={addHighlight}
+                  className="flex items-center gap-1 text-[#FF9900] text-xs hover:underline mt-1">
+                  <MdAdd size={14}/> Add highlight
+                </button>
+              </Field>
+            </div>
+          )}
+ 
+          {/* ══════ TAB: MEDIA ══════ */}
+                {tab === "media" && (
+                  <div > 
+                    <p className="text-gray-400 text-sm mb-4">Upload up to 10 images.First image will be the primary.</p>
+                    {errors.images && (
+                      <p><MdError size={13}/>{errors.images}</p>
+                    )}
+                    {/* Drop zone */}
+                    <div onClick={()=> imgRef.current?.click()} className="border-2 border-dashed-white/10 hover:border-[#FF9900]/50 rounded-xl p-8">
+
+                    </div>
+                  </div>
+                )}
+
+
+            
 
         </div>
       </form>

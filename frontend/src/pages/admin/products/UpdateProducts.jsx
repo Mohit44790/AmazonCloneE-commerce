@@ -1,6 +1,63 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import { MdError } from 'react-icons/md';
+import { useNavigate, useParams } from 'react-router-dom';
+
+
+const inputCls = (err) => `w-full bg-[#0f1117] border rounded-lg px-3 py-2 text-sm text-white outline-none transition-all focus:ring-2 focus:ring-[#FF9900]/60 focus:border-[#FF9900] ${err ? "border-white/10" : "border-white/10 hover:border-white/20"}`;
+
+const Field = ({label,error,required,children ,hint}) =>(
+  <div className='mb-4'>
+    <label className="block text-sm font-semibold text-gray-300 mb-1">
+    {label}{required && <span className='text-red-400 ml-1'>*</span>}
+    </label>
+    {children}
+    {hint && <p className='text-xs text-gray-500 mt-1'>{hint}</p>}
+    {error && <p className='text-red-400 text-xs mt-1 flex items-center gap-1'><MdError size={12}/>{error}</p>}
+  </div>
+)
+
+const SIZES = ["XS","S","M","L","XL","XXL","XXXL","28","30","32","34","36","38","40","42"];
+const GENDERS = ["men","women","unisex","boys","girls","kids"];
+const AGE_GROUPS = ["adult","teen","kids","infant"];
+const STATUSES = ["draft","active","inactive","discontinued"];
+
 
 const UpdateProducts = () => {
+  const {id} = useParams();
+  const navigate = useNavigate();
+  const imgRef = useRef();
+  const [tab ,setTab] = useState("basic");
+  const [loading,setLoading] = useState(true);
+  const [saving,setSaving] = useState(false);
+  const [success , setSuccess] = useState(false);
+  const [serverError ,setServerError] = useState("");
+  const [errors, setErrors] = useState({});
+
+  // form 
+  const [form,setForm] = useState(null);
+  const [selectedSizes, setSelectedSizes] = useState([]);
+
+  // image 
+  const [exitingImages , setExistingImages] = useState([]);
+  const [newFiles, setNewFiles] = useState([]);
+  const [newPreviews,setNewPreviews] = useState([]);
+  const [toDelete,setToDelete] = useState([]);
+
+  //categories
+  const [rootCats,setRootCats] = useState([]);
+  const [subCats,setSubCats] = useState([]);
+  const [subSubCats,setSubSubCats] = useState([]);
+
+  // Load product 
+  useEffect(() => {
+    (async () =>{
+      try {
+        
+      } catch (error) {
+        
+      }
+    })
+  })
   return (
     <div>UpdateProducts</div>
   )

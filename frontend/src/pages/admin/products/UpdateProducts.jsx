@@ -52,12 +52,65 @@ const UpdateProducts = () => {
   useEffect(() => {
     (async () =>{
       try {
-        
-      } catch (error) {
-        
-      }
-    })
-  })
+        const {product} = await productApi.getById(id);
+        setExistingImages(product.images || []);
+        setSelectedSizes(product.sizes || []);
+        setForm({
+          name: product.name || "",
+          description:product.description || "",
+          shortDescription: product.shortDescription || "",
+          price: product.price || "",
+          comparePrice: product.comparePrice || "",
+          brand: product.brand || "",
+          stock: product.stock || "",
+          sku: product.sku || "",
+          status: product.status || "draft",
+          category: product.category?._id || "",
+          subCategory: product.subCategory?._id || "",
+          subSubCategory: product.SubSubCategory?._id || "",
+          gender: product.gender || "",
+          ageGroup: product.ageGroup || "",
+          tags :(product.tags || []).join(","),
+          highlights: product.highlights?.lengtj ? product.highlights : [""],
+          colors: product.colors?.length ? product.colors : [{name:"",hex:""}],
+          
+          //shipping
+          weight: product.shipping?.weight || "",
+          length: product.shipping?.dimensions?.length || "",
+          width: product.shipping?.dimensions?.width || "",
+          height: product.shipping?.dimensions?.height || "",
+          freeShipping: product.shipping?.freeShipping || false,
+          shippingClass: product.shipping?.shippingClass || "standard",
+          estimatedDelivery: product.shipping?.estimatedDelivery || "",
+
+          // return
+          isReturnable: product.returnPolicy?.isReturnable ?? true,
+          returnDays: product.returnPolicy.returnDays || "10",
+          returnConditions: product.returnPolicy?.returnConditions || "",
+
+          //warrenty
+          haswarranty: product.warranty?.haswarranty || false,
+          warrantyPeriod: product.warranty?.warrantyPeriod || "",
+          warrantyType: product.warranty?.warrantyType || "",
+
+          // seo
+            metaTitle:       product.seo?.metaTitle       || "",
+          metaDescription: product.seo?.metaDescription || "",
+          keywords:        (product.seo?.keywords || []).join(", "),
+          // flags
+          isFeatured:   product.isFeatured   || false,
+          isNewArrival: product.isNewArrival || false,
+          isBestSeller: product.isBestSeller || false,
+          isDeal:       product.isDeal       || false,
+          dealExpiresAt: product.dealExpiresAt ? product.dealExpiresAt.slice(0,16) : "",
+
+        })
+      }catch { setServerError("Failed to load product."); }
+      finally  { setLoading(false); }
+    })();
+  }, [id]);
+
+  
   return (
     <div>UpdateProducts</div>
   )

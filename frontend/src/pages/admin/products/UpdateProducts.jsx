@@ -151,6 +151,49 @@ const UpdateProducts = () => {
     setNewPreviews(p =>p.filter((_,idx) => idx !==i));
   };
 
+  const toggleSize = (s) =>
+    setSelectedSizes(p =>p.includes(s) ? p.filter(x => x !== s) : [...p, s]);
+
+  const setHighlight = (i,v) => setForm(f => {
+    const h = [...f.highlights]; h[i] = v; return {...f,highlights:h};
+  });
+
+  const addHighlight = () => setForm(f => ({...f,highlights: [...f.highlights,""]}));
+
+  const removeHighlight = (i) => setForm(f => ({...f, highlights:filter((_,idx) => idx !== i)}));
+
+  const setColor = (i, field, v) =>setForm(f => {
+    const c = [...f.colors]; c[i] = {...c[i],[field]:v}; return {...f,colors:c};
+  });
+
+  const addColor = () => setForm(f =>({...f, colors:[...f.colors, {name:"",hex:""}]}));
+
+   const removeColor = (i) => setForm(f => ({ ...f, colors: f.colors.filter((_,idx) => idx !== i) }));
+
+    /* ── Validate ── */
+
+    const validate = () => {
+      const e = {};
+      if (!form.name.trim()) e.name = "Required";
+      if (!form.description.trim()) e.description = "Required";
+      if (!form.price) e.price = "Required";
+      if (!form.category)  e.category = "Required";
+      return e;
+    }
+
+
+    /* ── Submit ── */
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      const errs = validate();
+      if (Object.keys(errs).length) {setErrors(errs); setTab("basic"); return;}
+
+      setSaving(true); setServerError("");
+      const fd = new FormData();
+
+      fd.append("name", form.name.trim());
+    }
+
 
   return (
     <div>UpdateProducts</div>

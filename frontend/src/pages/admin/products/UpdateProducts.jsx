@@ -109,8 +109,49 @@ const UpdateProducts = () => {
       finally  { setLoading(false); }
     })();
   }, [id]);
+ /* ── Load categories ── */
 
+ useEffect(() => {
+  categoryApi.getAll({parent:"null",tree:"false"}).then(setRootCats).catch(() =>{});
+ },[]);
+
+ useEffect(() => {
+  if(!form?.category){setSubCats([]);return}
+  categoryApi.getAll({parent:form.category,tree:"false"}).then(setSubCats).catch(() => {});
+ },[form?.category]);
+ useEffect(() => {
+  if(!form?.subCategory){setSubCats([]); return}
+  categoryApi.getAll({parent: form.subCategory, tree:"false"}).then(setSubSubCats).catch(()=>{})
+ },[form?.subCategory]);
   
+  /* ── Helpers ── */
+  const set = (field) => (e) =>{
+    const val = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+    setForm(f => ({...f,[field]:val}));
+    setErrors(er =>({...er,[field]: ""}));
+  };
+
+  const handleNewImages =(e) => {
+    const files = Array.from(e.target.filed).slice(0,10 -exitingImages.length - newFiles.length);
+    setNewFiles(p => [...p, ...files]);
+    files.forEach(f => {
+      const r = new FileReader();
+      r.onload = ev => setNewPreviews(p =>[...p,ev.target.result]);
+      r.readAsDataURL(f);
+    });
+  };
+
+  const markDelete =(publicId) =>{
+    setToDelete(p => [...p, publicId]);
+    setExistingImages(p => p.filter(i => i.public_id !== publicId));
+  };
+
+  const removeNew =(i) => {
+    setNewFiles(p => p.filter((_,idx) => idx !==i));
+    setNewPreviews(p =>p.filter((_,idx) => idx !==i));
+  };
+
+
   return (
     <div>UpdateProducts</div>
   )

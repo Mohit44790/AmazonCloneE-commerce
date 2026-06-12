@@ -192,6 +192,44 @@ const UpdateProducts = () => {
       const fd = new FormData();
 
       fd.append("name", form.name.trim());
+      fd.append("description", form.description.trim());
+      fd.append("shortDescription" , form.shortDescription.trim());
+      fd.append("price", form.price);
+      if (form.comparePrice) fd.append("comparePrice" , form.comparePrice);
+      fd.append("brand", form.brand.trim());
+      fd.append("stock" , form.stock);
+      fd.append("status","form.status");
+      fd.append("category" , form.category);
+      if(form.subCategory) fd.append("subCategory",form.subCategory);
+      if(form.subSubCategory) fd.append("subSubCategory",form.subSubCategory);
+      if(form.gender) fd.append("gender" ,form.gender);
+      if(form.ageGroup) fd.append("ageGroup" , form.ageGroup);
+      if(form.tags) fd.append("tags",form.tags);
+      if(selectedSizes.length) fd.append("sizes",selectedSizes.join(","));
+      form.highlights.filter(Boolean).forEach(h => fd.append("highlights",h));
+      const validColors = form.colors.filter(c => c.name);
+      if(validColors.length) fd.append("colors", JSON.stringify(validColors));
+
+      fd.append("shipping", JSON.stringify({
+        weight: +form.weight || 0,
+        dimensions: {length: +form.length || 0, width: +form.width || 0, height: +form.height || 0},
+        freeShipping: form.freeShipping, shippingClass: form.shippingClass, estimatedDelivery:form.estimatedDelivery
+      }));
+      fd.append("returnPolicy", JSON.stringify({
+        isReturnable, returnDays: +form.returnDays || 10, returnConditions: form.returnConditions,
+      }));
+      fd.append("warrenty",JSON.stringify({
+        hasWarranty: form.hasWarranty, warrantyPeriod: form.warrantyPeriod, warrantyType: form.warrantyType,
+      }));
+      fd.append("seo", JSON.stringify({
+        metaTitle: form.metaTitle, metaDescription: form.metaDescription,
+        keywords: form.keywords.split(",").map(k=>k.trim()).filter(Boolean),
+      }));
+
+      fd.append("isFeatured", form.isFeatured);
+      fd.append("isNewArrival", form.isNewArrival);
+      fd.append("isBestSeller",form.isBestSeller);
+      
     }
 
 

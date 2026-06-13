@@ -229,10 +229,46 @@ const UpdateProducts = () => {
       fd.append("isFeatured", form.isFeatured);
       fd.append("isNewArrival", form.isNewArrival);
       fd.append("isBestSeller",form.isBestSeller);
-      
-    }
+      fd.append("isDeal",       form.isDeal);
+    if (form.isDeal && form.dealExpiresAt) fd.append("dealExpiresAt", form.dealExpiresAt);
+ 
+    if (toDelete.length) toDelete.forEach(pid => fd.append("deleteImages", pid));
+    newFiles.forEach(f => fd.append("images", f));
+ 
+    try {
+      await productApi.update(id, fd);
+      setSuccess(true);
+      setTimeout(() => navigate("/admin/products"), 2000);
+    } catch (err) {
+      setServerError(err.response?.data?.message || "Update failed.");
+    } finally { setSaving(false); }
+  };
 
+   const TABS = [
+    { id: "basic",    label: "Basic",    dot: errors.name || errors.description || errors.price || errors.category },
+    { id: "media",    label: "Images"  },
+    { id: "variants", label: "Variants" },
+    { id: "shipping", label: "Shipping" },
+    { id: "seo",      label: "SEO"      },
+    { id: "flags",    label: "Settings" },
+  ];
 
+   if (loading) return (
+    <div className="min-h-[60vh] flex items-center justify-center">
+      <div className="w-10 h-10 border-2 border-[#FF9900] border-t-transparent rounded-full animate-spin"/>
+    </div>
+  );
+ 
+  if (success) return (
+    <div className="min-h-[60vh] flex flex-col items-center justify-center text-white gap-4">
+      <MdCheckCircle size={60} className="text-green-400"/>
+      <h2 className="text-2xl font-bold">Product Updated!</h2>
+      <p className="text-gray-400">Redirecting…</p>
+    </div>
+  );
+ 
+  if (!form) return <div className="text-red-400 p-6">{serverError || "Product not found."}</div>;
+  
   return (
     <div>UpdateProducts</div>
   )

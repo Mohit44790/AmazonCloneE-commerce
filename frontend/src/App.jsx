@@ -10,6 +10,7 @@ import Category from "./pages/admin/category/Category";
 import ProtectedRoute from "./ProtectedRoute";
 import { useAuthStore } from "./apiData/store/authStore";
 import { useEffect } from "react";
+import UpdateProducts from "./pages/admin/products/UpdateProducts";
 
 const router = createBrowserRouter([
   { path: "/login", element: <Register /> },
@@ -28,10 +29,11 @@ const router = createBrowserRouter([
       {
         element: <AdminLayout />,
         children: [
-          { index: true,             element: <AdminDashboard /> },
-          { path: "create-product",  element: <CreateProducts />  },
-          { path: "products",        element: <GetAllProducts />     },
-          { path: "category",        element: <Category />        },
+          { index: true, element: <AdminDashboard /> },
+          { path: "create-product",element: <CreateProducts />  },
+          { path: "products",element: <GetAllProducts />     },
+          { path: "category",element: <Category />        },
+          { path: "admin/update-product/:id", element: <UpdateProducts />},
          
         ],
       },

@@ -1,7 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { MdError } from 'react-icons/md';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
+import { categoryApi } from '../../../apiData/api/categoryApi';
+import { productApi } from '../../../apiData/api/productApi';
+import {
+  MdArrowBack, MdSave, MdCloudUpload, MdClose,
+  MdAdd, MdRemove, MdCheckCircle, MdError,
+} from "react-icons/md";
 
 const inputCls = (err) => `w-full bg-[#0f1117] border rounded-lg px-3 py-2 text-sm text-white outline-none transition-all focus:ring-2 focus:ring-[#FF9900]/60 focus:border-[#FF9900] ${err ? "border-white/10" : "border-white/10 hover:border-white/20"}`;
 

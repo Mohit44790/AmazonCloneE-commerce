@@ -11,6 +11,7 @@ const NAV_ITEMS = [
   { label: "Dashboard",      icon: MdDashboard,      to: "/admin" },
   { label: "Create Product", icon: MdAddBox,         to: "/admin/create-product" },
   { label: "All Products",   icon: MdInventory,      to: "/admin/products" },
+  // { label: "Update Product",   icon: MdInventory,      to: "/admin/products/" },
   { label: "Category",       icon: MdCategory,       to: "/admin/category" },
   { label: "Purchase",       icon: MdShoppingCart,   to: "/admin/purchase" },
   { label: "Shipping",       icon: MdLocalShipping,  to: "/admin/shipping" },

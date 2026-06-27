@@ -275,7 +275,59 @@ const UpdateProducts = () => {
   if (!form) return <div className="text-red-400 p-6">{serverError || "Product not found."}</div>;
   
   return (
-    <div>UpdateProducts</div>
+    <div className="text-white max-w-4xl mx-auto">
+      <div className="flex items-centerbgap-3 mb-6">
+        <button onClick={()=> navigate("admin/products")} className="text-gray-400 hover:text-white p-1.5 rounded-lg hover:bg-white/5">
+          <MdArrowBack size={20}/>
+
+        </button>
+        <div>
+          <h1 className="text-xl font-bold">Update Product</h1>
+          <p className="text-gray-400 text-sm truncate  max-w-xs">{form.name}</p>
+        </div>
+
+      </div>
+      {serverError && (
+        <div className="bg-red-500/10 border border-red-500/30 rounded-xl px-4 py-3 text-red-400 text-sm mb-4 flex items-center gap-2">
+          <MdError size={18}/>{serverError}
+
+        </div>
+      )}
+
+      {/* Tabs  */}
+      <div className="flex gap-1 bg-white/5 rounded-xl p-1 mb-6 flex-wrap">
+        {TABS.map(t => (
+          <button key={t.id} onClick={() => setTab(t.id)}
+            className={`flex-1 py-2 px-3 rounded-lg text-xs font-semibold transition-all relative min-w-[70px]
+              ${tab === t.id ? "bg-[#FF9900] text-black" : "text-gray-400 hover:text-white hover:bg-white/5"}`}>
+            {t.label}
+            {t.dot && <span className="absolute top-1 right-1 w-1.5 h-1.5 bg-red-400 rounded-full"/>}
+          </button>
+        ))}
+      </div>
+
+      <form onSubmit={handleSubmit}>
+        <div className="bg-[#131720] border-white/5 rounded-2xl p-6">
+        {/* BASIC  */}
+        {tab === "basic" && (
+          <div className="space-y-1">
+            <div className="grid grid-cols-1 md:gird-cols-2 gap-4">
+              <div className="md:col-span-2">
+                <Field label="Product Name" required error={errors.name}>
+
+                </Field>
+
+              </div>
+
+            </div>
+
+          </div>
+        )}
+
+        </div>
+      </form>
+
+    </div>
   )
 }
 

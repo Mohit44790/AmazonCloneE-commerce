@@ -11,6 +11,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import { useAuthStore } from "./apiData/store/authStore";
 import { useEffect } from "react";
 import UpdateProducts from "./pages/admin/products/UpdateProducts";
+import Clothing from "./pages/womenfashion/womenClothing/clothing/Clothing";
 
 const router = createBrowserRouter([
   { path: "/login", element: <Register /> },
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true, element: <Home /> },
+      {path:"/women/clothing",element:<Clothing/>}
     ],
   },
   // Admin routes — protected, admin only

@@ -13,6 +13,39 @@ const EMPTY_FORM = {
 };
 
 const Category = () => {
+  const imgRef = useRef();
+
+  const [categories, setCategories] = useState([]);
+  const [loading , setLoading] = useState(true);
+  const [form, setForm] = useState(EMPTY_FORM);
+  const [imgFile, setImgFile] = useState(null);
+  const [imgPreview, setImgPreview] = useState(null);
+  const [errors, setErrors] = useState({});
+  const [saving, setSaving] = useState(false);
+  const [toast, setToast] = useState(null);
+  const [deleteModal, setDeleteModal] = useState(null);
+  const [editingId, setEditingId] = useState(null);
+  const [showForm, setShowForm] = useState(false);
+  const [expandedIds, setExpandedIds] = useState([]);
+  const [search, setSearch] = useState("");
+
+  const showToast = (msg ,type = "success") => {
+    setToast({msg,type}); setTimeout(() =>setToast(null),3000);
+
+
+  }
+
+ /* ── Fetch ── */
+  const fetchCategories = async () => {
+    setLoading(true);
+    try {
+      const data = await categoryApi.getTree();
+      setCategories(data);
+    } catch { showToast("Failed to load categories", "error"); }
+    finally { setLoading(false); }
+  };
+ 
+  useEffect(() => { fetchCategories(); }, []);
   return (
     <div>Category</div>
   )

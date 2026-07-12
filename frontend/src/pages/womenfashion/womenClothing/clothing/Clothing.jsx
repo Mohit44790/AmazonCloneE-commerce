@@ -1,5 +1,6 @@
 import React from 'react'
 import { IoIosArrowBack } from 'react-icons/io'
+import { womenClothingData } from '../../../../component/data/Womenfashion.js'
 
 
 const womenclothing = [
@@ -39,6 +40,12 @@ const Clothing = () => {
                 <div className="bg-gray-200 p-4 w-full">
                     <div className="bg-white p-4">
                         <h1 className="font-semibold text-lg">Blockbuster Deals</h1>
+                        {womenClothingData.map((item) => (
+  <div key={item.id}>
+    <img src={item.image} alt={item.label} />
+    <h3>{item.label}</h3>
+  </div>
+))}
                     </div>
 
                 </div>

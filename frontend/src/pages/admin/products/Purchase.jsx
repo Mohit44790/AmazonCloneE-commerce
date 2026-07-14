@@ -54,7 +54,19 @@ const Purchase = () => {
   const setFilter = (k,v) => setFilters(f => ({...f, [k]:v,page:1}));
 
    /* ── Update Status ── */
+   const handleStatusChange = async (orderId , status) => {
+    setUpdating(orderId);
+    try {
+      await orderApi.updateStatus(orderId , status);
+      showToast("Order status updated");
+      fetchOrders();
+    } catch {
+      showToast("Update failed", "error");
+      
+    }finally{setUpdating(null);}
+   };
 
+   const inputCls = "bg-[#0f1117] border border-white/10 rounded-lg px-3 py-2 text-sm text-white outline-none focus:ring-2 focus:ring-[#FF9900]/40";
 
   return (
     <div>Purchase</div>

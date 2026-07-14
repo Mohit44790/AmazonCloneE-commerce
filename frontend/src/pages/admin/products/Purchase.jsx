@@ -34,7 +34,27 @@ const Purchase = () => {
     setToast({ msg, type }); setTimeout(() => setToast(null), 3000);
   };
  
-   
+  const fetchOrders = useCallback(async () => {
+    setLoading(true);
+    try {
+      const params = {};
+      Object.entries(filters).forEach(([k , v]) => { if(v!== "") params[k]=v;});
+      const res = await orderApi.getAll(params);
+      setOrders(res.data?.orders || []);
+      setPagination(res.data?.pagination || {});
+    } catch {
+      showToast("Failed to fetch orders", "error");
+    } finally {
+      setLoading(false);
+    }
+  },[filters]);
+  
+  useEffect(() => {fetchOrders();}, [fetchOrders]);
+
+  const setFilter = (k,v) => setFilters(f => ({...f, [k]:v,page:1}));
+
+   /* ── Update Status ── */
+
 
   return (
     <div>Purchase</div>

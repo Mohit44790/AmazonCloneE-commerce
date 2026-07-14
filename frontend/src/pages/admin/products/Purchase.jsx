@@ -38,38 +38,55 @@ const Purchase = () => {
     setLoading(true);
     try {
       const params = {};
-      Object.entries(filters).forEach(([k , v]) => { if(v!== "") params[k]=v;});
+      Object.entries(filters).forEach(([k,v]) => { if(v!=="") params[k]=v; });
       const res = await orderApi.getAll(params);
       setOrders(res.data?.orders || []);
-      setPagination(res.data?.pagination || {});
-    } catch {
-      showToast("Failed to fetch orders", "error");
-    } finally {
-      setLoading(false);
-    }
-  },[filters]);
-  
-  useEffect(() => {fetchOrders();}, [fetchOrders]);
-
-  const setFilter = (k,v) => setFilters(f => ({...f, [k]:v,page:1}));
-
-   /* ── Update Status ── */
-   const handleStatusChange = async (orderId , status) => {
+      setPagination(res.pagination || {});
+    } catch { showToast("Failed to load orders","error"); }
+    finally { setLoading(false); }
+  }, [filters]);
+ 
+  useEffect(() => { fetchOrders(); }, [fetchOrders]);
+ 
+  const setFilter = (k,v) => setFilters(f => ({ ...f, [k]:v, page:1 }));
+ 
+  /* ── Update Status ── */
+  const handleStatusChange = async (orderId, status) => {
     setUpdating(orderId);
     try {
-      await orderApi.updateStatus(orderId , status);
+      await orderApi.updateStatus(orderId, status);
       showToast("Order status updated");
       fetchOrders();
-    } catch {
-      showToast("Update failed", "error");
-      
-    }finally{setUpdating(null);}
-   };
-
-   const inputCls = "bg-[#0f1117] border border-white/10 rounded-lg px-3 py-2 text-sm text-white outline-none focus:ring-2 focus:ring-[#FF9900]/40";
+    } catch { showToast("Update failed","error"); }
+    finally { setUpdating(null); }
+  };
+ 
+  const inputCls = "bg-[#0f1117] border border-white/10 rounded-lg px-3 py-2 text-sm text-white outline-none focus:ring-2 focus:ring-[#FF9900]/40";
 
   return (
-    <div>Purchase</div>
+      <div className="text-white space-y-5">
+      {toast && (
+        <div className={`fixed top-5 right-5 z-50 px-4 py-3 rounded-xl text-sm font-semibold shadow-xl flex items-center gap-2
+          ${toast.type==="success"?"bg-emerald-500":"bg-red-500"} text-white`}>
+          {toast.type==="success"?<MdCheckCircle size={18}/>:<MdError size={18}/>} {toast.msg}
+        </div>
+      )}
+       {/* Header */}
+
+       <div className="flex items-center justify-between flex-wrap gap-3">
+        <div>
+          <h1 className="text-xl font-bold">Orders / Purchase</h1>
+          <p className="text-gray-400 text-sm">{pagination.total || 0} total orders</p>
+        </div>
+     <button onClick={fetchOrders}
+          className="flex items-center gap-1.5 px-3 py-2 border border-white/10 text-gray-400 hover:text-white rounded-lg text-sm">
+          <MdRefresh size={16}/> Refresh
+        </button>
+
+       </div>
+{/* Summary Cards */}
+
+      </div>
   )
 }
 

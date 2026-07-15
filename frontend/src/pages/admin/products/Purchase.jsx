@@ -102,7 +102,52 @@ const Purchase = () => {
       <MdSearch size={16} className="text-gray-400 shrink-0"/>
       <input value={filters.search} onChange={e => setFilter("search",e.target.value)} placeholder="Search by order ID or customer..." className="bg-transparent text-sm text-sm text-white outline-none w-full placeholder:text-gray-500"/>
       </div>
-      <select></select>
+         <select value={filters.status} onChange={e => setFilter("status",e.target.value)} className={inputCls}>
+          <option value="">All Status</option>
+          {ORDER_STATUSES.map(s => <option key={s} value={s}>{STATUS_META[s].label}</option>)}
+        </select>
+         <select value={filters.sort} onChange={e => setFilter("sort",e.target.value)} className={inputCls}>
+          <option value="-createdAt">Newest First</option>
+          <option value="createdAt">Oldest First</option>
+          <option value="-totalAmount">Amount High→Low</option>
+          <option value="totalAmount">Amount Low→High</option>
+        </select>
+      </div>
+
+      {/* Table */}
+      <div className="bg-[#131720] border border-white/5 rounded-2xl overflow-hidden">
+      {loading ? (
+       <div className="flex items-center justify-center py-20">
+ <div className="w-8 h-8 border-2 border-[#FF9900] border-t-transparent rounded-full animate-spin"/>
+        </div>
+      ): orders.length === 0 ? (
+          <div className="text-center py-20 text-gray-500">
+            <MdLocalShipping size={40} className="mx-auto mb-3 opacity-30"/>
+            <p>No orders found</p>
+          </div>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm min-w-[900px]">
+              <thead>
+                <tr className="border-b border-white/5">
+                {["Order ID","Customer","Items","Amount","Payment","Status","Date","Actions"].map(h => (<th key={h} className="px-4 py-3 text-left text-[11px] font-semibold text-gray-500 uppercase tracking-wide">{h}</th>))}
+
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-white/[0.04]">
+              {orders.map(o => (
+                <tr key={o._id} className="hover:bg-white/[0.02] transition-colors">
+                    <td className="px-4 py-3">
+                      <p className="text-[#FF9900] font-mono text-xs font-semibold">{o._id?.slice(-8).toUpperCase()}</p>
+                    </td>
+
+                </tr>
+              ))}
+              </tbody>
+
+            </table>
+            </div>
+        )}
       </div>
 
       </div>

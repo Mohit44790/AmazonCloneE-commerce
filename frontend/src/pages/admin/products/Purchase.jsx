@@ -85,6 +85,25 @@ const Purchase = () => {
 
        </div>
 {/* Summary Cards */}
+     <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
+      {ORDER_STATUSES.map(s => (
+        <button key={s} onClick={() => setFilter("status", filters.status===s?"":s)} className={`p-3 rounded-xl border text-center transition-all ${filters.status===s ? STATUS_META[s].cls+" ring-1 ring-white/20" :"bg-[#131720] border-white/5 hover:border-white/10"}`}>
+       <p className={`text-lg font-bold ${filters.status===s?"":"text-white"}`}>—</p>
+            <p className={`text-[11px] ${filters.status===s?"":"text-gray-400"}`}>{STATUS_META[s].label}</p>
+          </button>
+        ))}
+
+     </div>
+
+        {/* Filters */}
+      <div className="bg-[#131720] border border-white/5 rounded-2xl p-4 flex flex-wrap gap-3">
+
+      <div className="flex items-center gap-2 bg-[#0f1117] border border-white/10 rounded-lg px-3 py-2 flex-1 min-w-[200px]">
+      <MdSearch size={16} className="text-gray-400 shrink-0"/>
+      <input value={filters.search} onChange={e => setFilter("search",e.target.value)} placeholder="Search by order ID or customer..." className="bg-transparent text-sm text-sm text-white outline-none w-full placeholder:text-gray-500"/>
+      </div>
+      <select></select>
+      </div>
 
       </div>
   )

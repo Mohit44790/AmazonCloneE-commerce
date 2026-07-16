@@ -140,13 +140,46 @@ const Purchase = () => {
                     <td className="px-4 py-3">
                       <p className="text-[#FF9900] font-mono text-xs font-semibold">{o._id?.slice(-8).toUpperCase()}</p>
                     </td>
-
-                </tr>
-              ))}
+                     <td className="px-4 py-3">
+                      <p className="text-white text-xs font-medium">{o.user?.name || "Guest"}</p>
+                      <p className="text-gray-500 text-[11px]">{o.user?.email}</p>
+                    </td>
+                     <td className="px-4 py-3 text-gray-400 text-xs">{o.items?.length || 0} items</td>
+                    <td className="px-4 py-3">
+                      <p className="text-white font-semibold text-xs">₹{o.totalAmount?.toLocaleString()}</p>
+                    </td>
+ <td className="px-4 py-3">
+                      <span className={`text-[11px] px-2 py-0.5 rounded-full font-semibold
+                        ${o.isPaid ? "bg-emerald-400/10 text-emerald-400" : "bg-yellow-400/10 text-yellow-400"}`}>
+                        {o.isPaid ? "Paid" : "Unpaid"}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3">
+                      <select
+                        value={o.status}
+                        onChange={e => handleStatusChange(o._id, e.target.value)}
+                        disabled={updating===o._id || o.status==="delivered" || o.status==="cancelled"}
+                        className={`text-[11px] font-semibold rounded-full px-2 py-0.5 border outline-none cursor-pointer
+                          disabled:opacity-50 disabled:cursor-not-allowed
+                          ${STATUS_META[o.status]?.cls || "bg-gray-400/10 text-gray-400"}`}
+                      >
+                        {ORDER_STATUSES.map(s => <option key={s} value={s}>{STATUS_META[s].label}</option>)}
+                      </select>
+                    </td>
+                    <td className="px-4 py-3 text-gray-500 text-xs">
+                      {new Date(o.createdAt).toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"})}
+                    </td>
+                    <td className="px-4 py-3">
+                      <button onClick={() => setSelected(o)}
+                        className="p-1.5 rounded-lg hover:bg-white/5 text-gray-400 hover:text-white transition-colors">
+                        <MdVisibility size={15}/>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
-
             </table>
-            </div>
+          </div>
         )}
       </div>
 

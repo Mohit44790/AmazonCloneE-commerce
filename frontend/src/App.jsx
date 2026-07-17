@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import UpdateProducts from "./pages/admin/products/UpdateProducts";
 import Clothing from "./pages/womenfashion/womenClothing/clothing/Clothing";
 import Purchase from "./pages/admin/products/Purchase";
+import Shipping from "./pages/admin/products/Shipping";
 
 const router = createBrowserRouter([
   { path: "/login", element: <Register /> },
@@ -38,6 +39,7 @@ const router = createBrowserRouter([
           { path: "category",element: <Category />        },
           { path: "/admin/update-product/:id", element: <UpdateProducts />},
           { path: "/admin/purchase", element: <Purchase />},
+          { path: "/admin/shipping", element: <Shipping />},
          
         ],
       },

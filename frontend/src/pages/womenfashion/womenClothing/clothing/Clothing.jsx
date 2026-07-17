@@ -40,12 +40,14 @@ const Clothing = () => {
                 <div className="bg-gray-200 p-4 w-full">
                     <div className="bg-white p-4">
                         <h1 className="font-semibold text-lg">Blockbuster Deals</h1>
+                        <div className='flex items-center text-center justify-center'>
                         {womenClothingData.map((item) => (
-  <div key={item.id}>
+                            <div key={item.id} className=''>
     <img src={item.image} alt={item.label} />
     <h3>{item.label}</h3>
   </div>
 ))}
+</div>
                     </div>
 
                 </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { IoIosArrowBack } from 'react-icons/io'
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 import { womenClothingData } from '../../../../component/data/Womenfashion.js'
 
 
@@ -41,12 +41,20 @@ const Clothing = () => {
                     <div className="bg-white p-4">
                         <h1 className="font-semibold text-lg">Blockbuster Deals</h1>
                         <div className='flex items-center text-center justify-center'>
+                            <button>
+                                <IoIosArrowBack/>
+                            </button>
                         {womenClothingData.map((item) => (
-                            <div key={item.id} className=''>
+                        <link>
+                           <div key={item.id} className=''>
     <img src={item.image} alt={item.label} />
     <h3>{item.label}</h3>
   </div>
+  </link> 
 ))}
+<div className='py-7 border px-2 border-gray-100 shadow-2xl'>
+    <IoIosArrowForward/>
+</div>
 </div>
                     </div>
 

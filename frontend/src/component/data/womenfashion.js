@@ -1,12 +1,12 @@
 //women Fashion data clothing
 export const womenClothingData = [
-  // {
-  //   id: 1,
-  //   label: "Min 50% Off",
-  //   image:
-  //     "https://m.media-amazon.com/images/G/31/img23/WA/2026/MARCH/FLIP/P0/BBD/Kurta_sets_412x527._SS400_QL85_FMpng_.png",
-  //   link: "/women/clothing/min-50-off",
-  // },
+  {
+    id: 1,
+    label: "Min 50% Off",
+    image:
+      "https://m.media-amazon.com/images/G/31/img23/WA/2026/MARCH/FLIP/P0/BBD/Kurta_sets_412x527._SS400_QL85_FMpng_.png",
+    link: "/women/clothing/min-50-off",
+  },
   {
     id: 2,
     label: "Tees & Tops",

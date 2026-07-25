@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom'
 
 const Layout = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-gray-100">
+    <div className="min-h-screen w-full max-w-full overflow-x-hidden flex flex-col bg-gray-100">
 
       {/* Sticky Navbar at top */}
       <header className="sticky top-0 z-50 w-full">
@@ -13,7 +13,7 @@ const Layout = () => {
       </header>
 
       {/* Main content grows to fill space between Navbar & Footer */}
-      <main className="">
+      <main className="w-full max-w-full overflow-x-hidden">
         <Outlet />
       </main>
 

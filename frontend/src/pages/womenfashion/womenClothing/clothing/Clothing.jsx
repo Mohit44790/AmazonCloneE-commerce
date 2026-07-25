@@ -1,11 +1,12 @@
 import React, { useRef, useState } from 'react'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 import { womenClothingData } from '../../../../component/data/Womenfashion.js'
+import AmazonFashion from '../../AmazonFashion.jsx'
 
 
 const womenclothing = [
-    {label:"Ethnic Wear" , link:"/women/clothing/ethnic-wear"},
-    {label:"Western Wear" , link:"/women/clothing/western-wear"},
+    {label:"Ethnic Wear" , link:"/women/ethnic-wear"},
+    {label:"Western Wear" , link:"/women/westernwear"},
     {label:"SportsWear" ,link:"/women/clothing/sports-wear"},
     {label:"Lingerie", link:"/women/clothing/lingerie"},
     {label:"Sleep & Lounge Wear", link:"/women/clothing/sleep-lounge-wear"},
@@ -49,6 +50,7 @@ const Clothing = () => {
    // w-fulls typo fix -> w-full, aur overflow-x-hidden lagaya taaki page kabhi bhi horizontally overflow na ho
    <div className='w-full max-w-full overflow-x-hidden flex flex-col gap-2 bg-white p-2'>
         {/* Mobile par sidebar aur content stack (flex-col), desktop par side-by-side (md:flex-row) */}
+        <AmazonFashion/>
         <div className='flex flex-col md:flex-row gap-2'>
             <div className="border-r px-2 border-gray-300 w-full md:w-64 lg:w-56 shrink-0">
                 <h1 className="font-semibold">Category</h1>

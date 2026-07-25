@@ -18,6 +18,9 @@ import EthnicWear from "./pages/womenfashion/womenClothing/ethinicWear/EthnicWea
 import WesternWear from "./pages/womenfashion/womenClothing/westernWear/WesternWear";
 import LingerieNightwear from "./pages/womenfashion/womenClothing/LingerieAndNightwear/LingerieNightwear";
 import TopBrands from "./pages/womenfashion/womenClothing/TopBrands/TopBrands";
+import Sportswear from "./pages/womenfashion/womenClothing/clothing/sportswear/Sportswear";
+import Lingerie from "./pages/womenfashion/womenClothing/clothing/Lingerie";
+import SleepLoungeWear from "./pages/womenfashion/womenClothing/clothing/sleepLoungeWear/SleepLoungeWear";
 
 const router = createBrowserRouter([
   { path: "/login", element: <Register /> },
@@ -30,7 +33,10 @@ const router = createBrowserRouter([
       {path:"/women/ethnic-wear", element:<EthnicWear/>},
       {path:"/women/westernwear",element:<WesternWear/>},
       {path:"/women/lingere&nightwear",element:<LingerieNightwear/>},
-      {path:"/women/topbrands" , element:<TopBrands/>}
+      {path:"/women/topbrands" , element:<TopBrands/>},
+      {path:"/women/clothing/sports-wear" , element:<Sportswear/>},
+      {path:"/women/clothing/lingerie", element:<Lingerie/>},
+      {path:"/women/clothing/sleep-lounge-wear",element:<SleepLoungeWear/>}
     ],
   },
   // Admin routes — protected, admin only

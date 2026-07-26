@@ -1,8 +1,11 @@
 import React from 'react'
+import AmazonFashion from '../../AmazonFashion'
 
 const Lingerie = () => {
   return (
-    <div>Lingerie</div>
+    <div>
+      <AmazonFashion/>
+    </div>
   )
 }
 

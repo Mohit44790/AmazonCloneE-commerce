@@ -57,3 +57,62 @@ export const womenClothingData = [
     link: "/women/clothing/min-50-off",
   },
 ];
+
+export const lingerieCollection = [
+  {
+    id:9,
+    label:"Bras",
+    image:"https://m.media-amazon.com/images/G/31/WA2026/Bras._CB783390663_.png",
+    link:"/women/bras"
+  },
+  {
+    id:10,
+    label:"Brief",
+    image:"https://m.media-amazon.com/images/G/31/WA2026/Briefs._CB783390663_.png",
+    link:"/women/brief"
+  },
+  {
+    id:11,
+    label:"Camisoles",
+    image:"https://m.media-amazon.com/images/G/31/WA2026/Camisole._CB783390663_.png",
+    link:"/women/camisoles"
+  },
+  {
+    id:12,
+    label:"ShapeWears",
+    image:"https://m.media-amazon.com/images/G/31/WA2026/Shapewear._CB783390663_.png",
+    link:"/women/shapewears"
+  },
+  {
+    id:13,
+    label:"Maternity",
+    image:"https://m.media-amazon.com/images/G/31/WA2026/Materbity._CB783390663_.png",
+    link:"women/maternity"
+  },
+  {
+    id:14,
+    label:"SleepWear",
+    image:"https://m.media-amazon.com/images/G/31/WA2026/Sleepwear._CB783390663_.png",
+    link:"/women/sleepwear"
+  },
+  {
+    id:15,
+    label:"Swinwear",
+    image:"https://m.media-amazon.com/images/G/31/WA2026/Swimwear._CB783390663_.png",
+    link:"/women/swinwear"
+  },
+
+]
+
+export const lingerieCloths =[
+  {
+    id:16,
+    name:"Enamor Low Impact Women's Cotton Easy Everyday Bra - All Day Comfort Non Padded, Wirefree, High Coverage - SB06",
+    price:"399",
+    mrp:449 ,
+    // dicount:11 %,
+    image:"https://m.media-amazon.com/images/I/71tej99AWgL._AC_SR480,440_.jpg",
+    link:""
+
+  }
+]

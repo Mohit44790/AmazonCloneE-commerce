@@ -13,7 +13,7 @@ export const productApi = {
     const {data} = await api.get(`/products/${id}`);
     return data.data;
   },
-
+  
   // GET seller's own products'
   getMyProduct:async (params = {}) =>{
     const {data} = await api.get("/products/my-products",{params});

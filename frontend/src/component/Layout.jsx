@@ -13,7 +13,7 @@ const Layout = () => {
       </header>
 
       {/* Main content grows to fill space between Navbar & Footer */}
-      <main className="w-full max-w-full overflow-x-hidden">
+      <main className="w-full max-w-full">
         <Outlet />
       </main>
 

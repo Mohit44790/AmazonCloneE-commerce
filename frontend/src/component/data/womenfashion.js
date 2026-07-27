@@ -105,14 +105,31 @@ export const lingerieCollection = [
 ]
 
 export const lingerieCloths =[
-  {
-    id:16,
-    name:"Enamor Low Impact Women's Cotton Easy Everyday Bra - All Day Comfort Non Padded, Wirefree, High Coverage - SB06",
-    price:"399",
-    mrp:449 ,
-    // dicount:11 %,
-    image:"https://m.media-amazon.com/images/I/71tej99AWgL._AC_SR480,440_.jpg",
-    link:""
-
-  }
+{
+  id: 16,
+  name: "introducing",
+  price: 399,
+  mrp: 449,
+  discount: 11,
+  image: "https://m.media-amazon.com/images/G/31/WA2026/New_Lingerie_._CB783412009_UC343,180_.png",
+  link: "/women/bras/sample"
+},
+{
+  id: 17,
+  name: "Enamor Low Impact Women's Cotton Easy Everyday Bra - All Day Comfort Non-Padded, Wire-Free, High Coverage - SB06",
+  price: 399,
+  mrp: 449,
+  discount: 11,
+  image: "https://m.media-amazon.com/images/I/71tej99AWgL._AC_SR480,440_.jpg",
+  link: "/women/bras/enamor-low-impact-bra"
+},
+{
+  id:18,
+  name: "Van Heusen Women's Everyday Cotton Bra|Medium Coverage|Non Padded|Non Wired|Seamless Moulded Cups|Anti Bacterial Tech| Keeps you Fresh|Sweat Absorbent|No Slip Soft Straps|Detachable Straps|Style 11001",
+  price: 509,
+  mrp: 639,
+  discount: 20,
+  image: "https://m.media-amazon.com/images/I/717iqJWIiIL._AC_SR480,440_.jpg",
+  link: "/women/bras/enamor-low-impact-bra"
+}
 ]

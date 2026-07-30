@@ -104,32 +104,65 @@ export const lingerieCollection = [
 
 ]
 
-export const lingerieCloths =[
-{
-  id: 16,
-  name: "introducing",
-  price: 399,
-  mrp: 449,
-  discount: 11,
-  image: "https://m.media-amazon.com/images/G/31/WA2026/New_Lingerie_._CB783412009_UC343,180_.png",
-  link: "/women/bras/sample"
-},
-{
-  id: 17,
-  name: "Enamor Low Impact Women's Cotton Easy Everyday Bra - All Day Comfort Non-Padded, Wire-Free, High Coverage - SB06",
-  price: 399,
-  mrp: 449,
-  discount: 11,
-  image: "https://m.media-amazon.com/images/I/71tej99AWgL._AC_SR480,440_.jpg",
-  link: "/women/bras/enamor-low-impact-bra"
-},
-{
-  id:18,
-  name: "Van Heusen Women's Everyday Cotton Bra|Medium Coverage|Non Padded|Non Wired|Seamless Moulded Cups|Anti Bacterial Tech| Keeps you Fresh|Sweat Absorbent|No Slip Soft Straps|Detachable Straps|Style 11001",
-  price: 509,
-  mrp: 639,
-  discount: 20,
-  image: "https://m.media-amazon.com/images/I/717iqJWIiIL._AC_SR480,440_.jpg",
-  link: "/women/bras/enamor-low-impact-bra"
-}
+export const ethnicWear = [
+  {
+    id:16,
+    label:"Kurtas Kurtis",
+    image:"https://m.media-amazon.com/images/G/31/img23/WA/2025/april/ss-flip/kurta/halo/without/Kurtas__Kurtis._SS400_QL85_FMpng_.png",
+    link:"/women/kurtas_kurtis"
+  },
+  {
+    id:17,
+    label:"SallwarSuits",
+    image:"https://m.media-amazon.com/images/G/31/img23/WA/2025/april/ss-flip/kurta/halo/without/Salwar_Suits._SS400_QL85_FMpng_.png",
+    link:"/women/salwarsuits"
+  },
+  {
+    id:18,
+    label:"Ethnic bottoms",
+    image:"https://m.media-amazon.com/images/G/31/img23/WA/2025/april/ss-flip/kurta/halo/without/Ethnic_Bottoms._SS400_QL85_FMpng_.png",
+    link:"/women/ethnic_bottoms"
+  },
+  {
+    id:19,
+    label:"Dupatta",
+    image:"https://m.media-amazon.com/images/G/31/img23/WA/2025/april/ss-flip/kurta/halo/without/Dupattas._SS400_QL85_FMpng_.png",
+    link:"/women/dupatta"
+  },
+  {
+    id:20,
+    label:"Plus Size",
+    image:"https://m.media-amazon.com/images/G/31/img23/WA/2025/april/ss-flip/kurta/halo/without/Curvy-Girl_Styles._SS400_QL85_FMpng_.png",
+    link:"/women/plus_size"
+  }
 ]
+
+// export const lingerieCloths =[
+// {
+//   id: 16,
+//   name: "introducing",
+//   price: 399,
+//   mrp: 449,
+//   discount: 11,
+//   image: "https://m.media-amazon.com/images/G/31/WA2026/New_Lingerie_._CB783412009_UC343,180_.png",
+//   link: "/women/bras/sample"
+// },
+// {
+//   id: 17,
+//   name: "Enamor Low Impact Women's Cotton Easy Everyday Bra - All Day Comfort Non-Padded, Wire-Free, High Coverage - SB06",
+//   price: 399,
+//   mrp: 449,
+//   discount: 11,
+//   image: "https://m.media-amazon.com/images/I/71tej99AWgL._AC_SR480,440_.jpg",
+//   link: "/women/bras/enamor-low-impact-bra"
+// },
+// {
+//   id:18,
+//   name: "Van Heusen Women's Everyday Cotton Bra|Medium Coverage|Non Padded|Non Wired|Seamless Moulded Cups|Anti Bacterial Tech| Keeps you Fresh|Sweat Absorbent|No Slip Soft Straps|Detachable Straps|Style 11001",
+//   price: 509,
+//   mrp: 639,
+//   discount: 20,
+//   image: "https://m.media-amazon.com/images/I/717iqJWIiIL._AC_SR480,440_.jpg",
+//   link: "/women/bras/enamor-low-impact-bra"
+// }
+// ]

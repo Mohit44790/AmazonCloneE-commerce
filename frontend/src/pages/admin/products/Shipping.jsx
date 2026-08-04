@@ -269,6 +269,31 @@ const Shipping = () => {
           </div>
           <div className="p-5 space-y-4">
             <ShipmentProgress status={detail.status}/>
+             <div className="bg-white/[0.03] rounded-xl p-4 space-y-1">
+                <p className="text-xs text-gray-500 uppercase tracking-wide mb-2">Delivery Address</p>
+                <p className="text-white font-semibold">{detail.shippingAddress?.fullName}</p>
+                <p className="text-gray-400 text-sm">{detail.shippingAddress?.street}</p>
+                <p className="text-gray-400 text-sm">{detail.shippingAddress?.city}, {detail.shippingAddress?.state} {detail.shippingAddress?.pincode}</p>
+                <p className="text-gray-400 text-sm">📞 {detail.shippingAddress?.phone}</p>
+              </div>
+                 <div className="space-y-2">
+                {detail.items?.map((item,i)=>(
+                  <div key={i} className="flex items-center gap-3 bg-white/[0.03] rounded-xl p-3">
+                    <img src={item.image||"/placeholder.png"} className="w-10 h-10 rounded-lg object-cover"/>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-white text-sm truncate">{item.name}</p>
+                      <p className="text-gray-400 text-xs">Qty: {item.quantity}</p>
+                    </div>
+                    <p className="text-white text-sm font-semibold shrink-0">₹{(item.price*item.quantity)?.toLocaleString()}</p>
+                  </div>
+                ))}
+              </div>
+               {NEXT_STATUS[detail.status] && (
+                <button onClick={()=>{handleStatusUpdate(detail._id,NEXT_STATUS[detail.status]);setDetail(p=>({...p,status:NEXT_STATUS[p.status]}));}}
+                  className="w-full py-3 bg-[#FF9900] hover:bg-[#f0a500] text-black font-bold rounded-xl text-sm">
+                  Mark as {STATUS_META[NEXT_STATUS[detail.status]].label}
+                </button>
+              )}
           </div>
 
           </div>
@@ -278,9 +303,7 @@ const Shipping = () => {
       </div>
     </div>
   )
-  return (
-    <div>Shipping</div>
-  )
+ 
 }
 
 export default Shipping

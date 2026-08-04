@@ -189,11 +189,37 @@ const Shipping = () => {
 
                 {/* Items summary */}
                 <div className="flex items-center gap-2 ">
-                  <div>
-                    
+                 <div className="flex -space-x-2">
+                  {o.items?.slice(0,3).map((items,i) => (
+                    <img key={i} src={items.image || "/placeholder.png"} className="w-8 h-8 rounded-lg object-cover border-2 border-[#131720]" />
+                  ))}
+                  {o.items?.length > 3 && (
+                    <div className="w-8 h-8 rounded-lg bg-white/5 border-2 border-[#131720] flex items-center justify-center text-[10px] text-gray-400">
+                      +{o.items.length-3}
+
+                    </div>
+                  )}
+                  </div>
+
+                  <div className="flex-1">
+                    <p>{o.items?.length} item{o.items.length!==1?"s":""}</p>
+
+
                   </div>
 
                 </div>
+                {/* Tracking Number Input */}
+                {(o.status==="processing" || o.status==="shipped") && (
+                  <div className="flex gap-2">
+                    <input value={trackig[o._id] ||o.trackingNumber||""}
+                    onChange={e => setTracking(p=>({...p,[o._id]:e.target.value}))}
+                    placeholder="Tracking Number"
+                    className="flex-1 bg-[#0f1117] border border-white/10 rounded-lg px-3 py-1.5 text-xs text-white outline-none focus:ring-1 focus:ring-[#FF9900]/40" />
+
+                  </div>
+                )}
+
+                
 
           </div>
         ))

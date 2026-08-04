@@ -19,7 +19,7 @@ import WesternWear from "./pages/womenfashion/womenClothing/westernWear/WesternW
 import LingerieNightwear from "./pages/womenfashion/womenClothing/LingerieAndNightwear/LingerieNightwear";
 import TopBrands from "./pages/womenfashion/womenClothing/TopBrands/TopBrands";
 import Sportswear from "./pages/womenfashion/womenClothing/clothing/sportswear/Sportswear";
-import Lingerie from "./pages/womenfashion/womenClothing/clothing/Lingerie";
+import Lingerie from "./pages/womenfashion/womenClothing/clothing/lingerie/Lingerie";
 import SleepLoungeWear from "./pages/womenfashion/womenClothing/clothing/sleepLoungeWear/SleepLoungeWear";
 
 const router = createBrowserRouter([

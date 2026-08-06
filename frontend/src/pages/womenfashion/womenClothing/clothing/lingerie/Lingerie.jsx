@@ -37,11 +37,11 @@ const Lingerie = () => {
           </div>
           <div>
             
-            <h1 className='text-sm font-bold'>Lingerie</h1>
+            <h1 className='px-4 font-semibold'>Lingerie</h1>
             {LingerieList.map((item,id) =>(
               <div>
                 <Link key={id} to={item.link}>
-                <p className='text-gray-600'>{item.name}</p>
+                <p className=' px-7'>{item.name}</p>
                 </Link>
               </div>
             ))}

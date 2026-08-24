@@ -60,6 +60,10 @@ const EthnicWear = () => {
               ))}
 
             </div>
+
+            <div className="bg-amber-500 p-2 mt-2 rounded-2xl">
+
+            </div>
               </div>
           </div>
         </div>

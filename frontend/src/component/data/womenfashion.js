@@ -137,6 +137,45 @@ export const ethnicWear = [
   }
 ]
 
+export const EthinicWearSlidertwo = [
+  {
+    id:21,
+    image:"https://m.media-amazon.com/images/G/31/img23/WA/2026/MARCH/FLIP/KURTA/dossier/New-launch-kurta._CB783305021_.gif"
+  },
+  {
+    id:22,
+    image:["https://m.media-amazon.com/images/I/714-D8IltoL._SY550_.jpg","https://m.media-amazon.com/images/I/61ZyS8zW9tL._SY550_.jpg","https://m.media-amazon.com/images/I/61o-675eY0L._SY550_.jpg","https://m.media-amazon.com/images/I/71QXTG4RFtL._SY550_.jpg"],
+    title:"Libas Printed Cotton Straight Kurta",
+    mrp:1299,
+    price:549,
+    discount:58,
+  },
+  {
+    id:23,
+    image:["https://m.media-amazon.com/images/I/61aAnqquZCL._SY550_.jpg","https://m.media-amazon.com/images/I/81eBumsMJ2L._SY550_.jpg","https://m.media-amazon.com/images/I/71oKC1--3cL._SY550_.jpg","https://m.media-amazon.com/images/I/81r2O1ofz6L._SY550_.jpg"],
+    title:"INDO ERA Women's Pure Cotton Printed A-Line Kurta & Palazzo Set (IERAI11826)",
+     mrp:3299,
+    price:1399,
+    discount:58,
+  },
+  {
+    id:24,
+    image:["https://m.media-amazon.com/images/I/61Rj8Q-lI-L._SX679_.jpg","https://m.media-amazon.com/images/I/81njmi4oB4L._SY679_.jpg","https://m.media-amazon.com/images/I/81-mvh9rk+L._SY679_.jpg","https://m.media-amazon.com/images/I/819LJm29QxL._SY679_.jpg"],
+    title:"BIBA Women Floral Printed Straight Kurta",
+     mrp:1599,
+    price:1279,
+    discount:20,
+  },
+  {
+    id:25,
+    image:["https://m.media-amazon.com/images/I/51D+E8wYxIL._SY550_.jpg","https://m.media-amazon.com/images/I/71U4esE9e8L._SY550_.jpg","https://m.media-amazon.com/images/I/61MyLdyKcbL._SY550_.jpg","https://m.media-amazon.com/images/I/61mjJiMEbKL._SY550_.jpg"],
+    title:"Varanga Women Women’s Blue Printed Tunic with 3/4 Sleeves",
+     mrp:6999,
+    price:499,
+    discount:93,
+  },
+]
+
 // export const lingerieCloths =[
 // {
 //   id: 16,

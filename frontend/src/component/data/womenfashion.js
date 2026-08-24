@@ -137,7 +137,7 @@ export const ethnicWear = [
   }
 ]
 
-export const EthinicWearSlidertwo = [
+export const ethinicWearSlidertwo = [
   {
     id:21,
     image:"https://m.media-amazon.com/images/G/31/img23/WA/2026/MARCH/FLIP/KURTA/dossier/New-launch-kurta._CB783305021_.gif"

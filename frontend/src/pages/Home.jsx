@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import Dashboard from './Dashboard';
 
 const slideBanner = [
   { id: 1, img: "https://images-eu.ssl-images-amazon.com/images/G/31/INSLGW/74._CB783716748_.jpg", link: "/fashion" },
@@ -106,7 +107,7 @@ const Home = () => {
 
       <div>
 
-        <h1>j</h1>
+        <Dashboard/>
       </div>
 
     </div>

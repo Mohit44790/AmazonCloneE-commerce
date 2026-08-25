@@ -6,6 +6,7 @@ import {
 } from "react-icons/md";
 import { categoryApi } from "../../apiData/api/categoryApi";
 import { productApi } from "../../apiData/api/productApi";
+import { useCartStore } from "../../apiData/store/cartStore";
 /* ── Stars ── */
 const Stars = ({ avg = 0 }) => (
   <div className="flex items-center gap-0.5">

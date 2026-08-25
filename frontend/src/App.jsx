@@ -29,6 +29,8 @@ import Gowns from "./pages/womenfashion/womenClothing/ethinicWear/Gowns";
 import KurtasKurtis from "./pages/womenfashion/womenClothing/ethinicWear/KurtasKurtis";
 import LehengaCholis from "./pages/womenfashion/womenClothing/ethinicWear/LehengaCholis";
 import Sarees from "./pages/womenfashion/womenClothing/ethinicWear/Sarees";
+import ProductListing from "./pages/customerpage/ProductListing";
+import ProductDetail from "./pages/customerpage/ProductDetail";
 
 const router = createBrowserRouter([
   { path: "/login", element: <Register /> },
@@ -37,6 +39,10 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true, element: <Home /> },
+      
+      { path: "products/:id",      element: <ProductDetail /> },
+      // { path: "cart",              element: <Cart /> },
+      // { path: "my-orders",         element: <MyOrders /> },
       {path:"/women/clothing",element:<Clothing/>},
       {path:"/women/ethnic-wear", element:<EthnicWear/>},
       {path:"/women/westernwear",element:<WesternWear/>},
@@ -49,10 +55,11 @@ const router = createBrowserRouter([
       {path:"/womenfashion/womenClothing/ethinicWear/Bottoms-wear",element:<BottomWear/>},
       {path:"/womenfashion/womenClothing/ethinicWear/Chunnis-Dupattas",element:<ChunnisDupattas/>},
       {path:"/womenfashion/womenClothing/ethinicWear/Dress-Material",element:<DressMaterial/>},
-      {path:"//womenfashion/womenClothing/ethinicWear/Gowns",element:<Gowns/>},
+      {path:"/womenfashion/womenClothing/ethinicWear/Gowns",element:<Gowns/>},
       {path:"/womenfashion/womenClothing/ethinicWear/Kurtas-Suits",element:<KurtasKurtis/>},
       {path:"/womenfashion/womenClothing/ethinicWear/Lehenga-Cholis",element:<LehengaCholis/>},
-      {path:"/womenfashion/womenClothing/ethinicWear/Sarees",element:<Sarees/>}
+      {path:"/womenfashion/womenClothing/ethinicWear/Sarees",element:<Sarees/>},
+      {path:"products",element:<ProductListing/>}
     ],
   },
   // Admin routes — protected, admin only

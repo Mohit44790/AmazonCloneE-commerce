@@ -226,10 +226,157 @@ const ProductListing = () => {
       </div>
     </div>
   );
-  
+
   return (
-    <div>ProductListing</div>
-  )
+    <div className="bg-gray-50 min-h-screen">
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-8 py-6">
+        <div className="flex gap-6">
+ 
+          {/* ── Desktop Sidebar ── */}
+          <aside className="hidden lg:block w-60 shrink-0">
+            <div className="bg-white rounded-2xl border border-gray-100 p-5 sticky top-20">
+              <div className="flex items-center justify-between mb-5">
+                <p className="font-bold text-gray-900 flex items-center gap-1.5"><MdTune size={18}/> Filters</p>
+                {activeFiltersCount>0 && (
+                  <span className="bg-[#FF9900] text-black text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                    {activeFiltersCount}
+                  </span>
+                )}
+              </div>
+              <Sidebar/>
+            </div>
+          </aside>
+ 
+          {/* ── Main Content ── */}
+          <div className="flex-1 min-w-0">
+ 
+            {/* Top Bar */}
+            <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
+              <div>
+                <h1 className="text-lg font-bold text-gray-900">
+                  {filters.search ? `Results for "${filters.search}"` : filters.category || "All Products"}
+                </h1>
+                <p className="text-sm text-gray-500">{pagination.total||0} results</p>
+              </div>
+              <div className="flex items-center gap-2">
+                {/* Mobile filter */}
+                <button onClick={()=>setSidebarOpen(true)}
+                  className="lg:hidden flex items-center gap-1.5 px-3 py-2 border border-gray-200 rounded-lg text-sm text-gray-600 hover:border-gray-400 relative">
+                  <MdFilterList size={16}/> Filters
+                  {activeFiltersCount>0 && (
+                    <span className="absolute -top-1 -right-1 bg-[#FF9900] text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                      {activeFiltersCount}
+                    </span>
+                  )}
+                </button>
+                {/* Sort */}
+                <select value={filters.sort} onChange={e=>setF("sort",e.target.value)}
+                  className="border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 outline-none focus:border-[#FF9900] bg-white">
+                  {SORTS.map(s=><option key={s.v} value={s.v}>{s.l}</option>)}
+                </select>
+                {/* Grid/List toggle */}
+                <div className="flex border border-gray-200 rounded-lg overflow-hidden">
+                  <button onClick={()=>setGridView(true)}
+                    className={`p-2 transition-colors ${gridView?"bg-[#FF9900] text-black":"text-gray-400 hover:text-gray-600"}`}>
+                    <MdGridView size={16}/>
+                  </button>
+                  <button onClick={()=>setGridView(false)}
+                    className={`p-2 transition-colors ${!gridView?"bg-[#FF9900] text-black":"text-gray-400 hover:text-gray-600"}`}>
+                    <MdViewList size={16}/>
+                  </button>
+                </div>
+              </div>
+            </div>
+ 
+            {/* Active filter chips */}
+            {activeFiltersCount>0 && (
+              <div className="flex flex-wrap gap-2 mb-4">
+                {filters.category  && <Chip label={`Category: ${filters.category}`}  onRemove={()=>setF("category","")}/>}
+                {filters.gender    && <Chip label={`Gender: ${filters.gender}`}      onRemove={()=>setF("gender","")}/>}
+                {filters.minRating && <Chip label={`${filters.minRating}★ & Up`}     onRemove={()=>setF("minRating","")}/>}
+                {filters.inStock==="true"     && <Chip label="In Stock"     onRemove={()=>setF("inStock","")}/>}
+                {filters.isFeatured==="true"  && <Chip label="Featured"    onRemove={()=>setF("isFeatured","")}/>}
+                {filters.isNewArrival==="true"&& <Chip label="New Arrival" onRemove={()=>setF("isNewArrival","")}/>}
+                {filters.isBestSeller==="true"&& <Chip label="Best Seller" onRemove={()=>setF("isBestSeller","")}/>}
+                {filters.isDeal==="true"      && <Chip label="On Sale"     onRemove={()=>setF("isDeal","")}/>}
+                {(filters.minPrice||filters.maxPrice) && (
+                  <Chip label={`₹${filters.minPrice||0} – ₹${filters.maxPrice||"∞"}`}
+                    onRemove={()=>setFilters(f=>({...f,minPrice:"",maxPrice:"",page:1}))}/>
+                )}
+              </div>
+            )}
+ 
+            {/* Products */}
+            {loading ? (
+              <div className="flex items-center justify-center py-20">
+                <div className="w-10 h-10 border-2 border-[#FF9900] border-t-transparent rounded-full animate-spin"/>
+              </div>
+            ) : products.length === 0 ? (
+              <div className="text-center py-24 text-gray-500">
+                <MdSearch size={48} className="mx-auto mb-3 opacity-20"/>
+                <p className="text-lg font-semibold">No products found</p>
+                <p className="text-sm mt-1">Try adjusting your filters</p>
+                <button onClick={clearAll} className="mt-4 px-5 py-2 bg-[#FFD814] text-gray-900 font-bold rounded-full text-sm">
+                  Clear Filters
+                </button>
+              </div>
+            ) : (
+              <div className={gridView
+                ? "grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4"
+                : "flex flex-col gap-3"}>
+                {products.map(p => <ProductCard key={p._id} p={p}/>)}
+              </div>
+            )}
+ 
+            {/* Pagination */}
+            {pagination.pages > 1 && (
+              <div className="flex justify-center gap-1 mt-8">
+                <button disabled={filters.page<=1}
+                  onClick={()=>setFilters(f=>({...f,page:f.page-1}))}
+                  className="px-3 py-2 border border-gray-200 rounded-lg text-sm text-gray-500 hover:border-gray-400 disabled:opacity-40">
+                  ← Prev
+                </button>
+                {Array.from({length:Math.min(pagination.pages,7)},(_,i)=>i+1).map(pg=>(
+                  <button key={pg} onClick={()=>setFilters(f=>({...f,page:pg}))}
+                    className={`w-10 h-10 rounded-lg text-sm font-semibold transition-colors
+                      ${filters.page===pg?"bg-[#FF9900] text-black border border-[#FF9900]":"border border-gray-200 text-gray-600 hover:border-gray-400"}`}>
+                    {pg}
+                  </button>
+                ))}
+                <button disabled={filters.page>=pagination.pages}
+                  onClick={()=>setFilters(f=>({...f,page:f.page+1}))}
+                  className="px-3 py-2 border border-gray-200 rounded-lg text-sm text-gray-500 hover:border-gray-400 disabled:opacity-40">
+                  Next →
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+ 
+      {/* Mobile Sidebar Drawer */}
+      {sidebarOpen && (
+        <div className="fixed inset-0 z-50 flex lg:hidden">
+          <div className="flex-1 bg-black/50" onClick={()=>setSidebarOpen(false)}/>
+          <div className="w-72 bg-white h-full overflow-y-auto p-5">
+            <div className="flex items-center justify-between mb-5">
+              <p className="font-bold text-gray-900 text-base flex items-center gap-2"><MdTune size={18}/> Filters</p>
+              <button onClick={()=>setSidebarOpen(false)} className="text-gray-400 hover:text-gray-700"><MdClose size={22}/></button>
+            </div>
+            <Sidebar/>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
+ 
+const Chip = ({ label, onRemove }) => (
+  <span className="flex items-center gap-1.5 bg-white border border-gray-200 text-gray-700 text-xs px-2.5 py-1 rounded-full">
+    {label}
+    <button onClick={onRemove} className="text-gray-400 hover:text-red-500 transition-colors"><MdClose size={12}/></button>
+  </span>
+);
+
 
 export default ProductListing

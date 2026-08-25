@@ -24,6 +24,11 @@ import SleepLoungeWear from "./pages/womenfashion/womenClothing/clothing/sleepLo
 import Blouses from "./pages/womenfashion/womenClothing/ethinicWear/Blouses";
 import BottomWear from "./pages/womenfashion/womenClothing/ethinicWear/BottomWear";
 import ChunnisDupattas from "./pages/womenfashion/womenClothing/ethinicWear/ChunnisDupattas";
+import DressMaterial from "./pages/womenfashion/womenClothing/ethinicWear/DressMaterial";
+import Gowns from "./pages/womenfashion/womenClothing/ethinicWear/Gowns";
+import KurtasKurtis from "./pages/womenfashion/womenClothing/ethinicWear/KurtasKurtis";
+import LehengaCholis from "./pages/womenfashion/womenClothing/ethinicWear/LehengaCholis";
+import Sarees from "./pages/womenfashion/womenClothing/ethinicWear/Sarees";
 
 const router = createBrowserRouter([
   { path: "/login", element: <Register /> },
@@ -42,7 +47,12 @@ const router = createBrowserRouter([
       {path:"/women/clothing/sleep-lounge-wear",element:<SleepLoungeWear/>},
       {path:"/womenfashion/womenClothing/ethinicWear/blouses", element:<Blouses/>},
       {path:"/womenfashion/womenClothing/ethinicWear/Bottoms-wear",element:<BottomWear/>},
-      {path:"/womenfashion/womenClothing/ethinicWear/Chunnis-Dupattas",element:<ChunnisDupattas/>}
+      {path:"/womenfashion/womenClothing/ethinicWear/Chunnis-Dupattas",element:<ChunnisDupattas/>},
+      {path:"/womenfashion/womenClothing/ethinicWear/Dress-Material",element:<DressMaterial/>},
+      {path:"//womenfashion/womenClothing/ethinicWear/Gowns",element:<Gowns/>},
+      {path:"/womenfashion/womenClothing/ethinicWear/Kurtas-Suits",element:<KurtasKurtis/>},
+      {path:"/womenfashion/womenClothing/ethinicWear/Lehenga-Cholis",element:<LehengaCholis/>},
+      {path:"/womenfashion/womenClothing/ethinicWear/Sarees",element:<Sarees/>}
     ],
   },
   // Admin routes — protected, admin only

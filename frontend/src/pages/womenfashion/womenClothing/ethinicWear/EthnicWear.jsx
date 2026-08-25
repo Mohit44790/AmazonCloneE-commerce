@@ -12,7 +12,7 @@ const womenEthnicWear = [
   {label:"Gowns", link:"/womenfashion/womenClothing/ethinicWear/Gowns"},
   {label:"Kurtas & Suits", link:"/womenfashion/womenClothing/ethinicWear/Kurtas-Suits"},  
   {label:"Lehenga Cholis", link:"/womenfashion/womenClothing/ethinicWear/Lehenga-Cholis"},
-  {label:"Shawls & Stoles", link:"/womenfashion/womenClothing/ethinicWear/Shawls-Stoles"},
+  
   {label:"Sarees", link:"/womenfashion/womenClothing/ethinicWear/Sarees"},
 ]
 

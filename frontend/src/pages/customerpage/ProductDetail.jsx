@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { MdStar } from 'react-icons/md'
-import { useNavigate } from 'react-router-dom';
+import { MdChevronRight, MdFavorite, MdShare, MdStar } from 'react-icons/md'
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useCartStore } from '../../apiData/store/cartStore';
 import { productApi } from '../../apiData/api/productApi';
 
@@ -79,7 +79,92 @@ const ProductDetail = () => {
   const totalRatings = p.rating?.count || 0;
 
   return (
-    <div>ProductDetail</div>
+    <div className='bg-white min-h-screen'>
+      <div className='max-w-screen-xl mx-auto px-4 sm:px-8 py-6'>
+         {/* Breadcrumb */}
+         <nav className='flex items-center gap-1 text-xs text-gray-500 mb-6 flex-wrap'>
+          <Link to="/" className="hover:text-[#c45500]">Home</Link>
+ {p.category && <>
+ <MdChevronRight size={14}/>
+ <Link to={`/product?category=${p.category.slug}`} className="hover:text-[#c45500]">{p.category.name}</Link>
+ </>}
+ <MdChevronRight size={14}/>
+ <span className='text-gray-700 trucate max-w-xs'>{p.name}</span>
+
+         </nav>
+
+            {/* Main Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {/* ── Images ── */}
+             <div className="lg:col-span-1">
+                {/* Main Image */}
+                  <div className="aspect-square border border-gray-200 rounded-2xl overflow-hidden mb-3 bg-gray-50">
+              <img src={primaryImg} alt={p.name} className="w-full h-full object-contain p-4"/>
+            </div>
+               {/* Thumbnails */}
+            {p.images?.length > 1 && (
+              <div className="flex gap-2 overflow-x-auto pb-1">
+                {p.images.map((img, i) => (
+                  <button key={i} onClick={() => setActiveImg(i)}
+                    className={`w-14 h-14 rounded-lg border-2 overflow-hidden shrink-0 transition-all
+                      ${i===activeImg ? "border-[#FF9900]" : "border-gray-200 hover:border-gray-400"}`}>
+                    <img src={img.url} className="w-full h-full object-cover"/>
+                  </button>
+                ))}
+                
+              </div>
+            )}
+            
+             {/* Actions */}
+            <div className="flex gap-3 mt-4">
+              <button className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-red-500 transition-colors">
+                <MdFavorite size={18}/> Wishlist
+              </button>
+              <button className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 transition-colors">
+                <MdShare size={18}/> Share
+              </button>
+            </div>
+              </div>
+
+              {/* ── Product Info ── */}
+ <div className="lg:col-span-1 space-y-4">
+  {/* Title + Brand */}
+  <div>
+              {p.brand && <p className="text-blue-600 text-sm font-medium mb-1">Visit the {p.brand} Store</p>}
+              <h1 className="text-xl font-semibold text-gray-900 leading-snug">{p.name}</h1>
+            </div>
+
+                {/* Rating */}
+            <div className="flex items-center gap-3 flex-wrap">
+              <Stars avg={p.rating?.average} count={p.rating?.count}/>
+              {p.isBestSeller && (
+                <span className="bg-[#FF9900] text-black text-xs font-bold px-2 py-0.5 rounded">#1 Best Seller</span>
+              )}
+            </div>
+               <hr className="border-gray-100"/>
+ 
+            {/* Price */}
+             <div>
+              {discount > 0 && (
+                <p className="text-red-500 text-sm font-semibold mb-0.5">-{discount}% Limited time deal</p>
+              )}
+              <div className="flex items-baseline gap-3 flex-wrap">
+                <span className="text-3xl font-bold text-gray-900">₹{(p.finalPrice||p.price)?.toLocaleString()}</span>
+                {p.comparePrice && (
+                  <span className="text-gray-400 text-base line-through">M.R.P: ₹{p.comparePrice?.toLocaleString()}</span>
+                )}
+              </div>
+              <p className="text-gray-500 text-xs mt-1">Inclusive of all taxes</p>
+            </div>
+
+            {/* Sizes */}
+            
+ </div>
+            </div>
+
+      </div>
+
+    </div>
   )
 }
 

@@ -32,6 +32,7 @@ import Sarees from "./pages/womenfashion/womenClothing/ethinicWear/Sarees";
 import ProductListing from "./pages/customerpage/ProductListing";
 import ProductDetail from "./pages/customerpage/ProductDetail";
 import Cart from "./pages/customerpage/Cart";
+import MyOrders from "./pages/customerpage/MyOrders";
 
 const router = createBrowserRouter([
   { path: "/login", element: <Register /> },
@@ -43,7 +44,7 @@ const router = createBrowserRouter([
       
       { path: "products/:id",      element: <ProductDetail /> },
       { path: "cart",              element: <Cart /> },
-      // { path: "my-orders",         element: <MyOrders /> },
+      { path: "my-orders",         element: <MyOrders /> },
       {path:"/women/clothing",element:<Clothing/>},
       {path:"/women/ethnic-wear", element:<EthnicWear/>},
       {path:"/women/westernwear",element:<WesternWear/>},

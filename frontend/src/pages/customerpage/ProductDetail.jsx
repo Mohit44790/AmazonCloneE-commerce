@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { MdAdd, MdChevronRight, MdFavorite, MdRemove, MdShare, MdStar } from 'react-icons/md'
+import { MdAdd, MdChevronRight, MdFavorite, MdLocalShipping, MdRemove, MdReplay, MdSecurity, MdShare, MdStar, MdStarBorder } from 'react-icons/md'
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useCartStore } from '../../apiData/store/cartStore';
 import { productApi } from '../../apiData/api/productApi';
@@ -252,14 +252,168 @@ const ProductDetail = () => {
                 </div>
               )}
 
+              
+              {/* Buttons */}
+              <div className="space-y-2">
+                <button onClick={handleAddToCart} disabled={!inStock}
+                  className={`w-full py-3 rounded-full font-bold text-sm transition-all
+                    ${added ? "bg-green-500 text-white" : "bg-[#FFD814] hover:bg-[#F7CA00] text-gray-900"}
+                    disabled:opacity-40 disabled:cursor-not-allowed`}>
+                  {added ? "✓ Added to Cart!" : "Add to Cart"}
+                </button>
+                <button disabled={!inStock}
+                  className="w-full py-3 bg-[#FF9900] hover:bg-[#f0a500] text-white rounded-full font-bold text-sm transition-colors disabled:opacity-40">
+                  Buy Now
+                </button>
               </div>
-          </div>
+
+                {/* Trust badges */}
+              <div className="border-t border-gray-100 pt-3 space-y-2">
+                {[
+                  { icon:<MdSecurity size={16}/>,       text:"Secure transaction" },
+                  { icon:<MdLocalShipping size={16}/>,  text:"Ships from Amazon.in" },
+                  { icon:<MdReplay size={16}/>,         text:`${p.returnPolicy?.returnDays||10}-day return policy` },
+                ].map(({ icon, text }) => (
+                  <div key={text} className="flex items-center gap-2 text-xs text-gray-500">
+                    <span className="text-gray-400">{icon}</span> {text}
+                  </div>
+                ))}
+              </div>
+              {/* Seller */}
+              {p.seller && (
+                <div className="border-t border-gray-100 pt-3">
+                  <p className="text-xs text-gray-500">
+                    Sold by{" "}
+                    <span className="text-blue-600 font-medium">
+                      {p.seller.sellerProfile?.shopName || p.seller.name}
+                    </span>
+                    {p.seller.sellerProfile?.isVerified && (
+                      <MdVerified size={13} className="inline text-blue-500 ml-1"/>
+                    )}
+                  </p>
+                </div>
+                 )}
             </div>
-
+          </div>
+        </div>
+ 
+        {/* ── Tabs: Description / Specs / Reviews ── */}
+        <div className="mt-10">
+          <div className="flex gap-0 border-b border-gray-200">
+            {["description","specifications","reviews"].map(t => (
+              <button key={t} onClick={() => setTab(t)}
+                className={`px-5 py-3 text-sm font-semibold capitalize transition-colors border-b-2 -mb-px
+                  ${tab===t ? "border-[#FF9900] text-gray-900" : "border-transparent text-gray-500 hover:text-gray-700"}`}>
+                {t}{t==="reviews"?` (${p.rating?.count||0})`:""}
+              </button>
+            ))}
+          </div>
+ 
+          <div className="py-6">
+            {/* Description */}
+            {tab==="description" && (
+              <div className="prose max-w-3xl text-gray-700 text-sm leading-relaxed">
+                <p>{p.description}</p>
+                {p.highlights?.length > 0 && (
+                  <div className="mt-4">
+                    <h3 className="font-bold text-gray-900 mb-2">Key Features</h3>
+                    <ul className="space-y-1">
+                      {p.highlights.map((h, i) => <li key={i} className="flex items-start gap-2"><span className="text-[#FF9900]">•</span>{h}</li>)}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
+ 
+            {/* Specifications */}
+            {tab==="specifications" && (
+              <div className="max-w-2xl">
+                <table className="w-full text-sm">
+                  <tbody>
+                    {p.attributes?.map((a, i) => (
+                      <tr key={i} className={i%2===0?"bg-gray-50":""}>
+                        <td className="py-2.5 px-4 font-semibold text-gray-700 w-40">{a.name}</td>
+                        <td className="py-2.5 px-4 text-gray-600">{a.value}</td>
+                      </tr>
+                    ))}
+                    {p.brand && <tr className="bg-gray-50"><td className="py-2.5 px-4 font-semibold text-gray-700">Brand</td><td className="py-2.5 px-4 text-gray-600">{p.brand}</td></tr>}
+                    {p.warranty?.hasWarranty && <tr><td className="py-2.5 px-4 font-semibold text-gray-700">Warranty</td><td className="py-2.5 px-4 text-gray-600">{p.warranty.warrantyPeriod} — {p.warranty.warrantyType}</td></tr>}
+                    {p.sku && <tr className="bg-gray-50"><td className="py-2.5 px-4 font-semibold text-gray-700">SKU</td><td className="py-2.5 px-4 text-gray-600 font-mono">{p.sku}</td></tr>}
+                  </tbody>
+                </table>
+              </div>
+            )}
+ 
+            {/* Reviews */}
+            {tab==="reviews" && (
+              <div className="max-w-3xl space-y-6">
+                {/* Rating Summary */}
+                <div className="flex gap-8 items-start flex-wrap">
+                  <div className="text-center">
+                    <p className="text-5xl font-extrabold text-gray-900">{p.rating?.average?.toFixed(1)||"0.0"}</p>
+                    <Stars avg={p.rating?.average} size={20}/>
+                    <p className="text-sm text-gray-500 mt-1">{totalRatings} ratings</p>
+                  </div>
+                  <div className="flex-1 min-w-[180px] space-y-1.5">
+                    {[5,4,3,2,1].map(star => (
+                      <RatingBar key={star} star={star}
+                        count={p.rating?.distribution?.[star]||0} total={totalRatings}/>
+                    ))}
+                  </div>
+                </div>
+ 
+                {/* Review List */}
+                {p.reviews?.length > 0 ? p.reviews.map((r, i) => (
+                  <div key={i} className="border-b border-gray-100 pb-5">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-8 h-8 rounded-full bg-[#FF9900] flex items-center justify-center text-black font-bold text-sm">
+                        {r.user?.name?.[0]?.toUpperCase()}
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-gray-900">{r.user?.name}</p>
+                        <Stars avg={r.rating} size={13}/>
+                      </div>
+                      <span className="ml-auto text-xs text-gray-400">
+                        {new Date(r.createdAt).toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"})}
+                      </span>
+                    </div>
+                    {r.title && <p className="text-sm font-semibold text-gray-800 mb-1">{r.title}</p>}
+                    <p className="text-sm text-gray-600">{r.comment}</p>
+                  </div>
+                )) : (
+                  <div className="text-center py-10 text-gray-400">
+                    <MdStarBorder size={40} className="mx-auto mb-2 opacity-30"/>
+                    <p>No reviews yet. Be the first to review!</p>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+ 
+        {/* ── Related Products ── */}
+        {relatedProducts?.length > 0 && (
+          <section className="mt-10">
+            <h2 className="text-xl font-bold text-gray-900 mb-4">Related Products</h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+              {relatedProducts.map(r => (
+                <div key={r._id} onClick={()=>navigate(`/products/${r.slug}`)}
+                  className="bg-white border border-gray-100 rounded-xl overflow-hidden hover:shadow-md transition-shadow cursor-pointer group">
+                  <div className="aspect-square overflow-hidden bg-gray-50">
+                    <img src={r.images?.[0]?.url||"/placeholder.png"} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/>
+                  </div>
+                  <div className="p-3">
+                    <p className="text-gray-800 text-xs font-medium line-clamp-2 mb-1">{r.name}</p>
+                    <Stars avg={r.rating?.average} size={11}/>
+                    <p className="text-gray-900 font-bold text-sm mt-1">₹{r.price?.toLocaleString()}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
       </div>
-
     </div>
-  )
+  );
 }
-
 export default ProductDetail

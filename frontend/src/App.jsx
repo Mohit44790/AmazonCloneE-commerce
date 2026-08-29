@@ -31,6 +31,7 @@ import LehengaCholis from "./pages/womenfashion/womenClothing/ethinicWear/Leheng
 import Sarees from "./pages/womenfashion/womenClothing/ethinicWear/Sarees";
 import ProductListing from "./pages/customerpage/ProductListing";
 import ProductDetail from "./pages/customerpage/ProductDetail";
+import Cart from "./pages/customerpage/Cart";
 
 const router = createBrowserRouter([
   { path: "/login", element: <Register /> },
@@ -41,7 +42,7 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       
       { path: "products/:id",      element: <ProductDetail /> },
-      // { path: "cart",              element: <Cart /> },
+      { path: "cart",              element: <Cart /> },
       // { path: "my-orders",         element: <MyOrders /> },
       {path:"/women/clothing",element:<Clothing/>},
       {path:"/women/ethnic-wear", element:<EthnicWear/>},

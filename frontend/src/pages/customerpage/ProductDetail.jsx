@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { MdChevronRight, MdFavorite, MdShare, MdStar } from 'react-icons/md'
+import { MdAdd, MdChevronRight, MdFavorite, MdRemove, MdShare, MdStar } from 'react-icons/md'
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useCartStore } from '../../apiData/store/cartStore';
 import { productApi } from '../../apiData/api/productApi';
@@ -158,8 +158,102 @@ const ProductDetail = () => {
             </div>
 
             {/* Sizes */}
-            
+      {p.sizes?.length > 0 && (
+              <div>
+                <p className="text-sm font-semibold text-gray-800 mb-2">
+                  Size: <span className="text-gray-600 font-normal">{selSize}</span>
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {p.sizes.map(s => (
+                    <button key={s} onClick={() => setSelSize(s)}
+                      className={`w-12 h-10 rounded-lg border-2 text-sm font-semibold transition-all
+                        ${selSize===s ? "border-[#FF9900] bg-[#FFF3E0] text-gray-900" : "border-gray-200 text-gray-600 hover:border-gray-400"}`}>
+                      {s}
+                    </button>
+                  ))}
+                </div>
+                <Link to="/size-guide" className="text-blue-600 hover:underline text-xs mt-1 inline-block">Size Guide</Link>
+              </div>
+            )}
+               {/* Colors */}
+            {p.colors?.length > 0 && (
+              <div>
+                <p className="text-sm font-semibold text-gray-800 mb-2">
+                  Color: <span className="text-gray-600 font-normal">{selColor?.name}</span>
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {p.colors.map((c, i) => (
+                    <button key={i} onClick={() => setSelColor(c)}
+                      className={`w-8 h-8 rounded-full border-4 transition-all
+                        ${selColor?.name===c.name ? "border-[#FF9900] scale-110" : "border-white shadow hover:scale-105"}`}
+                      style={{ background: c.hex || "#ccc" }}
+                      title={c.name}/>
+                  ))}
+                </div>
+              </div>
+            )}
+             {/* Highlights */}
+            {p.highlights?.length > 0 && (
+              <ul className="space-y-1">
+                {p.highlights.map((h, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
+                    <span className="text-[#FF9900] mt-0.5">•</span> {h}
+                  </li>
+                ))}
+              </ul>
+            )}
+
  </div>
+     {/* ── Buy Box ── */}
+          <div className="lg:col-span-1">
+              <div className="border border-gray-200 rounded-2xl p-5 space-y-4 sticky top-20">
+   {/* Price */}
+              <p className="text-2xl font-bold text-gray-900">₹{(p.finalPrice||p.price)?.toLocaleString()}</p>
+               {/* Delivery */}
+              <div className="text-sm text-gray-700 space-y-1">
+                <p><span className="font-semibold">FREE Delivery</span> {p.shipping?.freeShipping ? "on this order" : "on orders above ₹499"}</p>
+                {p.shipping?.estimatedDelivery && (
+                  <p className="text-gray-500">Estimated: {p.shipping.estimatedDelivery}</p>
+                )}
+              </div>
+                 {/* Pincode check */}
+              <div>
+                <p className="text-sm text-gray-700 mb-1.5">Deliver to</p>
+                <div className="flex gap-2">
+                  <input value={pincode} onChange={e=>setPincode(e.target.value)} maxLength={6}
+                    placeholder="Enter pincode" className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:border-[#FF9900]"/>
+                  <button onClick={()=>setPinChecked(true)}
+                    className="px-3 py-2 border border-gray-300 rounded-lg text-sm text-blue-600 hover:border-blue-400">
+                    Check
+                  </button>
+                </div>
+                {pinChecked && pincode.length===6 && (
+                  <p className="text-green-600 text-xs mt-1">✓ Delivery available for {pincode}</p>
+                )}
+              </div>
+                  {/* Stock */}
+              <p className={`text-lg font-semibold ${inStock ? "text-green-600" : "text-red-500"}`}>
+                {inStock ? (p.stock < 10 ? `Only ${p.stock} left in stock!` : "In Stock") : "Out of Stock"}
+              </p>
+
+               {/* Qty */}
+              {inStock && (
+                <div className="flex items-center gap-3">
+                  <p className="text-sm text-gray-700">Qty:</p>
+                  <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden">
+                    <button onClick={()=>setQty(q=>Math.max(1,q-1))} className="px-3 py-2 hover:bg-gray-50 text-gray-600">
+                      <MdRemove size={16}/>
+                    </button>
+                    <span className="px-4 py-2 text-sm font-semibold border-x border-gray-200">{qty}</span>
+                    <button onClick={()=>setQty(q=>Math.min(p.stock,q+1))} className="px-3 py-2 hover:bg-gray-50 text-gray-600">
+                      <MdAdd size={16}/>
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              </div>
+          </div>
             </div>
 
       </div>

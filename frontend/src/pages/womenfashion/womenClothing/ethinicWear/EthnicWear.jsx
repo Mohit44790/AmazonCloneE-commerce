@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import AmazonFashion from '../../AmazonFashion.jsx'
-import { ethinicWearSlidertwo, ethnicWear } from '../../../../component/data/Womenfashion.js'
+import { ethinicBrandfocus, ethinicWearSlidertwo, ethnicWear } from '../../../../component/data/Womenfashion.js'
 import { Link } from 'react-router-dom'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 
@@ -161,7 +161,19 @@ const EthnicWear = () => {
                   </button>
                 )}
               </div>
+             
             </div>
+             
+              </div>
+              <div className='mx-8 mt-8'>
+                <h1 className='text-2xl font-semibold'>Brands in focus</h1>
+                <div className='flex gap-2'>
+                  {ethinicBrandfocus.map((item,id)=>(
+                    <Link key={id} to={item.link} className=''>
+                    <img src={item.image} alt="" />
+                    </Link>
+                  ))}
+                </div>
               </div>
           </div>
         </div>

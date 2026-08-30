@@ -176,6 +176,38 @@ export const ethinicWearSlidertwo = [
   },
 ]
 
+export const ethinicBrandfocus = [
+  {
+    id:26,
+    image:"https://m.media-amazon.com/images/G/31/img23/WA/2026/MARCH/FLIP/P0/ETHNIC-BRANDS/Libas_412x683._CB784913025_.png",
+    link:"/women/libas"
+  },
+  {
+    id:27,
+    image:"https://m.media-amazon.com/images/G/31/img23/WA/2026/MARCH/FLIP/P0/ETHNIC-BRANDS/Janasya_412x683._CB784913025_.png",
+    link:"/women/fanasya"
+  },
+  {id:28,
+    image:"https://m.media-amazon.com/images/G/31/img23/WA/2026/MARCH/FLIP/P0/ETHNIC-BRANDS/BIBA_412x683._CB784913025_.png",
+    link:"/women/biba"
+  },
+  {
+    id:29,
+    image:"https://m.media-amazon.com/images/G/31/img23/WA/2026/MARCH/FLIP/P0/ETHNIC-BRANDS/Soch_412x683._CB783775126_.png",
+    link:"/women/soch"
+  },
+  {
+    id:30,
+    image:"https://m.media-amazon.com/images/G/31/img23/WA/2026/MARCH/FLIP/P0/ETHNIC-BRANDS/Myx_412x683._CB784913025_.png",
+    link:"/women/myx"
+  },
+  {
+    id:31,
+    image:"https://m.media-amazon.com/images/G/31/img23/WA/2026/MARCH/FLIP/P0/ETHNIC-BRANDS/indo_era_412x683._CB783775126_.png",
+    link:"/women/inda_era"
+  },
+]
+
 // export const lingerieCloths =[
 // {
 //   id: 16,

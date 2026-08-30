@@ -33,6 +33,7 @@ import ProductListing from "./pages/customerpage/ProductListing";
 import ProductDetail from "./pages/customerpage/ProductDetail";
 import Cart from "./pages/customerpage/Cart";
 import MyOrders from "./pages/customerpage/MyOrders";
+import TopsTshirts from "./pages/womenfashion/womenClothing/westernWear/topsTshirts/TopsTshirts";
 
 const router = createBrowserRouter([
   { path: "/login", element: <Register /> },
@@ -45,6 +46,7 @@ const router = createBrowserRouter([
       { path: "products/:id",      element: <ProductDetail /> },
       { path: "cart",              element: <Cart /> },
       { path: "my-orders",         element: <MyOrders /> },
+      {path:"products",element:<ProductListing/>},
       {path:"/women/clothing",element:<Clothing/>},
       {path:"/women/ethnic-wear", element:<EthnicWear/>},
       {path:"/women/westernwear",element:<WesternWear/>},
@@ -61,7 +63,7 @@ const router = createBrowserRouter([
       {path:"/womenfashion/womenClothing/ethinicWear/Kurtas-Suits",element:<KurtasKurtis/>},
       {path:"/womenfashion/womenClothing/ethinicWear/Lehenga-Cholis",element:<LehengaCholis/>},
       {path:"/womenfashion/womenClothing/ethinicWear/Sarees",element:<Sarees/>},
-      {path:"products",element:<ProductListing/>}
+      {path:"/western-weat/tops-t-shirts-shirts", element:<TopsTshirts/>}
     ],
   },
   // Admin routes — protected, admin only

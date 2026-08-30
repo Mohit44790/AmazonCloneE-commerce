@@ -208,6 +208,62 @@ export const ethinicBrandfocus = [
   },
 ]
 
+export const blousesbrands =[
+  {
+    id:32,
+    image:"https://m.media-amazon.com/images/G/31/img2020/fashion/WomensApparel2024/BLOUSES/Stusioshringaar_400x200._CB568803801_.jpg",
+    link:"/stusionshringaar"
+  },
+  {
+    id:33,
+    image:"https://m.media-amazon.com/images/G/31/img2020/fashion/WomensApparel2024/BLOUSES/Soch_400x200._CB568803801_.jpg",
+    link:"/soch"
+  },
+  {
+    id:34,
+    image:"https://m.media-amazon.com/images/G/31/img2020/fashion/WomensApparel2024/BLOUSES/Puja_mills_400x200._CB568803801_.jpg",
+    link:"/puja_mills"
+  },
+  {
+    id:35,
+    image:"https://m.media-amazon.com/images/G/31/img2020/fashion/WomensApparel2024/BLOUSES/Janasya_400x200._CB568803801_.jpg",
+    link:"/janasya"
+  },
+  {
+    id:36,
+    image:"https://m.media-amazon.com/images/G/31/img2020/fashion/WomensApparel2024/BLOUSES/Oomph_400x200._CB568803801_.jpg",
+    link:"/oomph"
+  },
+  {
+    id:37,
+    image:"https://m.media-amazon.com/images/G/31/img2020/fashion/WomensApparel2024/BLOUSES/Vihu_fashion_400x200._CB568803801_.jpg",
+    link:"/vihu_fashion"
+  },
+]
+
+export const blousestypes = [
+  {
+    id:38,
+    image:"https://m.media-amazon.com/images/G/31/img2020/fashion/WomensApparel2024/BLOUSES/sILKBLOUSE_981x1220.jpeg",
+    link:"/silkblouse"
+  },
+  {
+    id:39,
+    image:"https://m.media-amazon.com/images/G/31/img2020/fashion/WomensApparel2024/BLOUSES/Net_981x1220.jpeg",
+    link:"/net"
+  },
+  {
+    id:40,
+    image:"https://m.media-amazon.com/images/G/31/img2020/fashion/WomensApparel2024/BLOUSES/Velvet_981x1220.jpeg",
+    link:"/velvet"
+  },
+  {
+    id:41,
+    image:"https://m.media-amazon.com/images/G/31/img2020/fashion/WomensApparel2024/BLOUSES/cotton_981x1220.jpeg",
+    link:"/cotton"
+  },
+]
+
 // export const lingerieCloths =[
 // {
 //   id: 16,

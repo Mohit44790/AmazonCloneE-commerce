@@ -2,6 +2,7 @@ import React from 'react'
 import AmazonFashion from '../../AmazonFashion'
 import { Link } from 'react-router-dom'
 import { IoIosArrowBack } from 'react-icons/io'
+import { blousesbrands, blousestypes } from '../../../../component/data/Womenfashion.js'
 
 const Blouses = () => {
   return (
@@ -26,7 +27,31 @@ const Blouses = () => {
         </div>
         <div className='flex-1 min-w-0 w-full'>
           <img src="https://m.media-amazon.com/images/G/31/img2020/fashion/WomensApparel2024/HOTW/BLOUSES_1236x556._CB564707582_.jpg" alt="" />
+         <div className='bg-amber-500 p-2'>
+
+          <div className='flex gap-2'>
+              {blousesbrands.map((item,id)=>(
+                <Link id={item.link} key={id}>
+                  <img src={item.image} alt="brands" />
+                
+                </Link>
+              ))}
+          </div>
         </div>
+         
+          <div className='flex mt-4  gap-2'>
+              {blousestypes.map((item,id)=>(
+                <Link id={item.link} key={id}>
+                  <img src={item.image} alt="brands" />
+                
+                </Link>
+              ))}
+          </div>
+        
+        </div>
+
+
+       
       </div>
     </div>
   )

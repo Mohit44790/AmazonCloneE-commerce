@@ -24,8 +24,8 @@ const BottomWear = () => {
           </Link>
           <h1 className='font-semibold px-4'>Bottom Wear</h1>
         </div>
-        <div className='flex-1 min-w-0 w-full'>
-         <h1>Featured categories</h1>
+        <div className='flex-1 min-w-0 w-full mt-5'>
+         <h1 className='text-3xl font-semibold'>Featured categories</h1>
         </div>
       </div>
     </div>

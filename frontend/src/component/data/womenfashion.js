@@ -264,6 +264,62 @@ export const blousestypes = [
   },
 ]
 
+export const lehengaBrands = [
+  {
+    id:42,
+    image:"https://m.media-amazon.com/images/G/31/img23/WA/2024/july/HOTW/biba_400x200._CB568761547_.png",
+    path:'/biba'
+  },
+  {
+    id:43,
+    image:"https://m.media-amazon.com/images/G/31/img23/WA/2024/july/HOTW/indya_400x200._CB568761547_.png",
+    path:'/indya'
+  },
+  {
+    id:44,
+    image:"https://m.media-amazon.com/images/G/31/img23/WA/2024/july/HOTW/janasya_400x200._CB568761547_.png",
+    path:'/janasya'
+  },
+  {
+    id:45,
+    image:"https://m.media-amazon.com/images/G/31/img23/WA/2024/july/HOTW/purvaja_400x200._CB568761547_.png",
+    path:'/purvaja'
+  },
+  {
+    id:46,
+    image:"https://m.media-amazon.com/images/G/31/img23/WA/2024/july/HOTW/zeel_400x200._CB568761547_.png",
+    path:'/zeel'
+  },
+  {
+    id:47,
+    image:"https://m.media-amazon.com/images/G/31/img23/WA/2024/july/HOTW/fashion_400x200._CB568761547_.png",
+    path:'/fashion'
+  },
+]
+
+export const lehengaStyle = [
+  {
+    id:48,
+    image:"https://m.media-amazon.com/images/G/31/img23/WA/2024/july/HOTW/cere-le_981x1220.png",
+    path:"/ceremony"
+  },
+  {
+    id:49,
+    image:"https://m.media-amazon.com/images/G/31/img23/WA/2024/july/HOTW/net_981x1220.png",
+    path:"/net"
+  },
+  {
+    id:50,
+    image:"https://m.media-amazon.com/images/G/31/img23/WA/2024/july/HOTW/casual_981x1220.png",
+    path:"/casual"
+  },
+  {
+    id:51,
+    image:"https://m.media-amazon.com/images/G/31/img23/WA/2024/july/HOTW/silk_981x1220.png",
+    path:"/silk"
+  },
+]
+
 // export const lingerieCloths =[
 // {
 //   id: 16,

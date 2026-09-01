@@ -38,7 +38,7 @@ const orderItemSchema = new mongoose.Schema({
   sellerNote:        String,
 });
 
-
+// =============================================
 // ORDER SCHEMA
 // =============================================
 const orderSchema = new mongoose.Schema(

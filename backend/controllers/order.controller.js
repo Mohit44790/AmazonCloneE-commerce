@@ -1,3 +1,4 @@
+import Order from "../models/Order.model";
 import Product from "../models/Product.model";
 
 
@@ -35,4 +36,60 @@ export const createOrder = catchAsync(async (req, res, next ) =>{
       variant:  item.variant || {},
     });
     }
-})
+
+    //calculate totals
+    const subtotal = orderItems.reduce((sum,i) => sum + i.price * i.quantity, 0);
+    const shippingCharge = subtotal >= 499 ? 0 : 40;
+    const taxRate = 18;
+    const taxAmount = Math.round((subtotal * taxRate) / 100);
+    const couponDiscount = 0;
+    const discount = 0;
+    const total = subtotal + shippingCharge + taxAmount - couponDiscount - discount;
+
+    const order = await Order.create({
+        user: req.user._id,
+        items: orderItems,
+        shippingAddress,
+        billingAddress: billingAddress || {sameAsShipping:true},
+        paymentMethod,
+        subtotal,
+        shippongCharge,
+        taxAmount,
+        taxRate,
+        discount,
+        couponDiscount,
+        couponCode: couponCode || null,
+        total,
+        customenNote,
+        isGift: isGift || false,
+        giftMessage: isGift ? geftMessage: null
+
+    
+
+
+    })
+         // Deduct stock
+  for (const item of orderItems) {
+    await Product.findByIdAndUpdate(item.product, {
+      $inc: { stock: -item.quantity, salesCount: item.quantity },
+    });
+  }
+
+  // Update user stats
+  await User.findByIdAndUpdate(req.user._id, {
+    $inc: { totalOrders: 1, totalSpent: total },
+  });
+
+  const populated = await Order.findById(order._id)
+    .populate("user", "name email phone")
+    .populate("items.product", "name images slug")
+    .populate("items.seller", "name sellerProfile.shopName");
+
+  res.status(201).json({
+    success: true,
+    message: "Order placed successfully.",
+    data:    { order: populated },
+  });
+
+});
+

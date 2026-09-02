@@ -93,3 +93,82 @@ export const createOrder = catchAsync(async (req, res, next ) =>{
 
 });
 
+// =============================================
+// GET MY ORDERS (Customer)
+// =============================================
+export const getMyOrders = catchAsync(async (req, res, next) => {
+  const page  = Math.max(1, parseInt(req.query.page)  || 1);
+  const limit = Math.min(50, parseInt(req.query.limit) || 10);
+  const skip  = (page - 1) * limit;
+
+  const filter = { user: req.user._id };
+  if (req.query.status) filter.status = req.query.status;
+
+  const [orders, total] = await Promise.all([
+    Order.find(filter)
+      .sort("-createdAt")
+      .skip(skip)
+      .limit(limit)
+      .populate("items.product", "name images slug")
+      .populate("items.seller", "name sellerProfile.shopName"),
+    Order.countDocuments(filter),
+  ]);
+
+  res.status(200).json({
+    success: true,
+    pagination: {
+      currentPage: page,
+      totalPages:  Math.ceil(total / limit),
+      totalCount:  total,
+      limit,
+    },
+    data: { orders },
+  });
+});
+
+// =============================================
+// GET SINGLE ORDER
+// =============================================
+export const getOrder = catchAsync(async (req, res, next) => {
+  const order = await Order.findById(req.params.id)
+    .populate("user",           "name email phone")
+    .populate("items.product",  "name images slug")
+    .populate("items.seller",   "name sellerProfile.shopName");
+
+  if (!order) return next(new AppError("Order not found.", 404));
+
+  // Customer can only see their own orders
+  if (
+    req.user.role === "customer" &&
+    order.user._id.toString() !== req.user._id.toString()
+  ) {
+    return next(new AppError("Not authorized to view this order.", 403));
+  }
+
+  res.status(200).json({ success: true, data: { order } });
+});
+
+// =============================================
+// GET ORDER BY ORDER NUMBER
+// =============================================
+export const getOrderByNumber = catchAsync(async (req, res, next) => {
+  const order = await Order.findOne({ orderNumber: req.params.orderNumber })
+    .populate("user",          "name email phone")
+    .populate("items.product", "name images slug")
+    .populate("items.seller",  "name sellerProfile.shopName");
+
+  if (!order) return next(new AppError("Order not found.", 404));
+
+  if (
+    req.user.role === "customer" &&
+    order.user._id.toString() !== req.user._id.toString()
+  ) {
+    return next(new AppError("Not authorized to view this order.", 403));
+  }
+
+  res.status(200).json({ success: true, data: { order } });
+});
+
+// =============================================
+// CANCEL ORDER (Customer)
+// =============================================

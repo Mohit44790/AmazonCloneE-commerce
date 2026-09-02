@@ -234,8 +234,58 @@ export const requestReturn = catchAsync(async (req, res, next) => {
     data:    { order },
   });
 
-  // =============================================
+  
+
+})
+
+// =============================================
 // GET ALL ORDERS (Admin)
 // =============================================
+export const getAllOrders = catchAsync(async (req, res, next) => {
+    const page = Math.max(1, parseInt(req,query.page) || 1);
+    const limit = Math.min(100,parseInt(req,query.limit) || 20);
+    const skip = (page-1) * limit;
 
+    const filter = {};
+    if(req.query.status) filter.status = req.query.status;
+    if(req.query.paymentStatus) filter.paymentStatus = req.query.paymentStatus;
+    if(req.query.paymentMethod) filter.paymentMethod = req.query.paymentMethod;
+
+    //Date range filter
+    // Date range filter
+  if (req.query.startDate || req.query.endDate) {
+    filter.createdAt = {};
+    if (req.query.startDate) filter.createdAt.$gte = new Date(req.query.startDate);
+    if (req.query.endDate)   filter.createdAt.$lte = new Date(req.query.endDate);
+  }
+
+  const sortMap = {
+    newest:      "-createdAt",
+    oldest:      "createdAt",
+    total_high:  "-total",
+    total_low:   "total",
+  };
+    const sort = sortMap[req.query.sort] || "-createdAt";
+
+  const [orders, total] = await Promise.all([
+    Order.find(filter)
+      .sort(sort)
+      .skip(skip)
+      .limit(limit)
+      .populate("user",          "name email phone")
+      .populate("items.product", "name images")
+      .populate("items.seller",  "name sellerProfile.shopName"),
+    Order.countDocuments(filter),
+  ]);
+
+  res.status(200).json({
+    success: true,
+    pagination: {
+      currentPage: page,
+      totalPages:  Math.ceil(total / limit),
+      totalCount:  total,
+      limit,
+    },
+    data: { orders },
+  });
 })

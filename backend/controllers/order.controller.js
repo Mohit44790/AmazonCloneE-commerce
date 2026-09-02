@@ -404,3 +404,111 @@ export const getSellerOrders = catchAsync(async (req,res,next) =>{
 // =============================================
 // UPDATE ITEM STATUS (Seller)
 // =============================================
+export const updateItemStatus = catchAsync(async (req, res, next) => {
+  const { itemId }      = req.params;
+  const { status, trackingNumber, trackingUrl, shippingCarrier, sellerNote } = req.body;
+
+  const order = await Order.findById(req.params.id);
+  if (!order) return next(new AppError("Order not found.", 404));
+
+  const item = order.items.id(itemId);
+  if (!item) return next(new AppError("Item not found in order.", 404));
+
+  if (item.seller.toString() !== req.user._id.toString()) {
+    return next(new AppError("Not authorized to update this item.", 403));
+  }
+
+  item.itemStatus = status;
+  if (trackingNumber)  item.trackingNumber  = trackingNumber;
+  if (trackingUrl)     item.trackingUrl     = trackingUrl;
+  if (shippingCarrier) item.shippingCarrier = shippingCarrier;
+  if (sellerNote)      item.sellerNote      = sellerNote;
+  if (status === "delivered") item.deliveredAt = new Date();
+  if (status === "cancelled") item.cancelledAt = new Date();
+
+  await order.save();
+
+  res.status(200).json({
+    success: true,
+    message: "Item status updated.",
+    data:    { order },
+  });
+});
+
+// =============================================
+// ORDER STATS (Admin/Seller)
+// =============================================
+export const getOrderStats = catchAsync(async (req, res, next) => {
+  const isSeller = req.user.role === "seller";
+  const matchStage = isSeller
+    ? { "items.seller": req.user._id }
+    : {};
+
+  const stats = await Order.aggregate([
+    { $match: matchStage },
+    {
+      $group: {
+        _id:          "$status",
+        count:        { $sum: 1 },
+        totalRevenue: { $sum: "$total" },
+      },
+    },
+  ]);
+
+  const totalRevenue = await Order.aggregate([
+    { $match: { ...matchStage, paymentStatus: "paid" } },
+    { $group: { _id: null, revenue: { $sum: "$total" } } },
+  ]);
+
+  const todayStart = new Date();
+  todayStart.setHours(0, 0, 0, 0);
+
+  const todayOrders = await Order.countDocuments({
+    ...matchStage,
+    createdAt: { $gte: todayStart },
+  });
+
+  res.status(200).json({
+    success: true,
+    data: {
+      stats,
+      totalRevenue: totalRevenue[0]?.revenue || 0,
+      todayOrders,
+    },
+  });
+});
+
+// =============================================
+// VERIFY RAZORPAY PAYMENT
+// =============================================
+export const verifyRazorpayPayment = catchAsync(async (req, res, next) => {
+  const { orderId, razorpayOrderId, razorpayPaymentId, razorpaySignature } = req.body;
+
+  const crypto = await import("crypto");
+  const expectedSignature = crypto.default
+    .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
+    .update(`${razorpayOrderId}|${razorpayPaymentId}`)
+    .digest("hex");
+
+  if (expectedSignature !== razorpaySignature) {
+    return next(new AppError("Invalid payment signature.", 400));
+  }
+
+  const order = await Order.findById(orderId);
+  if (!order) return next(new AppError("Order not found.", 404));
+
+  order.paymentStatus              = "paid";
+  order.payment.razorpayOrderId    = razorpayOrderId;
+  order.payment.razorpayPaymentId  = razorpayPaymentId;
+  order.payment.razorpaySignature  = razorpaySignature;
+  order.payment.paidAt             = new Date();
+  order.payment.gateway            = "razorpay";
+
+  await order.updateStatus("confirmed", "Payment verified, order confirmed.", req.user._id);
+
+  res.status(200).json({
+    success: true,
+    message: "Payment verified successfully.",
+    data:    { order },
+  });
+});

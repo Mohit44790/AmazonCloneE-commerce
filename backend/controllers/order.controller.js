@@ -172,3 +172,70 @@ export const getOrderByNumber = catchAsync(async (req, res, next) => {
 // =============================================
 // CANCEL ORDER (Customer)
 // =============================================
+export const cancellOrder = catchAsync(async (req,res,next) =>{
+    const order = await Order.findById(req.params.id);
+    if(!order) return next(new AppError("Order not found.",404));
+    if (order.user.toString() !== req.user._id.toString()) {
+    return next(new AppError("Not authorized.", 403));
+  }
+       
+  const cancellableStatuses = ["pending", "confirmed", "processing"];
+  if (!cancellableStatuses.includes(order.status)) {
+    return next(new AppError(`Cannot cancel order with status: ${order.status}`, 400));
+  }
+
+  await order.updateStatus("cancelled", req.body.reason || "Cancelled by customer", req.user._id);
+
+  // Restore stock
+  for (const item of order.items){
+    await Product.findByIdAndUpdate(item.product,{
+        $inc:{stock:item.quantity, salesCount: -item.quantity},
+    });
+  }
+   res.status(200).json({
+    success: true,
+    message: "Order cancelled successfully.",
+    data:    { order },
+  });
+})
+
+// =============================================
+// REQUEST RETURN (Customer)
+// =============================================
+export const requestReturn = catchAsync(async (req, res, next) => {
+    const {reason} = req.body;
+    const order = await Order.findById(req.params.id);
+
+    if(!order) return next(new AppError("Order not found.",404))
+       
+     if(order.user.toString() !== req.user._id.toString()){
+        return next(new AppError("Not authorized.",403));
+
+     }  
+     
+     if(order.status !== "delivered"){
+        return next(new AppError("Only delivered orders can be returned.",400));
+     }
+
+     //10 day return window
+     const deliveredAt = new Date(order.deliveredAt);
+     const daySince = (Date.now() - deliveredAt) / (1000 * 60 * 60 *24);
+     if (daysSince > 10){
+        return next(new AppError("Return window of 10 days has expired.",400));
+     }
+      
+     order.returnRequestedAt = new Date();
+     order.returnReason = reason;
+     await order.updateStatus("returned" , `Return requested: ${reason}`, req.user._id);
+
+    res.status(200).json({
+    success: true,
+    message: "Return request submitted.",
+    data:    { order },
+  });
+
+  // =============================================
+// GET ALL ORDERS (Admin)
+// =============================================
+
+})

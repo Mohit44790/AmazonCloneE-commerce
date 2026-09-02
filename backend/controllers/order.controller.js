@@ -289,3 +289,118 @@ export const getAllOrders = catchAsync(async (req, res, next) => {
     data: { orders },
   });
 })
+
+// =============================================
+// UPDATE ORDER STATUS (Admin)
+// =============================================
+export const updateOrderStatus = catchAsync(async (req,res,next) => {
+    const {status,message, trackingNumber, trackingUrl, shippingCarrier } = req.body;
+
+    const order = await Order.findById(req.params.id);
+    if(!order) return next(new AppError("Order not found.",404));
+
+   const validTransitions = {
+    pending:          ["confirmed", "cancelled"],
+    confirmed:        ["processing", "cancelled"],
+    processing:       ["shipped",   "cancelled"],
+    shipped:          ["out_for_delivery"],
+    out_for_delivery: ["delivered"],
+    delivered:        ["returned"],
+    returned:         ["refunded"],
+  };
+
+  if (!validTransitions[order.status]?.includes(status)) {
+    return next(new AppError(`Cannot transition from "${order.status}" to "${status}".`, 400));
+  }
+
+  // Add tracking to items if shipping
+  if(status === "shipped" && trackingNumber) {
+    order.items.forEach((item) => {
+        item.trackingNumber = trackingNumber;
+        item.trackingUrl = trackingUrl;
+        item.shippingCarrier = shippingCarrier;
+        item.itemStatus = "shipped";
+    });
+  }
+   if (status === "delivered") {
+    order.items.forEach((item) => { item.itemStatus = "delivered"; item.deliveredAt = new Date(); });
+  }
+
+  await order.updateStatus(status, message || `Order ${status}`, req.user._id);
+
+  res.status(200).json({
+    success: true,
+    message: `Order status updated to ${status}.`,
+    data:    { order },
+  });
+
+
+})
+  // =============================================
+// UPDATE PAYMENT STATUS (Admin)
+// =============================================
+export const updatePaymentStatus = catchAsync(async (req, res, next) => {
+    const { paymentStatus, transactions , gateway } = req.body;
+    const order = await Order.findById(req.params.id);
+    if(!order) return next(new AppError("Order not found.",404));
+
+    order.paymentStatus = paymentStatus;
+    if(transactionId) order.payment.transactionsId = transactionId;
+    if(gateway) order.payment.gateway = gateway;
+    if(paymentStatus === "paid") order.payment.paidAt = new Date();
+
+    await order.save();
+
+    res.status(200).json({
+        success: true,
+        message:"Payment status update.",
+        data:{order},
+    })
+  })
+
+// =============================================
+// GET SELLER ORDERS
+// =============================================
+
+export const getSellerOrders = catchAsync(async (req,res,next) =>{
+    const page = Math.max(1, parseInt(req.query.page) || 1);
+    const limit = Math.min(50, parseInt(req.query.limit) || 20);
+    const skip = (page - 1) * limit;
+
+    const filter = {"items.seller": req.user._id};
+    if(req.query.status) filter["items.seller.itemsStatus"] = req.query.status;
+
+    const [orders, total] = await Promise.all([
+        Order.find(filter)
+        .sort("-createdAt")
+        .skip(skip)
+        .limit(limit)
+        .populate("user" , "name email phone")
+        .populate("items.product","name images slug"),
+        Order.countDocuments(filter),
+    ]);
+    //Filter items to only show this seller's items
+
+    const filtered = orders.map((order) => {
+        const o = order.toObject();
+        o.items = o.items.filter(
+            (item) => item.seller.toString() === req.user._id.toString()
+        );
+        return o;
+    });
+     res.status(200).json({
+        success:true,
+        pagination:{
+            
+            currentPage:page,
+            totalPages: Math.ceil(total/limit),
+            totalCount: total,
+            limit,
+        },
+        data:{orders:filtered},
+     })
+})
+
+// =============================================
+// UPDATE ITEM STATUS (Seller)
+// =============================================

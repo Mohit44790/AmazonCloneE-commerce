@@ -4,7 +4,7 @@ import { productApi } from "../../../apiData/api/productApi";
 import { categoryApi } from "../../../apiData/api/categoryApi";
 import {
   MdCloudUpload, MdClose, MdAdd, MdRemove, MdSave,
-  MdCheckCircle, MdError, MdArrowBack,
+  MdCheckCircle, MdError, MdArrowBack, MdArrowForward,
 } from "react-icons/md";
  
 /* ── Reusable Input ── */
@@ -247,6 +247,44 @@ const CreateProducts = () => {
     { id: "seo",       label: "SEO & Tags" },
     { id: "flags",     label: "Settings"   },
   ];
+
+  const tabOrder = ["basic", "media", "variants", "shipping", "seo", "flags"];
+const currentIndex = tabOrder.indexOf(tab);
+const isFirstTab = currentIndex === 0;
+const isLastTab = currentIndex === tabOrder.length - 1;
+
+// validate only the fields relevant to a given tab
+const validateTabFields = (tabId) => {
+  const e = {};
+  if (tabId === "basic") {
+    if (!form.name.trim()) e.name = "Product name is required";
+    if (!form.description.trim()) e.description = "Description is required";
+    if (!form.price) e.price = "Price is required";
+    else if (isNaN(form.price) || +form.price < 0) e.price = "Enter a valid price";
+    if (!form.stock && form.stock !== 0) e.stock = "Stock is required";
+    if (!form.category) e.category = "Select a category";
+  }
+  if (tabId === "media") {
+    if (imageFiles.length === 0) e.images = "At least one image is required";
+  }
+  return e;
+};
+
+const handleNext = () => {
+  const errs = validateTabFields(tab);
+  if (Object.keys(errs).length) {
+    setErrors((er) => ({ ...er, ...errs }));
+    return; // stay on this tab, form data already saved in state
+  }
+  setErrors({});
+  const nextIndex = currentIndex + 1;
+  if (nextIndex < tabOrder.length) setTab(tabOrder[nextIndex]);
+};
+
+const handleBack = () => {
+  const prevIndex = currentIndex - 1;
+  if (prevIndex >= 0) setTab(tabOrder[prevIndex]); // data stays intact
+};
  
   if (success) return (
     <div className="min-h-[60vh] flex flex-col items-center justify-center text-white gap-4">
@@ -633,13 +671,39 @@ const CreateProducts = () => {
               hover:border-white/30 rounded-xl text-sm transition-colors">
             Cancel
           </button>
-          <button type="submit" disabled={loading}
-            className="flex items-center gap-2 px-8 py-2.5 bg-[#FF9900] hover:bg-[#F7CA00]
-              text-black font-bold rounded-xl text-sm transition-colors disabled:opacity-50">
-            {loading
-              ? <><span className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin"/> Creating…</>
-              : <><MdSave size={16}/> Create Product</>}
-          </button>
+          {/* Step Navigation Bar */}
+<div className="flex items-center justify-between mt-6 gap-4">
+  <button
+    type="button"
+    onClick={isFirstTab ? () => navigate("/admin/products") : handleBack}
+    className="px-6 py-2.5 border border-white/10 text-gray-400 hover:text-white
+      hover:border-white/30 rounded-xl text-sm transition-colors"
+  >
+    {isFirstTab ? "Cancel" : "← Back"}
+  </button>
+
+  {!isLastTab ? (
+    <button
+      type="button"
+      onClick={handleNext}
+      className="flex items-center gap-2 px-8 py-2.5 bg-[#FF9900] hover:bg-[#F7CA00]
+        text-black font-bold rounded-xl text-sm transition-colors"
+    >
+      Next <MdArrowForward size={16} />
+    </button>
+  ) : (
+    <button
+      type="submit"
+      disabled={loading}
+      className="flex items-center gap-2 px-8 py-2.5 bg-[#FF9900] hover:bg-[#F7CA00]
+        text-black font-bold rounded-xl text-sm transition-colors disabled:opacity-50"
+    >
+      {loading
+        ? <><span className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin"/> Creating…</>
+        : <><MdSave size={16}/> Create Product</>}
+    </button>
+  )}
+</div>
         </div>
       </form>
     </div>

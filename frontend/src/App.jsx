@@ -34,7 +34,9 @@ import ProductDetail from "./pages/customerpage/ProductDetail";
 import Cart from "./pages/customerpage/Cart";
 import MyOrders from "./pages/customerpage/MyOrders";
 import TopsTshirts from "./pages/womenfashion/womenClothing/westernWear/topsTshirts/TopsTshirts";
+import Customers from "./pages/admin/products/Customers";
 import Moods from "./pages/customerpage/Moods";
+import AdminSetting from "./pages/admin/products/AdminSetting";
 // import Symptoms from "./pages/customerpage/Symptoms";
 
 const router = createBrowserRouter([
@@ -85,6 +87,8 @@ const router = createBrowserRouter([
           { path: "/admin/update-product/:id", element: <UpdateProducts />},
           { path: "/admin/purchase", element: <Purchase />},
           { path: "/admin/shipping", element: <Shipping />},
+          { path: "/admin/customers", element: <Customers />},
+          { path: "/admin/settings", element: <AdminSetting/>},
          
         ],
       },

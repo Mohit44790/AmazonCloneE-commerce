@@ -1,8 +1,6 @@
+// models/Order.model.js
 import mongoose from "mongoose";
 
-// =============================================
-// ORDER ITEM SUB-SCHEMA
-// =============================================
 const orderItemSchema = new mongoose.Schema({
   product:  { type: mongoose.Schema.Types.ObjectId, ref: "Product", required: true },
   seller:   { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
@@ -10,19 +8,13 @@ const orderItemSchema = new mongoose.Schema({
   image:    String,
   price:    { type: Number, required: true },
   quantity: { type: Number, required: true },
-  variant: {
-    size:  String,
-    color: String,
-    other: String,
-  },
-  sku: String,
-
+  variant:  { size: String, color: String, other: String },
+  sku:      String,
   itemStatus: {
     type: String,
     enum: ["pending","confirmed","processing","shipped","delivered","cancelled","returned","refunded"],
     default: "pending",
   },
-
   trackingNumber:    String,
   trackingUrl:       String,
   shippingCarrier:   String,
@@ -38,48 +30,37 @@ const orderItemSchema = new mongoose.Schema({
   sellerNote:        String,
 });
 
-// =============================================
-// ORDER SCHEMA
-// =============================================
 const orderSchema = new mongoose.Schema(
   {
     orderNumber: { type: String, unique: true, index: true },
-
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-      index: true,
-    },
-
+    user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true, index: true },
     items: [orderItemSchema],
 
     shippingAddress: {
-      fullName:    { type: String, required: true },
-      phone:       { type: String, required: true },
-      addressLine1:{ type: String, required: true },
+      fullName:     { type: String, required: true },
+      phone:        { type: String, required: true },
+      addressLine1: { type: String, required: true },
       addressLine2: String,
-      city:        { type: String, required: true },
-      state:       { type: String, required: true },
-      country:     { type: String, required: true, default: "India" },
-      pincode:     { type: String, required: true },
-      landmark:    String,
-      addressType: { type: String, enum: ["home","work","other"], default: "home" },
+      city:         { type: String, required: true },
+      state:        { type: String, required: true },
+      country:      { type: String, required: true, default: "India" },
+      pincode:      { type: String, required: true },
+      landmark:     String,
+      addressType:  { type: String, enum: ["home","work","other"], default: "home" },
     },
 
     billingAddress: {
-      fullName:      String,
-      phone:         String,
-      addressLine1:  String,
-      addressLine2:  String,
-      city:          String,
-      state:         String,
-      country:       String,
-      pincode:       String,
-      sameAsShipping:{ type: Boolean, default: true },
+      fullName:       String,
+      phone:          String,
+      addressLine1:   String,
+      addressLine2:   String,
+      city:           String,
+      state:          String,
+      country:        String,
+      pincode:        String,
+      sameAsShipping: { type: Boolean, default: true },
     },
 
-    // Pricing
     subtotal:       { type: Number, required: true },
     shippingCharge: { type: Number, default: 0 },
     taxAmount:      { type: Number, default: 0 },
@@ -88,9 +69,8 @@ const orderSchema = new mongoose.Schema(
     couponDiscount: { type: Number, default: 0 },
     couponCode:     String,
     total:          { type: Number, required: true },
-    totalInPaise:   Number,  // fix: was totalnPaise in pre-save
+    totalInPaise:   Number,
 
-    // Payment
     paymentMethod: {
       type: String,
       enum: ["cod","stripe","razorpay","paypal","upi","netbanking","wallet"],
@@ -103,18 +83,17 @@ const orderSchema = new mongoose.Schema(
       index: true,
     },
     payment: {
-      razorpayOrderId:        String,
-      razorpayPaymentId:      String,
-      razorpaySignature:      String,
-      stripePaymentIntentId:  String,
-      stripeChargeId:         String,
-      transactionId:          String,
-      paidAt:                 Date,
-      gateway:                String,
-      gatewayResponse:        mongoose.Schema.Types.Mixed,
+      razorpayOrderId:       String,
+      razorpayPaymentId:     String,
+      razorpaySignature:     String,
+      stripePaymentIntentId: String,
+      stripeChargeId:        String,
+      transactionId:         String,
+      paidAt:                Date,
+      gateway:               String,
+      gatewayResponse:       mongoose.Schema.Types.Mixed,
     },
 
-    // Order Status
     status: {
       type: String,
       enum: ["pending","confirmed","processing","shipped","out_for_delivery","delivered","cancelled","returned","refunded"],
@@ -122,16 +101,13 @@ const orderSchema = new mongoose.Schema(
       index: true,
     },
 
-    statusHistory: [
-      {
-        status:    String,
-        message:   String,
-        timestamp: { type: Date, default: Date.now },
-        updatedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-      },
-    ],
+    statusHistory: [{
+      status:    String,
+      message:   String,
+      timestamp: { type: Date, default: Date.now },
+      updatedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    }],
 
-    // Dates
     confirmedAt:       Date,
     shippedAt:         Date,
     deliveredAt:       Date,
@@ -142,19 +118,17 @@ const orderSchema = new mongoose.Schema(
     returnApprovedAt:  Date,
     refundedAt:        Date,
 
-    // Invoice
-    invoiceNumber:     { type: String, unique: true, sparse: true },
-    invoiceUrl:        String,
-    invoiceGeneratedAt:Date,
+    invoiceNumber:      { type: String, unique: true, sparse: true },
+    invoiceUrl:         String,
+    invoiceGeneratedAt: Date,
 
-    // Notes
     customerNote: { type: String, maxlength: 500 },
     adminNote:    { type: String, maxlength: 500 },
 
-    isGift:      { type: Boolean, default: false },
-    giftMessage: { type: String, maxlength: 200 },
-    isReviewed:  { type: Boolean, default: false },
-    isCOD:       { type: Boolean, default: false },
+    isGift:     { type: Boolean, default: false },
+    giftMessage:{ type: String, maxlength: 200 },
+    isReviewed: { type: Boolean, default: false },
+    isCOD:      { type: Boolean, default: false },
   },
   {
     timestamps: true,
@@ -163,9 +137,6 @@ const orderSchema = new mongoose.Schema(
   }
 );
 
-// =============================================
-// VIRTUALS
-// =============================================
 orderSchema.virtual("itemCount").get(function () {
   return this.items.reduce((sum, item) => sum + item.quantity, 0);
 });
@@ -174,53 +145,38 @@ orderSchema.virtual("sellerIds").get(function () {
   return [...new Set(this.items.map((item) => item.seller.toString()))];
 });
 
-// =============================================
-// INDEXES
-// =============================================
 orderSchema.index({ user: 1, createdAt: -1 });
 orderSchema.index({ status: 1, createdAt: -1 });
 orderSchema.index({ "items.seller": 1, status: 1 });
 orderSchema.index({ orderNumber: 1 });
 
-// =============================================
-// PRE-SAVE
-// =============================================
-orderSchema.pre("save", async function (next) {
+// ── fix: async pre-save, no next parameter ──
+orderSchema.pre("save", async function () {
   if (this.isNew) {
-    const dateStr = new Date().toISOString().slice(0, 10).replace(/-/g, "");
-    const random  = Math.floor(100000 + Math.random() * 900000);
+    const dateStr  = new Date().toISOString().slice(0, 10).replace(/-/g, "");
+    const random   = Math.floor(100000 + Math.random() * 900000);
     this.orderNumber  = `ORD-${dateStr}-${random}`;
 
     const invRandom   = Math.floor(100000 + Math.random() * 900000);
     this.invoiceNumber = `INV-${dateStr}-${invRandom}`;
 
     this.isCOD        = this.paymentMethod === "cod";
-    this.totalInPaise = Math.round(this.total * 100); // fix: was totalnPaise
+    this.totalInPaise = Math.round(this.total * 100);
 
-    this.statusHistory.push({
-      status:  "pending",
-      message: "Order placed successfully",
-    });
+    this.statusHistory.push({ status: "pending", message: "Order placed successfully" });
   }
-  next();
 });
 
-// =============================================
-// INSTANCE METHODS
-// =============================================
 orderSchema.methods.updateStatus = async function (status, message, updatedBy) {
   this.status = status;
   this.statusHistory.push({ status, message, updatedBy, timestamp: new Date() });
 
   const now = new Date();
-  if (status === "confirmed")  this.confirmedAt = now;
-  if (status === "shipped")    this.shippedAt   = now;
+  if (status === "confirmed") this.confirmedAt = now;
+  if (status === "shipped")   this.shippedAt   = now;
   if (status === "delivered") {
     this.deliveredAt = now;
-    if (this.isCOD) {
-      this.paymentStatus  = "paid";
-      this.payment.paidAt = now;
-    }
+    if (this.isCOD) { this.paymentStatus = "paid"; this.payment.paidAt = now; }
   }
   if (status === "cancelled") this.cancelledAt = now;
   if (status === "refunded")  this.refundedAt  = now;

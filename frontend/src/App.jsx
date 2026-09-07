@@ -34,7 +34,8 @@ import ProductDetail from "./pages/customerpage/ProductDetail";
 import Cart from "./pages/customerpage/Cart";
 import MyOrders from "./pages/customerpage/MyOrders";
 import TopsTshirts from "./pages/womenfashion/womenClothing/westernWear/topsTshirts/TopsTshirts";
-
+import Moods from "./pages/customerpage/Moods";
+// import Symptoms from "./pages/customerpage/Symptoms";
 
 const router = createBrowserRouter([
   { path: "/login", element: <Register /> },
@@ -44,7 +45,8 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: "products/:id",      element: <ProductDetail /> },
-     
+      // { path: "himanshi",      element: <Symptoms /> },
+       { path: "himanshi",      element: <Moods /> },
       
       { path: "cart",              element: <Cart /> },
       { path: "my-orders",         element: <MyOrders /> },

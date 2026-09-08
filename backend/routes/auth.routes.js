@@ -5,6 +5,7 @@ import { body } from "express-validator";
 
 import {
   protect,
+  restrictTo,
   validate,
 } from "../middlewares/errorHandler.js";
 
@@ -204,7 +205,7 @@ router.get(
 // router.get("/me",     getMe);
 router.patch("/me",   updateMe);
 
-// ── Admin stats ──────────────────────────────
+// // ── Admin stats ──────────────────────────────
 router.get(
   "/stats",
   restrictTo("admin", "superadmin"),

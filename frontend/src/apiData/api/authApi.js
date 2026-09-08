@@ -59,6 +59,15 @@ export const authApi = {
   },
 
   // =========================
+  // UPDATE MY PROFILE
+  // =========================
+  updateMe: async (payload) => {
+    const { data } = await api.patch("/auth/me", payload);
+
+    return data.data.user;
+  },
+
+  // =========================
   // REFRESH TOKEN
   // =========================
   refreshToken: async () => {
@@ -128,6 +137,85 @@ export const authApi = {
     const { data } = await api.post(
       "/auth/resend-verification"
     );
+
+    return data;
+  },
+
+  // =========================
+  // GET ALL USERS (Admin)
+  // =========================
+  getAllUsers: async (params = {}) => {
+    const { data } = await api.get("/auth", { params });
+
+    return data; // { success, pagination, data: { users } }
+  },
+
+  // =========================
+  // GET SINGLE USER (Admin)
+  // =========================
+  getUser: async (id) => {
+    const { data } = await api.get(`/auth/${id}`);
+
+    return data.data.user;
+  },
+
+  // =========================
+  // GET USER STATS (Admin)
+  // =========================
+  getUserStats: async () => {
+    const { data } = await api.get("/auth/stats");
+
+    return data.data;
+  },
+
+  // =========================
+  // BAN USER (Admin)
+  // =========================
+  banUser: async (id, reason) => {
+    const { data } = await api.patch(`/auth/${id}/ban`, {
+      reason,
+    });
+
+    return data;
+  },
+
+  // =========================
+  // UNBAN USER (Admin)
+  // =========================
+  unbanUser: async (id) => {
+    const { data } = await api.patch(`/auth/${id}/unban`);
+
+    return data;
+  },
+
+  // =========================
+  // VERIFY SELLER (Admin)
+  // =========================
+  verifySeller: async (id, verified = true) => {
+    const { data } = await api.patch(
+      `/auth/${id}/verify-seller`,
+      { verified }
+    );
+
+    return data.data.user;
+  },
+
+  // =========================
+  // CHANGE ROLE (Super Admin)
+  // =========================
+  changeRole: async (id, role) => {
+    const { data } = await api.patch(`/auth/${id}/role`, {
+      role,
+    });
+
+    return data.data.user;
+  },
+
+  // =========================
+  // DELETE USER (Super Admin)
+  // =========================
+  deleteUser: async (id) => {
+    const { data } = await api.delete(`/auth/${id}`);
 
     return data;
   },

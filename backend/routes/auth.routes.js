@@ -9,9 +9,15 @@ import {
 } from "../middlewares/errorHandler.js";
 
 import {
+  banUser,
   changePassword,
+  changeRole,
+  deleteUser,
   forgotPassword,
+  getAllUsers,
   getMe,
+  getUser,
+  getUserStats,
   login,
   logout,
   logoutAll,
@@ -19,7 +25,10 @@ import {
   register,
   resendVerificationEmail,
   resetPassword,
+  unbanUser,
+  updateMe,
   verifyEmail,
+  verifySeller,
 } from "../controllers/auth.controller.js";
 
 const router = express.Router();
@@ -189,6 +198,63 @@ router.get(
   "/me",
   protect,
   getMe
+);
+
+// ── My profile ───────────────────────────────
+// router.get("/me",     getMe);
+router.patch("/me",   updateMe);
+
+// ── Admin stats ──────────────────────────────
+router.get(
+  "/stats",
+  restrictTo("admin", "superadmin"),
+  getUserStats
+);
+
+// ── Admin — list & detail ────────────────────
+router.get(
+  "/",
+  restrictTo("admin", "superadmin"),
+  getAllUsers
+);
+
+router.get(
+  "/:id",
+  restrictTo("admin", "superadmin"),
+  getUser
+);
+
+// ── Admin — ban / unban ──────────────────────
+router.patch(
+  "/:id/ban",
+  restrictTo("admin", "superadmin"),
+  banUser
+);
+
+router.patch(
+  "/:id/unban",
+  restrictTo("admin", "superadmin"),
+  unbanUser
+);
+
+// ── Admin — verify seller ────────────────────
+router.patch(
+  "/:id/verify-seller",
+  restrictTo("admin", "superadmin"),
+  verifySeller
+);
+
+// ── Super Admin — role change & delete ───────
+router.patch(
+  "/:id/role",
+  restrictTo("superadmin"),
+  changeRole
+);
+
+router.delete(
+  "/:id",
+  restrictTo("superadmin"),
+  deleteUser
 );
 
 export default router;

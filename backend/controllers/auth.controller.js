@@ -826,3 +826,219 @@ export const getMe = catchAsync(
     });
   }
 );
+
+
+export const getAllUsers = catchAsync(async (req, res, next) => {
+  const page  = Math.max(1,   parseInt(req.query.page)  || 1);
+  const limit = Math.min(100, parseInt(req.query.limit) || 15);
+  const skip  = (page - 1) * limit;
+
+  const filter = {};
+
+  if (req.query.role) filter.role = req.query.role;
+
+  if (req.query.status) {
+    if (req.query.status === "banned")   filter.isBanned  = true;
+    if (req.query.status === "inactive") filter.isActive  = false;
+    if (req.query.status === "active")   { filter.isActive = true; filter.isBanned = false; }
+  }
+
+  if (req.query.search) {
+    const re = new RegExp(
+      req.query.search.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"
+    );
+    filter.$or = [{ name: re }, { email: re }];
+  }
+
+  const sortMap = {
+    "-createdAt":   { createdAt:   -1 },
+    "createdAt":    { createdAt:    1 },
+    "name":         { name:         1 },
+    "-name":        { name:        -1 },
+    "-totalOrders": { totalOrders: -1 },
+    "-totalSpent":  { totalSpent:  -1 },
+  };
+  const sort = sortMap[req.query.sort] || { createdAt: -1 };
+
+  const [users, total] = await Promise.all([
+    User.find(filter)
+      .sort(sort)
+      .skip(skip)
+      .limit(limit)
+      .select("-password -refreshTokens -emailVerificationToken -passwordResetToken"),
+    User.countDocuments(filter),
+  ]);
+
+  res.status(200).json({
+    success: true,
+    pagination: {
+      currentPage: page,
+      totalPages:  Math.ceil(total / limit),
+      totalCount:  total,
+      limit,
+    },
+    data: { users },
+  });
+});
+
+// =============================================
+// GET SINGLE USER (Admin)
+// =============================================
+export const getUser = catchAsync(async (req, res, next) => {
+  const user = await User.findById(req.params.id)
+    .select("-password -refreshTokens -emailVerificationToken -passwordResetToken");
+
+  if (!user) return next(new AppError("User not found.", 404));
+
+  res.status(200).json({ success: true, data: { user } });
+});
+
+// =============================================
+// GET MY PROFILE (Logged-in user)
+// =============================================
+// export const getMe = catchAsync(async (req, res, next) => {
+//   const user = await User.findById(req.user._id)
+//     .select("-password -refreshTokens -emailVerificationToken -passwordResetToken");
+
+//   res.status(200).json({ success: true, data: { user } });
+// });
+
+// =============================================
+// UPDATE MY PROFILE
+// =============================================
+export const updateMe = catchAsync(async (req, res, next) => {
+  const forbidden = ["password", "role", "isBanned", "adminApproved"];
+  forbidden.forEach((f) => delete req.body[f]);
+
+  const user = await User.findByIdAndUpdate(
+    req.user._id,
+    { $set: req.body },
+    { new: true, runValidators: true }
+  ).select("-password -refreshTokens");
+
+  res.status(200).json({ success: true, message: "Profile updated.", data: { user } });
+});
+
+// =============================================
+// BAN USER (Admin)
+// =============================================
+export const banUser = catchAsync(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+  if (!user) return next(new AppError("User not found.", 404));
+
+  if (user.role === "superadmin")
+    return next(new AppError("Cannot ban a superadmin.", 403));
+
+  user.isBanned  = true;
+  user.banReason = req.body.reason || "Banned by admin";
+  await user.save({ validateBeforeSave: false });
+
+  res.status(200).json({ success: true, message: "User banned successfully." });
+});
+
+// =============================================
+// UNBAN USER (Admin)
+// =============================================
+export const unbanUser = catchAsync(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+  if (!user) return next(new AppError("User not found.", 404));
+
+  user.isBanned  = false;
+  user.banReason = null;
+  await user.save({ validateBeforeSave: false });
+
+  res.status(200).json({ success: true, message: "User unbanned successfully." });
+});
+
+// =============================================
+// CHANGE ROLE (Super Admin only)
+// =============================================
+export const changeRole = catchAsync(async (req, res, next) => {
+  const { role } = req.body;
+  const validRoles = ["customer", "seller", "admin", "superadmin"];
+
+  if (!validRoles.includes(role))
+    return next(new AppError(`Invalid role. Must be one of: ${validRoles.join(", ")}`, 400));
+
+  const user = await User.findByIdAndUpdate(
+    req.params.id,
+    { role },
+    { new: true }
+  ).select("-password -refreshTokens");
+
+  if (!user) return next(new AppError("User not found.", 404));
+
+  res.status(200).json({ success: true, message: "Role updated.", data: { user } });
+});
+
+// =============================================
+// VERIFY SELLER (Admin)
+// =============================================
+export const verifySeller = catchAsync(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+  if (!user) return next(new AppError("User not found.", 404));
+
+  if (user.role !== "seller")
+    return next(new AppError("User is not a seller.", 400));
+
+  user.sellerProfile.isVerified = req.body.verified !== false;
+  await user.save({ validateBeforeSave: false });
+
+  res.status(200).json({
+    success: true,
+    message: `Seller ${user.sellerProfile.isVerified ? "verified" : "unverified"}.`,
+    data: { user },
+  });
+});
+
+// =============================================
+// DELETE USER (Super Admin)
+// =============================================
+export const deleteUser = catchAsync(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+  if (!user) return next(new AppError("User not found.", 404));
+
+  if (user.role === "superadmin")
+    return next(new AppError("Cannot delete a superadmin.", 403));
+
+  await user.softDelete();
+
+  res.status(200).json({ success: true, message: "User deleted successfully." });
+});
+
+// =============================================
+// GET USER STATS (Admin)
+// =============================================
+export const getUserStats = catchAsync(async (req, res, next) => {
+  const [stats, roleBreakdown] = await Promise.all([
+    User.aggregate([
+      {
+        $group: {
+          _id:        null,
+          total:      { $sum: 1 },
+          active:     { $sum: { $cond: [{ $and: [{ $eq: ["$isActive", true] }, { $eq: ["$isBanned", false] }] }, 1, 0] } },
+          banned:     { $sum: { $cond: ["$isBanned", 1, 0] } },
+          verified:   { $sum: { $cond: ["$isEmailVerified", 1, 0] } },
+          totalSpent: { $sum: "$totalSpent" },
+        },
+      },
+    ]),
+    User.aggregate([
+      { $group: { _id: "$role", count: { $sum: 1 } } },
+    ]),
+  ]);
+
+  const todayStart = new Date();
+  todayStart.setHours(0, 0, 0, 0);
+
+  const newToday = await User.countDocuments({ createdAt: { $gte: todayStart } });
+
+  res.status(200).json({
+    success: true,
+    data: {
+      stats:         stats[0] || {},
+      roleBreakdown,
+      newToday,
+    },
+  });
+});

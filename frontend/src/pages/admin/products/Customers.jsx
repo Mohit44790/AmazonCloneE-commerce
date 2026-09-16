@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import axios from "axios";
+import { authApi } from "../../../apiData/api/authApi";
 import {
   MdSearch, MdRefresh, MdClose, MdPerson,
   MdCheckCircle, MdError, MdBlock, MdVerified,
@@ -35,19 +35,12 @@ const Customers = () => {
     setTimeout(() => setToast(null), 3000);
   };
 
-  const api = axios.create({
-    baseURL: "http://localhost:5000/api/v1",
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("accessToken") || ""}`,
-    },
-  });
-
   const fetchUsers = useCallback(async () => {
     setLoading(true);
     try {
       const params = {};
       Object.entries(filters).forEach(([k, v]) => { if (v !== "") params[k] = v; });
-      const { data } = await api.get("/users", { params });
+      const data = await authApi.getAllUsers(params);
       setUsers(data.data?.users || []);
       setPagination(data.pagination || {});
     } catch {
@@ -64,7 +57,8 @@ const Customers = () => {
   const handleBan = async (userId, ban) => {
     setUpdating(userId);
     try {
-      await api.patch(`/users/${userId}/${ban ? "ban" : "unban"}`);
+      if (ban) await authApi.banUser(userId);
+      else await authApi.unbanUser(userId);
       showToast(ban ? "User banned" : "User unbanned");
       fetchUsers();
       if (selected?._id === userId)
@@ -79,7 +73,7 @@ const Customers = () => {
   const handleRoleChange = async (userId, role) => {
     setUpdating(userId);
     try {
-      await api.patch(`/users/${userId}/role`, { role });
+      await authApi.changeRole(userId, role);
       showToast("Role updated");
       fetchUsers();
       if (selected?._id === userId) setSelected(p => ({ ...p, role }));

@@ -23,7 +23,7 @@ const TopsTshirts = () => {
           <h1>Western Wear</h1>
          </Link>
            <h1 className="font-semibold px-5">Tops, T-shirts & Shirts</h1>
-           <Link to={"/women/western-wear/tops-tshirts"} className="flex px-8 items-center text-sm" >
+           <Link to={"/women/western-wear/tshirts"} className="flex px-8 items-center text-sm" >
            T-Shirts</Link>
            <Link to={"/women/western-wear/shirts"} className="flex px-8 items-center text-sm" >
            Shirts</Link>

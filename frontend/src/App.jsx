@@ -37,6 +37,10 @@ import TopsTshirts from "./pages/womenfashion/womenClothing/westernWear/topsTshi
 import Customers from "./pages/admin/products/Customers";
 import Moods from "./pages/customerpage/Moods";
 import AdminSetting from "./pages/admin/products/AdminSetting";
+import Tshirts from "./pages/womenfashion/womenClothing/westernWear/topsTshirts/Tshirts";
+import Shirts from "./pages/womenfashion/womenClothing/westernWear/topsTshirts/Shirts";
+import Polos from "./pages/womenfashion/womenClothing/westernWear/topsTshirts/Polos";
+import ButtonDownshirt from "./pages/womenfashion/womenClothing/westernWear/topsTshirts/ButtonDownshirt";
 // import Symptoms from "./pages/customerpage/Symptoms";
 
 const router = createBrowserRouter([
@@ -69,7 +73,11 @@ const router = createBrowserRouter([
       {path:"/womenfashion/womenClothing/ethinicWear/Kurtas-Suits",element:<KurtasKurtis/>},
       {path:"/womenfashion/womenClothing/ethinicWear/Lehenga-Cholis",element:<LehengaCholis/>},
       {path:"/womenfashion/womenClothing/ethinicWear/Sarees",element:<Sarees/>},
-      {path:"/western-weat/tops-t-shirts-shirts", element:<TopsTshirts/>}
+      {path:"/western-weat/tops-t-shirts-shirts", element:<TopsTshirts/>},
+      {path:"/women/western-wear/tshirts", element:<Tshirts/>},
+      {path:"/women/western-wear/shirts", element:<Shirts/>},
+      {path:"/women/western-wear/polos", element:<Polos/>},
+      {path:"/western-weat/tops-t-shirts-shirts", element:<ButtonDownshirt/>},
     ],
   },
   // Admin routes — protected, admin only

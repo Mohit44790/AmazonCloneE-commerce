@@ -2,6 +2,7 @@ import React from 'react'
 import AmazonFashion from '../../AmazonFashion'
 import { Link} from 'react-router-dom'
 import { IoIosArrowBack } from 'react-icons/io'
+import { westernWearbanner } from '../../../../component/data/womenfashion'
 
 const WesternWearlist = [
   {label:"Tops & T-Shirts & Shirts" , link:"/western-weat/tops-t-shirts-shirts"},
@@ -44,8 +45,18 @@ const WesternWear = () => {
             ))}
           </div>
         </div>
-        <div className='flex-1 min-w-0 w-full'>
-          <h1>side</h1>
+        <div className='flex-1 bg-white min-w-0 w-full'>
+          
+          <div className="bg-white p-4">
+            <div className="flex gap-2">
+              {westernWearbanner.map((item,id) => (
+                <Link to={item.path} key={id}>
+                  <img src={item.image} alt={item.name} className="w-28" />
+                  <p className="text-sm text-center font-semibold mt-1">{item.name}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>

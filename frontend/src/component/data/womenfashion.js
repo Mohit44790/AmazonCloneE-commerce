@@ -325,43 +325,52 @@ export const westernWearbanner = [
   {
     id:52,
     image:"https://m.media-amazon.com/images/G/31/WA2026/Halos/Body_con_688y3k._SS300_QL85_FMpng_.png",
-    path:"/women/westernwear/dresses"
+    path:"/women/westernwear/dresses",
+    name:"Dresses"
   },
   {
     id:53,
     image:"https://m.media-amazon.com/images/G/31/WA2026/Halos/Fit_tops_688y3k._SS300_QL85_FMpng_.png",
-    path:"/women/westernwear/tops"
+    path:"/women/westernwear/tops",
+    name:"Tops"
   },
   {
     id:54,
     image:"https://m.media-amazon.com/images/G/31/WA2026/March/XCM/Shirt_688y3k._SS300_QL85_FMpng_.png",
-    path:"/women/westernwear/shirts"
+    path:"/women/westernwear/shirts",
+    name:"Shirts"
   },
   {
     id:55,
     image:"https://m.media-amazon.com/images/G/31/WA2026/MayART/extra/Trousers_688y3k._SS300_QL85_FMpng_.png",
-    path:"/women/westernwear/trousers"
+    path:"/women/westernwear/trousers",
+    name:"Trousers"
   },
   {
     id:56,
     image:"https://m.media-amazon.com/images/G/31/WA2026/Halos/denims_688y3k._SS300_QL85_.jpg",
-    path:"/women/westernwear/denims"
+    path:"/women/westernwear/denims",
+    name:"Denims"
   },
   {
     id:57,
     image:"https://m.media-amazon.com/images/G/31/WA2026/March/XCM/Shorts_688y3k._SS300_QL85_FMpng_.png",
-    path:"/women/westernwear/shorts"
+    path:"/women/westernwear/shorts",
+    name:"Shorts"
   },
   {
     id:58,
     image:"https://m.media-amazon.com/images/G/31/WA2026/March/XCM/Skirtt_688y3k._SS300_QL85_FMpng_.png",
-    path:"/women/westernwear/skirts"
+    path:"/women/westernwear/skirts",
+    name:"Skirts"
   },
 ]
 
-export const westernWearbrands = [
-  {}
-]
+// export const westernWearbrands = [
+  
+// ]
+
+
 // export const lingerieCloths =[
 // {
 //   id: 16,

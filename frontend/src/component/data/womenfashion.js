@@ -320,6 +320,48 @@ export const lehengaStyle = [
   },
 ]
 
+
+export const westernWearbanner = [
+  {
+    id:52,
+    image:"https://m.media-amazon.com/images/G/31/WA2026/Halos/Body_con_688y3k._SS300_QL85_FMpng_.png",
+    path:"/women/westernwear/dresses"
+  },
+  {
+    id:53,
+    image:"https://m.media-amazon.com/images/G/31/WA2026/Halos/Fit_tops_688y3k._SS300_QL85_FMpng_.png",
+    path:"/women/westernwear/tops"
+  },
+  {
+    id:54,
+    image:"https://m.media-amazon.com/images/G/31/WA2026/March/XCM/Shirt_688y3k._SS300_QL85_FMpng_.png",
+    path:"/women/westernwear/shirts"
+  },
+  {
+    id:55,
+    image:"https://m.media-amazon.com/images/G/31/WA2026/MayART/extra/Trousers_688y3k._SS300_QL85_FMpng_.png",
+    path:"/women/westernwear/trousers"
+  },
+  {
+    id:56,
+    image:"https://m.media-amazon.com/images/G/31/WA2026/Halos/denims_688y3k._SS300_QL85_.jpg",
+    path:"/women/westernwear/denims"
+  },
+  {
+    id:57,
+    image:"https://m.media-amazon.com/images/G/31/WA2026/March/XCM/Shorts_688y3k._SS300_QL85_FMpng_.png",
+    path:"/women/westernwear/shorts"
+  },
+  {
+    id:58,
+    image:"https://m.media-amazon.com/images/G/31/WA2026/March/XCM/Skirtt_688y3k._SS300_QL85_FMpng_.png",
+    path:"/women/westernwear/skirts"
+  },
+]
+
+export const westernWearbrands = [
+  {}
+]
 // export const lingerieCloths =[
 // {
 //   id: 16,

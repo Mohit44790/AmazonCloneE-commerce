@@ -18,7 +18,7 @@ const Tshirts = () => {
          <IoIosArrowBack />
           <h1>Women</h1>
          </Link>
-         <Link to={"/women/western-wear"} className="flex items-center text-sm" >
+         <Link to={"/women/westernwear"} className="flex items-center text-sm" >
          <IoIosArrowBack />
           <h1>Western Wear</h1>
          </Link>

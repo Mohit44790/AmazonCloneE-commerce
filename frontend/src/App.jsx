@@ -41,6 +41,10 @@ import Tshirts from "./pages/womenfashion/womenClothing/westernWear/topsTshirts/
 import Shirts from "./pages/womenfashion/womenClothing/westernWear/topsTshirts/Shirts";
 import Polos from "./pages/womenfashion/womenClothing/westernWear/topsTshirts/Polos";
 import ButtonDownshirt from "./pages/womenfashion/womenClothing/westernWear/topsTshirts/ButtonDownshirt";
+import DressesJumpsuits from "./pages/womenfashion/womenClothing/westernWear/dressesJumpsuits/DressesJumpsuits";
+import Dresses from "./pages/womenfashion/womenClothing/westernWear/dressesJumpsuits/Dresses";
+import Jumpsuits from "./pages/womenfashion/womenClothing/westernWear/dressesJumpsuits/Jumpsuits";
+import Trousers from "./pages/womenfashion/womenClothing/westernWear/Trousers";
 // import Symptoms from "./pages/customerpage/Symptoms";
 
 const router = createBrowserRouter([
@@ -73,11 +77,15 @@ const router = createBrowserRouter([
       {path:"/womenfashion/womenClothing/ethinicWear/Kurtas-Suits",element:<KurtasKurtis/>},
       {path:"/womenfashion/womenClothing/ethinicWear/Lehenga-Cholis",element:<LehengaCholis/>},
       {path:"/womenfashion/womenClothing/ethinicWear/Sarees",element:<Sarees/>},
-      {path:"/western-weat/tops-t-shirts-shirts", element:<TopsTshirts/>},
+      {path:"/western-wear/tops-t-shirts-shirts", element:<TopsTshirts/>},
       {path:"/women/western-wear/tshirts", element:<Tshirts/>},
       {path:"/women/western-wear/shirts", element:<Shirts/>},
       {path:"/women/western-wear/polos", element:<Polos/>},
-      {path:"/western-weat/tops-t-shirts-shirts", element:<ButtonDownshirt/>},
+      {path:"/western-wear/tops-t-shirts-shirts", element:<ButtonDownshirt/>},
+      {path:"/western-wear/dresses-jumpsuits", element:<DressesJumpsuits/>},
+      {path:"/western-wear/dresses-jumpsuits/dresses", element:<Dresses/>},
+      {path:"/western-wear/dresses-jumpsuits/jumpsuits", element:<Jumpsuits/>},
+      {path:"/western-wear/trousers", element:<Trousers/>},
     ],
   },
   // Admin routes — protected, admin only

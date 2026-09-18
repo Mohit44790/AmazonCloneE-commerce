@@ -22,7 +22,7 @@ const Polos = () => {
          <IoIosArrowBack />
           <h1>Western Wear</h1>
          </Link>
-         <Link to={"/women/western-wear"} className="flex items-center text-sm" >
+         <Link to={"/western-wear/tops-t-shirts-shirts"} className="flex items-center text-sm" >
          <IoIosArrowBack />
           <h1>Tops, T-Shirts & Shirts</h1>
          </Link>

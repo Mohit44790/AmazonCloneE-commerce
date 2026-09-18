@@ -3,7 +3,7 @@ import AmazonFashion from '../../../AmazonFashion'
 import { Link } from 'react-router-dom'
 import { IoIosArrowBack } from 'react-icons/io'
 
-const Tshirts = () => {
+const Dresses = () => {
   return (
   <div>
       <AmazonFashion/>
@@ -22,11 +22,11 @@ const Tshirts = () => {
          <IoIosArrowBack />
           <h1>Western Wear</h1>
          </Link>
-         <Link to={"/western-wear/tops-t-shirts-shirts"} className="flex items-center text-sm" >
+         <Link to={"/western-wear/dresses-jumpsuits"} className="flex items-center text-sm" >
          <IoIosArrowBack />
-          <h1>Tops, T-Shirts & Shirts</h1>
+          <h1> Dresses & Jumpsuits</h1>
          </Link>
-           <h1 className="font-semibold px-5">T-shirts</h1>
+           <h1 className="font-semibold px-5">Dresses</h1>
           
         </div>
         <div className='flex-1 bg-white min-w-0 w-full'>
@@ -40,4 +40,4 @@ const Tshirts = () => {
   )
 }
 
-export default Tshirts
+export default Dresses

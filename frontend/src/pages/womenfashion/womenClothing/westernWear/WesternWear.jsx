@@ -5,7 +5,7 @@ import { IoIosArrowBack } from 'react-icons/io'
 import { westernWearbanner } from '../../../../component/data/womenfashion'
 
 const WesternWearlist = [
-  {label:"Tops & T-Shirts & Shirts" , link:"/western-weat/tops-t-shirts-shirts"},
+  {label:"Tops & T-Shirts & Shirts" , link:"/western-wear/tops-t-shirts-shirts"},
   {label:"Dresses & Jumpsuits", link:"/western-wear/dresses-jumpsuits"},
   {label:"Trousers", link:"/western-wear/trousers"},
   {label:"Jeans & Jeggings", link:"/western-wear/jeans-jeggings"},

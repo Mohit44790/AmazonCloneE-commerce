@@ -45,6 +45,12 @@ import DressesJumpsuits from "./pages/womenfashion/womenClothing/westernWear/dre
 import Dresses from "./pages/womenfashion/womenClothing/westernWear/dressesJumpsuits/Dresses";
 import Jumpsuits from "./pages/womenfashion/womenClothing/westernWear/dressesJumpsuits/Jumpsuits";
 import Trousers from "./pages/womenfashion/womenClothing/westernWear/Trousers";
+import JeansJeggings from "./pages/womenfashion/womenClothing/westernWear/JeansJeggings";
+import SkirtsShorts from "./pages/womenfashion/womenClothing/westernWear/skirtsShorts/SkirtsShorts";
+import Skirts from "./pages/womenfashion/womenClothing/westernWear/skirtsShorts/Skirts";
+import Shorts from "./pages/womenfashion/womenClothing/westernWear/skirtsShorts/Shorts";
+import Shrugs from "./pages/womenfashion/womenClothing/westernWear/Shrugs";
+import Leggings from "./pages/womenfashion/womenClothing/westernWear/skirtsShorts/Leggings";
 // import Symptoms from "./pages/customerpage/Symptoms";
 
 const router = createBrowserRouter([
@@ -86,6 +92,12 @@ const router = createBrowserRouter([
       {path:"/western-wear/dresses-jumpsuits/dresses", element:<Dresses/>},
       {path:"/western-wear/dresses-jumpsuits/jumpsuits", element:<Jumpsuits/>},
       {path:"/western-wear/trousers", element:<Trousers/>},
+      {path:"/western-wear/jeans-jeggings", element:<JeansJeggings/>},
+      {path:"/western-wear/skirts-shortss", element:<SkirtsShorts/>},
+      {path:"/western-wear/skirts-shortss/skirts", element:<Skirts/>},
+      {path:"/western-wear/skirts-shortss/shorts", element:<Shorts/>},
+      {path:"/western-wear/shrugs", element:<Shrugs/>},
+      {path:"/western-wear/leggings", element:<Leggings/>},
     ],
   },
   // Admin routes — protected, admin only

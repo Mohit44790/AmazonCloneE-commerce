@@ -30,7 +30,7 @@ const WesternWear = () => {
           <IoIosArrowBack/>
           <h1>Clothing & Accessories</h1>
           </Link>
-          <Link to={"/women/western-wear"} className="flex items-center gap-1 text-sm"  >
+          <Link to={"/women/clothing"} className="flex items-center gap-1 text-sm"  >
           <IoIosArrowBack/>
           <h1>Women</h1>
           </Link>

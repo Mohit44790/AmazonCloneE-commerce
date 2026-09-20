@@ -51,6 +51,16 @@ import Skirts from "./pages/womenfashion/womenClothing/westernWear/skirtsShorts/
 import Shorts from "./pages/womenfashion/womenClothing/westernWear/skirtsShorts/Shorts";
 import Shrugs from "./pages/womenfashion/womenClothing/westernWear/Shrugs";
 import Leggings from "./pages/womenfashion/womenClothing/westernWear/skirtsShorts/Leggings";
+import ActiveDresses from "./pages/womenfashion/womenClothing/clothing/sportswear/ActiveDresses";
+import AthleticSocks from "./pages/womenfashion/womenClothing/clothing/sportswear/athleticSocks/AthleticSocks";
+import Vests from "./pages/womenfashion/womenClothing/clothing/sportswear/Vests";
+import Innerwear from "./pages/womenfashion/womenClothing/clothing/sportswear/innerwear/Innerwear";
+import Sets from "./pages/womenfashion/womenClothing/clothing/sportswear/sets/Sets";
+import ShirtTees from "./pages/womenfashion/womenClothing/clothing/sportswear/shirtsTees/ShirtTees";
+import SweatshirtsHoodies from "./pages/womenfashion/womenClothing/clothing/sportswear/SweatshirtsHoodies";
+import TrackJackets from "./pages/womenfashion/womenClothing/clothing/sportswear/TrackJackets";
+import BaseLayersCompression from "./pages/womenfashion/womenClothing/clothing/sportswear/baseLayersCompression/BaseLayersCompression";
+import SkirtsSkorts from "./pages/womenfashion/womenClothing/clothing/sportswear/skirtsSkorts/SkirtsSkorts";
 // import Symptoms from "./pages/customerpage/Symptoms";
 
 const router = createBrowserRouter([
@@ -98,6 +108,16 @@ const router = createBrowserRouter([
       {path:"/western-wear/skirts-shortss/shorts", element:<Shorts/>},
       {path:"/western-wear/shrugs", element:<Shrugs/>},
       {path:"/western-wear/leggings", element:<Leggings/>},
+      {path:"/women/clothing/sports-wear/activedresses", element:<ActiveDresses/>},
+      {path:"/women/clothing/sports-wear/athletic-socks", element:<AthleticSocks/>},
+      {path:"/women/clothing/sports-wear/vests", element:<Vests/>},
+      {path:"/women/clothing/sports-wear/innerwear", element:<Innerwear/>},
+      {path:"/women/clothing/sports-wear/sets", element:<Sets/>},
+      {path:"/women/clothing/sports-wear/shirts-tees", element:<ShirtTees/>},
+      {path:"/women/clothing/sports-wear/sweatshirts-hoodies", element:<SweatshirtsHoodies/>},
+      {path:"/women/clothing/sports-wear/sweatshirts-hoodies", element:<TrackJackets/>},
+      {path:"/women/clothing/sports-wear/base-layers-compression", element:<BaseLayersCompression/>},
+      {path:"/women/clothing/sports-wear/skirts-skorts", element:<SkirtsSkorts/>},
     ],
   },
   // Admin routes — protected, admin only

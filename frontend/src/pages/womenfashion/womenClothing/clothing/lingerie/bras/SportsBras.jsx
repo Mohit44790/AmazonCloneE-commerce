@@ -2,7 +2,7 @@ import React from 'react'
 
 const SportsBras = () => {
   return (
-    <div>SportsBras</div>
+    <div>SportsBras connect for innerwear bras</div>
   )
 }
 

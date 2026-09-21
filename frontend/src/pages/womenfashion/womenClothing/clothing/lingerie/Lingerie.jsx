@@ -24,8 +24,8 @@ const Lingerie = () => {
     <div className='bg-white'>
       <AmazonFashion/>
 
-      <div className='flex'>
-        <div className='w-64 p-2 border-r-2 border-gray-200'>
+      <div className='flex flex-col md:flex-row gap-2 p-2'>
+        <div className='w-72 p-2 border-r-2 border-gray-200'>
           <h1>Category</h1>
           <div className='flex items-center '>
             <IoIosArrowBack />
@@ -37,7 +37,10 @@ const Lingerie = () => {
           </div>
           <div>
             
+           
             <h1 className='px-4 font-semibold'>Lingerie</h1>
+          
+
             {LingerieList.map((item,id) =>(
               <div>
                 <Link key={id} to={item.link}>
@@ -46,10 +49,11 @@ const Lingerie = () => {
               </div>
             ))}
           </div>
+            
         </div>
-        <div className='w-full'>
+        <div className='w-full '>
           <div className='bg-gray-200 p-4'>
-            <div className='flex bg-white p-6'>
+            <div className='flex bg-white p-2'>
               {lingerieCollection.map((item) => (
   <div key={item.id} className="text-center">
    <Link    to={item.link}><img

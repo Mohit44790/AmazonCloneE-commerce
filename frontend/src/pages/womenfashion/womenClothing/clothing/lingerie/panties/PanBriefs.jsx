@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Briefs = () => {
+const PanBriefs = () => {
   return (
     <div>Briefs</div>
   )
 }
 
-export default Briefs
+export default PanBriefs

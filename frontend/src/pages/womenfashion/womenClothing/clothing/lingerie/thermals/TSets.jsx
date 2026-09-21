@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Sets = () => {
+const TSets = () => {
   return (
     <div>Sets</div>
   )
 }
 
-export default Sets
+export default TSets

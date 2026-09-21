@@ -116,10 +116,10 @@ export default function Navbar() {
 
         {/* Logo */}
         <a
-          href="#"
+          href="/"
           className="flex items-center border-2 border-transparent hover:border-white rounded px-2 py-1 transition-colors shrink-0"
         >
-        <img src={amazon} alt="logo" className="w-28 " /><p className="text-white -mt-3">.in</p>
+        <img  src={amazon} alt="logo" className="w-28 " /><p className="text-white -mt-3">.in</p>
         </a>
 
         {/* Location — md+ only */}

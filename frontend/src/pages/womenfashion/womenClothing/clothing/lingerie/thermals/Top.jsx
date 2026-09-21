@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Tops = () => {
+const Top = () => {
   return (
     <div>Tops</div>
   )
 }
 
-export default Tops
+export default Top

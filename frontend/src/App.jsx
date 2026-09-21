@@ -85,6 +85,50 @@ import BaseShirts from "./pages/womenfashion/womenClothing/clothing/sportswear/b
 import BaseShorts from "./pages/womenfashion/womenClothing/clothing/sportswear/baseLayersCompression/BaseShorts";
 import Skorts from "./pages/womenfashion/womenClothing/clothing/sportswear/skirtsSkorts/Skorts";
 import Skirt from "./pages/womenfashion/womenClothing/clothing/sportswear/skirtsSkorts/Skirt";
+import Bras from "./pages/womenfashion/womenClothing/clothing/lingerie/bras/Bras";
+import AdhesiveBras from "./pages/womenfashion/womenClothing/clothing/lingerie/bras/AdhesiveBras";
+import EverydayBras from "./pages/womenfashion/womenClothing/clothing/lingerie/bras/EverydayBras";
+import MastectomyBras from "./pages/womenfashion/womenClothing/clothing/lingerie/bras/MastectomyBras";
+import Panties from "./pages/womenfashion/womenClothing/clothing/lingerie/panties/Panties";
+import Bikinis from "./pages/womenfashion/womenClothing/clothing/lingerie/panties/Bikinis";
+import Boyshorts from "./pages/womenfashion/womenClothing/clothing/lingerie/panties/Boyshorts";
+import GstringThongs from "./pages/womenfashion/womenClothing/clothing/lingerie/panties/GstringThongs";
+import Hipsters from "./pages/womenfashion/womenClothing/clothing/lingerie/panties/Hipsters";
+import PanBriefs from "./pages/womenfashion/womenClothing/clothing/lingerie/panties/PanBriefs";
+import PeriodPanties from "./pages/womenfashion/womenClothing/clothing/lingerie/panties/PeriodPanties";
+import Shapwear from "./pages/womenfashion/womenClothing/clothing/lingerie/shapewear/Shapwear";
+import ControlPanties from "./pages/womenfashion/womenClothing/clothing/lingerie/shapewear/ControlPanties";
+import ShapeLeggings from "./pages/womenfashion/womenClothing/clothing/lingerie/shapewear/ShapeLeggings";
+import ShapingBodysuits from "./pages/womenfashion/womenClothing/clothing/lingerie/shapewear/ShapingBodysuits";
+import ThighSlimmers from "./pages/womenfashion/womenClothing/clothing/lingerie/shapewear/ThighSlimmers";
+import Tops from "./pages/womenfashion/womenClothing/clothing/lingerie/shapewear/Tops";
+import WaistShapers from "./pages/womenfashion/womenClothing/clothing/lingerie/shapewear/WaistShapers";
+import CamisolesTank from "./pages/womenfashion/womenClothing/clothing/lingerie/CamisolesTank";
+import LingerieSets from "./pages/womenfashion/womenClothing/clothing/lingerie/LingerieSets";
+import Accessories from "./pages/womenfashion/womenClothing/clothing/lingerie/accessories/Accessories";
+import BraExtenders from "./pages/womenfashion/womenClothing/clothing/lingerie/accessories/BraExtenders";
+import BreastLiftTape from "./pages/womenfashion/womenClothing/clothing/lingerie/accessories/BreastLiftTape";
+import BreastPetals from "./pages/womenfashion/womenClothing/clothing/lingerie/accessories/BreastPetals";
+import LingerieBags from "./pages/womenfashion/womenClothing/clothing/lingerie/accessories/LingerieBags";
+import LingerieTape from "./pages/womenfashion/womenClothing/clothing/lingerie/accessories/LingerieTape";
+import PadsEnhancers from "./pages/womenfashion/womenClothing/clothing/lingerie/accessories/PadsEnhancers";
+import Strap from "./pages/womenfashion/womenClothing/clothing/lingerie/accessories/Strap";
+import PantyhoseStockings from "./pages/womenfashion/womenClothing/clothing/lingerie/PantyhoseStockings";
+import Thermals from "./pages/womenfashion/womenClothing/clothing/lingerie/thermals/Thermals";
+import Bottoms from "./pages/womenfashion/womenClothing/clothing/lingerie/thermals/Bottoms";
+import Top from "./pages/womenfashion/womenClothing/clothing/lingerie/thermals/Top";
+import TSets from "./pages/womenfashion/womenClothing/clothing/lingerie/thermals/TSets";
+import Bodysuits from "./pages/womenfashion/womenClothing/clothing/lingerie/Bodysuits";
+import BustiersCorsets from "./pages/womenfashion/womenClothing/clothing/lingerie/BustiersCorsets";
+import GartersSuspenders from "./pages/womenfashion/womenClothing/clothing/lingerie/GartersSuspenders";
+import Babydolls from "./pages/womenfashion/womenClothing/clothing/sleepLoungeWear/Babydolls";
+import LoungeShorts from "./pages/womenfashion/womenClothing/clothing/sleepLoungeWear/LoungeShorts";
+import NightiesNightdresses from "./pages/womenfashion/womenClothing/clothing/sleepLoungeWear/NightiesNightdresses";
+import NightwearSets from "./pages/womenfashion/womenClothing/clothing/sleepLoungeWear/NightwearSets";
+import Onesies from "./pages/womenfashion/womenClothing/clothing/sleepLoungeWear/Onesies";
+import PajamaTops from "./pages/womenfashion/womenClothing/clothing/sleepLoungeWear/PajamaTops";
+import PyjamaSets from "./pages/womenfashion/womenClothing/clothing/sleepLoungeWear/PyjamaSets";
+import PyjamasLoungePants from "./pages/womenfashion/womenClothing/clothing/sleepLoungeWear/PyjamasLoungePants";
 // import Symptoms from "./pages/customerpage/Symptoms";
 
 const router = createBrowserRouter([
@@ -167,6 +211,52 @@ const router = createBrowserRouter([
       {path:"/women/clothing/sports-wear/skirts-skorts", element:<SkirtsSkorts/>},
       {path:"/women/clothing/sports-wear/skirts-skorts/skorts", element:<Skorts/>},
       {path:"/women/clothing/sports-wear/skirts-skorts/skirt", element:<Skirt/>},
+      {path:"/women/lingerie/bras", element:<Bras/>},
+      {path:"/women/lingerie/bras/adhesive", element:<AdhesiveBras/>},
+      {path:"/women/lingerie/bras/everyday", element:<EverydayBras/>},
+      {path:"/women/lingerie/bras/mastectomy", element:<MastectomyBras/>},
+      {path:"/women/lingerie/panties", element:<Panties/>},
+      {path:"/women/lingerie/panties/bikinis", element:<Bikinis/>},
+      {path:"/women/lingerie/panties/boyshorts", element:<Boyshorts/>},
+      {path:"/women/lingerie/panties/gstring-thongs", element:<GstringThongs/>},
+      {path:"/women/lingerie/panties/hipsters", element:<Hipsters/>},
+      {path:"/women/lingerie/panties/briefs", element:<PanBriefs/>},
+      {path:"/women/lingerie/panties/period-panties", element:<PeriodPanties/>},
+      {path:"/women/lingerie/shapeware", element:<Shapwear/>},
+      {path:"/women/lingerie/shapeware/control-panties", element:<ControlPanties/>},
+      {path:"/women/lingerie/shapeware/shape-leggings", element:<ShapeLeggings/>},
+      {path:"/women/lingerie/shapeware/shaping-bodysuits", element:<ShapingBodysuits/>},
+      {path:"/women/lingerie/shapeware/thigh-slimmers", element:<ThighSlimmers/>},
+      {path:"/women/lingerie/shapeware/tops", element:<Tops/>},
+      {path:"/women/lingerie/shapeware/waist-shapers", element:<WaistShapers/>},
+      {path:"/women/lingerie/camisoles-tanks", element:<CamisolesTank/>},
+      {path:"/women/lingerie/lilngerie-sets", element:<LingerieSets/>},
+      {path:"/women/lingerie/accessories", element:<Accessories/>},
+      {path:"/women/lingerie/accessories/bra-extenders", element:<BraExtenders/>},
+      {path:"/women/lingerie/accessories/breast-lift-tape", element:<BreastLiftTape/>},
+      {path:"/women/lingerie/accessories/breast-petals", element:<BreastPetals/>},
+      {path:"/women/lingerie/accessories/lingerie-bags", element:<LingerieBags/>},
+      {path:"/women/lingerie/accessories/lingerie-tape", element:<LingerieTape/>},
+      {path:"/women/lingerie/accessories/pads-enhancers", element:<PadsEnhancers/>},
+      {path:"/women/lingerie/accessories/strap", element:<Strap/>},
+      {path:"/women/lingerie/pantyhose", element:<PantyhoseStockings/>},
+      {path:"/women/lingerie/thermals", element:<Thermals/>},
+      {path:"/women/lingerie/thermals/bottoms", element:<Bottoms/>},
+      {path:"/women/lingerie/thermals/tops", element:<Top/>},
+      {path:"/women/lingerie/thermals/sets", element:<TSets/>},
+      {path:"/women/lingerie/bodysuits", element:<Bodysuits/>},
+      {path:"/women/lingerie/bustiers", element:<BustiersCorsets/>},
+      {path:"/women/lingerie/garters-suspender", element:<GartersSuspenders/>},
+      {path:"/women/clothing/sleep-lounge-wear/babydolls", element:<Babydolls/>},
+      {path:"/women/clothing/sleep-lounge-wear/lounge-short", element:<LoungeShorts/>},
+      {path:"/women/clothing/sleep-lounge-wear/nighties-nightdresses", element:<NightiesNightdresses/>},
+      {path:"/women/clothing/sleep-lounge-wear/nightwear-sets", element:<NightwearSets/>},
+      {path:"/women/clothing/sleep-lounge-wear/onesies", element:<Onesies/>},
+      {path:"/women/clothing/sleep-lounge-wear/pajama-tops", element:<PajamaTops/>},
+      {path:"/women/clothing/sleep-lounge-wear/pyjama-sets", element:<PyjamaSets/>},
+      {path:"/women/clothing/sleep-lounge-wear/pyjamas-lounge-pants", element:<PyjamasLoungePants/>},
+      // {path:"/women/clothing/accessories", element:<Accessories/>},
+      
     ],
   },
   // Admin routes — protected, admin only

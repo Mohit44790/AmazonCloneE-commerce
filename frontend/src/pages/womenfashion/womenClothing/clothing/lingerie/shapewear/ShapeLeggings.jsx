@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Leggings = () => {
+const ShapeLeggings = () => {
   return (
     <div>Leggings</div>
   )
 }
 
-export default Leggings
+export default ShapeLeggings

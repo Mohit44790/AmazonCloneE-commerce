@@ -61,6 +61,9 @@ import SweatshirtsHoodies from "./pages/womenfashion/womenClothing/clothing/spor
 import TrackJackets from "./pages/womenfashion/womenClothing/clothing/sportswear/TrackJackets";
 import BaseLayersCompression from "./pages/womenfashion/womenClothing/clothing/sportswear/baseLayersCompression/BaseLayersCompression";
 import SkirtsSkorts from "./pages/womenfashion/womenClothing/clothing/sportswear/skirtsSkorts/SkirtsSkorts";
+import SportShorts from "./pages/womenfashion/womenClothing/clothing/sportswear/SportShorts";
+import SportLeggings from "./pages/womenfashion/womenClothing/clothing/sportswear/SportLeggings";
+import SportTrousers from "./pages/womenfashion/womenClothing/clothing/sportswear/SportTrousers";
 // import Symptoms from "./pages/customerpage/Symptoms";
 
 const router = createBrowserRouter([
@@ -108,14 +111,17 @@ const router = createBrowserRouter([
       {path:"/western-wear/skirts-shortss/shorts", element:<Shorts/>},
       {path:"/western-wear/shrugs", element:<Shrugs/>},
       {path:"/western-wear/leggings", element:<Leggings/>},
-      {path:"/women/clothing/sports-wear/activedresses", element:<ActiveDresses/>},
+      {path:"/women/clothing/sports-wear/active-dresses", element:<ActiveDresses/>},
       {path:"/women/clothing/sports-wear/athletic-socks", element:<AthleticSocks/>},
       {path:"/women/clothing/sports-wear/vests", element:<Vests/>},
+      {path:"/women/clothing/sports-wear/shorts", element:<SportShorts/>},
       {path:"/women/clothing/sports-wear/innerwear", element:<Innerwear/>},
       {path:"/women/clothing/sports-wear/sets", element:<Sets/>},
+      {path:"/women/clothing/sports-wear/leggings", element:<SportLeggings/>},
       {path:"/women/clothing/sports-wear/shirts-tees", element:<ShirtTees/>},
       {path:"/women/clothing/sports-wear/sweatshirts-hoodies", element:<SweatshirtsHoodies/>},
-      {path:"/women/clothing/sports-wear/sweatshirts-hoodies", element:<TrackJackets/>},
+      {path:"/women/clothing/sports-wear/track-jackets", element:<TrackJackets/>},
+      {path:"/women/clothing/sports-wear/trousers", element:<SportTrousers/>},
       {path:"/women/clothing/sports-wear/base-layers-compression", element:<BaseLayersCompression/>},
       {path:"/women/clothing/sports-wear/skirts-skorts", element:<SkirtsSkorts/>},
     ],

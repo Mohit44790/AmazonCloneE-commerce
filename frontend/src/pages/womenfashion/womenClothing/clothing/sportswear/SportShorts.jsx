@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Shorts = () => {
+const SportShorts = () => {
   return (
     <div>Shorts</div>
   )
 }
 
-export default Shorts
+export default SportShorts

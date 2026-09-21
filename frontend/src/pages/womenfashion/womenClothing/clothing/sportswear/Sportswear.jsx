@@ -9,33 +9,30 @@ import { MdStar, MdLocalShipping, MdChevronRight, MdChevronLeft } from "react-ic
    STATIC DATA
 ───────────────────────────────────────── */
 const SUBCATEGORIES = [
-  { label: "Sports bras",      img: "https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=200&h=200&fit=crop&crop=center" },
-  { label: "Tights",           img: "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=200&h=200&fit=crop&crop=center" },
-  { label: "Tees & tanks",     img: "https://images.unsplash.com/photo-1583744946564-b52ac1c389c8?w=200&h=200&fit=crop&crop=center" },
-  { label: "Shorts",           img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=200&h=200&fit=crop&crop=center" },
-  { label: "Track Jackets",    img: "https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?w=200&h=200&fit=crop&crop=center" },
-  { label: "Sweatshirts",      img: "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=200&h=200&fit=crop&crop=center" },
-  { label: "Leggings",         img: "https://images.unsplash.com/photo-1534258936925-c58bed479fcb?w=200&h=200&fit=crop&crop=center" },
-  { label: "Vests",            img: "https://images.unsplash.com/photo-1571731956672-f2b94d7dd0cb?w=200&h=200&fit=crop&crop=center" },
+  { label: "Sports bras",      img: "https://m.media-amazon.com/images/G/31/img23/WA/2025/Atleisure/ss-flip/halo/without/Sports_Bras._SS400_QL85_FMpng_.png" },
+  { label: "Tights",           img: "https://m.media-amazon.com/images/G/31/img23/WA/2025/Atleisure/ss-flip/halo/without/tights._SS400_QL85_FMpng_.png" },
+  { label: "Tees & tanks",     img: "https://m.media-amazon.com/images/G/31/img23/WA/2025/Atleisure/ss-flip/halo/without/Tees__Tanks._SS400_QL85_FMpng_.png" },
+  { label: "Shorts",           img: "https://m.media-amazon.com/images/G/31/img23/WA/2025/Atleisure/ss-flip/halo/without/Shorts._SS400_QL85_FMpng_.png" },
+ 
 ];
 
 const SIDEBAR_CATEGORIES = [
   { label: "Clothing & Accessories", level: 0 },
   { label: "Women",                  level: 1 },
   { label: "Sportswear",             level: 2, active: true },
-  { label: "Active Dresses",         level: 3 },
-  { label: "Athletic Socks",         level: 3 },
-  { label: "Vests",                  level: 3 },
-  { label: "Innerwear",              level: 3 },
-  { label: "Sets",                   level: 3 },
-  { label: "Shirts & Tees",          level: 3 },
-  { label: "Shorts",                 level: 3 },
-  { label: "Sweatshirts & Hoodies",  level: 3 },
-  { label: "Leggings",               level: 3 },
-  { label: "Track Jackets",          level: 3 },
-  { label: "Trousers",               level: 3 },
-  { label: "Base Layers & Compression", level: 3 },
-  { label: "Skirts & Skorts",        level: 3 },
+  { label: "Active Dresses", path:"/women/clothing/sports-wear/active-dresses",         level: 3 },
+  { label: "Athletic Socks",  path:"/women/clothing/sports-wear/athletic-socks",       level: 3 },
+  { label: "Vests",   path:"/women/clothing/sports-wear/vests",               level: 3 },
+  { label: "Innerwear", path:"/women/clothing/sports-wear/innerwear",             level: 3 },
+  { label: "Sets",    path:"/women/clothing/sports-wear/sets",                level: 3 },
+  { label: "Shirts & Tees",  path:"/women/clothing/sports-wear/shirts-tees",         level: 3 },
+  { label: "Shorts", path:"/women/clothing/sports-wear/shorts",                     level: 3 },
+  { label: "Sweatshirts & Hoodies",  path:"/women/clothing/sports-wear/sweatshirts-hoodies",  level: 3 },
+  { label: "Leggings", path:"/women/clothing/sports-wear/leggings",                 level: 3 },
+  { label: "Track Jackets",          path:"/women/clothing/sports-wear/track-jackets",          level: 3 },
+  { label: "Trousers",               path:"/women/clothing/sports-wear/trousers",               level: 3 },
+  { label: "Base Layers & Compression", path:"/women/clothing/sports-wear/base-layers-compression", level: 3 },
+  { label: "Skirts & Skorts",        path:"/women/clothing/sports-wear/skirts-skorts",        level: 3 },
 ];
 
 const BRANDS = ["Boldfit","BLINKIN","Jockey","Van Heusen","Q - RIOUS","Puma","Nike","Reebok","Adidas","Decathlon"];
@@ -220,6 +217,7 @@ export default function Sportswear() {
             <div className="mb-5">
               <p className="font-bold text-gray-900 text-sm mb-2">Category</p>
               {SIDEBAR_CATEGORIES.map((cat, idx) => (
+              <Link to={cat.path}>
                 <div
                   key={idx}
                   style={{ paddingLeft: cat.level * 10 }}
@@ -236,7 +234,8 @@ export default function Sportswear() {
                   )}
                   {cat.label}
                 </div>
-              ))}
+              </Link>
+            ))}
             </div>
 
             <hr className="border-gray-200 my-3"/>
@@ -331,7 +330,7 @@ export default function Sportswear() {
                   to={`/products?category=${sub.label.toLowerCase().replace(/ /g,"-")}`}
                   className="flex flex-col items-center gap-2 shrink-0 group"
                 >
-                  <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-transparent
+                  <div className="w-34 h-34 rounded-full overflow-hidden border-2 border-transparent
                     group-hover:border-[#FF9900] transition-all bg-[#F5F5F5]">
                     <img src={sub.img} alt={sub.label}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/>

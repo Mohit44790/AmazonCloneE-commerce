@@ -123,6 +123,7 @@ const PajamaTops          = lazy(() => import("../pages/womenfashion/womenClothi
 const PyjamaSets          = lazy(() => import("../pages/womenfashion/womenClothing/clothing/sleepLoungeWear/PyjamaSets"));
 const PyjamasLoungePants  = lazy(() => import("../pages/womenfashion/womenClothing/clothing/sleepLoungeWear/PyjamasLoungePants"));
 
+/* ── Accessories ── */
 /* ═══════════════════════════════════════════
    ROUTE DEFINITIONS — grouped by section
 ═══════════════════════════════════════════ */

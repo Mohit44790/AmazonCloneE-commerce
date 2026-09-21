@@ -1,5 +1,6 @@
 import React from 'react'
-
+import { IoIosArrowBack } from 'react-icons/io'
+import { Link } from 'react-router-dom'
 const Vests = () => {
   return (
    <div className='flex flex-col bg-white md:flex-row gap-2 p-2'>
@@ -11,7 +12,7 @@ const Vests = () => {
            <Link to="/women/clothing/sports-wear" className="flex items-center  text-sm">
              <IoIosArrowBack /> Sportswear
            </Link>
-           <h1 className="font-semibold text-sm px-4">Active Dresses</h1>
+           <h1 className="font-semibold text-sm px-4">Vests</h1>
         </div>
          <div className='flex-1 min-w-0 w-full'>
           <h1 className="font-semibold text-4xl px-4">Featured categories</h1>

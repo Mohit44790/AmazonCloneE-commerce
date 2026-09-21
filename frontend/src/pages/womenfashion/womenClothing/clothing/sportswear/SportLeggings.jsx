@@ -15,7 +15,7 @@ const SportLeggings = () => {
                <Link to="/women/clothing/sports-wear" className="flex items-center  text-sm">
                  <IoIosArrowBack /> Sportswear
                </Link>
-               <h1 className="font-semibold text-sm px-4">Active Dresses</h1>
+               <h1 className="font-semibold text-sm px-4">Sport Leggings</h1>
             </div>
              <div className='flex-1 min-w-0 w-full'>
               <h1 className="font-semibold text-4xl px-4">Featured categories</h1>

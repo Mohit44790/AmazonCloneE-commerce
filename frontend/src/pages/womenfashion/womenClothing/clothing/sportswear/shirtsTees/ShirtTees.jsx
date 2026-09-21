@@ -15,6 +15,21 @@ const ShirtTees = () => {
              <IoIosArrowBack /> Sportswear
            </Link>
            <h1 className="font-semibold text-sm px-4">Shirts & Tees</h1>
+            <div className="px-6">
+                       <Link to="/women/clothing/sports-wear/shirts-tees/button-down-shirts" className="flex items-center  text-sm">
+                                  Button-Down Shirts
+                                 </Link>
+                       <Link to="/women/clothing/sports-wear/shirts-tees/polos" className="flex items-center  text-sm">
+                                  Polos
+                                 </Link>
+                       <Link to="/women/clothing/sports-wear/shirts-tees/t-shirts" className="flex items-center  text-sm">
+                                   T-shirts
+                                 </Link>
+                       <Link to="/women/clothing/sports-wear/shirts-tees/tank-tops" className="flex items-center  text-sm">
+                                 Tank Tops
+                                 </Link>
+                       
+                                     </div>
         </div>
          <div className='flex-1 min-w-0 w-full'>
           <h1 className="font-semibold text-4xl px-4">Featured categories</h1>

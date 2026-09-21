@@ -1,7 +1,7 @@
 import React from 'react'
 import { IoIosArrowBack } from 'react-icons/io'
 import { Link } from 'react-router-dom'
-const Shirts = () => {
+const Skirt = () => {
   return (
      <div>
 
@@ -14,7 +14,7 @@ const Shirts = () => {
            <Link to="/women/clothing/sports-wear" className="flex items-center  text-sm">
              <IoIosArrowBack /> Sportswear
            </Link>
-           <h1 className="font-semibold text-sm px-4">Shirts</h1>
+           <h1 className="font-semibold text-sm px-4">Skirts & Skorts</h1>
         </div>
          <div className='flex-1 min-w-0 w-full'>
           <h1 className="font-semibold text-4xl px-4">Featured categories</h1>
@@ -24,4 +24,4 @@ const Shirts = () => {
   )
 }
 
-export default Shirts
+export default Skirt

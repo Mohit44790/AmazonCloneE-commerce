@@ -64,6 +64,27 @@ import SkirtsSkorts from "./pages/womenfashion/womenClothing/clothing/sportswear
 import SportShorts from "./pages/womenfashion/womenClothing/clothing/sportswear/SportShorts";
 import SportLeggings from "./pages/womenfashion/womenClothing/clothing/sportswear/SportLeggings";
 import SportTrousers from "./pages/womenfashion/womenClothing/clothing/sportswear/SportTrousers";
+import AnkleSocks from "./pages/womenfashion/womenClothing/clothing/sportswear/athleticSocks/AnkleSocks";
+import CrewSocks from "./pages/womenfashion/womenClothing/clothing/sportswear/athleticSocks/CrewSocks";
+import KneeHighSock from "./pages/womenfashion/womenClothing/clothing/sportswear/athleticSocks/KneeHighSock";
+import Briefs from "./pages/womenfashion/womenClothing/clothing/sportswear/innerwear/Briefs";
+import SportsBras from "./pages/womenfashion/womenClothing/clothing/sportswear/innerwear/SportsBras";
+import ProtectiveSportsBras from "./pages/womenfashion/womenClothing/clothing/sportswear/innerwear/ProtectiveSportsBras";
+import Tracksuits from "./pages/womenfashion/womenClothing/clothing/sportswear/sets/Tracksuits";
+import Sweatsuits from "./pages/womenfashion/womenClothing/clothing/sportswear/sets/Sweatsuits";
+import WorkoutBottom from "./pages/womenfashion/womenClothing/clothing/sportswear/sets/WorkoutBottom";
+import ButtonDownShirts from "./pages/womenfashion/womenClothing/clothing/sportswear/shirtsTees/ButtonDownShirts";
+import TankTops from "./pages/womenfashion/womenClothing/clothing/sportswear/shirtsTees/TankTops";
+import SportTshirts from "./pages/womenfashion/womenClothing/clothing/sportswear/shirtsTees/SportTshirts";
+import ArmWarmers from "./pages/womenfashion/womenClothing/clothing/sportswear/baseLayersCompression/ArmWarmers";
+import CompressionSocks from "./pages/womenfashion/womenClothing/clothing/sportswear/baseLayersCompression/CompressionSocks";
+import LegWarmers from "./pages/womenfashion/womenClothing/clothing/sportswear/baseLayersCompression/LegWarmers";
+import Pants from "./pages/womenfashion/womenClothing/clothing/sportswear/baseLayersCompression/Pants";
+import ThermalUnderwear from "./pages/womenfashion/womenClothing/clothing/sportswear/baseLayersCompression/ThermalUnderwear";
+import BaseShirts from "./pages/womenfashion/womenClothing/clothing/sportswear/baseLayersCompression/BaseShirts";
+import BaseShorts from "./pages/womenfashion/womenClothing/clothing/sportswear/baseLayersCompression/BaseShorts";
+import Skorts from "./pages/womenfashion/womenClothing/clothing/sportswear/skirtsSkorts/Skorts";
+import Skirt from "./pages/womenfashion/womenClothing/clothing/sportswear/skirtsSkorts/Skirt";
 // import Symptoms from "./pages/customerpage/Symptoms";
 
 const router = createBrowserRouter([
@@ -113,17 +134,39 @@ const router = createBrowserRouter([
       {path:"/western-wear/leggings", element:<Leggings/>},
       {path:"/women/clothing/sports-wear/active-dresses", element:<ActiveDresses/>},
       {path:"/women/clothing/sports-wear/athletic-socks", element:<AthleticSocks/>},
+      {path:"/women/clothing/sports-wear/ankle-socks", element:<AnkleSocks/>},
+      {path:"/women/clothing/sports-wear/crew-socks", element:<CrewSocks/>},
+      {path:"/women/clothing/sports-wear/knee-high-socks", element:<KneeHighSock/>},
       {path:"/women/clothing/sports-wear/vests", element:<Vests/>},
       {path:"/women/clothing/sports-wear/shorts", element:<SportShorts/>},
       {path:"/women/clothing/sports-wear/innerwear", element:<Innerwear/>},
+      {path:"/women/clothing/sports-wear/briefs", element:<Briefs/>},
+      {path:"/women/clothing/sports-wear/protective-sport-bras", element:<ProtectiveSportsBras/>},
+      {path:"/women/clothing/sports-wear/sports-bras", element:<SportsBras/>},
       {path:"/women/clothing/sports-wear/sets", element:<Sets/>},
+      {path:"/women/clothing/sports-wear/tracksuits", element:<Tracksuits/>},
+      {path:"/women/clothing/sports-wear/sweatsuits", element:<Sweatsuits/>},
+      {path:"/women/clothing/sports-wear/workout-sets", element:<WorkoutBottom/>},
       {path:"/women/clothing/sports-wear/leggings", element:<SportLeggings/>},
       {path:"/women/clothing/sports-wear/shirts-tees", element:<ShirtTees/>},
+      {path:"/women/clothing/sports-wear/shirts-tees/button-down-shirts", element:<ButtonDownShirts/>},
+      {path:"/women/clothing/sports-wear/shirts-tees/polos", element:<Polos/>},
+      {path:"/women/clothing/sports-wear/shirts-tees/t-shirts", element:<SportTshirts/>},
+      {path:"/women/clothing/sports-wear/shirts-tees/tank-tops", element:<TankTops/>},
       {path:"/women/clothing/sports-wear/sweatshirts-hoodies", element:<SweatshirtsHoodies/>},
       {path:"/women/clothing/sports-wear/track-jackets", element:<TrackJackets/>},
       {path:"/women/clothing/sports-wear/trousers", element:<SportTrousers/>},
       {path:"/women/clothing/sports-wear/base-layers-compression", element:<BaseLayersCompression/>},
+      {path:"/women/clothing/sports-wear/base-layers-compression/armwarmers", element:<ArmWarmers/>},
+      {path:"/women/clothing/sports-wear/base-layers-compression/compression-socks", element:<CompressionSocks/>},
+      {path:"/women/clothing/sports-wear/base-layers-compression/legwarmers", element:<LegWarmers/>},
+      {path:"/women/clothing/sports-wear/base-layers-compression/pants", element:<Pants/>},
+      {path:"/women/clothing/sports-wear/base-layers-compression/shirts", element:<BaseShirts/>},
+      {path:"/women/clothing/sports-wear/base-layers-compression/shorts", element:<BaseShorts/>},
+      {path:"/women/clothing/sports-wear/base-layers-compression/thermal-underwear", element:<ThermalUnderwear/>},
       {path:"/women/clothing/sports-wear/skirts-skorts", element:<SkirtsSkorts/>},
+      {path:"/women/clothing/sports-wear/skirts-skorts/skorts", element:<Skorts/>},
+      {path:"/women/clothing/sports-wear/skirts-skorts/skirt", element:<Skirt/>},
     ],
   },
   // Admin routes — protected, admin only

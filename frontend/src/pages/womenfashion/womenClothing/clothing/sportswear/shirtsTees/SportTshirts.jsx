@@ -1,7 +1,7 @@
 import React from 'react'
 import { IoIosArrowBack } from 'react-icons/io'
 import { Link } from 'react-router-dom'
-const Tshirts = () => {
+const SportTshirts = () => {
   return (
      <div>
 
@@ -24,4 +24,4 @@ const Tshirts = () => {
   )
 }
 
-export default Tshirts
+export default SportTshirts

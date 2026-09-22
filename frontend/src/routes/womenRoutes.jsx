@@ -1,22 +1,7 @@
 // src/routes/womenRoutes.jsx
 // All Women Fashion routes — lazy loaded and grouped by category
 import { lazy } from "react";
-import SwimBeachwear from "../pages/womenfashion/womenClothing/clothing/maternity/SwimBeachwear";
-import BeachCoverupsKaftansSarongs from "../pages/womenfashion/womenClothing/clothing/swimbeachwear/BeachCoverupsKaftansSarongs";
-import Monokinis from "../pages/womenfashion/womenClothing/clothing/swimbeachwear/Monokinis";
-import OnePieceSwimsuits from "../pages/womenfashion/womenClothing/clothing/swimbeachwear/OnePieceSwimsuits";
-import RashGuardSets from "../pages/womenfashion/womenClothing/clothing/swimbeachwear/RashGuardSets";
-import RashGuardShirts from "../pages/womenfashion/womenClothing/clothing/swimbeachwear/RashGuardShirts";
-import Shortsbeach from "../pages/womenfashion/womenClothing/clothing/swimbeachwear/Shortsbeach";
-import SwimPants from "../pages/womenfashion/womenClothing/clothing/swimbeachwear/SwimPants";
-import Tankinis from "../pages/womenfashion/womenClothing/clothing/swimbeachwear/Tankinis/Tankinis";
-import BottomsTankinis from "../pages/womenfashion/womenClothing/clothing/swimbeachwear/Tankinis/BottomsTankinis";
-import TopsTankinis from "../pages/womenfashion/womenClothing/clothing/swimbeachwear/Tankinis/TopsTankinis";
-import SetsTankinis from "../pages/womenfashion/womenClothing/clothing/swimbeachwear/Tankinis/SetsTankinis";
-import BottomBikinis from "../pages/womenfashion/womenClothing/clothing/swimbeachwear/bikinis/BottomBikinis";
-import TopsBikinis from "../pages/womenfashion/womenClothing/clothing/swimbeachwear/bikinis/TopsBikinis";
-import SetsBikinis from "../pages/womenfashion/womenClothing/clothing/swimbeachwear/bikinis/SetsBikinis";
-import Bikiniss from "../pages/womenfashion/womenClothing/clothing/swimbeachwear/bikinis/Bikiniss";
+
 
 
 /* ── Top level ── */
@@ -157,8 +142,23 @@ const SocksStockings = lazy(() => import("../pages/womenfashion/womenClothing/cl
 const SportHeadbands = lazy(() => import("../pages/womenfashion/womenClothing/clothing/accessories/SportHeadbands"));
 const Suspenders = lazy(() => import("../pages/womenfashion/womenClothing/clothing/accessories/Suspenders"));
 
-/* swin wear */
-
+/* swimBeachwear */
+const SwimBeachwear = lazy(() => import("../pages/womenfashion/womenClothing/clothing/maternity/SwimBeachwear"));
+const BeachCoverupsKaftansSarongs = lazy(() => import("../pages/womenfashion/womenClothing/clothing/swimbeachwear/BeachCoverupsKaftansSarongs"));
+const Monokinis = lazy(() => import("../pages/womenfashion/womenClothing/clothing/swimbeachwear/Monokinis"));
+const OnePieceSwimsuits = lazy(() => import("../pages/womenfashion/womenClothing/clothing/swimbeachwear/OnePieceSwimsuits"));
+const RashGuardSets = lazy(() => import("../pages/womenfashion/womenClothing/clothing/swimbeachwear/RashGuardSets"));
+const RashGuardShirts = lazy(() => import("../pages/womenfashion/womenClothing/clothing/swimbeachwear/RashGuardShirts"));
+const Shortsbeach = lazy(() => import("../pages/womenfashion/womenClothing/clothing/swimbeachwear/Shortsbeach"));
+const SwimPants = lazy(() => import("../pages/womenfashion/womenClothing/clothing/swimbeachwear/SwimPants"));
+const Tankinis = lazy(() => import("../pages/womenfashion/womenClothing/clothing/swimbeachwear/Tankinis/Tankinis"));
+const BottomsTankinis = lazy(() => import("../pages/womenfashion/womenClothing/clothing/swimbeachwear/Tankinis/BottomsTankinis"));
+const TopsTankinis = lazy(() => import("../pages/womenfashion/womenClothing/clothing/swimbeachwear/Tankinis/TopsTankinis"));
+const SetsTankinis = lazy(() => import("../pages/womenfashion/womenClothing/clothing/swimbeachwear/Tankinis/SetsTankinis"));
+const BottomBikinis = lazy(() => import("../pages/womenfashion/womenClothing/clothing/swimbeachwear/bikinis/BottomBikinis"));
+const TopsBikinis = lazy(() => import("../pages/womenfashion/womenClothing/clothing/swimbeachwear/bikinis/TopsBikinis"));
+const SetsBikinis = lazy(() => import("../pages/womenfashion/womenClothing/clothing/swimbeachwear/bikinis/SetsBikinis"));
+const Bikiniss = lazy(() => import("../pages/womenfashion/womenClothing/clothing/swimbeachwear/bikinis/Bikiniss"));
 /* ═══════════════════════════════════════════
    ROUTE DEFINITIONS — grouped by section
 ═══════════════════════════════════════════ */
@@ -300,19 +300,19 @@ export const womenRoutes = [
   { path: "women/clothing/accessories/sport-headbands",    element: <SportHeadbands />    },
   { path: "women/clothing/accessories/suspenders",    element: <Suspenders />    },
   { path: "women/clothing/swim-beachwear",    element: <SwimBeachwear />    },
-  { path: "women/clothing/swim-beachwear",    element: <BeachCoverupsKaftansSarongs />    },
-  { path: "women/clothing/swim-beachwear",    element: <Monokinis />    },
-  { path: "women/clothing/swim-beachwear",    element: <OnePieceSwimsuits />    },
-  { path: "women/clothing/swim-beachwear",    element: <RashGuardSets />    },
-  { path: "women/clothing/swim-beachwear",    element: <RashGuardShirts />    },
-  { path: "women/clothing/swim-beachwear",    element: <Shortsbeach />    },
-  { path: "women/clothing/swim-beachwear",    element: <SwimPants />    },
-  { path: "women/clothing/swim-beachwear",    element: <Tankinis />    },
-  { path: "women/clothing/swim-beachwear",    element: <BottomsTankinis />    },
-  { path: "women/clothing/swim-beachwear",    element: <TopsTankinis />    },
-  { path: "women/clothing/swim-beachwear",    element: <SetsTankinis />    },
-  { path: "women/clothing/swim-beachwear",    element: <Bikiniss />    },
-  { path: "women/clothing/swim-beachwear",    element: <BottomBikinis />    },
-  { path: "women/clothing/swim-beachwear",    element: <TopsBikinis />    },
-  { path: "women/clothing/swim-beachwear",    element: <SetsBikinis />    },
+  { path: "women/clothing/swim-beachwear/beach-coverups-kaftans-sarongs",    element: <BeachCoverupsKaftansSarongs />    },
+  { path: "women/clothing/swim-beachwear/monokinis",    element: <Monokinis />    },
+  { path: "women/clothing/swim-beachwear/one-piece-swimsuits",    element: <OnePieceSwimsuits />    },
+  { path: "women/clothing/swim-beachwear/rash-guard-sets",    element: <RashGuardSets />    },
+  { path: "women/clothing/swim-beachwear/rash-guard-shirts",    element: <RashGuardShirts />    },
+  { path: "women/clothing/swim-beachwear/shorts-beach",    element: <Shortsbeach />    },
+  { path: "women/clothing/swim-beachwear/swim-pants",    element: <SwimPants />    },
+  { path: "women/clothing/swim-beachwear/tankinis",    element: <Tankinis />    },
+  { path: "women/clothing/swim-beachwear/bottoms-tankinis",    element: <BottomsTankinis />    },
+  { path: "women/clothing/swim-beachwear/tops-tankinis",    element: <TopsTankinis />    },
+  { path: "women/clothing/swim-beachwear/sets-tankinis",    element: <SetsTankinis />    },
+  { path: "women/clothing/swim-beachwear/bikinis",    element: <Bikiniss />    },
+  { path: "women/clothing/swim-beachwear/bikinis/bottoms-bikinis",    element: <BottomBikinis />    },
+  { path: "women/clothing/swim-beachwear/bikinis/tops-bikinis",    element: <TopsBikinis />    },
+  { path: "women/clothing/swim-beachwear/bikinis/sets-bikinis",    element: <SetsBikinis />    },
 ];

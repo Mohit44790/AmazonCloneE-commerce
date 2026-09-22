@@ -3,8 +3,6 @@
 import { lazy } from "react";
 
 
-
-
 /* ── Top level ── */
 const Clothing          = lazy(() => import("../pages/womenfashion/womenClothing/clothing/Clothing"));
 const EthnicWear        = lazy(() => import("../pages/womenfashion/womenClothing/ethinicWear/EthnicWear"));
@@ -167,6 +165,14 @@ const LingerieMat = lazy(() => import ("../pages/womenfashion/womenClothing/clot
 const Maternity = lazy(() => import ("../pages/womenfashion/womenClothing/clothing/maternity/Maternity"));
 const SleepLoungewear = lazy(() => import ("../pages/womenfashion/womenClothing/clothing/maternity/SleepLoungewear"));
 const WesternWearMat  = lazy(() => import("../pages/womenfashion/womenClothing/clothing/maternity/WesternWearMat"));
+
+/* ── Sunglasses & Spectacle Frames ── */
+const SunglassesSpectacleFrames = lazy(() => import("../pages/womenfashion/womenClothing/clothing/sunglassesSpectacleFrames/SunglassesSpectacleFrames"));
+const EyewearFrames = lazy(() => import("../pages/womenfashion/womenClothing/clothing/sunglassesSpectacleFrames/EyewearFrames"));
+const GlassesCases = lazy(() => import("../pages/womenfashion/womenClothing/clothing/sunglassesSpectacleFrames/GlassesCases"));
+const GlassesChainsLanyards = lazy(() => import("../pages/womenfashion/womenClothing/clothing/sunglassesSpectacleFrames/GlassesChainsLanyards"));
+const ReadingGlasses = lazy(() => import("../pages/womenfashion/womenClothing/clothing/sunglassesSpectacleFrames/ReadingGlasses"));
+const Sunglasses = lazy(() => import("../pages/womenfashion/womenClothing/clothing/sunglassesSpectacleFrames/Sunglasses"));
 /* ═══════════════════════════════════════════
    ROUTE DEFINITIONS — grouped by section
 ═══════════════════════════════════════════ */
@@ -333,6 +339,15 @@ export const womenRoutes = [
   { path: "women/clothing/maternity/lingerie",    element: <LingerieMat />    },
   { path: "women/clothing/maternity/sleep-loungewear",    element: <SleepLoungewear />    },
   { path: "women/clothing/maternity/western-wear",    element: <WesternWearMat />    },
+  
+  // Sunglasses Spectacles
+  { path: "women/clothing/sunglasses-spectacles",    element: <SunglassesSpectacleFrames />    },
+  { path: "women/clothing/sunglasses-spectacles",    element: <EyewearFrames />    },
+  { path: "women/clothing/sunglasses-spectacles",    element: <GlassesCases />    },
+  { path: "women/clothing/sunglasses-spectacles",    element: <GlassesChainsLanyards />    },
+  { path: "women/clothing/sunglasses-spectacles",    element: <ReadingGlasses />    },
+  { path: "women/clothing/sunglasses-spectacles",    element: <Sunglasses />    },
+  
 
 
 ];

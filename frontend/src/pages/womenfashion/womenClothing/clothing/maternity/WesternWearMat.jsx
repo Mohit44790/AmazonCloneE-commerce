@@ -1,9 +1,9 @@
 import React from 'react'
 
-const WesternWear = () => {
+const WesternWearMat = () => {
   return (
     <div>WesternWear</div>
   )
 }
 
-export default WesternWear
+export default WesternWearMat

@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Lingerie = () => {
+const LingerieMat = () => {
   return (
     <div>Lingerie</div>
   )
 }
 
-export default Lingerie
+export default LingerieMat

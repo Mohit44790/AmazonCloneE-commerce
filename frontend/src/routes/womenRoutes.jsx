@@ -4,6 +4,7 @@ import { lazy } from "react";
 
 
 
+
 /* ── Top level ── */
 const Clothing          = lazy(() => import("../pages/womenfashion/womenClothing/clothing/Clothing"));
 const EthnicWear        = lazy(() => import("../pages/womenfashion/womenClothing/ethinicWear/EthnicWear"));
@@ -159,6 +160,13 @@ const BottomBikinis = lazy(() => import("../pages/womenfashion/womenClothing/clo
 const TopsBikinis = lazy(() => import("../pages/womenfashion/womenClothing/clothing/swimbeachwear/bikinis/TopsBikinis"));
 const SetsBikinis = lazy(() => import("../pages/womenfashion/womenClothing/clothing/swimbeachwear/bikinis/SetsBikinis"));
 const Bikiniss = lazy(() => import("../pages/womenfashion/womenClothing/clothing/swimbeachwear/bikinis/Bikiniss"));
+
+/* ── Maternity ── */
+const EthnicWearM  = lazy(() => import ("../pages/womenfashion/womenClothing/clothing/maternity/EthnicWearM"));
+const LingerieMat = lazy(() => import ("../pages/womenfashion/womenClothing/clothing/maternity/LingerieMat"));
+const Maternity = lazy(() => import ("../pages/womenfashion/womenClothing/clothing/maternity/Maternity"));
+const SleepLoungewear = lazy(() => import ("../pages/womenfashion/womenClothing/clothing/maternity/SleepLoungewear"));
+const WesternWearMat  = lazy(() => import("../pages/womenfashion/womenClothing/clothing/maternity/WesternWearMat"));
 /* ═══════════════════════════════════════════
    ROUTE DEFINITIONS — grouped by section
 ═══════════════════════════════════════════ */
@@ -284,6 +292,8 @@ export const womenRoutes = [
   { path: "women/clothing/sleep-lounge-wear/pajama-tops",             element: <PajamaTops />            },
   { path: "women/clothing/sleep-lounge-wear/pyjama-sets",             element: <PyjamaSets />            },
   { path: "women/clothing/sleep-lounge-wear/pyjamas-lounge-pants",    element: <PyjamasLoungePants />    },
+
+  // ── Accessories ──
   { path: "women/clothing/accessories",    element: <Accessoriess />    },
   { path: "women/clothing/accessories/belt-buckles",    element: <BeltBuckles />    },
   { path: "women/clothing/accessories/belts",    element: <Belts />    },
@@ -299,6 +309,8 @@ export const womenRoutes = [
   { path: "women/clothing/accessories/socks-stockings",    element: <SocksStockings />    },
   { path: "women/clothing/accessories/sport-headbands",    element: <SportHeadbands />    },
   { path: "women/clothing/accessories/suspenders",    element: <Suspenders />    },
+
+  // ── Swim & Beachwear ──
   { path: "women/clothing/swim-beachwear",    element: <SwimBeachwear />    },
   { path: "women/clothing/swim-beachwear/beach-coverups-kaftans-sarongs",    element: <BeachCoverupsKaftansSarongs />    },
   { path: "women/clothing/swim-beachwear/monokinis",    element: <Monokinis />    },
@@ -315,4 +327,12 @@ export const womenRoutes = [
   { path: "women/clothing/swim-beachwear/bikinis/bottoms-bikinis",    element: <BottomBikinis />    },
   { path: "women/clothing/swim-beachwear/bikinis/tops-bikinis",    element: <TopsBikinis />    },
   { path: "women/clothing/swim-beachwear/bikinis/sets-bikinis",    element: <SetsBikinis />    },
+  // ── Maternity ──
+  { path: "women/clothing/maternity",    element: <Maternity />    },
+  { path: "women/clothing/maternity/ethnic-wear",    element: <EthnicWearM />    },
+  { path: "women/clothing/maternity/lingerie",    element: <LingerieMat />    },
+  { path: "women/clothing/maternity/sleep-loungewear",    element: <SleepLoungewear />    },
+  { path: "women/clothing/maternity/western-wear",    element: <WesternWearMat />    },
+
+
 ];

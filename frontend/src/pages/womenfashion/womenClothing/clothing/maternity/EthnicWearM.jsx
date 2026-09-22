@@ -1,9 +1,9 @@
 import React from 'react'
 
-const EthnicWear = () => {
+const EthnicWearM = () => {
   return (
     <div>EthnicWear</div>
   )
 }
 
-export default EthnicWear
+export default EthnicWearM

@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Accessories = () => {
+const Accessoriess = () => {
   return (
     <div>Accessories</div>
   )
 }
 
-export default Accessories
+export default Accessoriess

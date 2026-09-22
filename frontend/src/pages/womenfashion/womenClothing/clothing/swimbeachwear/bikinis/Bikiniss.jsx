@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Bikinis = () => {
+const Bikiniss = () => {
   return (
     <div>Bikinis</div>
   )
 }
 
-export default Bikinis
+export default Bikiniss

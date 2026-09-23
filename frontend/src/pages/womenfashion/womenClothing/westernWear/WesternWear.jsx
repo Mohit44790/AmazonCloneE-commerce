@@ -2,7 +2,7 @@ import React from 'react'
 import AmazonFashion from '../../AmazonFashion'
 import { Link} from 'react-router-dom'
 import { IoIosArrowBack } from 'react-icons/io'
-import { westernWearbanner } from '../../../../component/data/womenfashion'
+import { westernWearbanner } from '../../../../component/data/womenfashion.js'
 
 const WesternWearlist = [
   {label:"Tops & T-Shirts & Shirts" , link:"/western-wear/tops-t-shirts-shirts"},

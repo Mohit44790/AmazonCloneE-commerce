@@ -1,6 +1,7 @@
 // src/routes/womenRoutes.jsx
 // All Women Fashion routes — lazy loaded and grouped by category
 import { lazy } from "react";
+import Overalls from "../pages/womenfashion/womenClothing/clothing/overalls/Overalls";
 
 
 /* ── Top level ── */
@@ -347,6 +348,7 @@ export const womenRoutes = [
   { path: "women/clothing/sunglasses-spectacles",    element: <GlassesChainsLanyards />    },
   { path: "women/clothing/sunglasses-spectacles",    element: <ReadingGlasses />    },
   { path: "women/clothing/sunglasses-spectacles",    element: <Sunglasses />    },
+  { path: "women/clothing/overalls",    element: <Overalls />    },
   
 
 

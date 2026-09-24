@@ -67,10 +67,10 @@ const Lingerie = () => {
 
               <div className="h-5 w-28 bg-gray-200 rounded animate-pulse mb-4 ml-4" />
 
-              {Array.from({ length: 8 }).map((_, index) => (
+              {Array.from({ length: 11 }).map((_, index) => (
                 <div
                   key={index}
-                  className="h-4 w-40 bg-gray-200 rounded animate-pulse mb-3 ml-7"
+                  className="h-3 w-28 bg-gray-200 rounded animate-pulse mb-3 ml-7"
                 />
               ))}
             </>
@@ -122,8 +122,8 @@ const Lingerie = () => {
                   bg-white
                   shadow-md
                   hover:bg-gray-100
-                  rounded-full
-                  p-2
+                  py-8
+                  p-4
                   flex
                   items-center
                   justify-center
@@ -206,7 +206,7 @@ const Lingerie = () => {
                             alt={item.label}
                             loading="lazy"
                             className="
-                            w-full
+                            w-54
                             aspect-square
                             object-cover
                             rounded
@@ -238,8 +238,8 @@ const Lingerie = () => {
                   bg-white
                   shadow-md
                   hover:bg-gray-100
-                  rounded-full
-                  p-2
+                  py-8
+                  p-4
                   flex
                   items-center
                   justify-center

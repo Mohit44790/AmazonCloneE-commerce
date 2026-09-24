@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import AmazonFashion from "../../../AmazonFashion.jsx";
-import { lingerieCollection } from "../../../../../component/data/Womenfashion.js";
+import { lingerieCloths, lingerieCollection } from "../../../../../component/data/Womenfashion.js";
 import { Link } from "react-router-dom";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
@@ -78,15 +78,15 @@ const Lingerie = () => {
             <>
               <h1>Category</h1>
 
-              <div className="flex items-center">
+              <Link to="/women/clothing-accessories" className="flex items-center">
                 <IoIosArrowBack />
                 <p>Clothing & Accessories</p>
-              </div>
+              </Link>
 
-              <div className="flex items-center">
+              <Link to="/women/clothing" className="flex items-center">
                 <IoIosArrowBack />
                 <p>Women</p>
-              </div>
+              </Link>
 
               <h1 className="px-4 font-semibold">Lingerie</h1>
 
@@ -193,9 +193,7 @@ const Lingerie = () => {
                         key={item.id}
                         className="
                         flex-none
-                        w-[150px]
-                        sm:w-[180px]
-                        md:w-[200px]
+                       
                         snap-start
                         text-center
                       "
@@ -206,7 +204,7 @@ const Lingerie = () => {
                             alt={item.label}
                             loading="lazy"
                             className="
-                            w-54
+                            w-34
                             aspect-square
                             object-cover
                             rounded
@@ -248,6 +246,24 @@ const Lingerie = () => {
                 <IoIosArrowForward size={22} />
               </button>
             </div>
+
+            <div className="mt-2 flex gap-2">
+              {lingerieCloths.map((item,index)=>(
+                <Link key={index} to={`/products/${id}?category=${item.name.toLowerCase().replace(/ /g,"-")}`} className="w-54">
+                  <img src={item.image} alt={item.name} className="w-54 h-72 object-cover" />
+                  <div className="ml-4">
+                    <h3 className="font-bold">{item.name.slice(0, 30)}...</h3>
+                    <div className="flex gap-2 items-center">
+
+                    <p className="text-sm font-semibold">₹{item.price}</p>
+                    <p className="text-gray-500 line-through">₹{item.mrp}</p>
+                    <p className="text-green-500 font-semibold">{item.discount}% off</p>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
           </div>
         </div>
       </div>

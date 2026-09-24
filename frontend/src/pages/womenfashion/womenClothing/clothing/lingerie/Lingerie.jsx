@@ -249,7 +249,7 @@ const Lingerie = () => {
 
             <div className="mt-2 flex gap-2">
               {lingerieCloths.map((item,index)=>(
-                <Link key={index} to={`/products/:id?category=${item.name.toLowerCase().replace(/ /g,"-")}`} className="w-54">
+                <Link key={index} to={`/product/${item.id}?category=${item.name.toLowerCase().replace(/ /g,"-")}`} className="w-54">
                   <img src={item.image} alt={item.name} className="w-54 h-72 object-cover" />
                   <div className="ml-4">
                     <h3 className="font-bold">{item.name.slice(0, 30)}...</h3>

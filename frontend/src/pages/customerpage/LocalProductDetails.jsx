@@ -14,7 +14,9 @@ import {
   MdStarBorder,
 } from "react-icons/md";
 
-import { lingerieCloths } from "../../component/data/womenfashion.js";
+import { lingerieCloths,bras } from "../../component/data/womenfashion.js";
+
+
 
 const LocalProductDetails = () => {
   const { id } = useParams();
@@ -35,6 +37,12 @@ const LocalProductDetails = () => {
   // FIND LOCAL PRODUCT
   // =====================================================
 
+   const allLocalProducts = [
+  ...lingerieCloths,
+  ...bras,
+ ,
+];
+
   useEffect(() => {
     setLoading(true);
     setActiveImage(0);
@@ -42,7 +50,7 @@ const LocalProductDetails = () => {
     setSelectedSize("");
 
     const timer = setTimeout(() => {
-      const localProduct = lingerieCloths.find(
+      const localProduct = allLocalProducts.find(
         (item) => String(item.id) === String(id)
       );
 

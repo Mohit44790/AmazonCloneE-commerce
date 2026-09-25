@@ -575,3 +575,91 @@ export const lingerieCloths2 = [
   },
 ];
 
+export const bras = [
+  {
+  "id": 70,
+  "brand": "SIQULIX",
+  "name": "Women's & Girl's Strapless Push Up Wire Free Stick On Invisible Bra, Strapless Sticky Invisible Push Up Silicone Bra for Women, Stick on Bra for Backless Dress (Free Size)",
+  "price": 209,
+  "mrp": 799,
+  "discount": 74,
+  "rating": {
+    "average": 4.3,
+    "count": 59
+  },
+  "badge": "#1 Best Seller",
+  "category": "Women's Adhesive Bras",
+  "boughtInPastMonth": "1K+",
+  "images": [
+    "https://m.media-amazon.com/images/I/61ew9fMpY6L._SX679_.jpg",
+    "https://m.media-amazon.com/images/I/51qXHGtCJ8L.jpg",
+    "https://m.media-amazon.com/images/I/51R4n8-9ZBL.jpg",
+    "https://m.media-amazon.com/images/I/A1d5n-lNHnL.SX38_SY50_CR,0,0,38,50_PKmb-play-button-overlay-thumb_.png"
+  ],
+  "colors": [
+    {
+      "name": "Biege",
+      "price": 209,
+      "mrp": 799,
+      "discount": 74
+    },
+    {
+      "name": "Black",
+      "price": 209,
+      "mrp": 799,
+      "discount": 74
+    }
+  ],
+  "size": "Free Size",
+  "returnPolicy": "Non-Returnable",
+  "delivery": "Free Delivery",
+  "features": [
+    "Top Brand",
+    "Amazon Delivered",
+    "Secure transaction"
+  ],
+  "offers": [
+    {
+      "type": "Cashback",
+      "title": "Amazon Pay Cashback",
+      "description": "Upto ₹6.00 cashback when you pay with Amazon Pay ICICI Bank Credit Cards"
+    },
+    {
+      "type": "Bank Offer",
+      "title": "Credit Card Offer",
+      "description": "Upto ₹1,250.00 discount on select Credit Cards"
+    },
+    {
+      "type": "Partner Offers",
+      "title": "Buy 2 or more and get 5% off",
+      "description": "On qualifying items offered by SIQULIX"
+    }
+  ],
+  "productDetails": {
+    "Material composition": "Cotton 80% silicone 20%",
+    "Style": "Modern",
+    "Underwire type": "Wire Free",
+    "Care instructions": "Hand Wash Only",
+    "Strap type": "Strapless",
+    "Material type": "Cotton 80% silicone 20%",
+    "Country of Origin": "China"
+  },
+  "highlights": [
+    "High-grade skin-friendly silicone material",
+    "Soft and comfortable material",
+    "Self-adhesive design",
+    "Reusable",
+    "Easy to clean",
+    "Hand wash with warm water and soap",
+    "Suitable for backless dresses"
+  ],
+  "description": "This strapless adhesive bra is made from high-grade skin-friendly silicone material with simple fabric construction. It is designed to provide a soft, comfortable and natural feel. The self-adhesive design makes it suitable for strapless and backless dresses. It can be cleaned with warm water and soap and reused with proper care.",
+  "coupon": {
+    "available": true,
+    "discount": "2%",
+    "terms": "Terms apply"
+  },
+  "stock": 20,
+  "link": "/women/bras/siqulix-strapless-bra"
+}
+]

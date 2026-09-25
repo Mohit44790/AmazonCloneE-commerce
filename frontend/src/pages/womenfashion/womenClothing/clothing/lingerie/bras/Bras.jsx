@@ -1,6 +1,7 @@
 import React from 'react'
 import { IoIosArrowBack } from 'react-icons/io'
 import { Link } from 'react-router-dom'
+import { bras } from '../../../../../../component/data/Womenfashion'
 
 const Bras = () => {
   return (
@@ -19,7 +20,7 @@ const Bras = () => {
              <IoIosArrowBack /> Lingerie
            </Link>
            <h1 className="font-semibold text-sm px-4">Bras</h1>
-             <div className="px-6">
+             <div className="px-6x`">
                  <Link to="/women/lingerie/bras/adhesive" className="flex items-center  text-sm">
             Adhesive Bras
            </Link>
@@ -39,6 +40,14 @@ const Bras = () => {
           <p className="text-sm text-gray-600">
             Check each product page for other buying options. Price and other details may vary based on product size and colour.
           </p>
+
+          <div>
+           {bras.map((item,id)=>(
+            <Link key={id} to={`/product/${item.id}`}>
+               <img src={item.images?.[0]} alt={item.brand} className='h-72' />
+            </Link>
+           ))}
+          </div>
         </div>
       </div>
     </div>

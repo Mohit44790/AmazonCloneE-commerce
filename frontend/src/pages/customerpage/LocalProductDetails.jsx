@@ -1,5 +1,7 @@
+
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+
 import {
   MdAdd,
   MdRemove,
@@ -17,6 +19,10 @@ import { lingerieCloths } from "../../component/data/womenfashion.js";
 const LocalProductDetails = () => {
   const { id } = useParams();
 
+  // =====================================================
+  // STATE
+  // =====================================================
+
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -24,26 +30,31 @@ const LocalProductDetails = () => {
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState("");
   const [pincode, setPincode] = useState("");
-const images = product.images || [];
-
-const currentImage = images[activeImage];
- useEffect(() => {
-  setLoading(true);
-
-  const timer = setTimeout(() => {
-    const localProduct = lingerieCloths.find(
-      (item) => String(item.id) === String(id)
-    );
-
-    setProduct(localProduct || null);
-    setLoading(false);
-  }, 400);
-
-  return () => clearTimeout(timer);
-}, [id]);
 
   // =====================================================
-  // LOADING
+  // FIND LOCAL PRODUCT
+  // =====================================================
+
+  useEffect(() => {
+    setLoading(true);
+    setActiveImage(0);
+    setQuantity(1);
+    setSelectedSize("");
+
+    const timer = setTimeout(() => {
+      const localProduct = lingerieCloths.find(
+        (item) => String(item.id) === String(id)
+      );
+
+      setProduct(localProduct || null);
+      setLoading(false);
+    }, 400);
+
+    return () => clearTimeout(timer);
+  }, [id]);
+
+  // =====================================================
+  // SKELETON LOADING
   // =====================================================
 
   if (loading) {
@@ -51,23 +62,26 @@ const currentImage = images[activeImage];
       <div className="min-h-screen bg-white">
         <div className="max-w-7xl mx-auto p-4 md:p-6 animate-pulse">
 
-          <div className="h-4 w-48 bg-gray-200 rounded mb-6" />
+          {/* Breadcrumb Skeleton */}
+          <div className="h-4 w-56 bg-gray-200 rounded mb-7" />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-            <div className="space-y-3">
-              <div className="aspect-square bg-gray-200 rounded" />
+            {/* Images */}
+            <div>
+              <div className="aspect-square bg-gray-200 rounded-xl" />
 
-              <div className="flex gap-2">
+              <div className="flex gap-2 mt-3">
                 {[1, 2, 3, 4].map((item) => (
                   <div
                     key={item}
-                    className="w-16 h-16 bg-gray-200 rounded"
+                    className="w-16 h-16 bg-gray-200 rounded-lg"
                   />
                 ))}
               </div>
             </div>
 
+            {/* Product Information */}
             <div className="space-y-4">
 
               <div className="h-5 w-24 bg-gray-200 rounded" />
@@ -78,15 +92,22 @@ const currentImage = images[activeImage];
 
               <div className="h-5 w-40 bg-gray-200 rounded" />
 
-              <div className="h-10 w-44 bg-gray-200 rounded" />
+              <div className="h-9 w-44 bg-gray-200 rounded" />
+
+              <div className="h-4 w-32 bg-gray-200 rounded" />
+
+              <div className="h-20 w-full bg-gray-200 rounded" />
 
               <div className="h-20 w-full bg-gray-200 rounded" />
 
             </div>
 
-            <div className="border rounded-xl p-5 space-y-4">
+            {/* Buy Box */}
+            <div className="border border-gray-200 rounded-xl p-5 space-y-4">
 
               <div className="h-8 bg-gray-200 rounded" />
+
+              <div className="h-5 w-32 bg-gray-200 rounded" />
 
               <div className="h-10 bg-gray-200 rounded" />
 
@@ -114,7 +135,7 @@ const currentImage = images[activeImage];
 
         <div className="text-center">
 
-          <div className="text-6xl mb-4">
+          <div className="text-6xl mb-5">
             🛍️
           </div>
 
@@ -132,7 +153,16 @@ const currentImage = images[activeImage];
 
           <Link
             to="/products"
-            className="inline-block mt-5 bg-[#FFD814] hover:bg-[#F7CA00] px-6 py-3 rounded-full font-semibold"
+            className="
+              inline-block
+              mt-5
+              bg-[#FFD814]
+              hover:bg-[#F7CA00]
+              px-6
+              py-3
+              rounded-full
+              font-semibold
+            "
           >
             Continue Shopping
           </Link>
@@ -144,45 +174,69 @@ const currentImage = images[activeImage];
   }
 
   // =====================================================
-  // PRODUCT DATA
+  // PRODUCT IMAGES
+  //
+  // Supports:
+  //
+  // images: ["1.jpg", "2.jpg"]
+  //
+  // OR
+  //
+  // image: "1.jpg"
+  //
+  // OR
+  //
+  // image: ["1.jpg", "2.jpg"]
   // =====================================================
 
-  // const images =
-  //   product.images?.length > 0
-  //     ? product.images
-  //     : product.image
-  //     ? [{ url: product.image }]
-  //     : [];
+  const images = Array.isArray(product.images)
+    ? product.images
+    : Array.isArray(product.image)
+    ? product.image
+    : product.image
+    ? [product.image]
+    : [];
 
-  // const currentImage =
-  //   images[activeImage]?.url || product.image;
+  const currentImage =
+    images[activeImage] ||
+    images[0] ||
+    "/placeholder.png";
+
+  // =====================================================
+  // PRODUCT DATA
+  // =====================================================
 
   const price = Number(product.price || 0);
 
   const mrp = Number(product.mrp || price);
 
   const discount =
-    product.discount ||
+    Number(product.discount) ||
     (mrp > price
       ? Math.round(((mrp - price) / mrp) * 100)
       : 0);
 
   const stock = Number(product.stock ?? 10);
 
-  const sizes = product.sizes || [];
+  const sizes = Array.isArray(product.sizes)
+    ? product.sizes
+    : [];
 
-  const rating = Number(
-    product.rating?.average || product.rating || 0
-  );
+  const rating =
+    Number(product.rating?.average) ||
+    Number(product.rating) ||
+    0;
 
   // =====================================================
   // QUANTITY
   // =====================================================
 
   const increaseQty = () => {
-    setQuantity((old) =>
-      Math.min(stock || 10, old + 1)
-    );
+    setQuantity((old) => {
+      if (stock <= 0) return old;
+
+      return Math.min(stock, old + 1);
+    });
   };
 
   const decreaseQty = () => {
@@ -196,37 +250,62 @@ const currentImage = images[activeImage];
   // =====================================================
 
   const handleAddToCart = () => {
-    console.log("Local product added:", {
-      product,
+    const cartProduct = {
+      ...product,
       quantity,
-      size: selectedSize,
-    });
+      selectedSize,
+    };
+
+    console.log("Local product added:", cartProduct);
 
     alert("Product added to cart");
   };
 
   // =====================================================
-  // RATING
+  // BUY NOW
+  // =====================================================
+
+  const handleBuyNow = () => {
+    if (stock <= 0) return;
+
+    console.log("Buy now:", {
+      ...product,
+      quantity,
+      selectedSize,
+    });
+
+    alert("Buy Now clicked");
+  };
+
+  // =====================================================
+  // RATING STARS
   // =====================================================
 
   const renderStars = () => {
     return (
-      <div className="flex items-center gap-1">
-        {[1, 2, 3, 4, 5].map((star) =>
-          star <= Math.round(rating) ? (
-            <MdStar
-              key={star}
-              size={18}
-              className="text-[#FF9900]"
-            />
-          ) : (
+      <div className="flex items-center gap-0.5">
+
+        {[1, 2, 3, 4, 5].map((star) => {
+
+          if (star <= Math.round(rating)) {
+            return (
+              <MdStar
+                key={star}
+                size={18}
+                className="text-[#FF9900]"
+              />
+            );
+          }
+
+          return (
             <MdStarBorder
               key={star}
               size={18}
               className="text-gray-300"
             />
-          )
-        )}
+          );
+        })}
+
       </div>
     );
   };
@@ -251,20 +330,23 @@ const currentImage = images[activeImage];
 
           <span>/</span>
 
-          <span>
+          <Link
+            to="/products"
+            className="hover:text-blue-600"
+          >
             Products
-          </span>
+          </Link>
 
           <span>/</span>
 
-          <span className="text-gray-700">
+          <span className="text-gray-700 line-clamp-1">
             {product.name}
           </span>
 
         </div>
 
         {/* =================================================
-            PRODUCT
+            MAIN PRODUCT
         ================================================= */}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -275,12 +357,26 @@ const currentImage = images[activeImage];
 
           <div>
 
-            <div className="border border-gray-200 rounded-xl overflow-hidden bg-gray-50 aspect-square">
+            {/* Main Image */}
+
+            <div className="
+              border
+              border-gray-200
+              rounded-xl
+              overflow-hidden
+              bg-gray-50
+              aspect-square
+            ">
 
               <img
                 src={currentImage}
                 alt={product.name}
-                className="w-full h-full object-contain p-4"
+                className="
+                  w-full
+                  h-full
+                  object-contain
+                  p-4
+                "
                 onError={(e) => {
                   e.currentTarget.src =
                     "/placeholder.png";
@@ -289,51 +385,110 @@ const currentImage = images[activeImage];
 
             </div>
 
-            {/* THUMBNAILS */}
+            {/* =================================================
+                THUMBNAILS
+            ================================================= */}
 
-           {images.length > 0 && (
-  <div className="flex gap-2 mt-3 overflow-x-auto">
+            {images.length > 0 && (
 
-    {images.map((image, index) => (
-      <button
-        key={index}
-        type="button"
-        onClick={() => setActiveImage(index)}
-        className={`
-          w-20 h-20
-          shrink-0
-          rounded-lg
-          overflow-hidden
-          border-2
-          ${
-            activeImage === index
-              ? "border-orange-500"
-              : "border-gray-200"
-          }
-        `}
-      >
-        <img
-          src={image}
-          alt={`${product.name} ${index + 1}`}
-          className="w-full h-full object-cover"
-        />
-      </button>
-    ))}
+              <div className="
+                flex
+                gap-2
+                mt-3
+                overflow-x-auto
+                pb-1
+              ">
 
-  </div>
-)}
+                {images.map((image, index) => (
 
-            {/* ACTIONS */}
+                  <button
+                    key={index}
+                    type="button"
+                    onClick={() =>
+                      setActiveImage(index)
+                    }
+                    className={`
+                      w-20
+                      h-20
+                      shrink-0
+                      rounded-lg
+                      overflow-hidden
+                      border-2
+                      bg-white
+                      ${
+                        activeImage === index
+                          ? "border-orange-500"
+                          : "border-gray-200"
+                      }
+                    `}
+                  >
 
-            <div className="flex gap-5 mt-4">
+                    <img
+                      src={image}
+                      alt={`${product.name} ${index + 1}`}
+                      className="
+                        w-full
+                        h-full
+                        object-cover
+                      "
+                      onError={(e) => {
+                        e.currentTarget.src =
+                          "/placeholder.png";
+                      }}
+                    />
 
-              <button className="flex items-center gap-1 text-sm text-gray-600 hover:text-red-500">
-                <MdFavoriteBorder size={20} />
+                  </button>
+
+                ))}
+
+              </div>
+            )}
+
+            {/* =================================================
+                IMAGE COUNT
+            ================================================= */}
+
+            {images.length > 0 && (
+              <p className="text-xs text-gray-500 mt-2">
+                {activeImage + 1} / {images.length} images
+              </p>
+            )}
+
+            {/* =================================================
+                WISHLIST / SHARE
+            ================================================= */}
+
+            <div className="flex gap-6 mt-4">
+
+              <button
+                type="button"
+                className="
+                  flex
+                  items-center
+                  gap-1
+                  text-sm
+                  text-gray-600
+                  hover:text-red-500
+                "
+              >
+                <MdFavoriteBorder size={21} />
+
                 Wishlist
               </button>
 
-              <button className="flex items-center gap-1 text-sm text-gray-600">
-                <MdShare size={20} />
+              <button
+                type="button"
+                className="
+                  flex
+                  items-center
+                  gap-1
+                  text-sm
+                  text-gray-600
+                  hover:text-blue-600
+                "
+              >
+                <MdShare size={21} />
+
                 Share
               </button>
 
@@ -347,27 +502,47 @@ const currentImage = images[activeImage];
 
           <div>
 
-            {/* BRAND */}
+            {/* Brand */}
 
             {product.brand && (
-              <p className="text-blue-600 text-sm mb-1">
+
+              <p className="
+                text-blue-600
+                text-sm
+                mb-1
+              ">
                 {product.brand}
               </p>
+
             )}
 
-            {/* NAME */}
+            {/* Product Name */}
 
-            <h1 className="text-xl md:text-2xl font-semibold text-gray-900 leading-snug">
+            <h1 className="
+              text-xl
+              md:text-2xl
+              font-semibold
+              text-gray-900
+              leading-snug
+            ">
               {product.name}
             </h1>
 
-            {/* RATING */}
+            {/* Rating */}
 
-            <div className="flex items-center gap-2 mt-3">
+            <div className="
+              flex
+              items-center
+              gap-2
+              mt-3
+            ">
 
               {renderStars()}
 
-              <span className="text-blue-600 text-sm">
+              <span className="
+                text-blue-600
+                text-sm
+              ">
                 {product.rating?.count || 0} ratings
               </span>
 
@@ -375,61 +550,107 @@ const currentImage = images[activeImage];
 
             <hr className="my-4" />
 
-            {/* DISCOUNT */}
+            {/* Discount */}
 
             {discount > 0 && (
-              <p className="text-red-500 font-semibold text-sm">
+
+              <p className="
+                text-red-500
+                font-semibold
+                text-sm
+              ">
                 -{discount}% off
               </p>
+
             )}
 
-            {/* PRICE */}
+            {/* Price */}
 
-            <div className="flex items-center gap-3 mt-1">
+            <div className="
+              flex
+              items-center
+              gap-3
+              mt-1
+            ">
 
-              <span className="text-3xl font-bold">
-                ₹{price.toLocaleString()}
+              <span className="
+                text-3xl
+                font-bold
+              ">
+                ₹{price.toLocaleString("en-IN")}
               </span>
 
               {mrp > price && (
-                <span className="text-gray-500 line-through">
-                  ₹{mrp.toLocaleString()}
+
+                <span className="
+                  text-gray-500
+                  line-through
+                ">
+                  ₹{mrp.toLocaleString("en-IN")}
                 </span>
+
               )}
 
             </div>
 
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="
+              text-xs
+              text-gray-500
+              mt-1
+            ">
               Inclusive of all taxes
             </p>
 
-            {/* SIZE */}
+            {/* =================================================
+                SIZE
+            ================================================= */}
 
             {sizes.length > 0 && (
 
               <div className="mt-6">
 
-                <p className="font-semibold text-sm mb-2">
+                <p className="
+                  font-semibold
+                  text-sm
+                  mb-2
+                ">
                   Size:
-                  <span className="font-normal ml-2">
-                    {selectedSize}
+
+                  <span className="
+                    font-normal
+                    ml-2
+                  ">
+                    {selectedSize || "Select size"}
                   </span>
                 </p>
 
-                <div className="flex gap-2 flex-wrap">
+                <div className="
+                  flex
+                  gap-2
+                  flex-wrap
+                ">
 
                   {sizes.map((size) => (
 
                     <button
                       key={size}
+                      type="button"
                       onClick={() =>
                         setSelectedSize(size)
                       }
-                      className={`px-5 py-2 border rounded-lg text-sm font-semibold ${
-                        selectedSize === size
-                          ? "border-[#FF9900] bg-orange-50"
-                          : "border-gray-300 hover:border-gray-500"
-                      }`}
+                      className={`
+                        px-5
+                        py-2
+                        border
+                        rounded-lg
+                        text-sm
+                        font-semibold
+                        ${
+                          selectedSize === size
+                            ? "border-[#FF9900] bg-orange-50"
+                            : "border-gray-300 hover:border-gray-500"
+                        }
+                      `}
                     >
                       {size}
                     </button>
@@ -441,13 +662,19 @@ const currentImage = images[activeImage];
               </div>
             )}
 
-            {/* HIGHLIGHTS */}
+            {/* =================================================
+                HIGHLIGHTS
+            ================================================= */}
 
-            {product.highlights?.length > 0 && (
+            {Array.isArray(product.highlights) &&
+              product.highlights.length > 0 && (
 
               <div className="mt-6">
 
-                <h2 className="font-bold mb-2">
+                <h2 className="
+                  font-bold
+                  mb-2
+                ">
                   About this item
                 </h2>
 
@@ -458,10 +685,19 @@ const currentImage = images[activeImage];
 
                       <li
                         key={index}
-                        className="text-sm text-gray-700 flex gap-2"
+                        className="
+                          text-sm
+                          text-gray-700
+                          flex
+                          gap-2
+                        "
                       >
                         <span>•</span>
-                        <span>{item}</span>
+
+                        <span>
+                          {item}
+                        </span>
+
                       </li>
 
                     )
@@ -472,15 +708,24 @@ const currentImage = images[activeImage];
               </div>
             )}
 
-            {/* DESCRIPTION */}
+            {/* =================================================
+                DESCRIPTION
+            ================================================= */}
 
             <div className="mt-6">
 
-              <h2 className="font-bold mb-2">
+              <h2 className="
+                font-bold
+                mb-2
+              ">
                 Description
               </h2>
 
-              <p className="text-sm text-gray-600 leading-6">
+              <p className="
+                text-sm
+                text-gray-600
+                leading-6
+              ">
                 {product.description ||
                   `${product.name} is available at an attractive price.`}
               </p>
@@ -495,37 +740,60 @@ const currentImage = images[activeImage];
 
           <div>
 
-            <div className="border border-gray-300 rounded-xl p-5">
+            <div className="
+              border
+              border-gray-300
+              rounded-xl
+              p-5
+            ">
 
-              {/* PRICE */}
+              {/* Price */}
 
-              <p className="text-2xl font-bold">
-                ₹{price.toLocaleString()}
+              <p className="
+                text-2xl
+                font-bold
+              ">
+                ₹{price.toLocaleString("en-IN")}
               </p>
 
-              {/* DELIVERY */}
+              {/* Delivery */}
 
-              <div className="mt-4 text-sm">
+              <div className="
+                mt-4
+                text-sm
+              ">
 
                 <p>
                   <b>FREE Delivery</b>
                 </p>
 
-                <p className="text-gray-500 mt-1">
+                <p className="
+                  text-gray-500
+                  mt-1
+                ">
                   Delivery available across selected locations.
                 </p>
 
               </div>
 
-              {/* PINCODE */}
+              {/* =================================================
+                  PINCODE
+              ================================================= */}
 
               <div className="mt-5">
 
-                <p className="text-sm font-semibold mb-2">
+                <p className="
+                  text-sm
+                  font-semibold
+                  mb-2
+                ">
                   Check delivery
                 </p>
 
-                <div className="flex gap-2">
+                <div className="
+                  flex
+                  gap-2
+                ">
 
                   <input
                     type="text"
@@ -540,17 +808,39 @@ const currentImage = images[activeImage];
                       )
                     }
                     placeholder="Enter pincode"
-                    className="border border-gray-300 rounded-lg px-3 py-2 w-full text-sm outline-none focus:border-orange-500"
+                    className="
+                      border
+                      border-gray-300
+                      rounded-lg
+                      px-3
+                      py-2
+                      w-full
+                      text-sm
+                      outline-none
+                      focus:border-orange-500
+                    "
                   />
 
                   <button
-                    className="text-blue-600 font-semibold text-sm"
+                    type="button"
+                    className="
+                      text-blue-600
+                      font-semibold
+                      text-sm
+                      px-2
+                    "
                     onClick={() => {
+
                       if (pincode.length === 6) {
                         alert(
                           `Delivery checked for ${pincode}`
                         );
+                      } else {
+                        alert(
+                          "Please enter a valid 6 digit pincode"
+                        );
                       }
+
                     }}
                   >
                     Check
@@ -560,48 +850,82 @@ const currentImage = images[activeImage];
 
               </div>
 
-              {/* STOCK */}
+              {/* =================================================
+                  STOCK
+              ================================================= */}
 
               <p
-                className={`font-semibold mt-5 ${
-                  stock > 0
-                    ? "text-green-600"
-                    : "text-red-500"
-                }`}
+                className={`
+                  font-semibold
+                  mt-5
+                  ${
+                    stock > 0
+                      ? "text-green-600"
+                      : "text-red-500"
+                  }
+                `}
               >
+
                 {stock > 0
                   ? stock < 10
                     ? `Only ${stock} left in stock`
                     : "In Stock"
                   : "Out of Stock"}
+
               </p>
 
-              {/* QUANTITY */}
+              {/* =================================================
+                  QUANTITY
+              ================================================= */}
 
               {stock > 0 && (
 
-                <div className="flex items-center gap-3 mt-4">
+                <div className="
+                  flex
+                  items-center
+                  gap-3
+                  mt-4
+                ">
 
                   <span className="text-sm">
                     Quantity:
                   </span>
 
-                  <div className="flex items-center border rounded-lg overflow-hidden">
+                  <div className="
+                    flex
+                    items-center
+                    border
+                    rounded-lg
+                    overflow-hidden
+                  ">
 
                     <button
+                      type="button"
                       onClick={decreaseQty}
-                      className="px-3 py-2 hover:bg-gray-100"
+                      className="
+                        px-3
+                        py-2
+                        hover:bg-gray-100
+                      "
                     >
                       <MdRemove />
                     </button>
 
-                    <span className="px-4 font-semibold">
+                    <span className="
+                      px-4
+                      font-semibold
+                    ">
                       {quantity}
                     </span>
 
                     <button
+                      type="button"
                       onClick={increaseQty}
-                      className="px-3 py-2 hover:bg-gray-100"
+                      className="
+                        px-3
+                        py-2
+                        hover:bg-gray-100
+                      "
                     >
                       <MdAdd />
                     </button>
@@ -611,34 +935,73 @@ const currentImage = images[activeImage];
                 </div>
               )}
 
-              {/* CART */}
+              {/* =================================================
+                  ADD TO CART
+              ================================================= */}
 
               <button
+                type="button"
                 disabled={stock <= 0}
                 onClick={handleAddToCart}
-                className="w-full mt-5 bg-[#FFD814] hover:bg-[#F7CA00] disabled:opacity-40 py-3 rounded-full font-semibold"
+                className="
+                  w-full
+                  mt-5
+                  bg-[#FFD814]
+                  hover:bg-[#F7CA00]
+                  disabled:opacity-40
+                  disabled:cursor-not-allowed
+                  py-3
+                  rounded-full
+                  font-semibold
+                "
               >
                 Add to Cart
               </button>
 
-              {/* BUY */}
+              {/* =================================================
+                  BUY NOW
+              ================================================= */}
 
               <button
+                type="button"
                 disabled={stock <= 0}
-                className="w-full mt-3 bg-[#FFA41C] hover:bg-[#FA8900] disabled:opacity-40 py-3 rounded-full font-semibold"
+                onClick={handleBuyNow}
+                className="
+                  w-full
+                  mt-3
+                  bg-[#FFA41C]
+                  hover:bg-[#FA8900]
+                  disabled:opacity-40
+                  disabled:cursor-not-allowed
+                  py-3
+                  rounded-full
+                  font-semibold
+                "
               >
                 Buy Now
               </button>
 
-              {/* FEATURES */}
+              {/* =================================================
+                  FEATURES
+              ================================================= */}
 
-              <div className="border-t mt-5 pt-4 space-y-3">
+              <div className="
+                border-t
+                mt-5
+                pt-4
+                space-y-3
+              ">
 
-                <div className="flex items-center gap-3 text-sm text-gray-600">
+                <div className="
+                  flex
+                  items-center
+                  gap-3
+                  text-sm
+                  text-gray-600
+                ">
 
                   <MdLocalShipping
                     size={22}
-                    className="text-gray-500"
                   />
 
                   <span>
@@ -647,11 +1010,16 @@ const currentImage = images[activeImage];
 
                 </div>
 
-                <div className="flex items-center gap-3 text-sm text-gray-600">
+                <div className="
+                  flex
+                  items-center
+                  gap-3
+                  text-sm
+                  text-gray-600
+                ">
 
                   <MdSecurity
                     size={22}
-                    className="text-gray-500"
                   />
 
                   <span>
@@ -660,11 +1028,16 @@ const currentImage = images[activeImage];
 
                 </div>
 
-                <div className="flex items-center gap-3 text-sm text-gray-600">
+                <div className="
+                  flex
+                  items-center
+                  gap-3
+                  text-sm
+                  text-gray-600
+                ">
 
                   <MdReplay
                     size={22}
-                    className="text-gray-500"
                   />
 
                   <span>
@@ -681,67 +1054,131 @@ const currentImage = images[activeImage];
 
         </div>
 
-        {/* =================================================
-            LOCAL PRODUCT DETAILS
-        ================================================= */}
+        {/* =====================================================
+            PRODUCT DETAILS
+        ===================================================== */}
 
-        <div className="mt-10 border-t pt-8">
+        <div className="
+          mt-10
+          border-t
+          pt-8
+        ">
 
-          <h2 className="text-xl font-bold mb-5">
+          <h2 className="
+            text-xl
+            font-bold
+            mb-5
+          ">
             Product Details
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="
+            grid
+            grid-cols-1
+            md:grid-cols-2
+            gap-4
+          ">
 
-            <div className="bg-gray-50 rounded-lg p-4">
+            {/* Product ID */}
 
-              <p className="text-xs text-gray-500">
+            <div className="
+              bg-gray-50
+              rounded-lg
+              p-4
+            ">
+
+              <p className="
+                text-xs
+                text-gray-500
+              ">
                 Product ID
               </p>
 
-              <p className="font-semibold mt-1">
+              <p className="
+                font-semibold
+                mt-1
+              ">
                 {product.id}
               </p>
 
             </div>
 
+            {/* Brand */}
+
             {product.brand && (
 
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="
+                bg-gray-50
+                rounded-lg
+                p-4
+              ">
 
-                <p className="text-xs text-gray-500">
+                <p className="
+                  text-xs
+                  text-gray-500
+                ">
                   Brand
                 </p>
 
-                <p className="font-semibold mt-1">
+                <p className="
+                  font-semibold
+                  mt-1
+                ">
                   {product.brand}
                 </p>
 
               </div>
+
             )}
 
-            <div className="bg-gray-50 rounded-lg p-4">
+            {/* Price */}
 
-              <p className="text-xs text-gray-500">
+            <div className="
+              bg-gray-50
+              rounded-lg
+              p-4
+            ">
+
+              <p className="
+                text-xs
+                text-gray-500
+              ">
                 Price
               </p>
 
-              <p className="font-semibold mt-1">
-                ₹{price.toLocaleString()}
+              <p className="
+                font-semibold
+                mt-1
+              ">
+                ₹{price.toLocaleString("en-IN")}
               </p>
 
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-4">
+            {/* Availability */}
 
-              <p className="text-xs text-gray-500">
+            <div className="
+              bg-gray-50
+              rounded-lg
+              p-4
+            ">
+
+              <p className="
+                text-xs
+                text-gray-500
+              ">
                 Availability
               </p>
 
-              <p className="font-semibold mt-1">
+              <p className="
+                font-semibold
+                mt-1
+              ">
+
                 {stock > 0
                   ? "In Stock"
                   : "Out of Stock"}
+
               </p>
 
             </div>
@@ -757,3 +1194,4 @@ const currentImage = images[activeImage];
 };
 
 export default LocalProductDetails;
+

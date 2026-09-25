@@ -411,7 +411,10 @@ export const lingerieCloths = [
 
     images: [
       "https://m.media-amazon.com/images/I/717iqJWIiIL._AC_SR480,440_.jpg",
-      "https://m.media-amazon.com/images/I/717iqJWIiIL._AC_SR480,440_.jpg"
+      "https://m.media-amazon.com/images/I/71kBzEgLtOL._SY679_.jpg",
+      "https://m.media-amazon.com/images/I/51G3x8uwUML._SY679_.jpg",
+      "https://m.media-amazon.com/images/I/71kBzEgLtOL._SY679_.jpg"
+
     ],
 
     link: "/women/bras/van-heusen-everyday-cotton-bra",
@@ -428,6 +431,143 @@ export const lingerieCloths = [
       "https://m.media-amazon.com/images/I/71FL8NMnLgL._SY741_.jpg",
       "https://m.media-amazon.com/images/I/31xQqHAFgpL._SX38_SY50_CR,0,0,38,50_.jpg",
       "https://m.media-amazon.com/images/I/7146IFrHeJL._SY679_.jpg",
+     
+    ],
+
+    link: "/women/bras/enamor-low-impact-bra",
+  },
+  {
+    id: 63,
+    name: "WACOAL Women’s Emma Lace|Padded|Non-Wired |3/4th Cup|Bridal Wear|Medium Coverage|Lace Push Up Bra",
+    price: 3499 ,
+    mrp: 4269,
+    discount: 9,
+
+    images: [
+      "https://m.media-amazon.com/images/I/51pMtmrWeTL._SX679_.jpg",
+      "https://m.media-amazon.com/images/I/51xC5w8tnHL._SX679_.jpg",
+      "https://m.media-amazon.com/images/I/51eAg1Czy6L._SX679_.jpg",
+      "https://m.media-amazon.com/images/I/51tij1ZIMQL._SX679_.jpg"
+     
+    ],
+
+    link: "/women/bras/enamor-low-impact-bra",
+  },
+  {
+    id: 64,
+    name: "Nykd (Nyb325) Invisiblend™ Bonded Seamless Non Padded & Non Wired Encircled Shaping Bra for Women | Super Soft & Lightweight Goes Invisible Under Clothes | Perfect for Support, Shape and Lift",
+    price: 1429 ,
+    mrp: 4269,
+    discount: 87,
+
+    images: [
+      "https://m.media-amazon.com/images/I/51LQbojDWHL._SX679_.jpg",
+      "https://m.media-amazon.com/images/I/61y7QD6yNjL._SX679_.jpg",
+      "https://m.media-amazon.com/images/I/51Izo-XwrlL._SX679_.jpg",
+      "https://m.media-amazon.com/images/I/51-esd9-dsL._SX679_.jpg"
+     
+    ],
+
+    link: "/women/bras/enamor-low-impact-bra",
+  },
+];
+
+export const lingerieCloths2 = [
+  {
+    id: 65,
+    name: "Introducing",
+    price: 399,
+    mrp: 449,
+    discount: 11,
+
+    images: [
+      "https://m.media-amazon.com/images/G/31/WA2026/Serve_Lingeri_e._CB783412009_UC343,180_.png"
+    ],
+
+    link: "/women/bras/sample",
+  },
+
+  {
+    id: 66,
+    name: "Triumph International Modern Lace Bra for Women | Detachable & Adjustable Straps | Lightly Padded Full Coverage Casual Bra | Pack of 1",
+    price: 797 ,
+    mrp: 1593,
+    discount: 50,
+
+    images: [
+     "https://m.media-amazon.com/images/I/6131uIyXRUL._SY679_.jpg",
+     "https://m.media-amazon.com/images/I/61WmVLDgpIL._SY679_.jpg",
+     "https://m.media-amazon.com/images/I/61X+KGLVnFL._SY679_.jpg",
+     "https://m.media-amazon.com/images/I/71GBKigKiuL._SY679_.jpg"
+    ],
+
+    link: "/women/bras/enamor-low-impact-bra",
+  },
+
+  {
+    id: 67,
+    name: "Clovia Lace Padded Non-Wired Bra (BR1479P24_Nude_36D)",
+    price: 444 ,
+    mrp: 1199,
+    discount: 63,
+
+    images: [
+     "https://m.media-amazon.com/images/I/71NxhqKcL3L._SY679_.jpg",
+     "https://m.media-amazon.com/images/I/71W3+wip49L._SY679_.jpg",
+     "https://m.media-amazon.com/images/I/6165kRvIBSL._SY679_.jpg",
+     "https://m.media-amazon.com/images/I/71eLXhI9LDL._SY679_.jpg"
+
+    ],
+
+    link: "/women/bras/van-heusen-everyday-cotton-bra",
+  },
+
+  {
+    id: 68,
+    name: "Jockey 1250 Women Wirefree Non Padded Super Combed Cotton Everyday Bra",
+    price: 649,
+    mrp: 1299,
+    discount: 50,
+
+    images: [
+      "https://m.media-amazon.com/images/I/717OuwCLA7L._SX569_.jpg",
+      "https://m.media-amazon.com/images/I/71l1NT0BxnL._SX569_.jpg",
+      "https://m.media-amazon.com/images/I/71jocrkMswL._SX569_.jpg",
+      "https://m.media-amazon.com/images/I/71JZsq8PRBL._SX569_.jpg"
+     
+    ],
+
+    link: "/women/bras/enamor-low-impact-bra",
+  },
+  {
+    id: 69,
+    name: "Clovia Women's Cotton T-Shirt Bra",
+    price: 3499 ,
+    mrp: 4269,
+    discount: 9,
+
+    images: [
+      "https://m.media-amazon.com/images/I/71-WxCBW-fL._SY679_.jpg",
+      "https://m.media-amazon.com/images/I/71FkW1GcopL._SY679_.jpg",
+      "https://m.media-amazon.com/images/I/61ZyFawQAuL._SY679_.jpg",
+      "https://m.media-amazon.com/images/I/71xFNZf2ksL._SY679_.jpg"
+     
+    ],
+
+    link: "/women/bras/enamor-low-impact-bra",
+  },
+  {
+    id: 70,
+    name: "Clovia Women T-Shirt Bra",
+    price: 1429 ,
+    mrp: 4269,
+    discount: 87,
+
+    images: [
+      "https://m.media-amazon.com/images/I/61GJii6BZHL._SY679_.jpg",
+      "https://m.media-amazon.com/images/I/61+hC47BEoL._SY679_.jpg",
+      "https://m.media-amazon.com/images/I/61nserGBE3L._SY679_.jpg",
+      "https://m.media-amazon.com/images/I/71R0jBJIudL._SY679_.jpg"
      
     ],
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import AmazonFashion from "../../../AmazonFashion.jsx";
-import { lingerieCloths, lingerieCollection } from "../../../../../component/data/Womenfashion.js";
+import { lingerieCloths, lingerieCloths2, lingerieCollection } from "../../../../../component/data/Womenfashion.js";
 import { Link } from "react-router-dom";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
@@ -247,7 +247,7 @@ const Lingerie = () => {
               </button>
             </div>
 
-            <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+         <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
   {lingerieCloths.map((item) => (
     <Link
       key={item.id}
@@ -307,6 +307,64 @@ const Lingerie = () => {
 </div>
 
           </div>
+                    <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+  {lingerieCloths2.map((item) => (
+    <Link
+      key={item.id}
+      to={`/product/${item.id}`}
+      className="group min-w-0"
+    >
+      {/* IMAGE CARD */}
+      <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+
+        <div className=" gap-[2px] bg-gray-200 aspect-square object-contain">
+         
+              <img
+                src={item.images?.[0]}
+                alt="omae"
+                loading="lazy"
+                className="
+                  w-full
+                  h-full
+                  object-cover
+                  group-hover:scale-105
+                  transition-transform
+                  duration-300
+                "
+              />
+            </div>
+        
+        </div>
+
+        {/* PRODUCT INFO */}
+        <div className="p-2">
+
+          <h3 className="font-semibold text-sm line-clamp-2 min-h-[40px]">
+            {item.name}
+          </h3>
+
+          <div className="flex items-center gap-2 mt-2">
+
+            <span className="font-bold">
+              ₹{item.price}
+            </span>
+
+            <span className="text-xs text-gray-500 line-through">
+              ₹{item.mrp}
+            </span>
+
+            <span className="text-xs text-green-600 font-semibold">
+              {item.discount}% off
+            </span>
+
+          </div>
+
+        </div>
+
+     
+    </Link>
+  ))}
+</div>
         </div>
       </div>
     </div>

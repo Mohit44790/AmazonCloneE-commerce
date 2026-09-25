@@ -247,22 +247,64 @@ const Lingerie = () => {
               </button>
             </div>
 
-            <div className="mt-2 flex gap-2">
-              {lingerieCloths.map((item,index)=>(
-                <Link key={index} to={`/product/${item.id}?category=${item.name.toLowerCase().replace(/ /g,"-")}`} className="w-54">
-                  <img src={item.image} alt={item.name} className="w-54 h-72 object-cover" />
-                  <div className="ml-4">
-                    <h3 className="font-bold">{item.name.slice(0, 30)}...</h3>
-                    <div className="flex gap-2 items-center">
+            <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+  {lingerieCloths.map((item) => (
+    <Link
+      key={item.id}
+      to={`/product/${item.id}`}
+      className="group min-w-0"
+    >
+      {/* IMAGE CARD */}
+      <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
 
-                    <p className="text-sm font-semibold">₹{item.price}</p>
-                    <p className="text-gray-500 line-through">₹{item.mrp}</p>
-                    <p className="text-green-500 font-semibold">{item.discount}% off</p>
-                    </div>
-                  </div>
-                </Link>
-              ))}
+        <div className=" gap-[2px] bg-gray-200 aspect-square object-contain">
+         
+              <img
+                src={item.images?.[0]}
+                alt="omae"
+                loading="lazy"
+                className="
+                  w-full
+                  h-full
+                  object-cover
+                  group-hover:scale-105
+                  transition-transform
+                  duration-300
+                "
+              />
             </div>
+        
+        </div>
+
+        {/* PRODUCT INFO */}
+        <div className="p-2">
+
+          <h3 className="font-semibold text-sm line-clamp-2 min-h-[40px]">
+            {item.name}
+          </h3>
+
+          <div className="flex items-center gap-2 mt-2">
+
+            <span className="font-bold">
+              ₹{item.price}
+            </span>
+
+            <span className="text-xs text-gray-500 line-through">
+              ₹{item.mrp}
+            </span>
+
+            <span className="text-xs text-green-600 font-semibold">
+              {item.discount}% off
+            </span>
+
+          </div>
+
+        </div>
+
+     
+    </Link>
+  ))}
+</div>
 
           </div>
         </div>

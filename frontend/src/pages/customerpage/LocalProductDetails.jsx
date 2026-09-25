@@ -12,7 +12,7 @@ import {
   MdStarBorder,
 } from "react-icons/md";
 
-import { getLocalProductById } from "../../component/data/products.js";
+import { lingerieCloths } from "../../component/data/womenfashion.js";
 
 const LocalProductDetails = () => {
   const { id } = useParams();
@@ -24,19 +24,23 @@ const LocalProductDetails = () => {
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState("");
   const [pincode, setPincode] = useState("");
+const images = product.images || [];
 
-  useEffect(() => {
-    setLoading(true);
+const currentImage = images[activeImage];
+ useEffect(() => {
+  setLoading(true);
 
-    const timer = setTimeout(() => {
-      const localProduct = getLocalProductById(id);
+  const timer = setTimeout(() => {
+    const localProduct = lingerieCloths.find(
+      (item) => String(item.id) === String(id)
+    );
 
-      setProduct(localProduct);
-      setLoading(false);
-    }, 400);
+    setProduct(localProduct || null);
+    setLoading(false);
+  }, 400);
 
-    return () => clearTimeout(timer);
-  }, [id]);
+  return () => clearTimeout(timer);
+}, [id]);
 
   // =====================================================
   // LOADING
@@ -143,15 +147,15 @@ const LocalProductDetails = () => {
   // PRODUCT DATA
   // =====================================================
 
-  const images =
-    product.images?.length > 0
-      ? product.images
-      : product.image
-      ? [{ url: product.image }]
-      : [];
+  // const images =
+  //   product.images?.length > 0
+  //     ? product.images
+  //     : product.image
+  //     ? [{ url: product.image }]
+  //     : [];
 
-  const currentImage =
-    images[activeImage]?.url || product.image;
+  // const currentImage =
+  //   images[activeImage]?.url || product.image;
 
   const price = Number(product.price || 0);
 
@@ -287,35 +291,37 @@ const LocalProductDetails = () => {
 
             {/* THUMBNAILS */}
 
-            {images.length > 1 && (
-              <div className="flex gap-2 mt-3 overflow-x-auto">
+           {images.length > 0 && (
+  <div className="flex gap-2 mt-3 overflow-x-auto">
 
-                {images.map((image, index) => (
+    {images.map((image, index) => (
+      <button
+        key={index}
+        type="button"
+        onClick={() => setActiveImage(index)}
+        className={`
+          w-20 h-20
+          shrink-0
+          rounded-lg
+          overflow-hidden
+          border-2
+          ${
+            activeImage === index
+              ? "border-orange-500"
+              : "border-gray-200"
+          }
+        `}
+      >
+        <img
+          src={image}
+          alt={`${product.name} ${index + 1}`}
+          className="w-full h-full object-cover"
+        />
+      </button>
+    ))}
 
-                  <button
-                    key={index}
-                    onClick={() =>
-                      setActiveImage(index)
-                    }
-                    className={`w-16 h-16 shrink-0 border-2 rounded-lg overflow-hidden ${
-                      activeImage === index
-                        ? "border-[#FF9900]"
-                        : "border-gray-200"
-                    }`}
-                  >
-
-                    <img
-                      src={image.url}
-                      alt=""
-                      className="w-full h-full object-cover"
-                    />
-
-                  </button>
-
-                ))}
-
-              </div>
-            )}
+  </div>
+)}
 
             {/* ACTIONS */}
 

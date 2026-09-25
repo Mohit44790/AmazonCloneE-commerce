@@ -661,5 +661,215 @@ export const bras = [
   },
   "stock": 20,
   "link": "/women/bras/siqulix-strapless-bra"
+},
+{
+  "id": 71,
+  "brand": "AKHIRAH",
+  "brandLink": "Visit the AKHIRAH Store",
+
+  "name": "AKHIRAH Women's & Girl's Strapless Wire Free Stick On Invisible Bra (Bust -30,32,34)",
+
+  "price": 239,
+  "mrp": 799,
+  "discount": 70,
+
+  "rating": {
+    "average": 3.3,
+    "count": 909
+  },
+
+  "boughtInPastMonth": "1K+",
+
+  "fulfillment": "Fulfilled",
+
+  "images": [
+    "https://m.media-amazon.com/images/I/618wy8wNU7L._SY741_.jpg",
+    "https://m.media-amazon.com/images/I/41ENY0EmSiL._SX679_.jpg",
+    "https://m.media-amazon.com/images/I/41QvsKdPbxL.jpg",
+    "https://m.media-amazon.com/images/I/61txtKIyoQL._SY741_.jpg"
+  ],
+
+  "offers": [
+    {
+      "type": "Cashback",
+      "title": "Upto ₹7.00 cashback",
+      "description": "Upto ₹7.00 cashback as Amazon Pay Balance when you pay with Amazon Pay ICICI Bank Credit Cards",
+      "count": 1
+    },
+    {
+      "type": "Bank Offer",
+      "title": "Upto ₹1,250.00 discount",
+      "description": "Upto ₹1,250.00 discount on select Credit Cards",
+      "count": 9
+    },
+    {
+      "type": "Partner Offers",
+      "title": "Buy 3 or more and get 10% off",
+      "description": "On qualifying items offered by Neela Saraswati",
+      "count": 3
+    }
+  ],
+
+  "services": [
+    "10 days Return & Exchange",
+    "Pay on Delivery",
+    "Free Delivery",
+    "Amazon Delivered",
+    "Secure transaction"
+  ],
+
+  "colors": [
+   "red" ,"black"
+  ],
+
+  "selectedColor": "Skin",
+
+  "sizes": [
+    "34A"
+  ],
+
+  "selectedSize": "34A",
+
+  "sizeChart": true,
+
+  "productDetails": {
+    "Material composition": "Cotton",
+    "Style": "Modern",
+    "Underwire type": "Wire Free",
+    "Care instructions": "Hand Wash Only",
+    "Closure type": "Clips",
+    "Strap type": "Strapless",
+    "Country of Origin": "India"
+  },
+
+  "highlights": [
+    "Bust size 30 to 34 will be fitted",
+    "Ensure breasts are clean and dry before wearing",
+    "Helps prevent slipping and supports long-term use",
+    "Follow the wearing instructions for the desired push-up effect",
+    "Cannot be used more than 3-4 times as it is an adhesive bra",
+    "Strong clip design suitable for backless gowns and dresses",
+    "Reusable with proper washing and maintenance",
+    "Soft, comfortable and natural",
+    "Self-adhesive and well fixed"
+  ],
+
+  "description": "Strapless wire-free adhesive push-up bra designed for backless gowns and dresses. The bra features a strong clip, self-adhesive construction and a soft, comfortable design. For better adhesion, ensure the skin is clean and dry before wearing.",
+
+  "additionalInformation": {
+    "Manufacturer": "Neela Saraswati Traders",
+    "Packer": "Neela Saraswati Traders",
+    "Item Weight": "0.8 g",
+    "Item Dimensions": "40 x 20 x 10 Millimeters",
+    "Net Quantity": "1 Count",
+    "Generic Name": "Push Up Bra"
+  },
+
+  "link": "/women/bras/akhirah-strapless-wire-free-bra"
+},
+{
+  "id": 72,
+  "brand": "DClub Womens",
+  "brandLink": "Visit the AKHIRAH Store",
+
+  "name": "DClub Womens Cotton Lightly Padded Everyday Bra, Wire Free, Comfortable with Seamed Cups,Adjustable Strap for Everyday Bra",
+
+  "price": 239,
+  "mrp": 799,
+  "discount": 70,
+
+  "rating": {
+    "average": 3.3,
+    "count": 909
+  },
+
+  "boughtInPastMonth": "1K+",
+
+  "fulfillment": "Fulfilled",
+
+  "images": [
+    "https://m.media-amazon.com/images/I/713MUzxYmKL._SX679_.jpg",
+    "https://m.media-amazon.com/images/I/71edBTJiIXL._SX679_.jpg",
+    "https://m.media-amazon.com/images/I/719cpuVWBfL._SX679_.jpg",
+    "https://m.media-amazon.com/images/I/71KmON5UTSL._SX679_.jpg"
+  ],
+
+  "offers": [
+    {
+      "type": "Cashback",
+      "title": "Upto ₹7.00 cashback",
+      "description": "Upto ₹7.00 cashback as Amazon Pay Balance when you pay with Amazon Pay ICICI Bank Credit Cards",
+      "count": 1
+    },
+    {
+      "type": "Bank Offer",
+      "title": "Upto ₹1,250.00 discount",
+      "description": "Upto ₹1,250.00 discount on select Credit Cards",
+      "count": 9
+    },
+    {
+      "type": "Partner Offers",
+      "title": "Buy 3 or more and get 10% off",
+      "description": "On qualifying items offered by Neela Saraswati",
+      "count": 3
+    }
+  ],
+
+  "services": [
+    "10 days Return & Exchange",
+    "Pay on Delivery",
+    "Free Delivery",
+    "Amazon Delivered",
+    "Secure transaction"
+  ],
+
+  "colors": [
+   "red" ,"black"
+  ],
+
+  "selectedColor": "Skin",
+
+  "sizes": [
+    "34A"
+  ],
+
+  "selectedSize": "34A",
+
+  "sizeChart": true,
+
+  "productDetails": {
+    "Material composition": "Cotton",
+    "Style": "Modern",
+    "Underwire type": "Wire Free",
+    "Care instructions": "Hand Wash Only",
+    "Closure type": "Clips",
+    "Strap type": "Strapless",
+    "Country of Origin": "India"
+  },
+
+  "highlights": [
+    "Bust size 30 to 34 will be fitted",
+    "Ensure breasts are clean and dry before wearing",
+    "Helps prevent slipping and supports long-term use",
+    "Follow the wearing instructions for the desired push-up effect",
+    "Cannot be used more than 3-4 times as it is an adhesive bra",
+    "Strong clip design suitable for backless gowns and dresses",
+    "Reusable with proper washing and maintenance",
+    "Soft, comfortable and natural",
+    "Self-adhesive and well fixed"
+  ],
+
+  "description": "Strapless wire-free adhesive push-up bra designed for backless gowns and dresses. The bra features a strong clip, self-adhesive construction and a soft, comfortable design. For better adhesion, ensure the skin is clean and dry before wearing.",
+
+  "additionalInformation": {
+    "Manufacturer": "Neela Saraswati Traders",
+    "Packer": "Neela Saraswati Traders",
+    "Item Weight": "0.8 g",
+    "Item Dimensions": "40 x 20 x 10 Millimeters",
+    "Net Quantity": "1 Count",
+    "Generic Name": "Push Up Bra"
+  },
+
+  "link": "/women/bras/akhirah-strapless-wire-free-bra"
 }
 ]

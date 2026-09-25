@@ -871,5 +871,123 @@ export const bras = [
   },
 
   "link": "/women/bras/akhirah-strapless-wire-free-bra"
+},
+{
+  "id": 73,
+  "brand": "Enamor",
+  "name": "Enamor Bamboo Cotton A077, Side Support, Everyday Women's T-Shirt Bra - 3X Softer, 4X More Absorbent, Antimicrobial, Padded, Wirefree, Full Coverage",
+  "rating": 4.2,
+  "ratingCount": 392,
+  "boughtInPastMonth": "100+",
+  "price": 998,
+  "discount": 3,
+  "mrp": 1029,
+  "currency": "INR",
+  "tax": "Inclusive of all taxes",
+
+  "offers": [
+    {
+      "type": "Cashback",
+      "title": "Upto ₹29.00 cashback as Amazon Pay Balance when you pay with Amazon Pay ICICI Bank Credit Cards",
+      "count": 1
+    },
+    {
+      "type": "Bank Offer",
+      "title": "Upto ₹1,250.00 discount on select Credit Cards",
+      "count": 9
+    },
+    {
+      "type": "Partner Offers",
+      "title": "Get GST invoice and save up to 18% on business purchases. Sign up for free",
+      "count": 1
+    }
+  ],
+
+  "deliveryAndServices": [
+    "10 days Return & Exchange",
+    "Free Delivery",
+    "Top Brand",
+    "Amazon Delivered",
+    "Secure transaction"
+  ],
+
+  "colors": [
+    {
+      "name": "Rose Blush",
+      "price": 998,
+      "discount": 3,
+      "mrp": 1029
+    },
+    {
+      "name": "Eclipse",
+      "price": 977,
+      "discount": 5,
+      "mrp": 1029
+    },
+    {
+      "name": "Grape Wine",
+      "price": 998,
+      "discount": 8,
+      "mrp": 1079
+    },
+    {
+      "name": "Honey Beige",
+      "price": 1029,
+      "discount": 5,
+      "mrp": 1079
+    },
+    {
+      "name": "Pearl Blush",
+      "price": 998,
+      "discount": 3,
+      "mrp": 1029
+    },
+    {
+      "name": "Blue Tinted Wings Print",
+      "price": 1199,
+      "mrp": 1199
+    },
+    {
+      "name": "Peach Bliss Print",
+      "price": 1199,
+      "mrp": 1199
+    }
+  ],
+
+  "selectedColor": "Rose Blush",
+
+  "sizes": [
+    "32B",
+    "32C",
+    "32D",
+    "34B",
+    "34C",
+    "34D",
+    "36B",
+    "36C",
+    "36D",
+    "38B",
+    "38C"
+  ],
+
+  "selectedSize": "34B",
+
+  "sizeChart": true,
+
+  "productDetails": {
+    "Material composition": "67% Bamboo, 27% Cotton, 6% Mobilion",
+    "Style": "Casual",
+    "Underwire type": "Wire Free",
+    "Pad type": "Lightly padded",
+    "Care instructions": "Hand Wash Only",
+    "Closure type": "Pull-On",
+    "Country of Origin": "India"
+  },
+
+  "aboutThisItem": [
+    "Fab Comfy 5 Technology: Gentle support, soft hold straps, and flexi-grip elastic to give you the perfect shape and coverage for day-long comfort.",
+    "Bamboo Fabric: Super-soft, breathable, and eco-friendly fabric for all-day comfort.",
+    "This naturally antimicrobial and"
+  ]
 }
 ]

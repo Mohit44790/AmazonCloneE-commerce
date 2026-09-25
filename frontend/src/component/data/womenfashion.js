@@ -837,6 +837,8 @@ export const bras = [
 
   "sizeChart": true,
 
+ 
+
   "productDetails": {
     "Material composition": "Cotton",
     "Style": "Modern",
@@ -954,6 +956,13 @@ export const bras = [
     }
   ],
 
+     "images": [
+    "https://m.media-amazon.com/images/I/81q1fWgpZkL._SY741_.jpg",
+    "https://m.media-amazon.com/images/I/71ZRtL9aVBL._SY741_.jpg",
+    "https://m.media-amazon.com/images/I/719wjoEeoAL._SY741_.jpg",
+    "https://m.media-amazon.com/images/I/71dU6UbAi3L._SY741_.jpg"
+  ],
+
   "selectedColor": "Rose Blush",
 
   "sizes": [
@@ -989,5 +998,114 @@ export const bras = [
     "Bamboo Fabric: Super-soft, breathable, and eco-friendly fabric for all-day comfort.",
     "This naturally antimicrobial and"
   ]
+},
+{
+  "id": 73,
+  "brand": "SANNIDHI",
+  "name": "SANNIDHI® Low Back Bra for Women Wirefree Seamless Backless V Neck Bra with Padded Removeable",
+  "rating": 4.0,
+  "ratingCount": 31,
+  "boughtInPastMonth": "100+",
+  "deal": "Limited time deal",
+  "price": 497,
+  "discount": 28,
+  "mrp": 695,
+  "currency": "INR",
+  "fulfillment": "Fulfilled",
+  "tax": "Inclusive of all taxes",
+
+     "images": [
+   "https://m.media-amazon.com/images/I/51eseQV7GiL._SX679_.jpg",
+   "https://m.media-amazon.com/images/I/61zFlEOSInL._SX679_.jpg",
+   "https://m.media-amazon.com/images/I/614HGdiJuLL._SX679_.jpg",
+   "https://m.media-amazon.com/images/I/61i5bdtRnnL._SX679_.jpg"
+  ],
+
+  "offers": [
+    {
+      "type": "Cashback",
+      "title": "Upto ₹14.00 cashback as Amazon Pay Balance when you pay with Amazon Pay ICICI Bank Credit Cards",
+      "count": 1
+    },
+    {
+      "type": "Bank Offer",
+      "title": "Upto ₹1,250.00 discount on select Credit Cards",
+      "count": 9
+    },
+    {
+      "type": "Partner Offers",
+      "title": "Get GST invoice and save up to 18% on business purchases. Sign up for free",
+      "count": 1
+    }
+  ],
+
+  "deliveryAndServices": [
+    "10 days Return & Exchange",
+    "Pay on Delivery",
+    "Free Delivery",
+    "Top Brand",
+    "Amazon Delivered",
+    "Secure transaction"
+  ],
+
+  "colors": [
+    {
+      "name": "Beige",
+      "image": "https://m.media-amazon.com/images/I/41sjqtoFrRL._SS64_.jpg",
+      "price": 497,
+      "discount": 28,
+      "mrp": 695
+    },
+    {
+      "name": "Black",
+      "image": "https://m.media-amazon.com/images/I/41wbkUe0qzL._SS64_.jpg",
+      "price": 526,
+      "discount": 33,
+      "mrp": 789
+    }
+  ],
+
+  "selectedColor": "Beige",
+
+  "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL",
+    "2XL"
+  ],
+
+  "selectedSize": "M",
+
+  "sizeChart": true,
+
+  "productDetails": {
+    "Material composition": "No",
+    "Style": "Contemporary",
+    "Underwire type": "Wire Free",
+    "Care instructions": "Instructions",
+    "Closure type": "Button",
+    "Strap type": "Convertible",
+    "Country of Origin": "China"
+  },
+
+  "aboutThisItem": [
+    "SEAMLESS LOW BACK BRA: This seamless low back bra provides comfortable support with a wireless padded design and thin adjustable straps. Its multiway convertible construction allows easy styling for open back, halter, or cross back outfits, delivering a smooth, flattering silhouette ideal for both daily wear and special occasions.",
+    "LOW BACK DESIGN FOR OPEN BACK OUTFITS: Designed to pair perfectly with backless and low back clothing, this bra offers reliable support without visible straps. The smooth back panel with hook closure ensures stability, helping eliminate bulges while maintaining a natural shape for confidently wearing open back dresses and tops.",
+    "FIXED PADDING WITH THIN STRAP: The cup coverage and semi fixed padded cups provide a gently rounded shape while ensuring comfort and consistency. Thin straps reduce shoulder pressure, offering dependable support for diverse activities.",
+    "COMFORT AND BREATHABLE FABRIC: Crafted from soft, breathable nylon with excellent elasticity, this wireless bra ensures long lasting comfort. The flexible structure adapts to different body shapes, offering gentle support and a smooth fit, making it suitable for prolonged wear without discomfort or restriction.",
+    "VERSATILE USE: With its full coverage cup, thin straps, and high side support, this bra adapts easily to halter, cross back, or low back styles. The convertible functionality makes it useful for a wide range of outfits, ensuring comfort and confidence no matter the occasion."
+  ],
+
+  "additionalInformation": {
+    "Manufacturer": "SANNIDHI",
+    "Packer": "SANNIDHI",
+    "Importer": "SANNIDHI",
+    "Item Weight": "100 g",
+    "Item Dimensions LxWxH": "30 x 22 x 1 Centimeters",
+    "Included Components": "Strap",
+    "Generic Name": "charger"
+  }
 }
+
 ]

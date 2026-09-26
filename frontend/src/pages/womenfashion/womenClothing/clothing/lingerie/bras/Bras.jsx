@@ -1,7 +1,8 @@
 import React from 'react'
 import { IoIosArrowBack } from 'react-icons/io'
 import { Link } from 'react-router-dom'
-import { bras } from '../../../../../../component/data/Womenfashion'
+import { bras } from '../../../../../../component/data/womenfashion.js'
+import { TiTick } from "react-icons/ti";
 
 const Bras = () => {
   return (
@@ -20,7 +21,7 @@ const Bras = () => {
              <IoIosArrowBack /> Lingerie
            </Link>
            <h1 className="font-semibold text-sm px-4">Bras</h1>
-             <div className="px-6x`">
+             <div className="px-6">
                  <Link to="/women/lingerie/bras/adhesive" className="flex items-center  text-sm">
             Adhesive Bras
            </Link>
@@ -33,6 +34,58 @@ const Bras = () => {
                  <Link to="/women/lingerie/bras/everyday" className="flex items-center  text-sm">
             Everyday Bras
            </Link>
+             </div>
+
+              <p className='font-bold'>Amazon Prime</p>
+             <div className='flex'>
+              <input type="checkbox" /> <TiTick className='text-yellow-400 mt-1' /> <span className='text-blue-600 font-bold'>Prime</span>
+             </div>
+              <p className='font-bold'>Delivery Day</p>
+             <div className='flex gap-2'>
+              <input type="checkbox" /> <span className="gap-1">Get It by Tomorrow</span>
+             </div>
+
+             <div>
+              <p>Brands</p>
+             </div>
+             <div>
+              <p>Price</p>
+             </div>
+             <div>
+              <p>Customer Reviews</p>
+             </div>
+             <div>
+             <h1> Deals & Discounts</h1>
+<p>All Discounts</p>
+<p>Buy More, Save More</p>
+<p>Coupons</p>
+<p>Today's Deals</p>
+             </div>
+
+             <div>
+              <h1>Women's Clothing Size</h1>
+             </div>
+             <div>
+              <h1>Closure Type</h1>
+             </div>
+
+             <div>
+              <h1>Colour</h1>
+             </div>
+             <div>
+              <h1>Bra Band Size</h1>
+             </div>
+             <div>
+              <h1>Strap Type</h1>
+             </div>
+             <div>
+              <h1>Material</h1>
+             </div>
+             <div>
+              <h1>Neck Style</h1>
+             </div>
+             <div>
+              <h1>Pattern</h1>
              </div>
         </div>
          <div className='flex-1 min-w-0 w-full'>

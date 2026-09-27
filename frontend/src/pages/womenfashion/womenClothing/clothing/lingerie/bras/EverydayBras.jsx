@@ -12,7 +12,7 @@ const EverydayBras = () => {
            <Link to="/women/clothing" className="flex items-center  text-sm">
             <IoIosArrowBack /> Women
            </Link>
-           <Link to="/women/clothing/sports-wear" className="flex items-center  text-sm">
+           <Link to="/women/lingerie/bras" className="flex items-center  text-sm">
              <IoIosArrowBack /> Sportswear
            </Link>
            <h1 className="font-semibold text-sm px-4">Everyday Bras</h1>

@@ -12,7 +12,7 @@ const AdhesiveBras = () => {
            <Link to="/women/clothing" className="flex items-center  text-sm">
             <IoIosArrowBack /> Women
            </Link>
-           <Link to="/women/clothing/sports-wear" className="flex items-center  text-sm">
+           <Link to="/women/lingerie/bras" className="flex items-center  text-sm">
              <IoIosArrowBack /> Bras
            </Link>
            <h1 className="font-semibold text-sm px-4">Adhesive Bras</h1>

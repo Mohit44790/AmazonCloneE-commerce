@@ -10,26 +10,55 @@ const AdhesiveBras = () => {
         <div className="w-64 flex flex-col gap-2">
            <h1 className="font-semibold text-sm">Category</h1>
            <Link to="/women/clothing" className="flex items-center  text-sm">
+            <IoIosArrowBack />  Clothing & Accessories
+           </Link>
+           <Link to="/women/clothing" className="flex items-center  text-sm">
             <IoIosArrowBack /> Women
+           </Link>
+           <Link to="/women/lingerie" className="flex items-center  text-sm">
+             <IoIosArrowBack /> Lingerie
            </Link>
            <Link to="/women/lingerie/bras" className="flex items-center  text-sm">
              <IoIosArrowBack /> Bras
            </Link>
            <h1 className="font-semibold text-sm px-4">Adhesive Bras</h1>
+
+              <h2 className="font-semibold text-sm">Amazon Prime</h2>
+                <label className="flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    className="accent-orange-400"
+                  
+                  />
+                  <TiTick className="text-orange-400 text-lg" />
+                  <span className="text-blue-500 font-bold">prime</span>
+                </label>
+
+           <h2 className="font-semibold text-sm">Delivery Day</h2>
+                <label className="flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    className="accent-orange-400"
+                                    />
+                  <span className="ml-1 text-sm">Get It by Tomorrow</span>
+                </label>
+ 
+                
+
         </div>
          <div className='flex-1 min-w-0 w-full'>
-          <h1 className="font-semibold text-4xl px-4">Women's Adhesive Bras</h1>
+          <h1 className="font-semibold text-4xl">Women's Adhesive Bras</h1>
 
           <section>
-            <h1>Feature Categories</h1>
-            <div className='flex text-center '>
+            <h1 className='text-2xl font-bold mt-6'>Feature Categories</h1>
+            <div className='flex text-center justify-between '>
 
                <a href="/women/sport"  className="h-48 w-48 rounded-full bg-gray-100 p-8">
                 <img src="https://m.media-amazon.com/images/I/31-2cmNibBL._AC._SR240,240.jpg" alt="img" className='mix-blend-darken' />
                 <p>Women</p>
                </a>
 
-               <a href="women/lingerie" className="h-48 w-48 rounded-full bg-gray-100 p-8">
+               <a href="/women/lingerie" className="h-48 w-48 rounded-full bg-gray-100 p-8">
                 <img src="https://m.media-amazon.com/images/I/41u4ukX+y0L._AC._SR240,240.jpg" alt="img" className='mix-blend-darken' />
                 <p>Lingerie</p>
                </a>
@@ -37,7 +66,7 @@ const AdhesiveBras = () => {
                 <img src="https://m.media-amazon.com/images/I/410b1UuLwVL._AC._SR240,240.jpg" alt="img" className='mix-blend-darken'  />
                 <p>Bras</p>
                </a>
-               <a href="women/lingerie/bras/adhesive" className="h-48 w-48 rounded-full bg-gray-100 p-8">
+               <a href="/women/lingerie/bras/adhesive" className="h-48 w-48 rounded-full bg-gray-100 p-8">
                 <img src="https://m.media-amazon.com/images/I/41hUqCKY3aL._AC._SR240,240.jpg" alt="img" className='mix-blend-darken' />
                 <p>Adhesive</p>
                </a>

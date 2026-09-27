@@ -18,7 +18,31 @@ const AdhesiveBras = () => {
            <h1 className="font-semibold text-sm px-4">Adhesive Bras</h1>
         </div>
          <div className='flex-1 min-w-0 w-full'>
-          <h1 className="font-semibold text-4xl px-4">Featured categories</h1>
+          <h1 className="font-semibold text-4xl px-4">Women's Adhesive Bras</h1>
+
+          <section>
+            <h1>Feature Categories</h1>
+            <div className='flex text-center '>
+
+               <a href="/women/sport"  className="h-48 w-48 rounded-full bg-gray-100 p-8">
+                <img src="https://m.media-amazon.com/images/I/31-2cmNibBL._AC._SR240,240.jpg" alt="img" />
+                <p>Women</p>
+               </a>
+
+               <a href="women/lingerie" className="h-48 w-48 rounded-full bg-gray-100 p-8">
+                <img src="https://m.media-amazon.com/images/I/41u4ukX+y0L._AC._SR240,240.jpg" alt="img" />
+                <p>Lingerie</p>
+               </a>
+               <a href="/women/lingerie/bras" className="h-48 w-48 rounded-full bg-gray-100 p-8">
+                <img src="https://m.media-amazon.com/images/I/410b1UuLwVL._AC._SR240,240.jpg" alt="img"  />
+                <p>Bras</p>
+               </a>
+               <a href="women/lingerie/bras/adhesive" className="h-48 w-48 rounded-full bg-gray-100 p-8">
+                <img src="https://m.media-amazon.com/images/I/41hUqCKY3aL._AC._SR240,240.jpg" alt="img"  />
+                <p>Adhesive</p>
+               </a>
+            </div>
+          </section>
         </div>
       </div>
     </div>

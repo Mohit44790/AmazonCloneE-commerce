@@ -2,6 +2,7 @@ import React from 'react'
 import { IoIosArrowBack } from 'react-icons/io'
 import { TiTick } from 'react-icons/ti'
 import { Link } from 'react-router-dom'
+import { adhesiveBrasBestsellers, adhesiveBrasHotreleases, adhesiveBrasRecommended, adhesiveBrasToprated } from '../../../../../../component/data/womenfashion'
 
 const AdhesiveBras = () => {
   return (
@@ -73,10 +74,60 @@ const AdhesiveBras = () => {
                </a>
             </div>
           </section>
-
+          {/* Recommended for you */}
           <section>
             <h1 className='text-2xl font-bold mt-18'>Recommended for you</h1>
 
+            <div>
+              {adhesiveBrasRecommended.map((item, id)=>(
+                <Link key={id}>
+                  <img src={item.image?.[0]} alt="" />
+                </Link>
+              ))}
+            </div>
+
+          </section>
+
+{/* Hot new releases */}
+          <section>
+            <h1 className='text-2xl font-bold mt-18'>Hot new releases</h1>
+           <div>
+              {adhesiveBrasHotreleases.map((item, id)=>(
+                <Link key={id}>
+                  <img src={item.image?.[0]} alt="" />
+                </Link>
+              ))}
+            </div>
+          </section>
+
+          {/* Top rated */}
+          <section>
+            <h1 className='text-2xl font-bold mt-18'>Top rated</h1>
+ <div>
+              {adhesiveBrasToprated.map((item, id)=>(
+                <Link key={id}>
+                  <img src={item.image?.[0]} alt="" />
+                </Link>
+              ))}
+            </div>
+          </section>
+
+          {/* Brands related to this category */}
+           <section>
+            <h1 className='text-2xl font-bold mt-18'>Brands related to this category</h1>
+
+          </section>
+
+        {/* Best sellers  */}
+           <section>
+            <h1 className='text-2xl font-bold mt-18'>Best sellers </h1>
+              <div>
+              {adhesiveBrasBestsellers.map((item, id)=>(
+                <Link key={id}>
+                  <img src={item.image?.[0]} alt="" />
+                </Link>
+              ))}
+            </div>
           </section>
         </div>
       </div>

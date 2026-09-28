@@ -73,6 +73,11 @@ const AdhesiveBras = () => {
                </a>
             </div>
           </section>
+
+          <section>
+            <h1 className='text-2xl font-bold mt-18'>Recommended for you</h1>
+
+          </section>
         </div>
       </div>
     </div>

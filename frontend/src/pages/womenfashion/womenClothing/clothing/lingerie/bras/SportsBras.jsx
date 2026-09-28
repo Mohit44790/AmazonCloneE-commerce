@@ -9,18 +9,18 @@ const SportsBras = () => {
      <div className='flex flex-col bg-white md:flex-row gap-2 p-2'>
         <div className="w-64 flex flex-col gap-2">
            <h1 className="font-semibold text-sm">Category</h1>
-                     <Link to="/women/clothing" className="flex items-center  text-sm">
-                      <IoIosArrowBack />  Clothing & Accessories
-                     </Link>
-                     <Link to="/women/clothing" className="flex items-center  text-sm">
-                      <IoIosArrowBack /> Women
-                     </Link>
-                     <Link to="/women/lingerie" className="flex items-center  text-sm">
-                       <IoIosArrowBack /> Lingerie
-                     </Link>
-                     <Link to="/women/lingerie/bras" className="flex items-center  text-sm">
-                       <IoIosArrowBack /> Bras
-                     </Link>
+                    <Link to="/women/clothing" className="flex items-center  text-sm">
+                               <IoIosArrowBack />  Clothing & Accessories
+                              </Link>
+                              <Link to="/women/clothing" className="flex items-center  text-sm">
+                               <IoIosArrowBack /> Women
+                              </Link>
+                              <Link to="/women/lingerie" className="flex items-center  text-sm">
+                                <IoIosArrowBack /> Lingerie
+                              </Link>
+                              <Link to="/women/lingerie/bras" className="flex items-center  text-sm">
+                                <IoIosArrowBack /> Bras
+                              </Link>
                      <h1 className="font-semibold text-sm px-4">Adhesive Bras</h1>
           
                         <h2 className="font-semibold text-sm">Amazon Prime</h2>

@@ -125,6 +125,12 @@ const AdhesiveBras = () => {
               {adhesiveBrasBestsellers.map((item, id)=>(
                 <Link key={id}>
                   <img src={item.image?.[0]} alt="" />
+                  <p>{item.rating}</p>
+                  <div>
+                    <p>{item.price}</p>
+                    <p>{item.mrp}</p>
+                    <p>{item.discount}</p>
+                  </div>
                 </Link>
               ))}
             </div>

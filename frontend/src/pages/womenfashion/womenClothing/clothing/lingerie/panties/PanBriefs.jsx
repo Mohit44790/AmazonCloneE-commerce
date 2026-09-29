@@ -19,6 +19,7 @@ const PanBriefs = () => {
         </div>
          <div className='flex-1 min-w-0 w-full'>
           <h1 className="font-semibold text-4xl px-4">Featured categories</h1>
+          <p>commit wjy not showing</p>
         </div>
       </div>
     </div>

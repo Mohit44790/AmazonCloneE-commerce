@@ -9,9 +9,12 @@ const WesternWearMat = () => {
      <div className='flex flex-col bg-white md:flex-row gap-2 p-2'>
         <div className="w-64 flex flex-col gap-2">
            <h1 className="font-semibold text-sm">Category</h1>
-           <Link to="/women/clothing" className="flex items-center  text-sm">
-            <IoIosArrowBack /> Women
-           </Link>
+          <Link to="/women/clothing" className="flex items-center  text-sm">
+                                           <IoIosArrowBack />  Clothing & Accessories
+                                          </Link>
+                                          <Link to="/women/clothing" className="flex items-center  text-sm">
+                                           <IoIosArrowBack /> Women
+                                          </Link>
            <Link to="/women/clothing/sports-wear" className="flex items-center  text-sm">
              <IoIosArrowBack /> Maternity
            </Link>

@@ -134,13 +134,56 @@ const AdhesiveBras = () => {
 {/* Hot new releases */}
           <section>
             <h1 className='text-2xl font-bold mt-18'>Hot new releases</h1>
-           <div className="flex">
-              {adhesiveBrasHotreleases.map((item, id)=>(
-                <Link key={id}>
-                  <img src={item.image?.[0]} alt="" />
-                </Link>
-              ))}
-            </div>
+          <div className="flex gap-2">
+  {adhesiveBrasHotreleases.map((item, id) => (
+    <Link
+      key={id}
+      to={`/product/${item.id}`}
+      className="flex bg-gray-200 flex-col gap-2 p-2"
+    >
+      <img
+        src={item.image?.[0]}
+        alt={item.name}
+        className="h-72 w-full object-cover mix-blend-darken"
+      />
+
+      <button
+        className="bg-white relative py-2 -mt-18 px-4 rounded-full border border-black
+        hover:opacity-100 opacity-0 cursor-pointer"
+        onClick={(e) => e.preventDefault()}
+      >
+        Quick Look
+      </button>
+
+      <div className="bg-white mt-8 p-2">
+        <p className="font-bold">₹{item.price}</p>
+
+        <p className="line-through text-gray-500">
+          ₹{item.mrp}
+        </p>
+
+        <p className="text-sm">
+          {item.name.slice(0, 50)}...
+        </p>
+
+        <div className="flex gap-2 items-center">
+          <p className="text-sm">
+            {item.rating}
+          </p>
+
+          <p className="text-yellow-500 text-sm">
+            {"★".repeat(Math.floor(item.rating || 0))}
+            {"☆".repeat(5 - Math.floor(item.rating || 0))}
+          </p>
+
+          <p className="text-sm text-gray-600">
+            {item.ratingCount} ratings
+          </p>
+        </div>
+      </div>
+    </Link>
+  ))}
+</div>
           </section>
 
           {/* Top rated */}

@@ -83,7 +83,7 @@ const AdhesiveBras = () => {
     <Link
       key={id}
       to={`/product/${item.id}`}
-      className="flex bg-gray-200 flex-col gap-2 p-2"
+      className="flex bg-gray-200 flex-col gap-2"
     >
       <img
         src={item.image?.[0]}
@@ -139,7 +139,7 @@ const AdhesiveBras = () => {
     <Link
       key={id}
       to={`/product/${item.id}`}
-      className="flex bg-gray-200 flex-col gap-2 p-2"
+      className="flex bg-gray-200 flex-col gap-2 "
     >
       <img
         src={item.image?.[0]}
@@ -194,7 +194,7 @@ const AdhesiveBras = () => {
     <Link
       key={id}
       to={`/product/${item.id}`}
-      className="flex bg-gray-200 flex-col gap-2 p-2"
+      className="flex bg-gray-200 flex-col gap-2 "
     >
       <img
         src={item.image?.[0]}
@@ -255,7 +255,7 @@ const AdhesiveBras = () => {
     <Link
       key={id}
       to={`/product/${item.id}`}
-      className="flex bg-gray-200 flex-col gap-2 p-2"
+      className="flex bg-gray-200 flex-col gap-2 "
     >
       <img
         src={item.image?.[0]}

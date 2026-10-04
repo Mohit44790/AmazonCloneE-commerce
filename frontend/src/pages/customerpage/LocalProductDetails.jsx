@@ -14,7 +14,7 @@ import {
   MdStarBorder,
 } from "react-icons/md";
 
-import { lingerieCloths,bras } from "../../component/data/womenfashion.js";
+import { lingerieCloths,bras,adhesiveBrasBestsellers,adhesiveBrasHotreleases,adhesiveBrasRecommended,adhesiveBrasToprated } from "../../component/data/womenfashion.js";
 
 
 
@@ -40,7 +40,10 @@ const LocalProductDetails = () => {
    const allLocalProducts = [
   ...lingerieCloths,
   ...bras,
- ,
+  ...adhesiveBrasBestsellers,
+  ...adhesiveBrasHotreleases,
+  ...adhesiveBrasRecommended,
+  ...adhesiveBrasToprated
 ];
 
   useEffect(() => {

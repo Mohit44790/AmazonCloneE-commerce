@@ -10,8 +10,11 @@ const LoungeShorts = () => {
         <div className="w-64 flex flex-col gap-2">
            <h1 className="font-semibold text-sm">Category</h1>
            <Link to="/women/clothing" className="flex items-center  text-sm">
-            <IoIosArrowBack /> Women
-           </Link>
+                                                     <IoIosArrowBack />  Clothing & Accessories
+                                                    </Link>
+                                                    <Link to="/women/clothing" className="flex items-center  text-sm">
+                                                     <IoIosArrowBack /> Women
+                                                    </Link>
            <Link to="/women/clothing/sleep-loungewear" className="flex items-center  text-sm">
              <IoIosArrowBack /> Sleep & Loungewear
            </Link>

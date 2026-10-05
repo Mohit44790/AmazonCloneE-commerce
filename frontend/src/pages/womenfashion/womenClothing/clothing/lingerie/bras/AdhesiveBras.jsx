@@ -36,6 +36,7 @@ const AdhesiveBras = () => {
   const [selectedNeckStyles, setSelectedNeckStyles] = useState([]);
   const [selectedBraBandSizes, setSelectedBraBandSizes] = useState([]);
   const [selectedBraCupSizes, setSelectedBraCupSizes] = useState([]);
+const [selectedProductCategory, setSelectedProductCategory] = useState("all");
 
   // =========================================================
   // LOADING
@@ -67,6 +68,29 @@ const AdhesiveBras = () => {
       ).values()
     );
   }, []);
+
+  const productCategoryMap = useMemo(() => {
+  const map = new Map();
+
+  adhesiveBrasBestsellers.forEach((item) => {
+    map.set(String(item.id), "bestsellers");
+  });
+
+  adhesiveBrasHotreleases.forEach((item) => {
+    map.set(String(item.id), "hotreleases");
+  });
+
+  adhesiveBrasRecommended.forEach((item) => {
+    map.set(String(item.id), "recommended");
+  });
+
+  adhesiveBrasToprated.forEach((item) => {
+    map.set(String(item.id), "toprated");
+  });
+
+  return map;
+}, []);
+
 
   // =========================================================
   // FILTER OPTIONS
@@ -478,6 +502,14 @@ const AdhesiveBras = () => {
 
       return true;
     });
+
+    if (selectedProductCategory !== "all") {
+  const category = productCategoryMap.get(String(product.id));
+
+  if (category !== selectedProductCategory) {
+    return false;
+  }
+}
   }, [
     allProducts,
     selectedBrands,
@@ -495,7 +527,10 @@ const AdhesiveBras = () => {
     selectedNeckStyles,
     selectedBraBandSizes,
     selectedBraCupSizes,
+    selectedProductCategory,
+productCategoryMap,
   ]);
+
 
   // =========================================================
   // PRODUCT CARD
@@ -518,7 +553,7 @@ const AdhesiveBras = () => {
         <button
           className="
             bg-white relative py-2 -mt-18 px-4
-            rounded-full border border-black
+            rounded-full border lack
             hover:opacity-100 opacity-0
             cursor-pointer
           "
@@ -678,7 +713,7 @@ const AdhesiveBras = () => {
           {/* BRAND */}
 
           {brands.length > 0 && (
-            <div className="border-b pb-4">
+            <div className=" pb-4">
               <h3 className="font-bold mb-3">
                 Brand
               </h3>
@@ -712,7 +747,7 @@ const AdhesiveBras = () => {
 
           {/* PRICE */}
 
-          <div className="border-b pb-4">
+          <div className=" pb-4">
             <h1 className="font-semibold text-sm mb-2">
               Price
             </h1>
@@ -765,7 +800,7 @@ const AdhesiveBras = () => {
 
           {/* CUSTOMER REVIEW */}
 
-          <div className="border-b pb-4">
+          <div className=" pb-4">
             <h1 className="font-semibold text-sm mb-2">
               Customer Review
             </h1>
@@ -804,7 +839,7 @@ const AdhesiveBras = () => {
 
           {/* DEALS */}
 
-          <div className="border-b pb-4">
+          <div className=" pb-4">
             <h1 className="font-semibold text-sm">
               Deals & Discounts
             </h1>
@@ -841,7 +876,7 @@ const AdhesiveBras = () => {
           {/* SIZE */}
 
           {sizes.length > 0 && (
-            <div className="border-b pb-4">
+            <div className=" pb-4">
               <h3 className="font-bold mb-3">
                 Size
               </h3>
@@ -876,7 +911,7 @@ const AdhesiveBras = () => {
           {/* CLOSURE TYPE */}
 
           {closureTypes.length > 0 && (
-            <div className="border-b pb-4">
+            <div className=" pb-4">
               <h1 className="font-semibold text-sm mb-2">
                 Closure Type
               </h1>
@@ -910,7 +945,7 @@ const AdhesiveBras = () => {
           {/* CARE INSTRUCTIONS */}
 
           {careInstructions.length > 0 && (
-            <div className="border-b pb-4">
+            <div className=" pb-4">
               <h1 className="font-semibold text-sm mb-2">
                 Care Instructions
               </h1>
@@ -943,7 +978,7 @@ const AdhesiveBras = () => {
 
           {/* BRA BRAND SIZE */}
 
-          <div className="border-b pb-4">
+          <div className=" pb-4">
             <h1 className="font-semibold text-sm mb-3">
               Bra Brand Size
             </h1>
@@ -995,7 +1030,7 @@ const AdhesiveBras = () => {
           {/* BRA CUP SIZE */}
 
           {braCupSizes.length > 0 && (
-            <div className="border-b pb-4">
+            <div className=" pb-4">
               <h1 className="font-semibold text-sm mb-2">
                 Bra Cup Size
               </h1>
@@ -1029,7 +1064,7 @@ const AdhesiveBras = () => {
           {/* STRAP TYPE */}
 
           {strapTypes.length > 0 && (
-            <div className="border-b pb-4">
+            <div className=" pb-4">
               <h1 className="font-semibold text-sm mb-2">
                 Strap Type
               </h1>
@@ -1063,7 +1098,7 @@ const AdhesiveBras = () => {
           {/* COUNTRY */}
 
           {countries.length > 0 && (
-            <div className="border-b pb-4">
+            <div className=" pb-4">
               <h1 className="font-semibold text-sm mb-2">
                 Country of Origin
               </h1>
@@ -1097,7 +1132,7 @@ const AdhesiveBras = () => {
           {/* MATERIAL */}
 
           {materials.length > 0 && (
-            <div className="border-b pb-4">
+            <div className=" pb-4">
               <h1 className="font-semibold text-sm mb-2">
                 Material
               </h1>
@@ -1131,7 +1166,7 @@ const AdhesiveBras = () => {
           {/* COLOUR */}
 
           {colors.length > 0 && (
-            <div className="border-b pb-4">
+            <div className=" pb-4">
               <h3 className="font-bold mb-3">
                 Colour
               </h3>
@@ -1166,7 +1201,7 @@ const AdhesiveBras = () => {
           {/* PATTERN */}
 
           {patterns.length > 0 && (
-            <div className="border-b pb-4">
+            <div className=" pb-4">
               <h1 className="font-semibold text-sm mb-2">
                 Pattern
               </h1>
@@ -1200,7 +1235,7 @@ const AdhesiveBras = () => {
           {/* NECK STYLE */}
 
           {neckStyles.length > 0 && (
-            <div className="border-b pb-4">
+            <div className=" pb-4">
               <h1 className="font-semibold text-sm mb-2">
                 Neck Style
               </h1>
@@ -1510,20 +1545,50 @@ const AdhesiveBras = () => {
               </section>
 
               {/* =============================================
-                  RESULT COUNT
+                  RESULT COUNT + ALL PRODUCTS (ek sath)
               ============================================= */}
 
-              <div className="
-                flex flex-col gap-2
-                bg-white p-4 mt-4
-                border border-gray-300
-                rounded-2xl
-              ">
-                <h1>
-                  1-{allProducts.length} of over 2,000
-                  results for Adhesive Bras
-                </h1>
-              </div>
+         {/* =============================================
+    RESULT COUNT + ALL 16 PRODUCTS (ek sath)
+============================================= */}
+
+{(() => {
+  const everyProduct = [
+    ...adhesiveBrasBestsellers,
+    ...adhesiveBrasHotreleases,
+    ...adhesiveBrasRecommended,
+    ...adhesiveBrasToprated,
+  ];
+
+  return (
+    <div className="flex flex-col gap-4 bg-white p-4 mt-4 border border-gray-300 rounded-2xl">
+
+      {/* RESULT COUNT */}
+      {loading ? (
+        <div className="h-5 w-64 bg-gray-300 rounded animate-pulse" />
+      ) : (
+        <h1>
+          1-{everyProduct.length} of {everyProduct.length} results for Adhesive Bras
+        </h1>
+      )}
+
+      {/* ALL PRODUCTS */}
+      {loading ? (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+          {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+            <ProductSkeleton key={item} />
+          ))}
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+          {everyProduct.map((item, index) => (
+            <ProductCard key={`${item.id}-${index}`} item={item} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+})()}
             </>
           )}
         </div>

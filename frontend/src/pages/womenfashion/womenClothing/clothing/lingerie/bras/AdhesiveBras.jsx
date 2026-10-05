@@ -298,24 +298,34 @@ const AdhesiveBras = () => {
                   <input type="checkbox"  /> <p className="text-sm hover:text-amber-500">Today's Deals</p>
                 </div>
   
-                       <div>
-                        <h1 className="font-semibold text-sm">Bra Cup Size</h1>
-                        <div className='grid gap-1 grid-cols-4 '>
+                       {/* SIZE */}
+              {sizes.length > 0 && (
+                <div className="border-b pb-4 mb-4">
+                  <h3 className="font-bold mb-3">
+                    Size
+                  </h3>
 
-                        <button className="border border-gray-300 p-1 rounded-lg text-sm cursor-pointer">A</button>
-                        <button className="border border-gray-300 p-1 rounded-lg text-sm cursor-pointer">C</button>
-                        <button className="border border-gray-300 p-1 rounded-lg text-sm cursor-pointer">DDD</button>
-                        <button className="border border-gray-300 p-1 rounded-lg text-sm cursor-pointer">E</button>
-                        <button className="border border-gray-300 p-1 rounded-lg text-sm cursor-pointer">EE</button>
-                        <button className="border border-gray-300 p-1 rounded-lg text-sm cursor-pointer">F</button>
-                        <button className="border border-gray-300 p-1 rounded-lg text-sm cursor-pointer">FF</button>
-                        <button className="border border-gray-300 p-1 rounded-lg text-sm cursor-pointer">G</button>
-                        <button className="border border-gray-300 p-1 rounded-lg text-sm cursor-pointer">GG</button>
-                        <button className="border border-gray-300 p-1 rounded-lg text-sm cursor-pointer">H</button>
-                        <button className="border border-gray-300 p-1 rounded-lg text-sm cursor-pointer">I</button>
-                        <button className="border border-gray-300 p-1 rounded-lg text-sm cursor-pointer">J</button>
-                        </div>
-                       </div>
+                  {sizes.map((size) => (
+                    <label
+                      key={size}
+                      className="flex items-center gap-2 mb-2 text-sm cursor-pointer"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={selectedSizes.includes(size)}
+                        onChange={() =>
+                          handleCheckbox(
+                            size,
+                            setSelectedSizes
+                          )
+                        }
+                      />
+
+                      <span>{size}</span>
+                    </label>
+                  ))}
+                </div>
+              )}
 
                        <div>
                         <h1 className="font-semibold text-sm">Closure Type</h1>

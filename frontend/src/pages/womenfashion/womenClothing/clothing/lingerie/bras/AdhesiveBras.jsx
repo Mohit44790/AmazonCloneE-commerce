@@ -16,6 +16,16 @@ const AdhesiveBras = () => {
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [minRating, setMinRating] = useState("");
+  const [selectedClosureTypes, setSelectedClosureTypes] = useState([]);
+const [selectedCareInstructions, setSelectedCareInstructions] = useState([]);
+const [selectedStrapTypes, setSelectedStrapTypes] = useState([]);
+const [selectedCountries, setSelectedCountries] = useState([]);
+const [selectedMaterials, setSelectedMaterials] = useState([]);
+const [selectedPatterns, setSelectedPatterns] = useState([]);
+const [selectedNeckStyles, setSelectedNeckStyles] = useState([]);
+const [selectedBraBandSizes, setSelectedBraBandSizes] = useState([]);
+const [selectedBraCupSizes, setSelectedBraCupSizes] = useState([]);
+
 
   // -----------------------------
   // SKELETON LOADING

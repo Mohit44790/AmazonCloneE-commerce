@@ -139,8 +139,38 @@ const AdhesiveBras = () => {
                         <input type="checkbox" /> <p className="text-sm hover:text-amber-500">Halter</p>
                         <input type="checkbox" /> <p className="text-sm hover:text-amber-500">Invisible</p>
                        </div>
+                        <div>
+                        <h1 className="font-semibold text-sm">Country of Origin</h1>
+                        <input type="checkbox" /> <p className="text-sm hover:text-amber-500">India</p>
+                        <input type="checkbox" /> <p className="text-sm hover:text-amber-500">China</p>
+                        <input type="checkbox" /> <p className="text-sm hover:text-amber-500">USA</p>
+                       </div>
+                        <div>
+                        <h1 className="font-semibold text-sm">Material</h1>
+                        <input type="checkbox" /> <p className="text-sm hover:text-amber-500">Cotton</p>
+                        <input type="checkbox" /> <p className="text-sm hover:text-amber-500">Polyester</p>
+                        <input type="checkbox" /> <p className="text-sm hover:text-amber-500">Spandex</p>
+                       </div>
+
+                       <div>
+                        <h1>Colour</h1>
+                       </div>
+
+                        <div>
+                        <h1 className="font-semibold text-sm">Pattern</h1>
+                        <input type="checkbox" /> <p className="text-sm hover:text-amber-500">Animal Print</p>
+                        <input type="checkbox" /> <p className="text-sm hover:text-amber-500">Animal Print</p>
+                        <input type="checkbox" /> <p className="text-sm hover:text-amber-500">Solid</p>
+                       </div>
+                        <div>
+                        <h1 className="font-semibold text-sm">Neck Style</h1>
+                        <input type="checkbox" /> <p className="text-sm hover:text-amber-500">V-Neck</p>
+                        <input type="checkbox" /> <p className="text-sm hover:text-amber-500">U-Neck</p>
+                        <input type="checkbox" /> <p className="text-sm hover:text-amber-500">Scoop Neck</p>
+                       </div>
         </div>
          <div className='flex-1 min-w-0 w-full'>
+
           <h1 className="font-semibold text-4xl">Women's Adhesive Bras</h1>
 
           <section>

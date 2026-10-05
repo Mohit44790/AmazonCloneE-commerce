@@ -107,6 +107,103 @@ const [selectedBraCupSizes, setSelectedBraCupSizes] = useState([]);
     ];
   }, [allProducts]);
 
+  const closureTypes = useMemo(() => {
+  return [
+    ...new Set(
+      allProducts
+        .map((item) => item.closureType)
+        .filter(Boolean)
+    ),
+  ];
+}, [allProducts]);
+
+const careInstructions = useMemo(() => {
+  return [
+    ...new Set(
+      allProducts
+        .map((item) => item.careInstructions)
+        .filter(Boolean)
+    ),
+  ];
+}, [allProducts]);
+
+const strapTypes = useMemo(() => {
+  return [
+    ...new Set(
+      allProducts
+        .map((item) => item.straptype)
+        .filter(Boolean)
+    ),
+  ];
+}, [allProducts]);
+
+const countries = useMemo(() => {
+  return [
+    ...new Set(
+      allProducts
+        .map((item) => item.country)
+        .filter(Boolean)
+    ),
+  ];
+}, [allProducts]);
+
+const materials = useMemo(() => {
+  return [
+    ...new Set(
+      allProducts
+        .flatMap((item) => {
+          const values = [
+            item.materialtype,
+            item.materialComposition,
+          ];
+
+          return values.filter(Boolean);
+        })
+    ),
+  ];
+}, [allProducts]);
+
+const patterns = useMemo(() => {
+  return [
+    ...new Set(
+      allProducts
+        .map((item) => item.pattern)
+        .filter(Boolean)
+    ),
+  ];
+}, [allProducts]);
+
+const neckStyles = useMemo(() => {
+  return [
+    ...new Set(
+      allProducts
+        .map((item) => item.neckStyle)
+        .filter(Boolean)
+    ),
+  ];
+}, [allProducts]);
+
+const braBandSizes = useMemo(() => {
+  return [
+    ...new Set(
+      allProducts
+        .map((item) => item.braBandSize)
+        .filter(Boolean)
+    ),
+  ];
+}, [allProducts]);
+
+const braCupSizes = useMemo(() => {
+  return [
+    ...new Set(
+      allProducts
+        .map((item) => item.braCupSize)
+        .filter(Boolean)
+    ),
+  ];
+}, [allProducts]);
+
+
   // -----------------------------
   // CHECKBOX HANDLER
   // -----------------------------

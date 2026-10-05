@@ -80,25 +80,64 @@ const AdhesiveBras = () => {
   
                        <div>
                         <h1 className="font-semibold text-sm">Bra Cup Size</h1>
-                        <div className='grid gap-2 grid-cols-4'>
+                        <div className='grid gap-1 grid-cols-4 '>
 
-                        <button>A</button>
-                        <button>AA</button>
-                        <button>B</button>
-                        <button>C</button>
-                        <button>D</button>
-                        <button>DD</button>
-                        <button>DDD</button>
-                        <button>E</button>
-                        <button>EE</button>
-                        <button>F</button>
-                        <button>FF</button>
-                        <button>G</button>
-                        <button>GG</button>
-                        <button>H</button>
-                        <button>I</button>
-                        <button>J</button>
+                        <button className="border border-gray-300 p-1 rounded-lg text-sm cursor-pointer">A</button>
+                        <button className="border border-gray-300 p-1 rounded-lg text-sm cursor-pointer">C</button>
+                        <button className="border border-gray-300 p-1 rounded-lg text-sm cursor-pointer">DDD</button>
+                        <button className="border border-gray-300 p-1 rounded-lg text-sm cursor-pointer">E</button>
+                        <button className="border border-gray-300 p-1 rounded-lg text-sm cursor-pointer">EE</button>
+                        <button className="border border-gray-300 p-1 rounded-lg text-sm cursor-pointer">F</button>
+                        <button className="border border-gray-300 p-1 rounded-lg text-sm cursor-pointer">FF</button>
+                        <button className="border border-gray-300 p-1 rounded-lg text-sm cursor-pointer">G</button>
+                        <button className="border border-gray-300 p-1 rounded-lg text-sm cursor-pointer">GG</button>
+                        <button className="border border-gray-300 p-1 rounded-lg text-sm cursor-pointer">H</button>
+                        <button className="border border-gray-300 p-1 rounded-lg text-sm cursor-pointer">I</button>
+                        <button className="border border-gray-300 p-1 rounded-lg text-sm cursor-pointer">J</button>
                         </div>
+                       </div>
+
+                       <div>
+                        <h1 className="font-semibold text-sm">Closure Type</h1>
+                        <input type="checkbox" /> <p className="text-sm hover:text-amber-500">Back Closure</p>
+                        <input type="checkbox" /> <p className="text-sm hover:text-amber-500">Front Closure</p>
+                        <input type="checkbox" /> <p className="text-sm hover:text-amber-500">Pull On</p>
+                       </div>
+                       <div>
+                        <h1 className="font-semibold text-sm">Care Instructions</h1>
+                        <input type="checkbox" /> <p className="text-sm hover:text-amber-500">Dry Clean Only</p>
+                        <input type="checkbox" /> <p className="text-sm hover:text-amber-500">Hand Wash Only</p>
+                        <input type="checkbox" /> <p className="text-sm hover:text-amber-500">Machine Wash</p>
+                       </div>
+
+                       <div>
+                        <h1 className="font-semibold text-sm">Bra Brand Size</h1>
+                        <div className='grid gap-2 grid-cols-4 '>
+                          <button className="border border-gray-300 p-1  rounded-lg text-sm cursor-pointer">24</button>
+                          <button className="border border-gray-300 p-1 rounded-lg text-sm cursor-pointer">26</button>
+                          <button className="border border-gray-300 p-1  rounded-lg text-sm cursor-pointer">28</button>
+                          <button className="border border-gray-300 p-1  rounded-lg text-sm cursor-pointer">30</button>
+                          <button className="border border-gray-300 p-1  rounded-lg text-sm cursor-pointer">32</button>
+                          <button className="border border-gray-300 p-1  rounded-lg text-sm cursor-pointer">34</button>
+                          <button className="border border-gray-300 p-1  rounded-lg text-sm cursor-pointer">36</button>
+                          <button className="border border-gray-300 p-1  rounded-lg text-sm cursor-pointer">38</button>
+                          <button className="border border-gray-300 p-1  rounded-lg text-sm cursor-pointer">40</button>
+                          <button className="border border-gray-300 p-1  rounded-lg text-sm cursor-pointer">42</button>
+                          <button className="border border-gray-300 p-1  rounded-lg text-sm cursor-pointer">44</button>
+                          <button className="border border-gray-300 p-1 rounded-lg text-sm cursor-pointer">46</button>
+                          <button className="border border-gray-300 p-1  rounded-lg text-sm cursor-pointer">48</button>
+                          <button className="border border-gray-300 p-1  rounded-lg text-sm cursor-pointer">50</button>
+                          <button className="border border-gray-300 p-1  rounded-lg text-sm cursor-pointer">52</button>
+                          <button className="border border-gray-300 p-1  rounded-lg text-sm cursor-pointer">54</button>
+                       </div>
+                       </div>
+
+                        <div>
+                        <h1 className="font-semibold text-sm">Strap Type
+</h1>
+                        <input type="checkbox" /> <p className="text-sm hover:text-amber-500">Adjustable</p>
+                        <input type="checkbox" /> <p className="text-sm hover:text-amber-500">Halter</p>
+                        <input type="checkbox" /> <p className="text-sm hover:text-amber-500">Invisible</p>
                        </div>
         </div>
          <div className='flex-1 min-w-0 w-full'>

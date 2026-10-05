@@ -1,10 +1,211 @@
-import React from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { IoIosArrowBack } from 'react-icons/io'
 import { TiTick } from 'react-icons/ti'
 import { Link } from 'react-router-dom'
 import { adhesiveBrasBestsellers, adhesiveBrasHotreleases, adhesiveBrasRecommended, adhesiveBrasToprated } from '../../../../../../component/data/womenfashion'
 
 const AdhesiveBras = () => {
+    const [loading, setLoading] = useState(true);
+
+  // -----------------------------
+  // FILTER STATES
+  // -----------------------------
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [selectedColors, setSelectedColors] = useState([]);
+  const [selectedSizes, setSelectedSizes] = useState([]);
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+  const [minRating, setMinRating] = useState("");
+
+  // -----------------------------
+  // SKELETON LOADING
+  // -----------------------------
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // -----------------------------
+  // COMBINE ALL 4 DATA ARRAYS
+  // Remove duplicate products by ID
+  // -----------------------------
+  const allProducts = useMemo(() => {
+    const combined = [
+      ...adhesiveBrasBestsellers,
+      ...adhesiveBrasHotreleases,
+      ...adhesiveBrasRecommended,
+      ...adhesiveBrasToprated,
+    ];
+
+    const uniqueProducts = Array.from(
+      new Map(
+        combined.map((item) => [String(item.id), item])
+      ).values()
+    );
+
+    return uniqueProducts;
+  }, []);
+
+  // -----------------------------
+  // FILTER OPTIONS
+  // Automatically generated
+  // -----------------------------
+  const brands = useMemo(() => {
+    return [
+      ...new Set(
+        allProducts
+          .map((item) => item.brand)
+          .filter(Boolean)
+      ),
+    ];
+  }, [allProducts]);
+
+  const colors = useMemo(() => {
+    return [
+      ...new Set(
+        allProducts
+          .flatMap((item) => item.colors || [])
+          .filter(Boolean)
+      ),
+    ];
+  }, [allProducts]);
+
+  const sizes = useMemo(() => {
+    return [
+      ...new Set(
+        allProducts
+          .flatMap((item) => {
+            if (Array.isArray(item.sizes)) {
+              return item.sizes;
+            }
+
+            if (Array.isArray(item.size)) {
+              return item.size;
+            }
+
+            if (item.size) {
+              return [item.size];
+            }
+
+            return [];
+          })
+          .filter(Boolean)
+      ),
+    ];
+  }, [allProducts]);
+
+  // -----------------------------
+  // CHECKBOX HANDLER
+  // -----------------------------
+  const handleCheckbox = (value, setter) => {
+    setter((previous) =>
+      previous.includes(value)
+        ? previous.filter((item) => item !== value)
+        : [...previous, value]
+    );
+  };
+
+  // -----------------------------
+  // MAIN FILTER
+  // -----------------------------
+  const filteredProducts = useMemo(() => {
+    return allProducts.filter((product) => {
+      // Brand
+      if (
+        selectedBrands.length > 0 &&
+        !selectedBrands.includes(product.brand)
+      ) {
+        return false;
+      }
+
+      // Color
+      if (selectedColors.length > 0) {
+        const productColors = product.colors || [];
+
+        const hasColor = selectedColors.some((color) =>
+          productColors.includes(color)
+        );
+
+        if (!hasColor) {
+          return false;
+        }
+      }
+
+      // Size
+      if (selectedSizes.length > 0) {
+        const productSizes = Array.isArray(product.sizes)
+          ? product.sizes
+          : Array.isArray(product.size)
+          ? product.size
+          : product.size
+          ? [product.size]
+          : [];
+
+        const hasSize = selectedSizes.some((size) =>
+          productSizes.includes(size)
+        );
+
+        if (!hasSize) {
+          return false;
+        }
+      }
+
+      // Minimum price
+      if (
+        minPrice !== "" &&
+        Number(product.price) < Number(minPrice)
+      ) {
+        return false;
+      }
+
+      // Maximum price
+      if (
+        maxPrice !== "" &&
+        Number(product.price) > Number(maxPrice)
+      ) {
+        return false;
+      }
+
+      // Rating
+      if (
+        minRating !== "" &&
+        Number(product.rating || 0) < Number(minRating)
+      ) {
+        return false;
+      }
+
+      return true;
+    });
+  }, [
+    allProducts,
+    selectedBrands,
+    selectedColors,
+    selectedSizes,
+    minPrice,
+    maxPrice,
+    minRating,
+  ]);
+
+  // -----------------------------
+  // SKELETON CARD
+  // -----------------------------
+  const ProductSkeleton = () => (
+    <div className="bg-gray-200 p-2 rounded animate-pulse">
+      <div className="h-72 w-full bg-gray-300 rounded" />
+
+      <div className="h-4 bg-gray-300 rounded mt-3 w-3/4" />
+
+      <div className="h-4 bg-gray-300 rounded mt-2 w-1/2" />
+
+      <div className="h-4 bg-gray-300 rounded mt-2 w-1/3" />
+
+      <div className="h-4 bg-gray-300 rounded mt-2 w-2/3" />
+    </div>
+  );
+
   return (
       <div>
 
@@ -44,14 +245,33 @@ const AdhesiveBras = () => {
                                     />
                   <span className="ml-1 text-sm">Get It by Tomorrow</span>
                 </label>
-            
-            <div>
-              <h1 className="font-semibold text-sm">Brands</h1>
-              <input type="checkbox"  /> <p className="text-sm hover:text-amber-500">UNDERNEAT</p>
-              <input type="checkbox"  /> <p className="text-sm hover:text-amber-500">DClub</p> 
-              <input type="checkbox"  /> <p className="text-sm hover:text-amber-500">Sanfe</p>
+           {brands.length > 0 && (
+                <div className="pb-4 mb-4">
+                  <h3 className="font-bold mb-3">
+                    Brand
+                  </h3>
 
-            </div>
+                  {brands.map((brand) => (
+                    <label
+                      key={brand}
+                      className="flex items-center gap-2 mb-2 text-sm cursor-pointer"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={selectedBrands.includes(brand)}
+                        onChange={() =>
+                          handleCheckbox(
+                            brand,
+                            setSelectedBrands
+                          )
+                        }
+                      />
+
+                      <span>{brand}</span>
+                    </label>
+                  ))}
+                </div>
+              )}
 
              <div>
               <h1 className="font-semibold text-sm">Price</h1>
@@ -152,9 +372,33 @@ const AdhesiveBras = () => {
                         <input type="checkbox" /> <p className="text-sm hover:text-amber-500">Spandex</p>
                        </div>
 
-                       <div>
-                        <h1>Colour</h1>
-                       </div>
+                       {colors.length > 0 && (
+                <div className="border-b pb-4 mb-4">
+                  <h3 className="font-bold mb-3">
+                    Colour
+                  </h3>
+
+                  {colors.map((color) => (
+                    <label
+                      key={color}
+                      className="flex items-center gap-2 mb-2 text-sm cursor-pointer"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={selectedColors.includes(color)}
+                        onChange={() =>
+                          handleCheckbox(
+                            color,
+                            setSelectedColors
+                          )
+                        }
+                      />
+
+                      <span>{color}</span>
+                    </label>
+                  ))}
+                </div>
+              )}
 
                         <div>
                         <h1 className="font-semibold text-sm">Pattern</h1>

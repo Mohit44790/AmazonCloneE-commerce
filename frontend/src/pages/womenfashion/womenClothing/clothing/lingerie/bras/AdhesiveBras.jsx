@@ -44,9 +44,62 @@ const AdhesiveBras = () => {
                                     />
                   <span className="ml-1 text-sm">Get It by Tomorrow</span>
                 </label>
- 
-                
+            
+            <div>
+              <h1 className="font-semibold text-sm">Brands</h1>
+              <input type="checkbox"  /> <p className="text-sm hover:text-amber-500">UNDERNEAT</p>
+              <input type="checkbox"  /> <p className="text-sm hover:text-amber-500">DClub</p> 
+              <input type="checkbox"  /> <p className="text-sm hover:text-amber-500">Sanfe</p>
 
+            </div>
+
+             <div>
+              <h1 className="font-semibold text-sm">Price</h1>
+              <p>Under ₹300 </p>
+              <p>₹300 - ₹500</p>
+              <p>₹500 - ₹1000</p>
+              <p>₹1000 - ₹2000</p>
+              <p>Over ₹2000</p>
+             </div>
+
+            <div>
+              <h1 className="font-semibold text-sm">Customer Review</h1>
+              <input type="checkbox"  /> <p className="text-sm hover:text-amber-500">4 Stars & Up</p>
+              <input type="checkbox"  /> <p className="text-sm hover:text-amber-500">3 Stars & Up</p> 
+              <input type="checkbox"  /> <p className="text-sm hover:text-amber-500">2 Stars & Up</p>
+              <input type="checkbox"  /> <p className="text-sm hover:text-amber-500">1 Star & Up</p>
+            </div>
+                
+                <div>
+                  <h1 className="font-semibold text-sm">Deals & Discounts</h1>
+                  <input type="checkbox"  /> <p className="text-sm hover:text-amber-500">All Discounts</p>
+                  <input type="checkbox"  /> <p className="text-sm hover:text-amber-500">Buy More, Save More</p> 
+                  <input type="checkbox"  /> <p className="text-sm hover:text-amber-500">Coupons</p>
+                  <input type="checkbox"  /> <p className="text-sm hover:text-amber-500">Today's Deals</p>
+                </div>
+  
+                       <div>
+                        <h1 className="font-semibold text-sm">Bra Cup Size</h1>
+                        <div className='grid gap-2 grid-cols-4'>
+
+                        <button>A</button>
+                        <button>AA</button>
+                        <button>B</button>
+                        <button>C</button>
+                        <button>D</button>
+                        <button>DD</button>
+                        <button>DDD</button>
+                        <button>E</button>
+                        <button>EE</button>
+                        <button>F</button>
+                        <button>FF</button>
+                        <button>G</button>
+                        <button>GG</button>
+                        <button>H</button>
+                        <button>I</button>
+                        <button>J</button>
+                        </div>
+                       </div>
         </div>
          <div className='flex-1 min-w-0 w-full'>
           <h1 className="font-semibold text-4xl">Women's Adhesive Bras</h1>
@@ -301,6 +354,10 @@ const AdhesiveBras = () => {
   ))}
 </div>
           </section>
+
+         <div className="flex flex-col gap-2 bg-white p-4 mt-4 border border-gray-300 rounded-2xl">
+                    <h1>1-11 of over 2,000 results for Adhesive Bras</h1>
+                  </div>
         </div>
       </div>
     </div>

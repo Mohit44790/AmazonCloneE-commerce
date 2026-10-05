@@ -1195,7 +1195,7 @@ const LocalProductDetails = () => {
             </div>
 
           </div>
-
+                  
         </div>
 
       </div>

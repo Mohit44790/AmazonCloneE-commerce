@@ -3,14 +3,14 @@ import { IoIosArrowBack } from 'react-icons/io'
 import { Link } from 'react-router-dom'
 
 const loungeWearCategories = [
-  {name:"Babydolls", path:"/women/clothing/sleep-loungewear/babydolls"},
-  {name:"Nighte & Nightdresses", path:"/women/clothing/sleep-loungewear/nightdresses"},
-  {name:"Pyjamas & Lounge Pants", path:"/women/clothing/sleep-loungewear/pyjamas-lounge-pants"},
-  {name:"Nightwear Sets", path:"/women/clothing/sleep-loungewear/nightwear-sets"},
-  {name:"Pyjama Sets", path:"/women/clothing/sleep-loungewear/pyjama-sets"},
-  {name:"Pajama Tops", path:"/women/clothing/sleep-loungewear/pajama-tops"},
-  {name:"Onesies", path:"/women/clothing/sleep-loungewear/onesies"},
-  {nam:"Lounge Shorts", path:"/women/clothing/sleep-loungewear/lounge-shorts"},
+  {name:"Babydolls", path:"/women/clothing/sleep-lounge-wear/babydolls"},
+  {name:"Nighte & Nightdresses", path:"/women/clothing/sleep-lounge-wear/nighties-nightdresses"},
+  {name:"Pyjamas & Lounge Pants", path:"/women/clothing/sleep-lounge-wear/pyjamas-lounge-pants"},
+  {name:"Nightwear Sets", path:"/women/clothing/sleep-lounge-wear/nightwear-sets"},
+  {name:"Pyjama Sets", path:"/women/clothing/sleep-lounge-wear/pyjama-sets"},
+  {name:"Pajama Tops", path:"/women/clothing/sleep-lounge-wear/pajama-tops"},
+  {name:"Onesies", path:"/women/clothing/sleep-lounge-wear/onesies"},
+  {name:"Lounge Shorts", path:"/women/clothing/sleep-lounge-wear/lounge-shorts"},
 ]
 
 const SleepLoungeWear = () => {
@@ -31,7 +31,7 @@ const SleepLoungeWear = () => {
 
            <div className="flex flex-col gap-2 px-4">
             {loungeWearCategories.map((category, index) => (
-              <Link key={index} to={category.path} className="text-sm hover:underline">
+              <Link key={index} to={category.path} className="text-sm hover:text-yellow-700">
                 {category.name}
               </Link>
             ))}

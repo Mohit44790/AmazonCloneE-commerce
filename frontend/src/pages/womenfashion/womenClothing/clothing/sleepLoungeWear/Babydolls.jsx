@@ -18,7 +18,7 @@ const Babydolls = () => {
            <Link to="/women/clothing/sleep-loungewear" className="flex items-center  text-sm">
              <IoIosArrowBack /> Sleep & Loungewear
            </Link>
-           <h1 className="font-semibold text-sm px-4">Babydolls</h1>
+           <h1 className="font-segmibold text-sm px-4">Babydolls</h1>
         </div>
          <div className='flex-1 min-w-0 w-full'>
           <h1 className="font-semibold text-4xl px-4">Featured categories</h1>

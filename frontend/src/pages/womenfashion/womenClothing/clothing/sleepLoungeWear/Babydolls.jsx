@@ -2,6 +2,12 @@ import React from 'react'
 import { IoIosArrowBack } from 'react-icons/io'
 import { Link } from 'react-router-dom'
 
+
+const babydollCategories = [
+  {name:"Women", image:"https://m.media-amazon.com/images/I/41u4ukX+y0L._AC._SR240,240.jpg" ,path:"/women/clothing/sleep-lounge-wear/babydolls"},
+  {name:"Sleep & Lounge", image:"https://m.media-amazon.com/images/I/41pvLW0jokL._AC._SR240,240.jpg" ,path:"/women/clothing/sleep-lounge-wear/nighties-nightdresses"},
+  {name:"Babydoll", image:"https://m.media-amazon.com/images/I/412gz-fNcmL._AC._SR240,240.jpg" ,path:"/women/clothing/sleep-lounge-wear/babydoll-sets"},
+]
 const Babydolls = () => {
   return (
      <div>

@@ -271,7 +271,7 @@ export const womenRoutes = [
   { path: "women/lingerie/shapewear/tops",                            element: <ShapewearTops />    },
   { path: "women/lingerie/shapewear/waist-shapers",                   element: <WaistShapers />     },
   { path: "women/lingerie/camisoles-tanks",                           element: <CamisolesTank />    },
-  { path: "women/lingerie/sets",                                      element: <LingerieSets />     },
+  { path: "women/lingerie/lingerie-sets",                             element: <LingerieSets />     },
   { path: "women/lingerie/accessories",                               element: <Accessories />      },
   { path: "women/lingerie/accessories/bra-extenders",                 element: <BraExtenders />     },
   { path: "women/lingerie/accessories/breast-lift-tape",              element: <BreastLiftTape />   },

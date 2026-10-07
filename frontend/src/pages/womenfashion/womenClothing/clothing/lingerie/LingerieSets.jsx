@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { IoIosArrowBack } from 'react-icons/io'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 
@@ -11,6 +11,28 @@ const lingerFeaturedCategories = [
 ]
 
 const LingerieSets = () => {
+  const navigate = useNavigate();
+  const [filters, setFilters] = useState({});
+
+  const toggleFilter = (key, value) => {
+    setFilters(prev => {
+      const current = prev[key] || [];
+      return {
+        ...prev,
+        [key]:current.includes(value) ? current.filter(v => v !== value)
+        : [...current,value],
+      };
+    });
+  };
+
+    const dynamicFilterKeys = [
+    "weaveType", "brand", "closureType", "collarStyle", "fitType",
+    "length", "lifestyle", "materialComposition", "neckStyle",
+    "occasionType", "pattern", "sleeveType", "stitchType",
+    "style", "theme"
+  ];
+
+
   return (
       <div>
 

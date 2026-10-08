@@ -167,8 +167,15 @@ const LingerieSets = () => {
 
 
   const renderProductCard = (item) =>(
-    <div key={item.id}> 
-
+   <div key={item.id} className="rounded shadow-sm group relative bg-white">
+<div className="bg-gray-100 relative">
+  <img src={item.image?.[0]} alt={item.brand} className="w-full h-72 cursor-pointer object-contain rounded mix-blend-darken"/>
+  <button className="absolute inset-0 top-60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+     <span className="px-16 py-2 border bg-white text-black rounded-full text-sm">
+            Quick Look
+          </span>
+  </button>
+</div>
     </div>
   )
 

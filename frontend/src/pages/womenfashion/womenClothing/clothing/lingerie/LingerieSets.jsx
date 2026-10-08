@@ -6,6 +6,7 @@ import {
   lingeriesTopRated,
   lingeriesBestSellers,
   lingeriesRecommended,
+  lingeriesHotNewReleases,
 } from "../../../../../component/data/womenfashion.js";
 
 const lingerFeaturedCategories = [
@@ -40,6 +41,8 @@ const LingerieSets = () => {
     return [
       ...lingeriesTopRated,
       ...lingeriesBestSellers,
+      ...lingeriesRecommended,
+      ...lingeriesHotNewReleases,
     ];
   }, []);
 
@@ -321,25 +324,25 @@ const LingerieSets = () => {
           </section>
 
     <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-4">Top Rated Bottom Wear</h2>
+            <h2 className="text-2xl font-bold mb-4">Hot new releases</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {lingeriesTopRated.map(renderProductCard)}
+              {lingeriesHotNewReleases.map(renderProductCard)}
             </div>
           </section>
 
           
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-4">Top Rated Bottom Wear</h2>
+            <h2 className="text-2xl font-bold mb-4">Top rated</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {lingeriesTopRated.map(renderProductCard)}
             </div>
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-4">Top Rated Bottom Wear</h2>
+            <h2 className="text-2xl font-bold mb-4">Best sellers</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {lingeriesTopRated.map(renderProductCard)}
+              {lingeriesBestSellers.map(renderProductCard)}
             </div>
           </section>
 

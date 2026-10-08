@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import {
   lingeriesTopRated,
   lingeriesBestSellers,
+  lingeriesRecommended,
 } from "../../../../../component/data/womenfashion.js";
 
 const lingerFeaturedCategories = [
@@ -161,6 +162,13 @@ const LingerieSets = () => {
     setFilters({});
   };
 
+
+  const renderProductCard = (item) =>(
+    <div key={item.id}> 
+
+    </div>
+  )
+
   return (
     <div>
       <div className="flex flex-col bg-white md:flex-row gap-2 p-2">
@@ -303,6 +311,39 @@ const LingerieSets = () => {
               </div>
             ))}
           </div>
+
+
+<section className="mb-10">
+            <h2 className="text-2xl font-bold mb-4">Recommended for you</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {lingeriesRecommended.map(renderProductCard)}
+            </div>
+          </section>
+
+    <section className="mb-10">
+            <h2 className="text-2xl font-bold mb-4">Top Rated Bottom Wear</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {lingeriesTopRated.map(renderProductCard)}
+            </div>
+          </section>
+
+          
+
+          <section className="mb-10">
+            <h2 className="text-2xl font-bold mb-4">Top Rated Bottom Wear</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {lingeriesTopRated.map(renderProductCard)}
+            </div>
+          </section>
+
+          <section className="mb-10">
+            <h2 className="text-2xl font-bold mb-4">Top Rated Bottom Wear</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {lingeriesTopRated.map(renderProductCard)}
+            </div>
+          </section>
+
+
 
           {/* =================================================
               RESULT COUNT

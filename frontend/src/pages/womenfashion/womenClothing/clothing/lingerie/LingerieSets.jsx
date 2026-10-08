@@ -8,6 +8,7 @@ import {
   lingeriesRecommended,
   lingeriesHotNewReleases,
 } from "../../../../../component/data/womenfashion.js";
+import StarRating from "./StarRating.jsx";
 
 const lingerFeaturedCategories = [
   {
@@ -177,12 +178,12 @@ const LingerieSets = () => {
   </button>
 </div>
 <div className="px-2 py-2">
-        <h2 className="text-base font-semibold">{item?.brand?.name}</h2>
-        <p className="text-xs font-normal line-clamp-2">{item.description}</p>
+        <h2 className="text-base font-semibold">{item.brand}</h2>
+        <p className="text-xs font-normal line-clamp-2">{item.name}</p>
 
         <div className="flex items-center gap-1 mt-1">
-          <StarRating rating={item.ratingsAverage || 0} />
-          <span className="text-xs text-gray-600">({item.ratingsCount || 0})</span>
+          <StarRating rating={item.rating || 0} />
+          <span className="text-xs text-gray-600">({item.ratingCount || 0})</span>
         </div>
 
         <p className="font-semibold text-base mt-1">

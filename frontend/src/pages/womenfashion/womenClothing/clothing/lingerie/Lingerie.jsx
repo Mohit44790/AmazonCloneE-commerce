@@ -8,7 +8,7 @@ import {
   lingerieCollection,
   lingerieCloths,
   lingerieCloths2,
-} from "../../../../../component/data/Womenfashion.js";
+} from "../../../../../component/data/womenfashion.js";
 
 import {
   IoIosArrowBack,

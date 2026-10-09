@@ -11,7 +11,7 @@ const lingerFeaturedCategories = [
 
     image:
 
-      "https://m.media-amazon.com/images/I/41u4ukX+y0L._AC._SR240,240.jpg",
+      "https://m.media-amazon.com/images/I/31-2cmNibBL._AC._SR240,240.jpg",
 
     path: "/women/clothing",
 
@@ -23,7 +23,7 @@ const lingerFeaturedCategories = [
 
     image:
 
-      "https://m.media-amazon.com/images/I/410fdLYfsZL._AC._SR240,240.jpg",
+      "https://m.media-amazon.com/images/I/41u4ukX+y0L._AC._SR240,240.jpg",
 
     path: "/women/lingerie",
 
@@ -31,13 +31,13 @@ const lingerFeaturedCategories = [
 
   {
 
-    name: "Lingerie Sets",
+    name: "Pantyhouse & Stockings",
 
     image:
 
-      "https://m.media-amazon.com/images/I/41H4uAgaaiL._AC._SR240,240.jpg",
+      "https://m.media-amazon.com/images/I/31Vscp+2FCL._AC._SR240,240.jpg",
 
-    path: "/women/lingerie/lingerie-sets",
+    path: "/women/lingerie/pantyhouse",
 
   },
 

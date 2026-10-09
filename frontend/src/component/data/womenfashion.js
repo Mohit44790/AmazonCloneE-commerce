@@ -2456,3 +2456,105 @@ export const pantyhouseTopRated = [
 
   },
 ]
+
+
+export const pantyhouseHotNewReleases = [
+    {
+  "id": 106,
+  brand: "Xs and Os",
+  name: "Xs and Os Women Polyamide Spandex Stockings",
+  rating: 3.4,
+  ratingCount: 42,
+  boughtInPastMonth: "100+",
+  price: 436,
+  discount: 43,
+  mrp: 769,
+  image:["https://m.media-amazon.com/images/I/71Qu1x+ce-L._SY606_.jpg","https://m.media-amazon.com/images/I/71CbVKzxL5L._SY550_.jpg","https://m.media-amazon.com/images/I/71jsjcRLe2L._SY550_.jpg","https://m.media-amazon.com/images/I/51LFtkv+CoL._SY550_.jpg"],
+  currency: "INR",
+ tax: "Inclusive of all taxes",
+  colors:["Maroon"],
+   materialComposition:"90% Nylon, 10% Spandex",
+    materialtype:"",
+    careInstructions:"Hand Wash Only",
+  country :"India",
+  pattern:"Floral",
+  highlights:[""],
+  size:["36","38","40","28","30","32"],
+  fittype:"Regular"
+
+  },
+     {
+  "id": 107,
+  brand: "Sizi",
+  name: "Sizi Fishnet Stockings Rhinestone High Waist Sparkly Tights for Women and Girls.",
+  rating: 3.3,
+  ratingCount: 192,
+  boughtInPastMonth: "100+",
+  price: 299,
+  discount: 70,
+  mrp: 999,
+  image:["https://m.media-amazon.com/images/I/71uk8U5W1EL._SX522_.jpg","https://m.media-amazon.com/images/I/81EE4W1pfjL._SY550_.jpg","https://m.media-amazon.com/images/I/619qmyFrclL._SX425_.jpg","https://m.media-amazon.com/images/I/81XbDW1IEjL._SY550_.jpg"],
+  currency: "INR",
+  tax: "Inclusive of all taxes",
+  colors:["Maroon"],
+   materialComposition:"Nylon & Spandex",
+    materialtype:"",
+    careInstructions:"Hand Wash Only",
+  country :"India",
+  pattern:"Floral",
+  highlights:[""],
+  size:["S","M","XS","L","3XL","3XXL"],
+ fittype:"Slim"
+  },
+      {
+  "id": 108,
+  brand: "NEOBABY",
+  name: "NEOBABY Sparkling Rhinestone Party Pantyhose, Black",
+  rating: 3.7,
+  ratingCount: 92,
+  boughtInPastMonth: "10+",
+  price: 217,
+  discount: 78,
+  mrp: 999,
+  image:["https://m.media-amazon.com/images/I/51i9CYjdCxL._SY500_.jpg","https://m.media-amazon.com/images/I/61QcS-JaeaL._SX522_.jpg","https://m.media-amazon.com/images/I/6197dHL+WbL._SX522_.jpg","https://m.media-amazon.com/images/I/61L7hVJcBZL._SX522_.jpg"],
+  currency: "INR",
+  tax: "Inclusive of all taxes",
+  colors:["Maroon"],
+   materialComposition:"NYLON",
+    materialtype:"",
+    careInstructions:"Hand Wash Only",
+  country :"India",
+  pattern:"Floral",
+  highlights:[""],
+  size:["36","38","40","28","30","32"],
+  fittype:"Slim"
+  
+ 
+
+  },
+      {
+  "id": 109,
+  brand: "MAURNEE",
+  name: "Women's Polyimide and Elastane Full Body Stocking (MS_2025_Black_Free Size)",
+  rating: 3.7,
+  ratingCount: 192,
+  boughtInPastMonth: "10+",
+  price: 205,
+  discount: 83,
+  mrp: 1199,
+  image:["https://m.media-amazon.com/images/I/61IGsb0myPL._SY550_.jpg","https://m.media-amazon.com/images/I/813QNPz-iaL._SY550_.jpg","https://m.media-amazon.com/images/I/81HjVFHZgmL._SY550_.jpg","https://m.media-amazon.com/images/I/81hJJ3mV67L._SY550_.jpg"],
+  currency: "INR",
+  tax: "Inclusive of all taxes",
+  
+  colors:["Black"],
+   materialComposition:"Polyester, Spandex, Mesh",
+    materialtype:"",
+    careInstructions:"Hand Wash Only",
+  country :"India",
+  pattern:"Floral",
+  highlights:[""],
+  size:["L"],
+  fittype:"Slim"
+
+  },
+]

@@ -1,13 +1,63 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoIosArrowBack } from 'react-icons/io'
 import { Link } from 'react-router-dom'
 
+
+const lingerFeaturedCategories = [
+
+  {
+
+    name: "Women",
+
+    image:
+
+      "https://m.media-amazon.com/images/I/41u4ukX+y0L._AC._SR240,240.jpg",
+
+    path: "/women/clothing",
+
+  },
+
+  {
+
+    name: "Lingerie",
+
+    image:
+
+      "https://m.media-amazon.com/images/I/410fdLYfsZL._AC._SR240,240.jpg",
+
+    path: "/women/lingerie",
+
+  },
+
+  {
+
+    name: "Lingerie Sets",
+
+    image:
+
+      "https://m.media-amazon.com/images/I/41H4uAgaaiL._AC._SR240,240.jpg",
+
+    path: "/women/lingerie/lingerie-sets",
+
+  },
+
+];
 const PantyhoseStockings = () => {
+  const [loading, setLoading] = useState(true);
+   
+  
+  
+      useEffect(() => {
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 800);
+        return () => clearTimeout(timer);
+    }, []);
   return (
       <div>
 
      <div className='flex flex-col bg-white md:flex-row gap-2 p-2'>
-        <div className="w-64 flex flex-col gap-2">
+        <aside className="w-64 flex flex-col gap-2">
            <h1 className="font-semibold text-sm">Category</h1>
             <Link to="/women/clothing" className="flex items-center  text-sm">
                                  <IoIosArrowBack />  Clothing & Accessories
@@ -19,10 +69,28 @@ const PantyhoseStockings = () => {
                                   <IoIosArrowBack /> Lingerie
                                 </Link>
            <h1 className="font-semibold text-sm px-4">Pantyhose & Stockings</h1>
-        </div>
-         <div className='flex-1 min-w-0 w-full'>
+        </aside>
+         <main className='flex-1 min-w-0 w-full'>
           <h1 className="font-semibold text-4xl px-4">Featured categories</h1>
-        </div>
+
+           <div className="flex flex-wrap gap-4 p-4">
+                      {loading
+                        ? Array.from({ length: 3 }).map((_, index) => (
+                            <div key={index} className="w-48 animate-pulse">
+                              <div className="bg-gray-200 w-48 h-48 rounded-full" />
+                              <div className="h-5 w-24 bg-gray-200 rounded mx-auto mt-3" />
+                            </div>
+                          ))
+                        : lingerFeaturedCategories.map((item, index) => (
+                            <div key={index}>
+                              <Link to={item.path} className="flex items-center bg-gray-100 w-48 h-48 rounded-full gap-2 p-8">
+                                <img src={item.image} alt={item.name} className="object-cover mix-blend-darken" />
+                              </Link>
+                              <h1 className="font-semibold text-center text-lg px-4">{item.name}</h1>
+                            </div>
+                          ))}
+                    </div>
+        </main>
       </div>
     </div>
   )

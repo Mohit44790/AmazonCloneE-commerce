@@ -45,17 +45,38 @@ const lingerFeaturedCategories = [
 
 ];
 
+  const SkeletonCard = () => (
+    <div className="rounded shadow-sm bg-white p-2 animate-pulse">
+      <div className="bg-gray-200 w-full h-72 rounded" />
+      <div className="h-4 bg-gray-200 rounded w-1/3 mt-3" />
+      <div className="h-3 bg-gray-200 rounded w-full mt-2" />
+      <div className="h-3 bg-gray-200 rounded w-4/5 mt-2" />
+      <div className="h-4 bg-gray-200 rounded w-1/2 mt-3" />
+    </div>
+  );
+
+  const SkeletonGrid = ({ count = 4 }) => (
+    <>
+      {Array.from({ length: count }).map((_, index) => (
+        <SkeletonCard key={index} />
+      ))}
+    </>
+  );
+
+
 const renderProductCard = (item) =>(
   <div key={item.id} className='rounded shadow-sm group relative bg-white'>
-     <div className="bg-gradient-to-tl from-gray-200 via-white to-gray-300 relative">
-      <img src={item.image?.[0]} alt={item.brand}  className="w-full h-72 cursor-pointer object-contain rounded mix-blend-darken"/>
+    <Link to={`/product/${item.id}`}>
+    
+     <div  className="bg-gradient-to-tl from-gray-200 via-white to-gray-300 relative">
+      <img  src={item.image?.[0]} alt={item.brand}  className="w-full h-72 cursor-pointer object-contain rounded mix-blend-darken"/>
      <button className="absolute inset-0 top-60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
        <span className="px-16 py-2 border bg-white text-black rounded-full text-sm">
             Quick Look
           </span>
      </button>
     </div>
-
+</Link>
     <div className="px-2 py-2">
        <h1 className="text-base font-semibold">{item.brand}</h1>
        <p className="text-xs font-normal line-clamp-2">{item.name}</p>
@@ -98,7 +119,7 @@ const PantyhoseStockings = () => {
                                 <Link to="/women/clothing" className="flex items-center  text-sm">
                                  <IoIosArrowBack /> Women
                                 </Link>
-                                <Link to="/women/lingerie" className="flex items-center  text-sm">
+                                <Link to="/women/clothing/lingerie" className="flex items-center  text-sm">
                                   <IoIosArrowBack /> Lingerie
                                 </Link>
            <h1 className="font-semibold text-sm px-4">Pantyhose & Stockings</h1>
@@ -130,7 +151,7 @@ const PantyhoseStockings = () => {
                     <section className="mb-10">
                       <h2 className='text-2xl font-bold mb-4'>Recommended for you</h2>
                       <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-                        {pantyhouseRecomended.map(renderProductCard)}
+                       {loading ? <SkeletonGrid count={4} /> : pantyhouseRecomended.map(renderProductCard)} 
 
                       </div>
                     </section>
@@ -139,7 +160,7 @@ const PantyhoseStockings = () => {
                     <section className="mb-10">
                       <h2 className='text-2xl font-bold mb-4'>Top rated </h2>
                       <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-                        {pantyhouseTopRated.map(renderProductCard)}
+                        {loading ? <SkeletonGrid count={4}/> :pantyhouseTopRated.map(renderProductCard)}
 
                       </div>
                     </section>
@@ -148,7 +169,7 @@ const PantyhoseStockings = () => {
                     <section className="mb-10">
                       <h2 className='text-2xl font-bold mb-4'>Hot new releases</h2>
                       <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-                        {pantyhouseHotNewReleases.map(renderProductCard)}
+                        {loading ? <SkeletonGrid count={4}/> : pantyhouseHotNewReleases.map(renderProductCard)}
 
                       </div>
                     </section>
@@ -157,7 +178,7 @@ const PantyhoseStockings = () => {
                     <section className="mb-10">
                       <h2 className='text-2xl font-bold mb-4'>Best sellers </h2>
                       <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-                        {pantyhouseBestSellers.map(renderProductCard)}
+                        {loading ? <SkeletonGrid count={4}/> : pantyhouseBestSellers.map(renderProductCard)}
 
                       </div>
                     </section>

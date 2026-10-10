@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { IoIosArrowBack } from 'react-icons/io'
 import { Link } from 'react-router-dom'
 import { pantyhouseBestSellers, pantyhouseHotNewReleases, pantyhouseRecomended, pantyhouseTopRated } from '../../../../../component/data/womenfashion';
+import StarRating from './StarRating';
 
 
 const lingerFeaturedCategories = [
@@ -45,7 +46,22 @@ const lingerFeaturedCategories = [
 ];
 
 const renderProductCard = (item) =>(
-  <div>
+  <div key={item.id} className='rounded shadow-sm group relative bg-white'>
+    <div className=''>
+      <img src={item.image?.[0]} alt={item.brand} />
+     <button>
+      <span>Quick Look</span>
+     </button>
+    </div>
+
+    <div>
+      <h1>{item.brand}</h1>
+      <p>{item.name}</p>
+      <div>
+        <StarRating rating={item.rating || 0}/>
+        <span>{item.ratingCount || 0}</span>
+      </div>
+    </div>
 
   </div>
 )

@@ -47,20 +47,29 @@ const lingerFeaturedCategories = [
 
 const renderProductCard = (item) =>(
   <div key={item.id} className='rounded shadow-sm group relative bg-white'>
-    <div className=''>
-      <img src={item.image?.[0]} alt={item.brand} />
-     <button>
-      <span>Quick Look</span>
+     <div className="bg-gradient-to-tl from-gray-200 via-white to-gray-300 relative">
+      <img src={item.image?.[0]} alt={item.brand}  className="w-full h-72 cursor-pointer object-contain rounded mix-blend-darken"/>
+     <button className="absolute inset-0 top-60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+       <span className="px-16 py-2 border bg-white text-black rounded-full text-sm">
+            Quick Look
+          </span>
      </button>
     </div>
 
-    <div>
-      <h1>{item.brand}</h1>
-      <p>{item.name}</p>
-      <div>
+    <div className="px-2 py-2">
+       <h1 className="text-base font-semibold">{item.brand}</h1>
+       <p className="text-xs font-normal line-clamp-2">{item.name}</p>
+       <div className="flex items-center gap-1 mt-1">
         <StarRating rating={item.rating || 0}/>
-        <span>{item.ratingCount || 0}</span>
+         <span className="text-xs text-gray-600">{item.ratingCount || 0}</span>
       </div>
+       <p className="font-semibold text-base mt-1">
+          ₹{(item.price * (1 - item.discount / 100)).toFixed(0)}
+          <span className="text-gray-500 ml-1 line-through text-sm font-mono">
+            M.R.P ₹{item.price}
+          </span>
+          <span className='ml-1 text-xs'>({item.discount}% off)</span>
+        </p>
     </div>
 
   </div>

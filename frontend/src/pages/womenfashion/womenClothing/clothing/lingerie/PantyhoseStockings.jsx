@@ -48,7 +48,15 @@ const lingerFeaturedCategories = [
 
 
 const PantyhoseStockings = () => {
-  const [loading, setLoading] = useState(true);
+const [loading, setLoading] = useState(true);
+const [selectedColors,setSelectedColors] = useState([]);
+const [selectedSizes,setSelectedSizes] =useState([]);
+const [selectedBrands,setSelectedBrands] = useState([]);
+const [selectedMaterials,setSelectedMaterials] = useState([]);
+const [selectedOccasions,setSelectedOccasions] = useState([]);
+const [selectedFitTypes,setSelectedFitTypes] = useState([]);
+
+  
  
   
       useEffect(() => {
@@ -129,30 +137,7 @@ const renderProductCard = (item) =>(
                                 </Link>
            <h1 className="font-semibold text-sm px-4">Pantyhose & Stockings</h1>
 
-            {dynamicFilterKeys.map((key) => {
-                const options = getFilterOptions(key);
-                if (options.length === 0) return null;
-                return (
-                  <div key={key} className="mt-4 border-b border-gray-200 pb-3">
-                    <h2 className="font-semibold text-sm capitalize">
-                      {key.replace(/([A-Z])/g, " $1").replace(/^./, (str) => str.toUpperCase())}
-                    </h2>
-                    <div className="mt-2 max-h-48 overflow-y-auto">
-                      {options.map((option) => (
-                        <label key={option} className="flex items-center cursor-pointer mt-1">
-                          <input
-                            type="checkbox"
-                            className="accent-orange-400 mr-2"
-                            checked={filters[key]?.includes(option) || false}
-                            onChange={() => toggleFilter(key, option)}
-                          />
-                          <span className="text-sm">{option}</span>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-                );
-              })}
+            
         </aside>
          <main className='flex-1 min-w-0 w-full'>
           <h1 className="font-semibold text-4xl px-4">Featured categories</h1>

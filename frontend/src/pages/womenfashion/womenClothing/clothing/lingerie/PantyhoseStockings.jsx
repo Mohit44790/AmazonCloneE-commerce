@@ -61,6 +61,21 @@ const [selectedStyles, setSelectedStyles] = useState([]);
 const [selectedNecks, setSelectedNecks] = useState([]);
 const [selectedLengths, setSelectedLengths] = useState([]);
 
+
+
+const today = new Date();
+const tomorrow = new Date(today);
+tomorrow.setDate(today.getDate()+1);
+const nextFriday  = new Date(today);
+const daysUntilFriday = (5- today.getDay() + 7) % 7;
+nextFriday.setDate(today.getDate() + daysUntilFriday);
+
+  const formattedFriday = nextFriday.toLocaleDateString('en-US', {
+    weekday: 'short', month: 'short', day: 'numeric'
+  });
+  const formattedTomorrow = tomorrow.toLocaleDateString('en-US', {
+    weekday: 'short', month: 'short', day: 'numeric'
+  });
   
  
   
@@ -72,6 +87,14 @@ const [selectedLengths, setSelectedLengths] = useState([]);
     }, []);
 
 
+     const categoryProducts = useMemo(() => {    
+        return [    
+          ...pantyhouseBestSellers,    
+          ...pantyhouseHotNewReleases,    
+          ...pantyhouseRecomended,    
+          ...pantyhouseTopRated,
+            ];    
+      }, []);
 
 
   const SkeletonCard = () => (

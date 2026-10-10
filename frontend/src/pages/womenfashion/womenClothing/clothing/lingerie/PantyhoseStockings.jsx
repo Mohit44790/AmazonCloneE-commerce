@@ -49,12 +49,17 @@ const lingerFeaturedCategories = [
 
 const PantyhoseStockings = () => {
 const [loading, setLoading] = useState(true);
-const [selectedColors,setSelectedColors] = useState([]);
-const [selectedSizes,setSelectedSizes] =useState([]);
-const [selectedBrands,setSelectedBrands] = useState([]);
-const [selectedMaterials,setSelectedMaterials] = useState([]);
-const [selectedOccasions,setSelectedOccasions] = useState([]);
-const [selectedFitTypes,setSelectedFitTypes] = useState([]);
+const [selectedColors, setSelectedColors] = useState([]);
+const [selectedSizes, setSelectedSizes] = useState([]);
+const [selectedBrands, setSelectedBrands] = useState([]);
+const [selectedMaterials, setSelectedMaterials] = useState([]);
+const [selectedOccasions, setSelectedOccasions] = useState([]);
+const [selectedFitTypes, setSelectedFitTypes] = useState([]);
+const [selectedPatterns, setSelectedPatterns] = useState([]);
+const [selectedClosures, setSelectedClosures] = useState([]);
+const [selectedStyles, setSelectedStyles] = useState([]);
+const [selectedNecks, setSelectedNecks] = useState([]);
+const [selectedLengths, setSelectedLengths] = useState([]);
 
   
  

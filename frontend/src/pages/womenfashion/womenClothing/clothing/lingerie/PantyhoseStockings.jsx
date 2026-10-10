@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { IoIosArrowBack } from 'react-icons/io'
 import { Link } from 'react-router-dom'
+import { pantyhouseBestSellers, pantyhouseHotNewReleases, pantyhouseRecomended, pantyhouseTopRated } from '../../../../../component/data/womenfashion';
 
 
 const lingerFeaturedCategories = [
@@ -42,6 +43,12 @@ const lingerFeaturedCategories = [
   },
 
 ];
+
+const renderProductCard = (item) =>(
+  <div>
+
+  </div>
+)
 const PantyhoseStockings = () => {
   const [loading, setLoading] = useState(true);
    
@@ -53,6 +60,7 @@ const PantyhoseStockings = () => {
       }, 800);
         return () => clearTimeout(timer);
     }, []);
+
   return (
       <div>
 
@@ -90,6 +98,46 @@ const PantyhoseStockings = () => {
                             </div>
                           ))}
                     </div>
+
+
+                    {/* Recommended for you */}
+                    {/* Sections */}
+                    <section className="mb-10">
+                      <h2 className='text-2xl font-bold mb-4'>Recommended for you</h2>
+                      <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+                        {pantyhouseRecomended.map(renderProductCard)}
+
+                      </div>
+                    </section>
+
+                    {/* Top rated  */}
+                    <section className="mb-10">
+                      <h2 className='text-2xl font-bold mb-4'>Top rated </h2>
+                      <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+                        {pantyhouseTopRated.map(renderProductCard)}
+
+                      </div>
+                    </section>
+
+                    {/* Hot new releases */}
+                    <section className="mb-10">
+                      <h2 className='text-2xl font-bold mb-4'>Hot new releases</h2>
+                      <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+                        {pantyhouseHotNewReleases.map(renderProductCard)}
+
+                      </div>
+                    </section>
+
+                    {/* Best sellers  */}
+                    <section className="mb-10">
+                      <h2 className='text-2xl font-bold mb-4'>Best sellers </h2>
+                      <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+                        {pantyhouseBestSellers.map(renderProductCard)}
+
+                      </div>
+                    </section>
+
+                    
         </main>
       </div>
     </div>

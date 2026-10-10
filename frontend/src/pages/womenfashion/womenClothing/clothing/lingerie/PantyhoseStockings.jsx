@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoIosArrowBack } from 'react-icons/io'
 import { Link } from 'react-router-dom'
 import { pantyhouseBestSellers, pantyhouseHotNewReleases, pantyhouseRecomended, pantyhouseTopRated } from '../../../../../component/data/womenfashion';
@@ -49,8 +49,7 @@ const lingerFeaturedCategories = [
 
 const PantyhoseStockings = () => {
   const [loading, setLoading] = useState(true);
-  const [filters, setFilters] = useState({}); 
-  
+ 
   
       useEffect(() => {
       const timer = setTimeout(() => {
@@ -59,134 +58,8 @@ const PantyhoseStockings = () => {
         return () => clearTimeout(timer);
     }, []);
 
-      const categoryProducts = useMemo(() => {
-    
-        return [
-    
-          ...pantyhouseBestSellers,
-    
-          ...pantyhouseRecomended,
-    
-          ...pantyhouseHotNewReleases,
-    
-          ...pantyhouseTopRated,
-          
-    
-        ];
-    
-      }, []);
-
-    const dynamicFilterKeys = [
-    "brand",
-    "colors",
-    "materialComposition",
-    "style",
-    "fittype",
-    "straptype",
-    "materialtype",
-    "country",
-    "pattern",
-    "size",
-    "bottomStyle",
-    "closureType",
-    "neckStyle",
-    "cupSize",
-    "sleeveLength",
-   "lifeEvent",
-    "occasion",
-  ];
-
- const getProductValues = (product, key) => {
-    const value = product[key];
-    if (Array.isArray(value)) {
-      return value.filter(Boolean);
-    }
-    if (value !== undefined && value !== null && value !== "") {
-      return [value];
-    }
-    return [];
-
-  };
-  
-   const filteredProducts = useMemo(() => {
-  
-      return categoryProducts.filter((product) => {
-  
-        for (const [key, selectedValues] of Object.entries(filters)) {
-  
-          if (!selectedValues || selectedValues.length === 0) {
-  
-            continue;
-  
-          }
-  
-  
-  
-          const productValues = getProductValues(product, key);
-  
-  
-  
-          const matched = selectedValues.some((selectedValue) =>
-  
-            productValues.some(
-  
-              (productValue) =>
-  
-                String(productValue).toLowerCase() ===
-  
-                String(selectedValue).toLowerCase()
-  
-            )
-  
-          );
-  
-  
-  
-          if (!matched) {
-  
-            return false;
-  
-          }
-  
-        }
-  
-  
-  
-        return true;
-  
-      });
-  
-    }, [categoryProducts, filters]);
-
-   const getFilterOptions = (key) => {
-
-    const values = [];
 
 
-
-    categoryProducts.forEach((product) => {
-
-      const productValues = getProductValues(product, key);
-
-
-
-      productValues.forEach((value) => {
-
-        if (value !== undefined && value !== null && value !== "") {
-
-          values.push(String(value).trim());
-
-        }
-
-      });
-
-    });
-
-
-
-    return [...new Set(values)].filter(Boolean);
-
-  };
 
   const SkeletonCard = () => (
     <div className="rounded shadow-sm bg-white p-2 animate-pulse">

@@ -256,6 +256,208 @@ const renderProductCard = (item) =>(
                                   <IoIosArrowBack /> Lingerie
                                 </Link>
            <h1 className="font-semibold text-sm px-4">Pantyhose & Stockings</h1>
+           <button
+  onClick={() => {
+    setSelectedBrands([]);
+    setSelectedColors([]);
+    setSelectedSizes([]);
+  }}
+  className="mt-4 px-4 py-1 text-sm text-orange-600 border border-orange-400 rounded hover:bg-orange-50"
+>
+  Clear All Filters
+</button>
+          <div className="mt-4">
+  <h2 className="font-semibold text-sm">Brands</h2>
+  <div className="flex flex-col gap-1 mt-1">
+    {allBrands.map(brand => (
+      <label key={brand} className="text-xs flex items-center gap-2">
+        <input
+          type="checkbox"
+          checked={selectedBrands.includes(brand)}
+          onChange={() => toggleBrand(brand)}
+          className="accent-orange-500"
+        />
+        {brand}
+      </label>
+    ))}
+  </div>
+</div>
+
+
+        {/* Color Filter */}
+           {/* Color Filter */}
+          <div className="mt-4">
+            <h2 className="font-semibold text-sm">Colors</h2>
+            <div className="flex flex-wrap gap-2 mt-1">
+              {allColors.map(color => (
+                <button
+                  key={color}
+                  onClick={() => toggleColor(color)}
+                  className={`px-3 py-1 text-xs rounded border ${
+                    selectedColors.includes(color)
+                      ? 'bg-orange-400 text-white'
+                      : 'bg-white border-gray-300'
+                  }`}
+                >
+                  {color}
+                </button>
+              ))}
+            </div>
+          </div>
+  {/* Size Filter */}
+          <div className="mt-4">
+            <h2 className="font-semibold text-sm">Sizes</h2>
+            <div className="flex flex-wrap gap-2 mt-1">
+              {allSizes.map(size => (
+                <button
+                  key={size}
+                  onClick={() => toggleSize(size)}
+                  className={`px-3 py-1 text-xs rounded border ${
+                    selectedSizes.includes(size)
+                      ? 'bg-orange-400 text-white'
+                      : 'bg-white border-gray-300'
+                  }`}
+                >
+                  {size}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="mt-4">
+  <h2 className="font-semibold text-sm">Material</h2>
+  <div className="flex flex-col gap-1 mt-1">
+    {allMaterials.map(material => (
+      <label key={material} className="text-xs flex items-center gap-2">
+        <input
+          type="checkbox"
+          checked={selectedMaterials.includes(material)}
+          onChange={() => toggleMaterial(material)}
+          className="accent-orange-500"
+        />
+        {material}
+      </label>
+    ))}
+  </div>
+</div>
+
+          <div className="mt-4">
+  <h2 className="font-semibold text-sm">Length</h2>
+  <div className="flex flex-col gap-1 mt-1">
+    {allLengths.map(length => (
+      <label key={length} className="text-xs flex items-center gap-2">
+        <input
+          type="checkbox"
+          checked={selectedLengths.includes(length)}
+          onChange={() => toggleLength(length)}
+          className="accent-orange-500"
+        />
+        {length}
+      </label>
+    ))}
+  </div>
+</div>
+
+          <div className="mt-4">
+  <h2 className="font-semibold text-sm">Occasion Type</h2>
+  <div className="flex flex-col gap-1 mt-1">
+    {allOccasions.map(occasion => (
+      <label key={occasion} className="text-xs flex items-center gap-2">
+        <input
+          type="checkbox"
+          checked={selectedOccasions.includes(occasion)}
+          onChange={() => toggleOccasion(occasion)}
+          className="accent-orange-500"
+        />
+        {occasion}
+      </label>
+    ))}
+  </div>
+</div>
+
+         <div className="mt-4">
+  <h2 className="font-semibold text-sm">Closure Type</h2>
+  <div className="flex flex-col gap-1 mt-1">
+    {allClosures.map(closure => (
+      <label key={closure} className="text-xs flex items-center gap-2">
+        <input
+          type="checkbox"
+          checked={selectedClosures.includes(closure)}
+          onChange={() => toggleClosure(closure)}
+          className="accent-orange-500"
+        />
+        {closure}
+      </label>
+    ))}
+  </div>
+</div>
+
+         <div className="mt-4">
+  <h2 className="font-semibold text-sm">Style</h2>
+  <div className="flex flex-col gap-1 mt-1">
+    {allStyles.map(style => (
+      <label key={style} className="text-xs flex items-center gap-2">
+        <input
+          type="checkbox"
+          checked={selectedStyles.includes(style)}
+          onChange={() => toggleStyle(style)}
+          className="accent-orange-500"
+        />
+        {style}
+      </label>
+    ))}
+  </div>
+</div>
+
+          <div className="mt-4">
+  <h2 className="font-semibold text-sm">Neck Style</h2>
+  <div className="flex flex-col gap-1 mt-1">
+    {allNeckStyles.map(neck => (
+      <label key={neck} className="text-xs flex items-center gap-2">
+        <input
+          type="checkbox"
+          checked={selectedNecks.includes(neck)}
+          onChange={() => toggleNeck(neck)}
+          className="accent-orange-500"
+        />
+        {neck}
+      </label>
+    ))}
+  </div>
+</div>
+
+<div className="mt-4">
+  <h2 className="font-semibold text-sm">Fit Type</h2>
+  <div className="flex flex-col gap-1 mt-1">
+    {allFitTypes.map(fit => (
+      <label key={fit} className="text-xs flex items-center gap-2">
+        <input
+          type="checkbox"
+          checked={selectedFitTypes.includes(fit)}
+          onChange={() => toggleFitType(fit)}
+          className="accent-orange-500"
+        />
+        {fit}
+      </label>
+    ))}
+  </div>
+</div>
+<div className="mt-4">
+  <h2 className="font-semibold text-sm">Pattern</h2>
+  <div className="flex flex-col gap-1 mt-1">
+    {allPatterns.map(pattern => (
+      <label key={pattern} className="text-xs flex items-center gap-2">
+        <input
+          type="checkbox"
+          checked={selectedPatterns.includes(pattern)}
+          onChange={() => togglePattern(pattern)}
+          className="accent-orange-500"
+        />
+        {pattern}
+      </label>
+    ))}
+  </div>
+</div>
+
 
             
         </aside>

@@ -520,6 +520,59 @@ const renderProductCard = (item) =>(
                       </div>
                     </section>
 
+
+<div className='py-2 px-4 border border-gray-300 mt-2 rounded-xl'>
+              <h1>1-{filteredProducts.length} of over {categoryProducts.length} results for Kurtas & Housepanty</h1>
+{loading && <p>Loading products...</p>}
+            {error && <p className="text-red-500">{error}</p>}
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 px-4 mt-4">
+                       {filteredProducts.map(item => (
+                         <div key={item.id} className="mt-4 shadow rounded  bg-white">
+                          <div className='bg-gray-100'>
+             <img
+               src={item.images?.[0] || "https://via.placeholder.com/300x400?text=No+Image"}
+               alt={item.title}
+               onClick={() => navigate(`/product/view/${item.id}`, {
+                 state: { from: 'Clothing & Accessories/Women/Ethnic Wear/Blouse' }
+               })}
+               className="w-full h-72 object-contain cursor-pointer rounded mix-blend-darken"
+             />
+           
+             {item.visitCount >= 1 && (
+               <p className='text-xs border px-5 rounded-4xl border-gray-400'>
+                 Review {item.visitCount}
+               </p>
+             )}
+           </div>
+           
+                           <div className='mx-2'>
+                             <h2 className="text-sm font-semibold mt-2">{item?.brand?.name}</h2>
+                             <h2 className="text-sm">{item?.description.slice(0, 65)}....</h2>
+                             <div className='flex gap-1'>
+                <div className="flex items-center gap-1">
+             <StarRating rating={item.ratingsAverage || 0} />
+             <span className="text-xs text-gray-600">({item.ratingCount || 0})</span>
+           </div>
+                              
+                             </div>
+                             {item.discount ? (
+                               <div className='flex gap-2'>
+                                 <p className="text-orange-600 font-bold">
+                                   ₹{(item.price * (1 - item.discount / 100)).toFixed(0)}
+                                   <span className="text-gray-500 line-through text-sm ml-2">M.R.P ₹{item.price}</span>
+                                 </p>
+                                 <p>{item.discount}% off</p>
+                               </div>
+                             ) : (
+                               <p className="text-orange-600 font-bold">M.R.P ₹{item.price}</p>
+                             )}
+                             <h2 className='text-sm mt-1 mb-2'>Free Delivery <span className='font-semibold'>{formattedFriday}</span> on first order or fast delivery Tomorrow <span className='font-semibold'>{formattedTomorrow}</span></h2>
+                           </div>
+                         </div>
+                       ))}
+                     </div>
+            </div>
                     
         </main>
       </div>

@@ -125,6 +125,70 @@ const filteredProducts = categoryProducts.filter(product =>{
      return true;
   })
 
+  const toggleColor = (color) => {
+    setSelectedColors(prev =>
+      prev.includes(color) ? prev.filter(c => c !== color) : [...prev, color]
+    );
+  };
+
+  const toggleSize = (size) => {
+    setSelectedSizes(prev =>
+      prev.includes(size) ? prev.filter(s => s !== size) : [...prev, size]
+    );
+  };
+  const toggleBrand = (brand) => {
+  setSelectedBrands(prev =>
+    prev.includes(brand) ? prev.filter(b => b !== brand) : [...prev, brand]
+  );
+};
+const toggleMaterial = (material) => {
+  setSelectedMaterials(prev =>
+    prev.includes(material) ? prev.filter(m => m !== material) : [...prev, material]
+  );
+};
+
+const toggleLength = (length) => {
+  setSelectedLengths(prev =>
+    prev.includes(length) ? prev.filter(l => l !== length) : [...prev, length]
+  );
+};
+
+const toggleOccasion = (occasion) => {
+  setSelectedOccasions(prev =>
+    prev.includes(occasion) ? prev.filter(o => o !== occasion) : [...prev, occasion]
+  );
+};
+
+const toggleClosure = (closure) => {
+  setSelectedClosures(prev =>
+    prev.includes(closure) ? prev.filter(c => c !== closure) : [...prev, closure]
+  );
+};
+
+const toggleStyle = (style) => {
+  setSelectedStyles(prev =>
+    prev.includes(style) ? prev.filter(s => s !== style) : [...prev, style]
+  );
+};
+
+const toggleNeck = (neck) => {
+  setSelectedNecks(prev =>
+    prev.includes(neck) ? prev.filter(n => n !== neck) : [...prev, neck]
+  );
+};
+
+const toggleFitType = (fit) => {
+  setSelectedFitTypes(prev =>
+    prev.includes(fit) ? prev.filter(f => f !== fit) : [...prev, fit]
+  );
+};
+
+const togglePattern = (pattern) => {
+  setSelectedPatterns(prev =>
+    prev.includes(pattern) ? prev.filter(p => p !== pattern) : [...prev, pattern]
+  );
+};
+
   const SkeletonCard = () => (
     <div className="rounded shadow-sm bg-white p-2 animate-pulse">
       <div className="bg-gray-200 w-full h-72 rounded" />

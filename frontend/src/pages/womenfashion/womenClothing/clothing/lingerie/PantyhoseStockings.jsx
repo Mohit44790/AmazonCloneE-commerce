@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { IoIosArrowBack } from 'react-icons/io'
 import { Link } from 'react-router-dom'
 import { pantyhouseBestSellers, pantyhouseHotNewReleases, pantyhouseRecomended, pantyhouseTopRated } from '../../../../../component/data/womenfashion';
@@ -96,6 +96,34 @@ nextFriday.setDate(today.getDate() + daysUntilFriday);
             ];    
       }, []);
 
+
+      const allColors =[...new Set(categoryProducts.flapMap(item => item.colors || []))];
+      
+  const allSizes = [...new Set(categoryProducts.flatMap(item => item.sizes || []))];
+  const allBrands = [...new Set(categoryProducts.map(item => item.brand?.name).filter(Boolean))];
+  const allMaterials = [...new Set(categoryProducts.map(item => item.materialComposition).filter(Boolean))];
+const allLengths = [...new Set(categoryProducts.map(item => item.length).filter(Boolean))];
+const allOccasions = [...new Set(categoryProducts.map(item => item.occasionType).filter(Boolean))];
+const allClosures = [...new Set(categoryProducts.map(item => item.closureType).filter(Boolean))];
+const allStyles = [...new Set(categoryProducts.map(item => item.style).filter(Boolean))];
+const allNeckStyles = [...new Set(categoryProducts.map(item => item.neckStyle).filter(Boolean))];
+const allFitTypes = [...new Set(categoryProducts.map(item => item.fitType).filter(Boolean))];
+const allPatterns = [...new Set(categoryProducts.map(item => item.pattern).filter(Boolean))];
+
+const filteredProducts = categoryProducts.filter(product =>{
+    if (selectedBrands.length > 0 && !selectedBrands.includes(product.brand?.name)) return false;
+      if (selectedColors.length > 0 && !selectedColors.some(color => product.colors?.includes(color))) return false;
+    if (selectedSizes.length > 0 && !selectedSizes.some(size => product.sizes?.includes(size))) return false;
+ if (selectedMaterials.length > 0 && !selectedMaterials.includes(product.materialComposition)) return false;
+  if (selectedLengths.length > 0 && !selectedLengths.includes(product.length)) return false;
+   if (selectedOccasions.length > 0 && !selectedOccasions.includes(product.occasionType)) return false;
+  if (selectedClosures.length > 0 && !selectedClosures.includes(product.closureType)) return false;
+  if (selectedStyles.length > 0 && !selectedStyles.includes(product.style)) return false;
+  if (selectedNecks.length > 0 && !selectedNecks.includes(product.neckStyle)) return false;
+  if (selectedFitTypes.length > 0 && !selectedFitTypes.includes(product.fitType)) return false;
+  if (selectedPatterns.length > 0 && !selectedPatterns.includes(product.pattern)) return false;
+     return true;
+  })
 
   const SkeletonCard = () => (
     <div className="rounded shadow-sm bg-white p-2 animate-pulse">

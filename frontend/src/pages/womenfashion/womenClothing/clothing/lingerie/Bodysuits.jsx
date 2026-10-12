@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { IoIosArrowBack } from 'react-icons/io'
 import { Link } from 'react-router-dom'
+import { bodySuitBestSellers, bodySuitRecommended, bodySuitToprated } from '../../../../../component/data/womenfashion'
 
 
 const bodysuitWomen = [
@@ -39,6 +40,9 @@ const Bodysuits = () => {
     
 const renderProductCard = (item) =>(
   <div>
+    <div>
+      <img src={item.image?.[0]} alt="" />
+    </div>
 
   </div>
 )
@@ -89,7 +93,7 @@ const renderProductCard = (item) =>(
                    
                                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                    
-                                 {/* {loading ? <SkeletonGrid count={4} /> : lingeriesTopRated.map(renderProductCard)} */}
+                                 {loading ? <SkeletonGrid count={4} /> : bodySuitRecommended.map(renderProductCard)}
                    
                                </div>
                    
@@ -100,7 +104,7 @@ const renderProductCard = (item) =>(
                    
                                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                    
-                                 {/* {loading ? <SkeletonGrid count={4} /> :  bodySuitTopRated.map(renderProductCard)} */}
+                                 {loading ? <SkeletonGrid count={4} /> :  bodySuitToprated.map(renderProductCard)}
                    
                                </div>
                    
@@ -111,7 +115,7 @@ const renderProductCard = (item) =>(
                    
                                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                    
-                                 {/* {loading ? <SkeletonGrid count={4} /> : lingeriesTopRated.map(renderProductCard)} */}
+                                 {loading ? <SkeletonGrid count={4} /> : bodySuitBestSellers.map(renderProductCard)}
                    
                                </div>
                    

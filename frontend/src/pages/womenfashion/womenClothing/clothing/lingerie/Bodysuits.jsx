@@ -19,6 +19,29 @@ const Bodysuits = () => {
     }, []);
 
 
+     const SkeletonCard = () => (
+    <div className="rounded shadow-sm bg-white p-2 animate-pulse">
+      <div className="bg-gray-200 w-full h-72 rounded" />
+      <div className="h-4 bg-gray-200 rounded w-1/3 mt-3" />
+      <div className="h-3 bg-gray-200 rounded w-full mt-2" />
+      <div className="h-3 bg-gray-200 rounded w-4/5 mt-2" />
+      <div className="h-4 bg-gray-200 rounded w-1/2 mt-3" />
+    </div>
+  );
+
+  const SkeletonGrid = ({ count = 4 }) => (
+    <>
+      {Array.from({ length: count }).map((_, index) => (
+        <SkeletonCard key={index} />
+      ))}
+    </>
+  );
+    
+const renderProductCard = (item) =>(
+  <div>
+
+  </div>
+)
   return (
      <div>
 
@@ -77,7 +100,7 @@ const Bodysuits = () => {
                    
                                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                    
-                                 {/* {loading ? <SkeletonGrid count={4} /> : lingeriesTopRated.map(renderProductCard)} */}
+                                 {/* {loading ? <SkeletonGrid count={4} /> :  bodySuitTopRated.map(renderProductCard)} */}
                    
                                </div>
                    

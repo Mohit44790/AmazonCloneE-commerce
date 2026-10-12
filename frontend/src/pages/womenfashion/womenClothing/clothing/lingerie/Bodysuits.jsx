@@ -62,11 +62,11 @@ const Bodysuits = () => {
 
                        <section className="mb-10">
                    
-                               <h2 className="text-2xl font-bold mb-4">Top rated</h2>
+                               <h2 className="text-2xl font-bold mb-4">Recommended for you</h2>
                    
                                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                    
-                                 {loading ? <SkeletonGrid count={4} /> : lingeriesTopRated.map(renderProductCard)}
+                                 {/* {loading ? <SkeletonGrid count={4} /> : lingeriesTopRated.map(renderProductCard)} */}
                    
                                </div>
                    
@@ -77,11 +77,23 @@ const Bodysuits = () => {
                    
                                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                    
-                                 {loading ? <SkeletonGrid count={4} /> : lingeriesTopRated.map(renderProductCard)}
+                                 {/* {loading ? <SkeletonGrid count={4} /> : lingeriesTopRated.map(renderProductCard)} */}
                    
                                </div>
                    
                              </section>
+                       <section className="mb-10">
+                   
+                               <h2 className="text-2xl font-bold mb-4">Best sellers</h2>
+                   
+                               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                   
+                                 {/* {loading ? <SkeletonGrid count={4} /> : lingeriesTopRated.map(renderProductCard)} */}
+                   
+                               </div>
+                   
+                             </section>
+                       
         </div>
       </div>
     </div>

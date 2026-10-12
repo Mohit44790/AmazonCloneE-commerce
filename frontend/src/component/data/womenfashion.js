@@ -2663,15 +2663,15 @@ export const pantyhouseBestSellers = [
 export const bodySuitRecommended = [
     {
   "id": 114,
-  brand: "PLUMBURY",
-  name: "PLUMBURY Women's/Girls's High Waist Pantyhose Texture Stockings, Free Size, Black",
+  brand: "GirlFriend",
+  name: "GirlFriend Women One Piece Lingerie Deep V Lace Bodysuit Babydoll Teddy Underwear",
   rating: 3.4,
   ratingCount: 42,
   boughtInPastMonth: "100+",
   price: 436,
   discount: 43,
   mrp: 769,
-  image:["https://m.media-amazon.com/images/I/61HMxyj96jL._SY606_.jpg","https://m.media-amazon.com/images/I/71CbVKzxL5L._SY550_.jpg","https://m.media-amazon.com/images/I/71jsjcRLe2L._SY550_.jpg","https://m.media-amazon.com/images/I/51LFtkv+CoL._SY550_.jpg"],
+  image:["https://m.media-amazon.com/images/I/719OwapyuML._SY550_.jpg","https://m.media-amazon.com/images/I/81aiT6BhBIL._SY550_.jpg","https://m.media-amazon.com/images/I/81sZPGyYkEL._SY550_.jpg"],
   currency: "INR",
  tax: "Inclusive of all taxes",
   colors:["Maroon"],
@@ -2682,23 +2682,25 @@ export const bodySuitRecommended = [
   pattern:"Floral",
   highlights:[""],
   size:["36","38","40","28","30","32"],
-  fittype:"Regular"
+  fittype:"Regular",
+  length:"Mini",
+  sleevetype:"Sleeveless"
 
   },
      {
   "id": 115,
-  brand: "CareDone",
-  name: "CareDone Pantyhose Stockings For Women | Winter Wear Dual-Tone Fleece Thick Leggings For Women And Girls",
+  brand: "SSoShHub",
+  name: "SSoShHub Premium Front Knot Open Babydoll Lingerie Bikini Swimwear Mini Chemise Mesh Wedding Bikini Nightie with Panty Bridal Dress Honeymoon Valentine Halloween Nightdress",
   rating: 3.3,
   ratingCount: 192,
   boughtInPastMonth: "100+",
   price: 299,
   discount: 70,
   mrp: 999,
-  image:["https://m.media-amazon.com/images/I/41CP3Xk3UyL._SY606_.jpg","https://m.media-amazon.com/images/I/81EE4W1pfjL._SY550_.jpg","https://m.media-amazon.com/images/I/619qmyFrclL._SX425_.jpg","https://m.media-amazon.com/images/I/81XbDW1IEjL._SY550_.jpg"],
+  image:["https://m.media-amazon.com/images/I/716S2eGlpTL._SY550_.jpg","https://m.media-amazon.com/images/I/61Kxdy+LYnL._SY550_.jpg","https://m.media-amazon.com/images/I/71FsJdHC0HL._SY550_.jpg","https://m.media-amazon.com/images/I/71FsJdHC0HL._SY550_.jpg","https://m.media-amazon.com/images/I/71qwt2lwSRL._SY550_.jpg"],
   currency: "INR",
   tax: "Inclusive of all taxes",
-  colors:["Maroon"],
+  colors:["Dark Maroon"],
    materialComposition:"Nylon & Spandex",
     materialtype:"",
     careInstructions:"Hand Wash Only",
@@ -2706,22 +2708,24 @@ export const bodySuitRecommended = [
   pattern:"Floral",
   highlights:[""],
   size:["S","M","XS","L","3XL","3XXL"],
- fittype:"Slim"
+ fittype:"Slim",
+  length:"Knee Length",
+  sleevetype:"Sleeveless"
   },
       {
   "id": 116,
-  brand: "NEOBABY",
-  name: "NEOBABY Sparkling Rhinestone Party Pantyhose, Black",
+  brand: "Clovia",
+  name: "Clovia Women Shapewear– Tummy Tucker, High-Waist",
   rating: 3.7,
   ratingCount: 92,
   boughtInPastMonth: "10+",
   price: 217,
   discount: 78,
   mrp: 999,
-  image:["https://m.media-amazon.com/images/I/51i9CYjdCxL._SY500_.jpg","https://m.media-amazon.com/images/I/61QcS-JaeaL._SX522_.jpg","https://m.media-amazon.com/images/I/6197dHL+WbL._SX522_.jpg","https://m.media-amazon.com/images/I/61L7hVJcBZL._SX522_.jpg"],
+  image:["https://m.media-amazon.com/images/I/61eHmboaJeL._SY550_.jpg","https://m.media-amazon.com/images/I/61ZHS2LSSlL._SY550_.jpg","https://m.media-amazon.com/images/I/61yIHpPQtdL._SY550_.jpg","https://m.media-amazon.com/images/I/61sKLxZUtML._SY550_.jpg","https://m.media-amazon.com/images/I/61Abnr6ppqL._SY550_.jpg"],
   currency: "INR",
   tax: "Inclusive of all taxes",
-  colors:["Maroon"],
+  colors:["Beige"],
    materialComposition:"NYLON",
     materialtype:"",
     careInstructions:"Hand Wash Only",
@@ -2729,34 +2733,38 @@ export const bodySuitRecommended = [
   pattern:"Floral",
   highlights:[""],
   size:["36","38","40","28","30","32"],
-  fittype:"Slim"
+  fittype:"Slim",
+   length:"Mini",
+  sleevetype:"Sleeveless"
   
  
 
   },
       {
   "id": 117,
-  brand: "MAURNEE",
-  name: "Women's Polyimide and Elastane Full Body Stocking (MS_2025_Black_Free Size)",
+  brand: "Quidrezy",
+  name: "Bodysuit for Women, Tummy Control Bodysuit with Adjustable Straps, Seamless Snatched Body Shaper(ED019)",
   rating: 3.7,
   ratingCount: 192,
   boughtInPastMonth: "10+",
   price: 205,
   discount: 83,
   mrp: 1199,
-  image:["https://m.media-amazon.com/images/I/61IGsb0myPL._SY550_.jpg","https://m.media-amazon.com/images/I/813QNPz-iaL._SY550_.jpg","https://m.media-amazon.com/images/I/81HjVFHZgmL._SY550_.jpg","https://m.media-amazon.com/images/I/81hJJ3mV67L._SY550_.jpg"],
+  image:["https://m.media-amazon.com/images/I/61DZlaJ+MiL._SY550_.jpg","https://m.media-amazon.com/images/I/61BcpyQSF-L._SX522_.jpg","https://m.media-amazon.com/images/I/61CN8Mz-oRL._SX522_.jpg","https://m.media-amazon.com/images/I/61LiYx0h5FL._SX522_.jpg","https://m.media-amazon.com/images/I/61QjNNAYbXL._SX569_.jpg"],
   currency: "INR",
   tax: "Inclusive of all taxes",
   
-  colors:["Black"],
+  colors:["Beige"],
    materialComposition:"Polyester, Spandex, Mesh",
     materialtype:"",
     careInstructions:"Hand Wash Only",
   country :"India",
-  pattern:"Floral",
+  pattern:"Solid",
   highlights:[""],
   size:["L"],
-  fittype:"Slim"
+  fittype:"Slim",
+   length:"Mini",
+  sleevetype:"Sleeveless"
 
   },
 ]
@@ -2783,7 +2791,9 @@ export const  bodySuitToprated = [
   pattern:"Floral",
   highlights:[""],
   size:["36","38","40","28","30","32"],
-  fittype:"Regular"
+  fittype:"Regular",
+   length:"Mini",
+  sleevetype:"Sleeveless"
 
   },
      {
@@ -2807,7 +2817,9 @@ export const  bodySuitToprated = [
   pattern:"Floral",
   highlights:[""],
   size:["S","M","XS","L","3XL","3XXL"],
- fittype:"Slim"
+ fittype:"Slim",
+  length:"Mini",
+  sleevetype:"Sleeveless"
   },
       {
   "id": 120,
@@ -2830,7 +2842,9 @@ export const  bodySuitToprated = [
   pattern:"Floral",
   highlights:[""],
   size:["36","38","40","28","30","32"],
-  fittype:"Slim"
+  fittype:"Slim",
+   length:"Mini",
+  sleevetype:"Sleeveless"
   
  
 
@@ -2857,7 +2871,9 @@ export const  bodySuitToprated = [
   pattern:"Floral",
   highlights:[""],
   size:["L"],
-  fittype:"Slim"
+  fittype:"Slim",
+   length:"Mini",
+  sleevetype:"Sleeveless"
 
   },
 ]
@@ -2884,7 +2900,9 @@ export const  bodySuitBestSellers = [
   pattern:"Floral",
   highlights:[""],
   size:["36","38","40","28","30","32"],
-  fittype:"Regular"
+  fittype:"Regular",
+   length:"Mini",
+  sleevetype:"Sleeveless"
 
   },
      {
@@ -2908,7 +2926,9 @@ export const  bodySuitBestSellers = [
   pattern:"Floral",
   highlights:[""],
   size:["S","M","XS","L","3XL","3XXL"],
- fittype:"Slim"
+ fittype:"Slim",
+  length:"Mini",
+  sleevetype:"Sleeveless"
   },
       {
   "id": 124,
@@ -2931,7 +2951,9 @@ export const  bodySuitBestSellers = [
   pattern:"Floral",
   highlights:[""],
   size:["36","38","40","28","30","32"],
-  fittype:"Slim"
+  fittype:"Slim",
+   length:"Mini",
+  sleevetype:"Sleeveless"
   
  
 
@@ -2958,7 +2980,9 @@ export const  bodySuitBestSellers = [
   pattern:"Floral",
   highlights:[""],
   size:["L"],
-  fittype:"Slim"
+  fittype:"Slim",
+   length:"Mini",
+  sleevetype:"Sleeveless"
 
   },
 ]

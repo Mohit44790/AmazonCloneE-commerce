@@ -169,6 +169,26 @@ const renderProductCard = (item) =>(
                                </div>
                    
                              </section>
+
+                             <div className="py-2 px-4 border border-gray-300 mt-2 rounded-xl">
+
+            {/* <h1>1-{filteredProducts.length} of over {categoryProducts.length} results for Pantyhose & Stockings</h1> */}
+
+            {loading && <p>Loading products...</p>}
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 px-4 mt-4">
+
+              {/* {!loading && filteredProducts.map(renderProductCard)}
+
+              {!loading && filteredProducts.length === 0 && (
+
+                <p className="col-span-full text-sm text-gray-500">No products found for selected filters.</p>
+
+              )} */}
+
+            </div>
+
+          </div>
                        
         </div>
       </div>

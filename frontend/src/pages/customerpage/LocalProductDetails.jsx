@@ -14,7 +14,7 @@ import {
   MdStarBorder,
 } from "react-icons/md";
 
-import { lingerieCloths,bras,adhesiveBrasBestsellers,adhesiveBrasHotreleases,adhesiveBrasRecommended,adhesiveBrasToprated, lingeriesBestSellers, lingeriesHotNewReleases, lingeriesRecommended, lingeriesTopRated, lingeriesUnder300, pantyhouseBestSellers, pantyhouseHotNewReleases, pantyhouseRecomended, pantyhouseTopRated } from "../../component/data/womenfashion.js";
+import { lingerieCloths,bras,adhesiveBrasBestsellers,adhesiveBrasHotreleases,adhesiveBrasRecommended,adhesiveBrasToprated, lingeriesBestSellers, lingeriesHotNewReleases, lingeriesRecommended, lingeriesTopRated, lingeriesUnder300, pantyhouseBestSellers, pantyhouseHotNewReleases, pantyhouseRecomended, pantyhouseTopRated, bodySuitBestSellers, bodySuitRecommended, bodySuitToprated } from "../../component/data/womenfashion.js";
 
 
 
@@ -53,6 +53,9 @@ const LocalProductDetails = () => {
   ...pantyhouseHotNewReleases,
   ...pantyhouseRecomended,
   ...pantyhouseTopRated,
+  ...bodySuitBestSellers,
+  ...bodySuitRecommended,
+  ...bodySuitToprated
 ];
 
   useEffect(() => {

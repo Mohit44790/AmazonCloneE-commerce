@@ -53,7 +53,20 @@ const SkeletonText = ({ width = 'w-24', height = 'h-4', className = '' }) => (
 
 const Bodysuits = () => {
   const [loading , setLoading] = useState(true);
+const [selectedColors, setSelectedColors] = useState([]);
+  const [selectedSizes, setSelectedSizes] = useState([]);
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [selectedMaterials, setSelectedMaterials] = useState([]);
+  const [selectedOccasions, setSelectedOccasions] = useState([]);
+  const [selectedFitTypes, setSelectedFitTypes] = useState([]);
+  const [selectedPatterns, setSelectedPatterns] = useState([]);
+  const [selectedClosures, setSelectedClosures] = useState([]);
+  const [selectedStyles, setSelectedStyles] = useState([]);
+  const [selectedNecks, setSelectedNecks] = useState([]);
+  const [selectedLengths, setSelectedLengths] = useState([]);
+  const [selectedPriceRange, setSelectedPriceRange] = useState('');
 
+  
      useEffect(() => {
       const timer = setTimeout(() => {
         setLoading(false);

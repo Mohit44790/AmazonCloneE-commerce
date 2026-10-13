@@ -10,6 +10,47 @@ const bodysuitWomen = [
   {name:"Lingerie",image:"https://m.media-amazon.com/images/I/31jTmtNtHhL._AC._SR240,240.jpg",path:""},
   {name:"Bodysuites",image:"https://m.media-amazon.com/images/I/31B-86xksBL._AC._SR240,240.jpg",path:""},
 ]
+
+const SkeletonCard = () => (
+
+  <div className="rounded shadow-sm bg-white p-2 animate-pulse">
+
+    <div className="bg-gray-200 w-full h-72 rounded" />
+
+    <div className="h-4 bg-gray-200 rounded w-1/3 mt-3" />
+
+    <div className="h-3 bg-gray-200 rounded w-full mt-2" />
+
+    <div className="h-3 bg-gray-200 rounded w-4/5 mt-2" />
+
+    <div className="h-4 bg-gray-200 rounded w-1/2 mt-3" />
+
+  </div>
+
+);
+
+
+
+const SkeletonGrid = ({ count = 4 }) => (
+
+  <>
+
+    {Array.from({ length: count }).map((_, index) => (
+
+      <SkeletonCard key={index} />
+
+    ))}
+
+  </>
+
+);
+
+
+
+const SkeletonText = ({ width = 'w-24', height = 'h-4', className = '' }) => (
+  <span aria-hidden="true" className={`inline-block animate-pulse rounded bg-gray-200 ${width} ${height} ${className}`} />
+);
+
 const Bodysuits = () => {
   const [loading , setLoading] = useState(true);
 
@@ -21,23 +62,6 @@ const Bodysuits = () => {
     }, []);
 
 
-     const SkeletonCard = () => (
-    <div className="rounded shadow-sm bg-white p-2 animate-pulse">
-      <div className="bg-gray-200 w-full h-72 rounded" />
-      <div className="h-4 bg-gray-200 rounded w-1/3 mt-3" />
-      <div className="h-3 bg-gray-200 rounded w-full mt-2" />
-      <div className="h-3 bg-gray-200 rounded w-4/5 mt-2" />
-      <div className="h-4 bg-gray-200 rounded w-1/2 mt-3" />
-    </div>
-  );
-
-  const SkeletonGrid = ({ count = 4 }) => (
-    <>
-      {Array.from({ length: count }).map((_, index) => (
-        <SkeletonCard key={index} />
-      ))}
-    </>
-  );
     
 const renderProductCard = (item) =>(
  <div key={item.id} className="rounded shadow-sm group relative bg-white">

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { IoIosArrowBack } from 'react-icons/io'
 import { Link } from 'react-router-dom'
 import { bodySuitBestSellers, bodySuitRecommended, bodySuitToprated } from '../../../../../component/data/womenfashion'
@@ -93,6 +93,16 @@ const [selectedColors, setSelectedColors] = useState([]);
   const formattedTomorrow = tomorrow.toLocaleDateString('en-US', {
     weekday: 'short', month: 'short', day: 'numeric',  });  
     
+
+     const categoryProducts = useMemo(() => [
+    ...bodySuitBestSellers,
+    ...bodySuitRecommended,
+    ...bodySuitToprated
+       
+    
+      ], []);
+
+      
 const renderProductCard = (item) =>(
  <div key={item.id} className="rounded shadow-sm group relative bg-white">
  <Link to={`/product/${item.id}`}>

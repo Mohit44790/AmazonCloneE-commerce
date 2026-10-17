@@ -128,6 +128,10 @@ const [selectedColors, setSelectedColors] = useState([]);
   const allFitTypes = [...new Set(categoryProducts.map((item) => item.fitType || item.fittype).filter(Boolean))];
 
   const allPatterns = [...new Set(categoryProducts.map((item) => item.pattern).filter(Boolean))]; 
+
+  const filteredProducts = categoryProducts.filter((product) =>{
+    
+  })
 const renderProductCard = (item) =>(
  <div key={item.id} className="rounded shadow-sm group relative bg-white">
  <Link to={`/product/${item.id}`}>

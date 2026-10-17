@@ -102,6 +102,7 @@ const [selectedColors, setSelectedColors] = useState([]);
     
       ], []);
 
+   const allColors = [...new Set(categoryProducts.flatMap((item) => item.colors || []))];
       
 const renderProductCard = (item) =>(
  <div key={item.id} className="rounded shadow-sm group relative bg-white">

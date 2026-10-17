@@ -130,7 +130,9 @@ const [selectedColors, setSelectedColors] = useState([]);
   const allPatterns = [...new Set(categoryProducts.map((item) => item.pattern).filter(Boolean))]; 
 
   const filteredProducts = categoryProducts.filter((product) =>{
-    
+    const brandName = typeof product.brand === 'string' ? product.brand : product.brand?.name;
+     if (selectedBrands.length && !selectedBrands.includes(brandName)) return false;
+     
   })
 const renderProductCard = (item) =>(
  <div key={item.id} className="rounded shadow-sm group relative bg-white">

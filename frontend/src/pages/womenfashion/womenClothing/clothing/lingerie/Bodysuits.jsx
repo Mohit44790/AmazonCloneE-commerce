@@ -103,7 +103,31 @@ const [selectedColors, setSelectedColors] = useState([]);
       ], []);
 
    const allColors = [...new Set(categoryProducts.flatMap((item) => item.colors || []))];
-      
+       const allSizes = [...new Set(categoryProducts.flatMap((item) => {
+
+    const sizes = item.sizes ?? item.size ?? [];
+
+    return Array.isArray(sizes) ? sizes : [sizes];
+
+  }))];
+
+  const allBrands = [...new Set(categoryProducts.map((item) => typeof item.brand === 'string' ? item.brand : item.brand?.name).filter(Boolean))];
+
+  const allMaterials = [...new Set(categoryProducts.map((item) => item.materialComposition).filter(Boolean))];
+
+  const allLengths = [...new Set(categoryProducts.map((item) => item.length).filter(Boolean))];
+
+  const allOccasions = [...new Set(categoryProducts.map((item) => item.occasionType).filter(Boolean))];
+
+  const allClosures = [...new Set(categoryProducts.map((item) => item.closureType).filter(Boolean))];
+
+  const allStyles = [...new Set(categoryProducts.map((item) => item.style).filter(Boolean))];
+
+  const allNeckStyles = [...new Set(categoryProducts.map((item) => item.neckStyle).filter(Boolean))];
+
+  const allFitTypes = [...new Set(categoryProducts.map((item) => item.fitType || item.fittype).filter(Boolean))];
+
+  const allPatterns = [...new Set(categoryProducts.map((item) => item.pattern).filter(Boolean))]; 
 const renderProductCard = (item) =>(
  <div key={item.id} className="rounded shadow-sm group relative bg-white">
  <Link to={`/product/${item.id}`}>

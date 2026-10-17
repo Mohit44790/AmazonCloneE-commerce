@@ -132,7 +132,16 @@ const [selectedColors, setSelectedColors] = useState([]);
   const filteredProducts = categoryProducts.filter((product) =>{
     const brandName = typeof product.brand === 'string' ? product.brand : product.brand?.name;
      if (selectedBrands.length && !selectedBrands.includes(brandName)) return false;
-     
+
+     if (selectedPriceRange) {
+
+      const range = priceRanges.find((item) => item.label === selectedPriceRange);
+
+      const price = Number(product.price ?? 0);
+
+      if (range && !(price >= range.min && (range.max === Infinity ? true : price < range.max))) return false;
+
+    }
   })
 const renderProductCard = (item) =>(
  <div key={item.id} className="rounded shadow-sm group relative bg-white">

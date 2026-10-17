@@ -142,6 +142,10 @@ const [selectedColors, setSelectedColors] = useState([]);
       if (range && !(price >= range.min && (range.max === Infinity ? true : price < range.max))) return false;
 
     }
+
+      if (selectedColors.length && !selectedColors.some((color) => product.colors?.includes(color))) return false;
+
+    const productSizes = product.sizes ?? product.size ?? [];
   })
 const renderProductCard = (item) =>(
  <div key={item.id} className="rounded shadow-sm group relative bg-white">

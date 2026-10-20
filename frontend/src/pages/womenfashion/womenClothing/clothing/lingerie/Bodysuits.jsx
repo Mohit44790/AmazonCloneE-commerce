@@ -129,11 +129,13 @@ const [selectedColors, setSelectedColors] = useState([]);
 
   const allPatterns = [...new Set(categoryProducts.map((item) => item.pattern).filter(Boolean))]; 
 
-  const filteredProducts = categoryProducts.filter((product) =>{
-    const brandName = typeof product.brand === 'string' ? product.brand : product.brand?.name;
-     if (selectedBrands.length && !selectedBrands.includes(brandName)) return false;
+  const filteredProducts = categoryProducts.filter((product) => {
 
-     if (selectedPriceRange) {
+    const brandName = typeof product.brand === 'string' ? product.brand : product.brand?.name;
+
+    if (selectedBrands.length && !selectedBrands.includes(brandName)) return false;
+
+    if (selectedPriceRange) {
 
       const range = priceRanges.find((item) => item.label === selectedPriceRange);
 
@@ -143,10 +145,34 @@ const [selectedColors, setSelectedColors] = useState([]);
 
     }
 
-      if (selectedColors.length && !selectedColors.some((color) => product.colors?.includes(color))) return false;
+    if (selectedColors.length && !selectedColors.some((color) => product.colors?.includes(color))) return false;
 
     const productSizes = product.sizes ?? product.size ?? [];
-  })
+
+    const normalizedSizes = Array.isArray(productSizes) ? productSizes : [productSizes];
+
+    if (selectedSizes.length && !selectedSizes.some((size) => normalizedSizes.includes(size))) return false;
+
+    if (selectedMaterials.length && !selectedMaterials.includes(product.materialComposition)) return false;
+
+    if (selectedLengths.length && !selectedLengths.includes(product.length)) return false;
+
+    if (selectedOccasions.length && !selectedOccasions.includes(product.occasionType)) return false;
+
+    if (selectedClosures.length && !selectedClosures.includes(product.closureType)) return false;
+
+    if (selectedStyles.length && !selectedStyles.includes(product.style)) return false;
+
+    if (selectedNecks.length && !selectedNecks.includes(product.neckStyle)) return false;
+
+    if (selectedFitTypes.length && !selectedFitTypes.includes(product.fitType || product.fittype)) return false;
+
+    if (selectedPatterns.length && !selectedPatterns.includes(product.pattern)) return false;
+
+    return true;
+
+  });
+  
 const renderProductCard = (item) =>(
  <div key={item.id} className="rounded shadow-sm group relative bg-white">
  <Link to={`/product/${item.id}`}>

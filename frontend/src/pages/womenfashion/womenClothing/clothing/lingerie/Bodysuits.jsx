@@ -313,8 +313,43 @@ const [selectedColors, setSelectedColors] = useState([]);
           )}
 
           {renderCheckboxFilter('Brands', allBrands, selectedBrands, setSelectedBrands)}
+           
+           <div className='mt-4'>
+            {loading ? <SkeletonText width='w-16'/> : <h2 className="font-semibold text-sm">Price</h2>}
 
-          
+            <div className='flex flex-col gap-1 mt-1'>
+              {loading ? Array.from({length:5}).map((_,index ) => <SkeletonText key={index} width={['w-24', 'w-28', 'w-32', 'w-32', 'w-24'][index]} height='h-4'/>) : priceRanges.map((range) =>(
+                <button  key={range.label}
+
+                  type="button"
+
+                  onClick={() => setSelectedPriceRange((current) => current === range.label ? '' : range.label)}
+
+                  aria-pressed={selectedPriceRange === range.label}
+
+                  className={`text-left text-sm py-0.5 hover:text-orange-600 ${
+
+                    selectedPriceRange === range.label ? 'font-semibold text-orange-600' : 'text-gray-900'
+
+                  }`}>
+                   {range.label}
+
+                  {selectedPriceRange === range.label && <span className="ml-2">✓</span>}
+                </button>
+              ))}
+
+            </div>
+
+           </div>
+
+          <div className="mt-1">
+
+            {loading ? <SkeletonText width="w-16" /> : <h2 className="font-semibold text-sm">Colour</h2>}
+             <div className='flex flex-wrap gap-1 mt-2'>
+
+             </div>
+           </div>
+
           </div>
 
          <div className='flex-1 min-w-0 w-full'>

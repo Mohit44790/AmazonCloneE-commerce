@@ -286,7 +286,7 @@ const [selectedColors, setSelectedColors] = useState([]);
       </div>
     </div>
   );
-  
+
   return (
      <div>
 
@@ -305,7 +305,18 @@ const [selectedColors, setSelectedColors] = useState([]);
                      </Link>
                     
            <h1 className="font-semibold text-sm px-4">Bodysuits</h1>
-        </div>
+
+          {loading ? <SkeletonText width="w-28" height="h-8" className="mt-4" /> : (
+            <button onClick={clearAllFilters} className="mt-4 px-4 py-1 text-sm text-orange-600 border border-orange-400 rounded hover:bg-orange-50">
+              Clear All Filters
+            </button>
+          )}
+
+          {renderCheckboxFilter('Brands', allBrands, selectedBrands, setSelectedBrands)}
+
+          
+          </div>
+
          <div className='flex-1 min-w-0 w-full'>
           <h1 className="font-semibold text-4xl px-4">Women's Bodysuits</h1>
           <h1 className="font-semibold text-4xl mt-6 px-4">Featured categories</h1>

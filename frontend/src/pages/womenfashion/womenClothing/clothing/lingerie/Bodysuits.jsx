@@ -392,12 +392,33 @@ const [selectedColors, setSelectedColors] = useState([]);
 
            </div>
 
-            <div className="mt-4">
+            <div className="mt-1">
 
             {loading ? <SkeletonText width="w-36" /> : <h2 className="font-semibold text-sm">Women's Clothing Size</h2>}
 
 <div className="grid grid-cols-4 gap-1 mt-2">
-  
+{loading ? Array.from({length:12}).map((_,index) => <SkeletonText key={index} width="w-full" height="h-7" className="rounded-lg" />): allSizes.map((size)=>
+(
+  <button
+  key={size}
+  type='button' 
+  onClick={() => toggleValue(setSelectedSizes,size)}
+  aria-pressed={selectedSizes.includes(size)}
+   className={`min-h-7 px-2 py-1 text-xs rounded-lg border ${
+
+                    selectedSizes.includes(size)
+
+                      ? 'border-orange-500 bg-orange-50 text-orange-700'
+
+                      : 'border-gray-400 bg-white text-gray-800 hover:border-gray-800'
+
+                  }`}
+  >
+    
+
+    {size}
+  </button>
+))}
 </div>
            </div>
 

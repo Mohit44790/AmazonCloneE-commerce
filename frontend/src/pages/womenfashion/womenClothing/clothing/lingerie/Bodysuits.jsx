@@ -183,6 +183,18 @@ const [selectedColors, setSelectedColors] = useState([]);
 
   const clearAllFilters =() => {
     setSelectedBrands([]);
+    setSelectedColors([]);
+    setSelectedSizes([]);
+    setSelectedMaterials([]);
+    setSelectedOccasions([]);
+    setSelectedFitTypes([]);
+    setSelectedPatterns([]);
+    setSelectedClosures([]);
+    setSelectedStyles([]);
+    setSelectedNecks([]);
+    setSelectedLengths([]);
+    setSelectedPriceRange('');
+
   }
 const renderProductCard = (item) =>(
  <div key={item.id} className="rounded shadow-sm group relative bg-white">

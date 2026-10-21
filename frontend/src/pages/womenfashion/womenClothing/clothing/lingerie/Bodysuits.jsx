@@ -422,6 +422,21 @@ const [selectedColors, setSelectedColors] = useState([]);
 </div>
            </div>
 
+           
+          {renderCheckboxFilter('Material', allMaterials, selectedMaterials, setSelectedMaterials)}
+{renderCheckboxFilter('Length', allLengths, selectedLengths, setSelectedLengths)}
+
+          {renderCheckboxFilter('Occasion Type', allOccasions, selectedOccasions, setSelectedOccasions)}
+
+          {renderCheckboxFilter('Closure Type', allClosures, selectedClosures, setSelectedClosures)}
+
+          {renderCheckboxFilter('Style', allStyles, selectedStyles, setSelectedStyles)}
+
+          {renderCheckboxFilter('Neck Style', allNeckStyles, selectedNecks, setSelectedNecks)}
+
+          {renderCheckboxFilter('Fit Type', allFitTypes, selectedFitTypes, setSelectedFitTypes)}
+
+          {renderCheckboxFilter('Pattern', allPatterns, selectedPatterns, setSelectedPatterns)}
           </div>
 
          <div className='flex-1 min-w-0 w-full'>

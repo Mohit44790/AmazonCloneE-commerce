@@ -173,6 +173,17 @@ const [selectedColors, setSelectedColors] = useState([]);
 
   });
   
+
+  const toggleValue =(setter,value) => {
+    setter((previous) => previous.includes(value)
+     ? previous.filter((item) => item !== value)
+     : [...previous,value]
+  );
+  };
+
+  const clearAllFilters =() => {
+    setSelectedBrands([]);
+  }
 const renderProductCard = (item) =>(
  <div key={item.id} className="rounded shadow-sm group relative bg-white">
  <Link to={`/product/${item.id}`}>

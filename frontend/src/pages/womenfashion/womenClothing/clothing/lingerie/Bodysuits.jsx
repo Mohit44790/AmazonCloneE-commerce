@@ -291,7 +291,7 @@ const [selectedColors, setSelectedColors] = useState([]);
      <div>
 
      <div className='flex flex-col bg-white md:flex-row gap-2 p-2'>
-        <div className="w-64 flex flex-col gap-2">
+        <aside className="w-64 flex flex-col gap-2">
            <h1 className="font-semibold text-sm">Category</h1>
             <h1 className="font-semibold text-sm">Category</h1>
                      <Link to="/women/clothing" className="flex items-center  text-sm">
@@ -437,9 +437,9 @@ const [selectedColors, setSelectedColors] = useState([]);
           {renderCheckboxFilter('Fit Type', allFitTypes, selectedFitTypes, setSelectedFitTypes)}
 
           {renderCheckboxFilter('Pattern', allPatterns, selectedPatterns, setSelectedPatterns)}
-          </div>
+          </aside>
 
-         <div className='flex-1 min-w-0 w-full'>
+         <main className='flex-1 min-w-0 w-full'>
           <h1 className="font-semibold text-4xl px-4">Women's Bodysuits</h1>
           <h1 className="font-semibold text-4xl mt-6 px-4">Featured categories</h1>
 
@@ -497,25 +497,25 @@ const [selectedColors, setSelectedColors] = useState([]);
 
                              <div className="py-2 px-4 border border-gray-300 mt-2 rounded-xl">
 
-            {/* <h1>1-{filteredProducts.length} of over {categoryProducts.length} results for Pantyhose & Stockings</h1> */}
+            <h1>1-{filteredProducts.length} of over {categoryProducts.length} results for Pantyhose & Stockings</h1>
 
             {loading && <p>Loading products...</p>}
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 px-4 mt-4">
 
-              {/* {!loading && filteredProducts.map(renderProductCard)}
+              {!loading && filteredProducts.map(renderProductCard)}
 
               {!loading && filteredProducts.length === 0 && (
 
                 <p className="col-span-full text-sm text-gray-500">No products found for selected filters.</p>
 
-              )} */}
+              )}
 
             </div>
 
           </div>
                        
-        </div>
+        </main>
       </div>
     </div>
   )

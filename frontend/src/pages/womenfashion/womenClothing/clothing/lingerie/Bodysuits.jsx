@@ -380,6 +380,25 @@ const [selectedColors, setSelectedColors] = useState([]);
               })}
 
              </div>
+ {!loading && selectedColors.length > 0 && (
+
+              <p className="text-xs text-gray-600 mt-2">
+
+                Selected: {selectedColors.join(', ')}
+
+              </p>
+
+            )}
+
+           </div>
+
+            <div className="mt-4">
+
+            {loading ? <SkeletonText width="w-36" /> : <h2 className="font-semibold text-sm">Women's Clothing Size</h2>}
+
+<div className="grid grid-cols-4 gap-1 mt-2">
+  
+</div>
            </div>
 
           </div>

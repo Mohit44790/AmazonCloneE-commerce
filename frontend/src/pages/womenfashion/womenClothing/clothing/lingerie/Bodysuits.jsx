@@ -196,62 +196,77 @@ const [selectedColors, setSelectedColors] = useState([]);
     setSelectedPriceRange('');
 
   }
-const renderProductCard = (item) =>(
- <div key={item.id} className="rounded shadow-sm group relative bg-white">
- <Link to={`/product/${item.id}`}>
- 
- <div className="bg-gray-100 relative ">
- 
-   <img src={item.image?.[0]} alt={item.brand} className="w-full h-72 cursor-pointer object-contain rounded mix-blend-darken"/>
- 
-   <button className="absolute inset-0 top-60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
- 
-      <span className="px-16 py-2 border bg-white text-black rounded-full text-sm">
- 
-             Quick Look
- 
-           </span>
- 
-   </button>
- 
- </div>
- </Link>
- <div className="px-2 py-2">
- 
-         <h2 className="text-base font-semibold">{item.brand}</h2>
- 
-         <p className="text-xs font-normal line-clamp-2">{item.name}</p>
- 
- 
- 
-         <div className="flex items-center gap-1 mt-1">
- 
-           <StarRating rating={item.rating || 0} />
- 
-           <span className="text-xs text-gray-600">({item.ratingCount || 0})</span>
- 
-         </div>
- 
- 
- 
-         <p className="font-semibold text-base mt-1">
- 
-           ₹{(item.price * (1 - item.discount / 100)).toFixed(0)}
- 
-           <span className="text-gray-500 ml-1 line-through text-sm font-mono">
- 
-             M.R.P ₹{item.price}
- 
-           </span>
- 
-           <span className='ml-1 text-xs'>({item.discount}% off)</span>
- 
-         </p>
- 
-       </div>
- 
-     </div>
-)
+ const renderProductCard = (item) => {
+
+    const brandName = typeof item.brand === 'string' ? item.brand : item.brand?.name;
+
+    const imageList = item.image || item.images || [];
+
+    const sellingPrice = item.price ?? 0;
+
+    const mrp = item.mrp ?? (item.discount ? Math.round(sellingPrice / (1 - item.discount / 100)) : sellingPrice);
+
+
+
+    return (
+
+      <div key={item.id} className="rounded shadow-sm group relative bg-white">
+
+        <Link to={`/product/${item.id}`}>
+
+          <div className="bg-gradient-to-tl from-gray-200 via-white to-gray-300 relative">
+
+            <img
+
+              src={imageList[0] || 'https://via.placeholder.com/300x400?text=No+Image'}
+
+              alt={item.name || brandName || 'Product'}
+
+              className="w-full h-72 cursor-pointer object-contain rounded mix-blend-darken"
+
+              loading="lazy"
+
+            />
+
+            <button type="button" className="absolute inset-0 top-60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+
+              <span className="px-16 py-2 border bg-white text-black rounded-full text-sm">Quick Look</span>
+
+            </button>
+
+          </div>
+
+        </Link>
+
+        <div className="px-2 py-2">
+          {loading ? <SkeletonText width="w-2/5" height="h-5" /> : <h1 className="text-base font-semibold">{brandName}</h1>}
+          {loading ? (
+            <div className="mt-2 space-y-2">
+              <SkeletonText width="w-full" height="h-3" />
+              <SkeletonText width="w-4/5" height="h-3" />
+            </div>
+          ) : <p className="text-xs font-normal line-clamp-2">{item.name || item.description || ''}</p>}
+          <div className="flex items-center gap-1 mt-1">
+            {loading ? <SkeletonText width="w-20" height="h-3" /> : <><StarRating rating={item.rating ?? item.ratingsAverage ?? 0} /><span className="text-xs text-gray-600">{item.ratingCount || 0}</span></>}
+          </div>
+          {loading ? <SkeletonText width="w-1/2" height="h-5" className="mt-2" /> : (
+            <p className="font-semibold text-base mt-1">
+              ₹{sellingPrice}
+              {mrp > sellingPrice && (
+                <>
+                  <span className="text-gray-500 ml-1 line-through text-sm font-mono">M.R.P ₹{mrp}</span>
+                  <span className="ml-1 text-xs">({item.discount ?? Math.round(((mrp - sellingPrice) / mrp) * 100)}% off)</span>
+                </>
+              )}
+            </p>
+          )}
+        </div>
+
+      </div>
+
+    );
+
+  };
   return (
      <div>
 

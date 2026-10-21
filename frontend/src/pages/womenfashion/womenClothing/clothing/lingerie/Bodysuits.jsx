@@ -347,6 +347,38 @@ const [selectedColors, setSelectedColors] = useState([]);
             {loading ? <SkeletonText width="w-16" /> : <h2 className="font-semibold text-sm">Colour</h2>}
              <div className='flex flex-wrap gap-1 mt-2'>
 
+              {loading ? Array.from({length:12}).map((_,index)=> <SkeletonText key={index} width='w-6' height='h-6'/>): allColors.map((color)=>{
+                const colorMap ={
+                   black: '#171717', white: '#ffffff', grey: '#888888',
+
+                  gray: '#888888', red: '#c90000', maroon: '#800000',
+
+                  blue: '#1755a5', navy: '#142b50', green: '#65b719',
+
+                  yellow: '#ffe52b', pink: '#ffc6cc', purple: '#8a20e8',
+
+                  orange: '#ff9b36', brown: '#754019', beige: '#d6c99b',
+
+                  cream: '#fffde7', gold: '#d6b64f', silver: '#c9c9c9',
+
+                  teal: '#25b2ad'
+                };
+                const swatch = colorMap[color.toLowerCase()] || color;
+  const isSelected = selectedColors.includes(color);
+                return (
+                  <button key={color} type='button' title={color}   aria-label={`Filter by ${color}`}
+
+                      aria-pressed={isSelected} 
+                    onClick={() =>toggleValue(setSelectedColors,color)}
+                      className={`h-6 w-6 border ${isSelected ? 'ring-2 ring-orange-500 ring-offset-1 border-gray-900' : 'border-gray-300'}`}
+
+                    style={{ backgroundColor: swatch }}
+                    />
+
+                 
+                )
+              })}
+
              </div>
            </div>
 

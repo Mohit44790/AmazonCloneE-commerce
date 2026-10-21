@@ -267,6 +267,26 @@ const [selectedColors, setSelectedColors] = useState([]);
     );
 
   };
+
+
+  const renderCheckboxFilter = (title, values, selected, setter) => (
+    <div className="mt-4">
+      {loading ? <SkeletonText width="w-20" /> : <h2 className="font-semibold text-sm">{title}</h2>}
+      <div className="flex flex-col gap-2 mt-2">
+        {loading
+          ? Array.from({ length: 4 }).map((_, index) => (
+              <SkeletonText key={index} width={index % 2 ? 'w-3/5' : 'w-4/5'} height="h-3" />
+            ))
+          : values.map((value) => (
+              <label key={value} className="text-xs flex items-center gap-2">
+                <input type="checkbox" checked={selected.includes(value)} onChange={() => toggleValue(setter, value)} className="accent-orange-500" />
+                {value}
+              </label>
+            ))}
+      </div>
+    </div>
+  );
+  
   return (
      <div>
 

@@ -16,7 +16,16 @@ const BustiersCorsets = () => {
   const [selectedNecks, setSelectedNecks] = useState([]);
   const [selectedLenghts,setSelectedLenghts] = useState([]);
   const [selectedPriceRange,setSelectedPriceRange] = useState('');
-  
+
+ const priceRanges = [
+    { label: 'Under ₹300', min: 0, max: 300 },
+    { label: '₹300 - ₹500', min: 300, max: 500 },
+    { label: '₹500 - ₹1,000', min: 500, max: 1000 },
+    { label: '₹1,000 - ₹1,500', min: 1000, max: 1500 },
+    { label: 'Over ₹1,500', min: 1500, max: Infinity },
+
+  ];
+
   return (
       <div>
 

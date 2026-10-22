@@ -38,6 +38,19 @@ const BustiersCorsets = () => {
   const nextFriday = new Date(today);
   const daysUntilFriday = (5 - today.getDay() + 7) % 7 || 7;
   nextFriday.setDate(today.getDate() + daysUntilFriday);
+
+  const formattedFriday = nextFriday.toLocaleDateString('en-US', {
+
+    weekday: 'short', month: 'short', day: 'numeric',
+
+  });
+
+   const formattedTomorrow = tomorrow.toLocaleDateString('en-US', {
+
+    weekday: 'short', month: 'short', day: 'numeric',
+
+  });
+
   return (
       <div>
 

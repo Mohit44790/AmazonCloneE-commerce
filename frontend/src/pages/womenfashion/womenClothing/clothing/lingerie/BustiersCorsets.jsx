@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoIosArrowBack } from 'react-icons/io'
 import { Link } from 'react-router-dom'
 
@@ -26,6 +26,11 @@ const BustiersCorsets = () => {
 
   ];
 
+  useEffect(() => {
+    const timer = setTimeout(() =>setLoading(false),800);
+    return () => clearTimeout(timer);
+  },[]);
+  
   return (
       <div>
 

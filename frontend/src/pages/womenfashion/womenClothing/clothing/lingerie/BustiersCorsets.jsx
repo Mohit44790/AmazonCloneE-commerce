@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { IoIosArrowBack } from 'react-icons/io'
 import { Link } from 'react-router-dom'
 
 const BustiersCorsets = () => {
+  const [loading,setLoading] = useState(true);
+  const [selectedColors,setSelectedColors] = useState([]);
+  const [selectedSizes,setSelectedSizes] = useState([]);
+  const [selectedBrands,setSelectedBrands] = useState([]);
   return (
       <div>
 

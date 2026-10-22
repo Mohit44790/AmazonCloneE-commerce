@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { IoIosArrowBack } from 'react-icons/io'
 import { Link } from 'react-router-dom'
 
@@ -51,6 +51,10 @@ const BustiersCorsets = () => {
 
   });
 
+   const categoryProducts = useMemo(() => [
+  
+  
+    ], []);
   return (
       <div>
 

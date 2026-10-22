@@ -30,7 +30,10 @@ const BustiersCorsets = () => {
     const timer = setTimeout(() =>setLoading(false),800);
     return () => clearTimeout(timer);
   },[]);
-  
+
+  const today = new Date();
+
+  const tomorrow = new Date(today);
   return (
       <div>
 

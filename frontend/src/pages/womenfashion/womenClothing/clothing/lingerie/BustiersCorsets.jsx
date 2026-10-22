@@ -34,6 +34,10 @@ const BustiersCorsets = () => {
   const today = new Date();
 
   const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+  const nextFriday = new Date(today);
+  const daysUntilFriday = (5 - today.getDay() + 7) % 7 || 7;
+  nextFriday.setDate(today.getDate() + daysUntilFriday);
   return (
       <div>
 

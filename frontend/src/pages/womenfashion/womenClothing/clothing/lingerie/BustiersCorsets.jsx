@@ -55,6 +55,8 @@ const BustiersCorsets = () => {
   
   
     ], []);
+
+    const allColors = [...new Set(categoryProducts.flatMap((item) => item.colors || []))];
   return (
       <div>
 

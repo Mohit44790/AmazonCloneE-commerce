@@ -64,6 +64,9 @@ const BustiersCorsets = () => {
         return Array.isArray(sizes) ? sizes : [sizes];
     
       }))];
+
+      const allBrands = [...new Set(categoryProducts.map((item) => typeof item.brand === 'string' ? item.brand : item.brand?.name).filter(Boolean))];
+
   return (
       <div>
 

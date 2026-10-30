@@ -66,6 +66,9 @@ const BustiersCorsets = () => {
       }))];
 
       const allBrands = [...new Set(categoryProducts.map((item) => typeof item.brand === 'string' ? item.brand : item.brand?.name).filter(Boolean))];
+ const allLengths = [...new Set(categoryProducts.map((item) => item.length).filter(Boolean))];
+
+  const allOccasions = [...new Set(categoryProducts.map((item) => item.occasionType).filter(Boolean))];
 
   return (
       <div>

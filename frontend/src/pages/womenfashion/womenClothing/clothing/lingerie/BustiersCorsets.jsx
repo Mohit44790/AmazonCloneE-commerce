@@ -69,6 +69,9 @@ const BustiersCorsets = () => {
  const allLengths = [...new Set(categoryProducts.map((item) => item.length).filter(Boolean))];
 
   const allOccasions = [...new Set(categoryProducts.map((item) => item.occasionType).filter(Boolean))];
+const allClosures = [...new Set(categoryProducts.map((item) => item.closureType).filter(Boolean))];
+
+  const allStyles = [...new Set(categoryProducts.map((item) => item.style).filter(Boolean))];
 
   return (
       <div>

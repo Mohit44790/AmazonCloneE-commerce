@@ -73,6 +73,9 @@ const allClosures = [...new Set(categoryProducts.map((item) => item.closureType)
 
   const allStyles = [...new Set(categoryProducts.map((item) => item.style).filter(Boolean))];
  const allNeckStyles = [...new Set(categoryProducts.map((item) => item.neckStyle).filter(Boolean))];
+const allFitTypes = [...new Set(categoryProducts.map((item) => item.fitType || item.fittype).filter(Boolean))];
+
+  const allPatterns = [...new Set(categoryProducts.map((item) => item.pattern).filter(Boolean))];
 
   return (
       <div>

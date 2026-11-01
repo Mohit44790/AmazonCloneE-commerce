@@ -77,7 +77,9 @@ const allFitTypes = [...new Set(categoryProducts.map((item) => item.fitType || i
 
   const allPatterns = [...new Set(categoryProducts.map((item) => item.pattern).filter(Boolean))];
 const filteredProducts = categoryProducts.filter((product) => {
-  
+      const brandName = typeof product.brand === 'string' ? product.brand : product.brand?.name;
+
+    if (selectedBrands.length && !selectedBrands.includes(brandName)) return false;
 })
 
   return (

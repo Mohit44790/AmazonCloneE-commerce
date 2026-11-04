@@ -76,10 +76,21 @@ const allClosures = [...new Set(categoryProducts.map((item) => item.closureType)
 const allFitTypes = [...new Set(categoryProducts.map((item) => item.fitType || item.fittype).filter(Boolean))];
 
   const allPatterns = [...new Set(categoryProducts.map((item) => item.pattern).filter(Boolean))];
-const filteredProducts = categoryProducts.filter((product) => {
+
+
+  const filteredProducts = categoryProducts.filter((product) => {
       const brandName = typeof product.brand === 'string' ? product.brand : product.brand?.name;
 
     if (selectedBrands.length && !selectedBrands.includes(brandName)) return false;
+     if (selectedPriceRange) {
+
+      const range = priceRanges.find((item) => item.label === selectedPriceRange);
+
+      const price = Number(product.price ?? 0);
+
+      if (range && !(price >= range.min && (range.max === Infinity ? true : price < range.max))) return false;
+
+    }
 })
 
   return (

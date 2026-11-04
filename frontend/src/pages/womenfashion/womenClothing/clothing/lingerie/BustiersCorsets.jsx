@@ -91,6 +91,7 @@ const allFitTypes = [...new Set(categoryProducts.map((item) => item.fitType || i
       if (range && !(price >= range.min && (range.max === Infinity ? true : price < range.max))) return false;
 
     }
+    if (selectedColors.length && !selectedColors.some((color) => product.colors?.includes(color))) return false;
 })
 
   return (

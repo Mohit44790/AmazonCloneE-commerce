@@ -93,6 +93,9 @@ const allFitTypes = [...new Set(categoryProducts.map((item) => item.fitType || i
     }
     if (selectedColors.length && !selectedColors.some((color) => product.colors?.includes(color))) return false;
     const productSizes = product.sizes ?? product.size ?? [];
+    const normalizedSizes = Array.isArray(productSizes) ? productSizes : [productSizes];
+
+    if (selectedSizes.length && !selectedSizes.some((size) => normalizedSizes.includes(size))) return false;
 })
 
   return (

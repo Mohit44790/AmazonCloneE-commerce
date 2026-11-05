@@ -99,6 +99,9 @@ const allFitTypes = [...new Set(categoryProducts.map((item) => item.fitType || i
     if (selectedMaterials.length && !selectedMaterials.includes(product.materialComposition)) return false;
 
     if (selectedLengths.length && !selectedLengths.includes(product.length)) return false;
+    if (selectedOccasions.length && !selectedOccasions.includes(product.occasionType)) return false;
+
+    if (selectedClosures.length && !selectedClosures.includes(product.closureType)) return false;
 
 })
 

@@ -92,6 +92,7 @@ const allFitTypes = [...new Set(categoryProducts.map((item) => item.fitType || i
 
     }
     if (selectedColors.length && !selectedColors.some((color) => product.colors?.includes(color))) return false;
+    const productSizes = product.sizes ?? product.size ?? [];
 })
 
   return (
